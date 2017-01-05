@@ -1,5 +1,4 @@
 version: '2'
-
 services:
   vp:
     image:  y12docker/dltdojo-bitcoin:0.13.1.core
