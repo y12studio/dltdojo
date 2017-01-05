@@ -1,87 +1,66 @@
-# Lv1
-TODO
+# Level1 任務
 
-# TESTLOG
+環境設置好之後有vp0-vp3共計四個節點可操作，下面用vp1為主。
+
+# T1 取得地址
+
 ```
-$ docker-compose -v
-docker-compose version 1.9.0, build 2585387
-$ source alias.sh
-$ dc up -d
-Creating network "level1_default" with the default driver
-Creating level1_vp0_1
-Creating level1_vp3_1
-Creating level1_vp1_1
-Creating level1_vp2_1
-$ dc ps
-    Name                  Command               State   Ports
--------------------------------------------------------------
-level1_vp0_1   bitcoind -regtest -txindex ...   Up
-level1_vp1_1   bitcoind -regtest -txindex ...   Up
-level1_vp2_1   bitcoind -regtest -txindex ...   Up
-level1_vp3_1   bitcoind -regtest -txindex ...   Up
-
-$ vp0cli getinfo
-{
-  "version": 130200,
-  "protocolversion": 70015,
-  "walletversion": 130000,
-  "balance": 0.00000000,
-  "blocks": 0,
-  "timeoffset": 0,
-  "connections": 0,
-  "proxy": "",
-  "difficulty": 4.656542373906925e-10,
-  "testnet": false,
-  "keypoololdest": 1483585089,
-  "keypoolsize": 100,
-  "paytxfee": 0.00000000,
-  "relayfee": 0.00001000,
-  "errors": ""
-}
-$ vp0cli getnewaddress
-mrjN5jsJf4GNA8Sy6gXuStocwFN1fR45d2
-$ vp0cli getnewaddress
-$ vp0cli getnewaddress
-$ vp0cli getnewaddress
-$ vp0cli getnewaddress
-$ vp0cli getaddressesbyaccount ""
-[
-  "mjisABTPq6DwgUv4rzBtt1gY44hwBX4zZy",
-  "mpHtKSYaQ8Udkn5brZwvxnP4mEUGc4irec",
-  "mpit6q3nokF3XsH9wNcXBGRTiRCrMJdHsE",
-  "mrjN5jsJf4GNA8Sy6gXuStocwFN1fR45d2",
-  "msufv8Mdxn7HNgihL1c3nr7jG4um1FPY4U"
-]
-$ vp1cli getaddressesbyaccount ""
-[
-  "n1ZkxP1LfN67giP8qDPyyGRaxwdzCTcj1w"
-]
 $ vp1cli getnewaddress
-mxCSA2Kyzoh2NMRS18UCUFYuqggvbfrY4T
-$ vp1cli getaddressesbyaccount ""
-[
-  "mxCSA2Kyzoh2NMRS18UCUFYuqggvbfrY4T",
-  "n1ZkxP1LfN67giP8qDPyyGRaxwdzCTcj1w"
-]
+n1ScKpzdRQ3rq3sRxReLKNx4u2Vwma69SY
+```
+
+# T2 取得金鑰
+```
+$ vp1cli dumpprivkey n1ScKpzdRQ3rq3sRxReLKNx4u2Vwma69SY
+cVYZkVvQupWkiWe5QwJgqgNfrHePdTAmyUP9oLHsiYn6woirgx1S
+```
+
+# T3 查詢餘額
+```
+$ vp1cli getbalance
+0.00000000
+```
+
+# T4 挖礦取得50個比特幣
+
+```
 $ vp1cli generate 101
+....
 $ vp1cli getbalance
 50.00000000
-$ vp0cli getbalance
-0.00000000
-$ vp0cli getnewaddress
-mg41DtN1A2x9sMqRHtg82AVxHrSQLrMPG2
-$ vp1cli sendtoaddress mg41DtN1A2x9sMqRHtg82AVxHrSQLrMPG2 8
+```
+
+# T5 轉出10個比特幣
+
+轉帳需要對方地址，如無人練習可使用vp0節點重複T1取得地址。這裡假設對方地址為mgUMfoXL57yH9s1WjwB3CE3MeDWZNxzexU，轉完帳必須有人執行產出區塊對方才能收到一個確認，新礦需要100個確認後才能使用，所以vp1每生成一個新區塊就會有新熟成的50個比特幣可使用。
+
+手續費計算方式較複雜，現階段理解有差額即可，該案例為 50-10-39.99996160=0.0000384
+
+```
+$ vp1cli sendtoaddress mgUMfoXL57yH9s1WjwB3CE3MeDWZNxzexU 10
+7e6223443890d468addd9fdac6202d200145c2d0bbdce02d5f3cfb580bd27528
 $ vp1cli getbalance
-41.99996160
-$ vp0cli getbalance
-0.00000000
-$ vp2cli generate 1
+39.99996160
+$ vp1cli generate 1
 [
-  "3fd4d2c530eb943ec973b79052c4730eedee41ef7037807a5f65009349e67e93"
+  "0a95959a1230abcfbaabeef669ea5b2169104d9925e0e7e0d52a983979fb8332"
 ]
 $ vp1cli getbalance
-91.99996160
-$ vp0cli getbalance
-8.00000000
-$ dc stop
+89.99996160
+```
+
+# T6 收到5個比特幣
+
+該任務需要提交地址請對方協助，如無練習可使用vp0節點。完成後vp1會收到5個以及新熟成50個，所以餘額增加55個。
+
+```
+$ vp1cli getbalance
+144.99996160
+```
+
+# SETUP
+
+```
+$ source alias.sh
+$ dc up -d
 ```

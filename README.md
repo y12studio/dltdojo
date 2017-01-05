@@ -2,7 +2,11 @@
 
 ![DLTDOJO](dltdojo.png "DLT DOJO")
 
-分散帳本道場 Distributed Ledger Technology Dojo (DLTDOJO)
+分散帳本道場 Distributed Ledger Technology Dojo (DLTDOJO) 提供快速練習驗證分散式帳本區塊鏈概念的環境，道場設計為不需背景知識都可練習實做。
+
+# Level1 Bitcoin 比特幣
+
+https://github.com/y12studio/dltdojo/tree/master/level1
 
 # REFERENCES
 
