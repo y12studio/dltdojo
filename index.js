@@ -98,16 +98,19 @@ EthereumGo.prototype.buildDojo = function(path, name, peers) {
 
 EthereumGo.prototype.buildDojoPeer = function() {
     var name = this.name
+    // bootnodes url IP address only. DNS name(evp0) are not allowed.
+    // "tail -f /dev/null" keep evp running for all time
     var dc = {
         version: '2',
         services: {
             evp: {
                 image: 'y12docker/dltdojo-ethgo:1.5.5',
-                command: '--datadir=~/.ethereum/devchain --rpccorsdomain="*" --networkid=919717 --rpc --bootnodes="enode://288b97262895b1c7ec61cf314c2e2004407d0a5dc77566877aad1f2a36659c8b698f4b56fd06c4a0c0bf007b4cfb3e7122d907da3b005fa90e724441902eb19e@evp0:30303"'
+                entrypoint: '/start.sh',
+                command: '--datadir=~/.ethereum/devchain --rpccorsdomain="*" --networkid=919717 --rpc --rpcaddr="0.0.0.0" --bootnodes="enode://288b97262895b1c7ec61cf314c2e2004407d0a5dc77566877aad1f2a36659c8b698f4b56fd06c4a0c0bf007b4cfb3e7122d907da3b005fa90e724441902eb19e@XXX:30303"'
             },
             bootnode: {
                 image: 'y12docker/dltdojo-ethgo:1.5.5',
-                command: '--datadir=~/.ethereum/devchain --nodekeyhex=091bd6067cb4612df85d9c1ff85cc47f259ced4d4cd99816b14f35650f59c322 --ipcapi="admin,db,eth,debug,miner,net,shh,txpool,personal,web3" --rpcapi "db,personal,eth,net,web3" --rpccorsdomain="*" --networkid=919717 --rpc --rpcaddr="0.0.0.0"'
+                command: '--datadir=~/.ethereum/devchain --nodekeyhex=091bd6067cb4612df85d9c1ff85cc47f259ced4d4cd99816b14f35650f59c322 --rpcapi "db,personal,eth,net,web3" --rpccorsdomain="*" --networkid=919717 --rpc --rpcaddr="0.0.0.0"'
             }
         }
     }
@@ -121,7 +124,7 @@ EthereumGo.prototype.buildDojoPeers = function() {
         version: '2',
         services: {}
     }
-    _.range(peers).forEach(function(e, i, a) {
+    _.range(2).forEach(function(e, i, a) {
         var vpid = `evp${i}`
         var peerfile = `${name}-peer.yml`
         dc.services[vpid] = {
