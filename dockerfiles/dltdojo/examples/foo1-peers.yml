@@ -1,0 +1,17 @@
+version: '2'
+services:
+  vp0:
+    extends:
+      file: foo1-peer.yml
+      service: bvp
+    hostname: vp0
+  vp1:
+    extends:
+      file: foo1-peer.yml
+      service: bvp
+    hostname: vp1
+  vp2:
+    extends:
+      file: foo1-peer.yml
+      service: bvp
+    hostname: vp2

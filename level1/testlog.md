@@ -1,11 +1,14 @@
-# SETUP
-
-```
-$ source alias.sh
-$ dc up -d
-```
-
 # TESTLOG
+
+## LOG0106
+```
+$ date && docker -v && echo $BASH_VERSION
+Fri Jan  6 14:13:32 CST 2017
+Docker version 1.12.5, build 7392c3b
+4.3.11(1)-release
+$ 
+```
+#LOG0105
 ```
 $ docker-compose -v
 docker-compose version 1.9.0, build 2585387

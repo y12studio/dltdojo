@@ -18,7 +18,7 @@ function buildDojoPeer(name) {
     var dc = {
         version: '2',
         services: {
-            vpsrv: {
+            bvp: {
                 image: 'y12docker/dltdojo-bitcoin:0.13.1.core',
                 expose: ['18332', '18333'],
                 command: 'bitcoind -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcport=18332 -addnode=vp0:18333'
@@ -39,7 +39,7 @@ function buildDojoPeers(name, peers) {
         dc.services[vpid] = {
             extends: {
                 file: peerfile,
-                service: 'vpsrv'
+                service: 'bvp'
             },
             hostname: vpid
         }
@@ -56,13 +56,13 @@ function buildDojo(path, name, peers) {
     fs.writeFileSync(`${path}/${name}-alias.sh`, strAlias);
 }
 
-function mainx() {
+function main() {
     var argv = require('yargs')
-        .usage('Usage: $0 -w [num] -h [num]')
-        .demandOption(['w', 'h'])
-        .argv;
-
-    console.log("The area is:", argv.w * argv.h);
+        .usage('Usage: $0 --path=[string] --name=[string] --peers=[num]')
+        .demandOption(['path', 'name','peers'])
+        .argv
+    // console.log(argv)
+    buildDojo(argv.path, argv.name, argv.peers)
 }
 
-buildDojo('./dockerfiles/dltdojo/examples', 'levelx', 6)
+main()
