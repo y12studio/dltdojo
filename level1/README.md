@@ -51,7 +51,7 @@ $ vp1cli getbalance
 
 # T6 收到5個比特幣
 
-該任務需要提交地址請對方協助，如無練習可使用vp0節點。完成後vp1會收到5個以及新熟成50個，所以餘額增加55個。
+該任務需要提交地址請對方協助，如無練習對手可使用vp0節點。完成後vp1會收到5個以及新熟成50個，所以餘額增加55個。
 
 ```
 $ vp1cli getbalance
@@ -62,7 +62,7 @@ $ vp1cli getbalance
 
 ```
 $ mkdir level1 && cd level1
-$ docker run -v $(pwd):/tmp y12docker/dltdojo:0.0.1 --path=/tmp --name=level1 --peers=4
+$ docker run -v $(pwd):/tmp y12docker/dltdojo:0.0.2 --path=/tmp --name=level1 --peers=4 --level=1
 $ source level1-alias.sh
 $ dc up -d
 $ dc stop && dc rm

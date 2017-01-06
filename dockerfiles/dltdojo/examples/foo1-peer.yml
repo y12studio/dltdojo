@@ -1,3 +1,6 @@
+# Distributed Ledger Technology Dojo (DLTDOJO) 
+# https://github.com/y12studio/dltdojo
+# BitcoinCore peer yml file ,  name:foo1
 version: '2'
 services:
   bvp:
@@ -5,4 +8,4 @@ services:
     expose:
       - '18332'
       - '18333'
-    command: 'bitcoind -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcport=18332 -addnode=vp0:18333'
+    command: 'bitcoind -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcport=18332 -addnode=bvp0:18333'

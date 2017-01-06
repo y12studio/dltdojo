@@ -1,22 +1,15 @@
+# Distributed Ledger Technology Dojo (DLTDOJO) 
+# https://github.com/y12studio/dltdojo
+# BitcoinCore peers yml file ,name:level1, peers:4
 version: '2'
 services:
-  vp0:
+  bvp0:
     extends:
       file: level1-peer.yml
       service: bvp
-    hostname: vp0
-  vp1:
+    hostname: bvp0
+  bvp1:
     extends:
       file: level1-peer.yml
       service: bvp
-    hostname: vp1
-  vp2:
-    extends:
-      file: level1-peer.yml
-      service: bvp
-    hostname: vp2
-  vp3:
-    extends:
-      file: level1-peer.yml
-      service: bvp
-    hostname: vp3
+    hostname: bvp1

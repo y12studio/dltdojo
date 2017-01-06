@@ -1,5 +1,44 @@
 # LOG
+## LOG0106 0.0.2
+```
+$ date && docker -v
+Fri Jan  6 17:59:57 CST 2017
+Docker version 1.12.5, build 7392c3b
+$ docker build -t y12docker/dltdojo:0.0.2 .
+$ docker run y12docker/dltdojo:0.0.2
+Usage: index.js --path=[string] --name=[string] --peers=[num] --level=[num]
 
+Options:
+  --path                                                              [required]
+  --name                                                              [required]
+  --peers                                                             [required]
+  --level                                                           [default: 1]
+
+Missing required arguments: path, name, peers
+$ cd examples
+$ docker run -v $(pwd):/tmp y12docker/dltdojo:0.0.2 --path=/tmp --name=foo1 --peers=6 --level=1
+$ source foo1-alias.sh
+$ dcup
+No stopped containers
+Creating foo1_bvp0_1
+Creating foo1_bvp1_1
+Creating and starting foo1_bvp1_2 ... done
+Creating and starting foo1_bvp1_3 ... done
+Creating and starting foo1_bvp1_4 ... done
+Creating and starting foo1_bvp1_5 ... done
+$ dc ps
+   Name                  Command               State          Ports
+---------------------------------------------------------------------------
+foo1_bvp0_1   bitcoind -regtest -txindex ...   Up      18332/tcp, 18333/tcp
+foo1_bvp1_1   bitcoind -regtest -txindex ...   Up      18332/tcp, 18333/tcp
+foo1_bvp1_2   bitcoind -regtest -txindex ...   Up      18332/tcp, 18333/tcp
+foo1_bvp1_3   bitcoind -regtest -txindex ...   Up      18332/tcp, 18333/tcp
+foo1_bvp1_4   bitcoind -regtest -txindex ...   Up      18332/tcp, 18333/tcp
+foo1_bvp1_5   bitcoind -regtest -txindex ...   Up      18332/tcp, 18333/tcp
+$ vp5cli getpeerinfo
+$ dc stop && dc rm
+$ docker push y12docker/dltdojo:0.0.2
+```
 ## LOG0106
 ```
 $ date && docker -v
