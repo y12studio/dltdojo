@@ -61,6 +61,7 @@ $ vp1cli getbalance
 # SETUP
 
 ```
+$ docker pull y12docker/dltdojo 
 $ source alias.sh
 $ dc up -d
 ```

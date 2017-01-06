@@ -1,0 +1,8 @@
+version: '2'
+services:
+  vpsrv:
+    image: 'y12docker/dltdojo-bitcoin:0.13.1.core'
+    expose:
+      - '18332'
+      - '18333'
+    command: 'bitcoind -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcport=18332 -addnode=vp0:18333'

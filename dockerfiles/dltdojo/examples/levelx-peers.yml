@@ -1,0 +1,32 @@
+version: '2'
+services:
+  vp0:
+    extends:
+      file: levelx-peer.yml
+      service: vpsrv
+    hostname: vp0
+  vp1:
+    extends:
+      file: levelx-peer.yml
+      service: vpsrv
+    hostname: vp1
+  vp2:
+    extends:
+      file: levelx-peer.yml
+      service: vpsrv
+    hostname: vp2
+  vp3:
+    extends:
+      file: levelx-peer.yml
+      service: vpsrv
+    hostname: vp3
+  vp4:
+    extends:
+      file: levelx-peer.yml
+      service: vpsrv
+    hostname: vp4
+  vp5:
+    extends:
+      file: levelx-peer.yml
+      service: vpsrv
+    hostname: vp5
