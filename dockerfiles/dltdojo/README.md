@@ -1,4 +1,22 @@
 # LOG
+
+## LOG0107
+
+```
+$ docker build -t y12docker/dltdojo:0.0.3 .
+$ cd examples
+$ docker run -v $(pwd):/tmp y12docker/dltdojo:0.0.3 --path=/tmp --name=foo3 --peers=6 --level=2
+$ source foo3-alias.sh
+$ vp1curl personal_newAccount '"vp1pass"'
+{"jsonrpc":"2.0","method":"personal_newAccount","params":["vp1pass"],"id":67}
+{
+  "jsonrpc": "2.0",
+  "id": 67,
+  "result": "0xc1d8a6b9ce958f916d81e81084c37085161b3254"
+}
+TODO
+```
+
 ## LOG0106 0.0.2
 ```
 $ date && docker -v

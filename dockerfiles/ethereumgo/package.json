@@ -1,0 +1,20 @@
+{
+  "name": "dltdojo-ethgoweb3",
+  "version": "0.0.1",
+  "description": "dltdojo ethereum web3.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "dlt"
+  ],
+  "author": "JOYE LIN <y12studio@gmail.com> (https://y12.tw)",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "keythereum": "^0.3.2",
+    "lodash": "^4.17.4",
+    "web3": "^0.18.0",
+    "yargs": "^6.6.0"
+  }
+}

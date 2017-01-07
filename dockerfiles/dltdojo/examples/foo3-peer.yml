@@ -1,6 +1,6 @@
 # Distributed Ledger Technology Dojo (DLTDOJO) 
 # https://github.com/y12studio/dltdojo
-# EthereumGo peer yml file ,  name:level2
+# EthereumGo peer yml file ,  name:foo3
 version: '2'
 services:
   evp:
