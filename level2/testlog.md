@@ -1,3 +1,19 @@
+## LOG0107_4
+
+```
+$vp1cli newAccount vp1pass
+"0x8e57fc088fbd94f726a15b73e825dd87e6c47e69"
+$ vp1cli info
+{
+ "ethGetBalance": "0",
+ "ethCoinbase": "0x8e57fc088fbd94f726a15b73e825dd87e6c47e69",
+ "ethBlockNumber": 0,
+ "ethMining": false,
+ "ether": "0"
+}
+
+```
+
 ## LOG0107_3
 
 ```

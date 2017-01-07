@@ -146,6 +146,7 @@ EthereumGo.prototype.buildDojoAlias = function() {
     _.range(peers).forEach(function(e, i, a) {
         // vp1 /curlrpc.sh
         r.push(`alias vp${i}curl='vp${i} /curlrpc.sh'`)
+        r.push(`alias vp${i}cli='vp${i} node index.js'`)
     })
     return buildHead(`EthereumGo alias script, name:${name}, peers:${peers}`, '\n') + r.join('\n')
 }
