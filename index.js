@@ -107,11 +107,11 @@ EthereumGo.prototype.buildDojoPeer = function() {
             evp: {
                 image: 'y12docker/dltdojo-ethgo:1.5.5',
                 entrypoint: '/start.sh',
-                command: `--dev --nodiscover --networkid=919717 ${rpcopts} --datadir=~/.ethereum/devchain --bootnodes="enode://288b97262895b1c7ec61cf314c2e2004407d0a5dc77566877aad1f2a36659c8b698f4b56fd06c4a0c0bf007b4cfb3e7122d907da3b005fa90e724441902eb19e@XXX:30303"`
+                command: `--networkid=919717 ${rpcopts} --datadir=~/.ethereum/devchain --bootnodes="enode://288b97262895b1c7ec61cf314c2e2004407d0a5dc77566877aad1f2a36659c8b698f4b56fd06c4a0c0bf007b4cfb3e7122d907da3b005fa90e724441902eb19e@XXX:30303"`
             },
             bootnode: {
                 image: 'y12docker/dltdojo-ethgo:1.5.5',
-                command: `--dev --nodiscover --networkid=919717 ${rpcopts} --datadir=~/.ethereum/devchain --nodekeyhex=091bd6067cb4612df85d9c1ff85cc47f259ced4d4cd99816b14f35650f59c322`
+                command: `--networkid=919717 ${rpcopts} --datadir=~/.ethereum/devchain --nodekeyhex=091bd6067cb4612df85d9c1ff85cc47f259ced4d4cd99816b14f35650f59c322`
             }
         }
     }

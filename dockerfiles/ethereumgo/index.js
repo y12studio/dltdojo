@@ -1,8 +1,35 @@
-var keythereum = require("keythereum")
+var keythereum = require('keythereum')
 var Web3 = require('web3')
 var web3 = new Web3()
+var _ = require('lodash')
+var request = require('request')
+const RPCURL = 'http://localhost:8545'
+var jayson = require('jayson')
+var clientRpc = jayson.client.http(RPCURL);
 
-web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'))
+web3.setProvider(new web3.providers.HttpProvider(RPCURL))
+
+var rpcId = 0
+
+function rpcPost(method, params) {
+    var requestData = {
+        jsonrpc: "2.0",
+        id: rpcId++,
+        method: method,
+        params: params
+    }
+    request({
+        url: RPCURL,
+        method: 'POST',
+        json: requestData
+    }, function(error, response, body) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log(body);
+        }
+    });
+}
 
 function getInfo() {
     var coinbase = web3.eth.coinbase;
@@ -11,6 +38,7 @@ function getInfo() {
         // https://github.com/ethereum/web3.js/issues/388
         // https://github.com/ethereum/web3.js/blob/master/lib/web3/methods/personal.js
     return {
+        netPeerCount: web3.net.peerCount,
         ethGetBalance: balance,
         ethCoinbase: coinbase,
         ethBlockNumber: web3.eth.blockNumber,
@@ -31,33 +59,32 @@ function recoverKeyFromAddress(datadir, address, password) {
     }
 }
 
-function cout(obj){
-    console.log(JSON.stringify(obj, null, ' '))
+function cout(obj) {
+    console.log(_.isString(obj) ? obj : JSON.stringify(obj, null, ' '))
+}
+
+function logResponse(err, response) {
+    if (err) {
+        console.log('err: ', JSON.stringify(err))
+    } else {
+        console.log('response: ', JSON.stringify(response))
+    }
 }
 
 require('yargs')
     .command({
-        command: 'newAccount <password>',
-        desc: 'Create a new account',
+        command: 'rpc <method> [params..]',
+        desc: 'json rpc interface',
         handler: (argv) => {
-            cout(web3.personal.newAccount(argv.password))
+            //rpcPost(argv.method, argv.params)
+            clientRpc.request(argv.method, argv.params, logResponse);
         }
     })
     .command({
         command: 'info',
-        desc: 'info type',
+        desc: 'info',
         handler: (argv) => {
             cout(getInfo())
-        }
-    })
-    .command({
-        command: 'foo <key>',
-        desc: 'Set a config variable',
-        builder: (yargs) => {
-            yargs.default('value', 'true')
-        },
-        handler: (argv) => {
-            console.log(`setting ${argv.key} to ${argv.value}`)
         }
     })
     .demandCommand(1)

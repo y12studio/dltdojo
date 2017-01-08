@@ -1,16 +1,29 @@
 ## LOG0107_4
 
 ```
-$vp1cli newAccount vp1pass
-"0x8e57fc088fbd94f726a15b73e825dd87e6c47e69"
+$ vp1cli rpc personal_newAccount vp1pass
+{ jsonrpc: '2.0',
+  id: 0,
+  result: '0x2f7be2ebb8156c257a342ece0c2884351aca75dc' }
 $ vp1cli info
 {
  "ethGetBalance": "0",
- "ethCoinbase": "0x8e57fc088fbd94f726a15b73e825dd87e6c47e69",
+ "ethCoinbase": "0x2f7be2ebb8156c257a342ece0c2884351aca75dc",
  "ethBlockNumber": 0,
  "ethMining": false,
  "ether": "0"
 }
+$ vp1cli rpc miner_start
+{ jsonrpc: '2.0', id: 0, result: true }
+$ vp1cli info
+{
+ "ethGetBalance": "70000000000000000000",
+ "ethCoinbase": "0x2f7be2ebb8156c257a342ece0c2884351aca75dc",
+ "ethBlockNumber": 14,
+ "ethMining": true,
+ "ether": "70"
+}
+
 
 ```
 

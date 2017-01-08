@@ -18,4 +18,6 @@ http://blog.carl.pro/2016/06/building-an-ethereum-environment-with-docker/
 
 ```
 $ docker build -t y12docker/dltdojo-ethgo:1.5.5 .
+$ docker run -it --entrypoint=bash y12docker/dltdojo-ethgo:1.5.5
+$ docker run y12docker/dltdojo-ethgo:1.5.5 -h
 ```
