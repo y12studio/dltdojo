@@ -7,6 +7,6 @@ ADD package.json /tmp/package.json
 RUN cd /tmp && npm install && apk del .builddeps
 RUN mkdir -p /opt/app && cp -a /tmp/node_modules /opt/app/ && rm -rf /tmp/*
 ADD start.sh curlrpc.sh genesis.json ./
-RUN chmod +x start.sh && chmod +x curlrpc.sh && /geth init genesis.json
+RUN chmod +x start.sh && chmod +x curlrpc.sh
 WORKDIR /opt/app
 ADD index.js keyrecover.js /opt/app/

@@ -1,8 +1,8 @@
-# DLTDOJO分散帳本道場
+# DLTDOJO 熵熱踢道場
 
 ![DLTDOJO](dltdojo.png "DLT DOJO")
 
-分散帳本道場 Distributed Ledger Technology Dojo (DLTDOJO) 提供快速練習驗證分散式帳本區塊鏈概念的環境，道場設計為不需背景知識都可練習實做。
+熵熱踢道場 Distributed Ledger Technology Dojo (DLTDOJO) 提供快速練習驗證分散式帳本區塊鏈概念的環境，道場設計為不需背景知識都可練習實做。
 
 # SETUP
 TODO
@@ -11,17 +11,11 @@ TODO
 
 ## Level1 Bitcoin 比特幣轉帳
 
-https://github.com/y12studio/dltdojo/tree/master/level1
-
 ## Level2 Ethereum 轉帳
-
-https://github.com/y12studio/dltdojo/tree/master/level2
 
 ## Level3 Hyperledger Fabric 轉帳
 
-https://github.com/y12studio/dltdojo/tree/master/level3
-
-# REFERENCES
+# 參考連結
 
 https://github.com/bitcoin/bitcoin
 

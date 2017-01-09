@@ -31,21 +31,25 @@ function rpcPost(method, params) {
     });
 }
 
-function getInfo() {
+function getInfo(debug) {
     var coinbase = web3.eth.coinbase;
     var balance = web3.eth.getBalance(coinbase)
         // var value = web3.fromWei('21000000000000', 'finney');
         // https://github.com/ethereum/web3.js/issues/388
         // https://github.com/ethereum/web3.js/blob/master/lib/web3/methods/personal.js
-    return {
-        netPeerCount: web3.net.peerCount,
+    var r = {
         ethGetBalance: balance,
         ethCoinbase: coinbase,
-        ethBlockNumber: web3.eth.blockNumber,
-        ethMining: web3.eth.mining,
         ethDefaultAccount: web3.eth.defaultAccount,
-        ether: web3.fromWei(balance, 'ether')
+        balanceEther: web3.fromWei(balance, 'ether')
     }
+    if(debug){
+        r.ethBlockNumber= web3.eth.blockNumber
+        r.netPeerCount= web3.net.peerCount
+        r.ethMining= web3.eth.mining
+        r.ethGetBlockPending= web3.eth.getBlock("pending")
+    }
+    return r
 }
 
 function recoverKeyFromAddress(datadir, address, password) {
@@ -55,20 +59,13 @@ function recoverKeyFromAddress(datadir, address, password) {
     var privateKey = keythereum.recover(password, keyObject)
     return {
         ko: keyObject,
-        key: privateKey
+        key: privateKey,
+        keyhex: privateKey.toString('hex')
     }
 }
 
 function cout(obj) {
     console.log(_.isString(obj) ? obj : JSON.stringify(obj, null, ' '))
-}
-
-function logResponse(err, response) {
-    if (err) {
-        console.log('err: ', JSON.stringify(err))
-    } else {
-        console.log('response: ', JSON.stringify(response))
-    }
 }
 
 require('yargs')
@@ -77,14 +74,25 @@ require('yargs')
         desc: 'json rpc interface',
         handler: (argv) => {
             //rpcPost(argv.method, argv.params)
-            clientRpc.request(argv.method, argv.params, logResponse);
+            clientRpc.request(argv.method, argv.params, function(err, resp) {
+                err ? console.log(JSON.stringify(err)) : console.log(JSON.stringify(resp))
+            });
         }
     })
     .command({
         command: 'info',
         desc: 'info',
         handler: (argv) => {
-            cout(getInfo())
+            cout(getInfo(argv.debug))
+        }
+    })
+    .command({
+        command: 'keyrecover <address> <password> [datadir]',
+        desc: 'keyrecover',
+        builder: (yargs) => yargs.default('datadir', '/root/.ethereum/devchain'),
+        handler: (argv) => {
+            var r = recoverKeyFromAddress(argv.datadir, argv.address, argv.password)
+            argv.debug ? cout(r) : console.log(r.keyhex)
         }
     })
     .demandCommand(1)

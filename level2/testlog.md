@@ -1,3 +1,88 @@
+## LOG0109_1
+
+```
+$ vp2cli rpc personal_newAccount vp2pass
+$ vp2cli rpc miner_start 1
+$ dc logs
+....
+evp1_1  | I0109 09:54:35.525132 core/blockchain.go:1047] imported 1 blocks,     0 txs (  0.000 Mg) in   4.985ms ( 0.000 Mg/s). #30 [6174e0bc…]
+evp1_1  | I0109 09:54:38.654495 core/blockchain.go:1047] imported 1 blocks,     0 txs (  0.000 Mg) in   5.147ms ( 0.000 Mg/s). #31 [55b0af02…]
+evp1_1  | I0109 09:54:40.465566 core/blockchain.go:1047] imported 1 blocks,     0 txs (  0.000 Mg) in   3.614ms ( 0.000 Mg/s). #32 [43cda26f…]
+evp1_1  | I0109 09:54:40.479025 core/blockchain.go:1047] imported 1 blocks,     0 txs (  0.000 Mg) in   3.990ms ( 0.000 Mg/s). #33 [d851785c…]
+evp1_1  | I0109 09:54:44.091722 core/blockchain.go:1047] imported 1 blocks,     0 txs (  0.000 Mg) in   5.196ms ( 0.000 Mg/s). #34 [32440ad1…]
+$ docker ps -s
+CONTAINER ID        IMAGE                           COMMAND                  CREATED             STATUS              PORTS                 NAMES               SIZE
+1d7cd14cd98e        y12docker/dltdojo-ethgo:1.5.5   "/start.sh --networki"   7 minutes ago       Up 7 minutes        8545/tcp, 30303/tcp   level2_evp1_4       2.512 MB (virtual 708.2 MB)
+9faec5d012cf        y12docker/dltdojo-ethgo:1.5.5   "/start.sh --networki"   7 minutes ago       Up 7 minutes        8545/tcp, 30303/tcp   level2_evp1_3       3.005 MB (virtual 708.7 MB)
+fcfe0293ef22        y12docker/dltdojo-ethgo:1.5.5   "/start.sh --networki"   7 minutes ago       Up 7 minutes        8545/tcp, 30303/tcp   level2_evp1_5       2.578 MB (virtual 708.3 MB)
+13bd9b1ad7af        y12docker/dltdojo-ethgo:1.5.5   "/start.sh --networki"   7 minutes ago       Up 7 minutes        8545/tcp, 30303/tcp   level2_evp1_2       1.076 GB (virtual 1.782 GB)
+ad822ae9b538        y12docker/dltdojo-ethgo:1.5.5   "/geth --networkid=91"   7 minutes ago       Up 7 minutes        8545/tcp, 30303/tcp   level2_evp0_1       5.263 MB (virtual 711 MB)
+40a16d554968        y12docker/dltdojo-ethgo:1.5.5   "/start.sh --networki"   7 minutes ago       Up 7 minutes        8545/tcp, 30303/tcp   level2_evp1_1       2.733 MB (virtual 708.4 MB)
+// evp1_2 with 1G DAG File
+$ vp2cli info
+{
+ "netPeerCount": 3,
+ "ethGetBalance": "1.725e+21",
+ "ethCoinbase": "0x1ab0ec767423e8f0bbae3c7ac7863e20efa1cc78",
+ "ethBlockNumber": 345,
+ "ethMining": true,
+ "ethGetBlockPending": {
+  "difficulty": "154855",
+  "extraData": "0xd783010505846765746887676f312e352e34856c696e7578",
+  "gasLimit": 95718562,
+  "gasUsed": 0,
+  "hash": null,
+  "logsBloom": null,
+  "miner": null,
+  "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "nonce": null,
+  "number": 346,
+  "parentHash": "0xafe82bdb00a72922776481a765164eb6194a6a71c4ee7d8dab77d390974622a8",
+  "receiptsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+  "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+  "size": 538,
+  "stateRoot": "0xffae6efe4b1ccd41edf7da6e20dd7db8d5d4fabc94f1474741892dc577624fa0",
+  "timestamp": 1483927391,
+  "totalDifficulty": "0",
+  "transactions": [],
+  "transactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+  "uncles": []
+ },
+ "ether": "1725"
+}
+$ vp1cli info
+{
+ "netPeerCount": 6,
+ "ethGetBalance": "0",
+ "ethCoinbase": "0xed3efecca8b88d5bec937e09f2294fbc3f304989",
+ "ethBlockNumber": 347,
+ "ethMining": false,
+ "ethGetBlockPending": {
+  "difficulty": "155005",
+  "extraData": "0xd783010505846765746887676f312e352e34856c696e7578",
+  "gasLimit": 95531706,
+  "gasUsed": 0,
+  "hash": null,
+  "logsBloom": null,
+  "miner": null,
+  "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "nonce": null,
+  "number": 348,
+  "parentHash": "0x71e1ed02ddc9ab152549e74f3e773b5d53d7040be4494cc91eca4a62403c3e7c",
+  "receiptsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+  "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+  "size": 538,
+  "stateRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "timestamp": 1483927396,
+  "totalDifficulty": "0",
+  "transactions": [],
+  "transactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+  "uncles": []
+ },
+ "ether": "0"
+}
+```
+
 ## LOG0107_4
 
 ```
@@ -67,7 +152,6 @@ $ vp1 node keyrecover.js --datadir=/root/.ethereum/devchain --address=8bef3b5260
  },
  "privateKey": "3619fcf4125b4710ec832b8216e43dd2740d8b951a52185163d0e46505ece915"
 }
-
 ```
 
 ## LOG0107_2

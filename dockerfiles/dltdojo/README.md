@@ -1,5 +1,14 @@
 # LOG
 
+## LOG0109_1
+
+```
+$ node index.js --level 2 --path level2 --name level2 --peers 6
+$ docker build -t y12docker/dltdojo:0.0.4 .
+$ docker run -v $(pwd):/tmp y12docker/dltdojo:0.0.4 --level 2 --name level2 --peers 6
+$ 
+```
+
 ## LOG0107
 
 ```
@@ -14,7 +23,6 @@ $ vp1curl personal_newAccount '"vp1pass"'
   "id": 67,
   "result": "0xc1d8a6b9ce958f916d81e81084c37085161b3254"
 }
-TODO
 ```
 
 ## LOG0106 0.0.2

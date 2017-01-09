@@ -1,5 +1,21 @@
 ## LOG0108_3
 
+```
+$ docker build -t y12docker/dltdojo-ethgo:1.5.5.a0 .
+$ docker run y12docker/dltdojo-ethgo:1.5.5.a0 version
+Geth
+Version: 1.5.5-stable
+Git Commit: ff07d54843ea7ed9997c420d216b4c007f9c80c3
+Protocol Versions: [63 62]
+Network Id: 1
+Go Version: go1.5.4
+OS: linux
+GOPATH=
+GOROOT=/usr/lib/go
+$ docker run -it --entrypoint=bash y12docker/dltdojo-ethgo:1.5.5.a0
+$
+```
+
 Transaction propagation issue on private test net since geth 1.4.6 · Issue #2769 · ethereum/go-ethereum
 
 https://github.com/ethereum/go-ethereum/issues/2769
@@ -19,7 +35,7 @@ evp1_1  | I0108 17:26:37.868095 vendor/github.com/ethereum/ethash/ethash.go:291]
 evp1_1  | I0108 17:26:37.868132 vendor/github.com/ethereum/ethash/ethash.go:276] Done generating DAG for epoch 0, it took 7.047686ms
 evp1_1  | I0108 17:26:43.386157 miner/unconfirmed.go:83] 🔨  mined potential block #1 [04a576d3…], waiting for 5 blocks to confirm
 evp1_1  | I0108 17:26:43.386937 miner/worker.go:516] commit new work on block 2 with 0 txs & 0 uncles. Took 515.995µs
-$ vp1cli info
+$ vp1cli info --debug
 {
  "netPeerCount": 0,
  "ethGetBalance": "25000000000000000000",
@@ -32,7 +48,7 @@ $ vp1cli info
 // without --dev
 ```
 $ vp1cli rpc personal_newAccount vp1pass
-$ vp1cli info
+$ vp1cli info --debug
 {
  "netPeerCount": 4,
  "ethGetBalance": "0",

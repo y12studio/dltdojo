@@ -1,12 +1,12 @@
-# Distributed Ledger Technology Dojo (DLTDOJO)
+# Distributed Ledger Technology Dojo (DLTDOJO) 
 # https://github.com/y12studio/dltdojo
 # EthereumGo peer yml file ,  name:level2
 version: '2'
 services:
   evp:
-    image: 'y12docker/dltdojo-ethgo:1.5.5'
+    image: 'y12docker/dltdojo-ethgo:1.5.5.a0'
     entrypoint: /start.sh
     command: '--networkid=919717 --rpc --rpccorsdomain="*" --rpcaddr="0.0.0.0" --rpcapi "miner,admin,db,personal,eth,net,web3" --ipcdisable --datadir=~/.ethereum/devchain --bootnodes="enode://288b97262895b1c7ec61cf314c2e2004407d0a5dc77566877aad1f2a36659c8b698f4b56fd06c4a0c0bf007b4cfb3e7122d907da3b005fa90e724441902eb19e@XXX:30303"'
   bootnode:
-    image: 'y12docker/dltdojo-ethgo:1.5.5'
+    image: 'y12docker/dltdojo-ethgo:1.5.5.a0'
     command: '--networkid=919717 --rpc --rpccorsdomain="*" --rpcaddr="0.0.0.0" --rpcapi "miner,admin,db,personal,eth,net,web3" --ipcdisable --datadir=~/.ethereum/devchain --nodekeyhex=091bd6067cb4612df85d9c1ff85cc47f259ced4d4cd99816b14f35650f59c322'
