@@ -6,7 +6,7 @@
 $ node index.js --level 2 --path level2 --name level2 --peers 6
 $ docker build -t y12docker/dltdojo:0.0.4 .
 $ docker run -v $(pwd):/tmp y12docker/dltdojo:0.0.4 --level 2 --name level2 --peers 6
-$ 
+$ docker push y12docker/dltdojo:0.0.4
 ```
 
 ## LOG0107

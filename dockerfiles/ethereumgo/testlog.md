@@ -1,3 +1,44 @@
+## LOG0109_1
+
+eth_getTransactionByHash : cannot unmarshal non-string as hex data
+
+https://github.com/ethereum/go-ethereum/issues/2438
+
+```
+// npm web3 package
+// web3.eth.getTransaction('0x163cdb1863db09a1371937d079502e73d04ccc6bd5ba308d7cf2f936725cee05')
+$ vp1cli tx 0x163cdb1863db09a1371937d079502e73d04ccc6bd5ba308d7cf2f936725cee05
+cannot unmarshal non-string as hex data
+
+// npm request package
+$ vp1cli rpc eth_getTransactionByHash 0x163cdb1863db09a1371937d079502e73d04ccc6bd5ba308d7cf2f936725cee05
+{"jsonrpc":"2.0","id":"234dfb74-ac4f-48ce-a0f4-02207a8876b3","error":{"code":-32602,"message":"cannot unmarshal non-string as hex data"}}
+
+$vp1 bash
+# curl -s -X POST --data '{"jsonrpc":"2.0","method":"eth_getTransactionByHash","params":["0x163cdb1863db09a1371937d079502e73d04ccc6bd5ba308d7cf2f936725cee05"],"id":1}' http://localhost:8545 | jq .
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "blockHash": "0x55b36a841e7675243c633f171bfa19a745d32d28ef760c2da27b1adbf313ca49",
+    "blockNumber": "0x252",
+    "from": "0x61c8b60e657af2f09f2a9ed1008f61b7fb8565f0",
+    "gas": "0x15f90",
+    "gasPrice": "0x4a817c800",
+    "hash": "0x163cdb1863db09a1371937d079502e73d04ccc6bd5ba308d7cf2f936725cee05",
+    "input": "0x",
+    "nonce": "0x1",
+    "to": "0xae2ca9068453af6fa0995fa3bfc65fb8bd2d79a5",
+    "transactionIndex": "0x0",
+    "value": "0x29a2241af62c0000",
+    "v": "0x1c",
+    "r": "0x8d2b13c08144880863fa02757b2a00f624dfe235ddd8664138c985751d01c96d",
+    "s": "0x22e7546a1d97e1c3338379127ae8dd7ce0560317c2d4062a000bcbe96e1a244c"
+  }
+}
+
+```
+
 ## LOG0108_3
 
 ```
@@ -13,7 +54,7 @@ OS: linux
 GOPATH=
 GOROOT=/usr/lib/go
 $ docker run -it --entrypoint=bash y12docker/dltdojo-ethgo:1.5.5.a0
-$
+$ docker push y12docker/dltdojo-ethgo:1.5.5.a0
 ```
 
 Transaction propagation issue on private test net since geth 1.4.6 · Issue #2769 · ethereum/go-ethereum

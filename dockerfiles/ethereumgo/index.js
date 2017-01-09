@@ -31,6 +31,19 @@ function rpcPost(method, params) {
     });
 }
 
+function sendTransaction(accountAddress, accountPassword, toAddress, ether) {
+    var unlock = web3.personal.unlockAccount(accountAddress, accountPassword, 300)
+    var sendtx = web3.eth.sendTransaction({
+        from: accountAddress,
+        to: toAddress,
+        value: web3.toWei(ether, "ether")
+    })
+    return {
+        unlock: unlock,
+        sendtx: sendtx
+    }
+}
+
 function getInfo(debug) {
     var coinbase = web3.eth.coinbase;
     var balance = web3.eth.getBalance(coinbase)
@@ -38,16 +51,17 @@ function getInfo(debug) {
         // https://github.com/ethereum/web3.js/issues/388
         // https://github.com/ethereum/web3.js/blob/master/lib/web3/methods/personal.js
     var r = {
+        ethBlockNumber: web3.eth.blockNumber,
         ethGetBalance: balance,
         ethCoinbase: coinbase,
+        ethSyncing : web3.eth.syncing,
+        netPeerCount: web3.net.peerCount,
         ethDefaultAccount: web3.eth.defaultAccount,
         balanceEther: web3.fromWei(balance, 'ether')
     }
-    if(debug){
-        r.ethBlockNumber= web3.eth.blockNumber
-        r.netPeerCount= web3.net.peerCount
-        r.ethMining= web3.eth.mining
-        r.ethGetBlockPending= web3.eth.getBlock("pending")
+    if (debug) {
+        r.ethMining = web3.eth.mining
+        r.ethGetBlockPending = web3.eth.getBlock("pending")
     }
     return r
 }
@@ -93,6 +107,25 @@ require('yargs')
         handler: (argv) => {
             var r = recoverKeyFromAddress(argv.datadir, argv.address, argv.password)
             argv.debug ? cout(r) : console.log(r.keyhex)
+        }
+    })
+    .command({
+        command: 'sendeth <accountAddress> <accountPassword> <toAddress> <ether>',
+        desc: 'sendeth',
+        handler: (argv) => {
+            var r = sendTransaction(argv.accountAddress,argv.accountPassword, argv.toAddress, argv.ether)
+            cout(r)
+        }
+    })
+    .command({
+        command: 'tx <hash>',
+        desc: 'tx',
+        handler: (argv) => {
+            var transaction = web3.eth.getTransaction(argv.hash)
+            if(transaction) {
+                transaction.ether = web3.fromWei(r.value, 'ether')
+            }
+            cout(r)
         }
     })
     .demandCommand(1)

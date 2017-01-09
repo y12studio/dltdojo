@@ -1,3 +1,73 @@
+## LOG0109_2
+
+// https://github.com/ethereum/go-ethereum/issues/2769
+// vp1(miner) vp2(non-miner)
+// vp1-3eth-to-vp2 ok but vp2-1eth-to-vp1
+
+```
+// "difficulty": "0x4000"
+$ vp1cli rpc personal_newAccount vp1pass
+$ vp2cli rpc personal_newAccount vp2pass
+$ vp3cli rpc personal_newAccount vp3pass
+$ vp1cli rpc miner_start
+$ vp1cli info && vp2cli info
+{
+ "ethBlockNumber": 0,
+ "ethGetBalance": "0",
+ "ethCoinbase": "0x8b8c1c00dc15980434ff4d679103fb21be205816",
+ "ethSyncing": false,
+ "netPeerCount": 5,
+ "balanceEther": "0"
+}
+{
+ "ethBlockNumber": 0,
+ "ethGetBalance": "0",
+ "ethCoinbase": "0x75a416a2c2c3c398ad09f02b46ebe989de2607cb",
+ "ethSyncing": false,
+ "netPeerCount": 3,
+ "balanceEther": "0"
+}
+
+// wait for DAG downloading.
+
+$ vp1cli info && vp2cli info
+{
+ "ethBlockNumber": 769,
+ "ethGetBalance": "4.25234375e+21",
+ "ethCoinbase": "0x8b8c1c00dc15980434ff4d679103fb21be205816",
+ "ethSyncing": false,
+ "netPeerCount": 5,
+ "balanceEther": "4252.34375"
+}
+{
+ "ethBlockNumber": 766,
+ "ethGetBalance": "0",
+ "ethCoinbase": "0x75a416a2c2c3c398ad09f02b46ebe989de2607cb",
+ "ethSyncing": false,
+ "netPeerCount": 4,
+ "balanceEther": "0"
+}
+
+$ vp1cli info && vp2cli info
+{
+ "ethBlockNumber": 1051,
+ "ethGetBalance": "5.7745e+21",
+ "ethCoinbase": "0x8b8c1c00dc15980434ff4d679103fb21be205816",
+ "ethSyncing": false,
+ "netPeerCount": 2,
+ "balanceEther": "5774.5"
+}
+{
+ "ethBlockNumber": 1054,
+ "ethGetBalance": "3000000000000000000",
+ "ethCoinbase": "0x75a416a2c2c3c398ad09f02b46ebe989de2607cb",
+ "ethSyncing": false,
+ "netPeerCount": 4,
+ "balanceEther": "3"
+}
+
+```
+
 ## LOG0109_1
 
 ```
