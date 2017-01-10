@@ -1,3 +1,21 @@
+
+## LOG0110_1
+
+```
+$ docker build -t y12docker/dltdojo-ethgo:1.5.6.a0 .
+$ docker run y12docker/dltdojo-ethgo:1.5.6.a0 version
+Geth
+Version: 1.5.6-stable
+Git Commit: 2a609af51873204c940a9b2a7215e6b5a97b0656
+Protocol Versions: [63 62]
+Network Id: 1
+Go Version: go1.7.3
+OS: linux
+GOPATH=
+GOROOT=/usr/lib/go
+$ docker push y12docker/dltdojo-ethgo:1.5.6.a0
+```
+
 ## LOG0109_1
 
 eth_getTransactionByHash : cannot unmarshal non-string as hex data

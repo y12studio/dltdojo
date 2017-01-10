@@ -57,13 +57,3 @@ $ vp1cli getbalance
 $ vp1cli getbalance
 144.99996160
 ```
-
-# SETUP
-
-```
-$ mkdir level1 && cd level1
-$ docker run -v $(pwd):/tmp y12docker/dltdojo:0.0.2 --path=/tmp --name=level1 --peers=4 --level=1
-$ source level1-alias.sh
-$ dc up -d
-$ dc stop && dc rm
-```

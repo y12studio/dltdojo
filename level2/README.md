@@ -99,12 +99,3 @@ $ vp3cli info && vp1cli info
  "balanceEther": "2392.71833"
 }
 ```
-# SETUP
-
-```
-$ mkdir level2 && cd level2
-$ docker run -v $(pwd):/tmp y12docker/dltdojo:0.0.4 --name level2 --peers 6 --level 2
-$ source level2-alias.sh
-$ dcup
-$ dc stop && dc rm
-```

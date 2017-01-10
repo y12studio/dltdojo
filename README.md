@@ -5,15 +5,35 @@
 熵熱踢道場 Distributed Ledger Technology Dojo (DLTDOJO) 提供快速練習驗證分散式帳本區塊鏈概念的環境，道場設計為不需背景知識都可練習實做。
 
 # SETUP
-TODO
-
-# LEVEL
 
 ## Level1 Bitcoin 比特幣轉帳
 
+```
+$ mkdir foo && cd foo
+$ docker run -v $(pwd):/tmp y12docker/dltdojo:0.0.5 --dojo.btc 4 --name lv1
+$ source lv1-alias.sh
+$ dcup
+...
+...
+$ dc stop && dc rm
+```
+
 ## Level2 Ethereum 轉帳
 
-## Level3 Hyperledger Fabric 轉帳
+```
+--dojo.eth 6 --name lv2
+```
+
+## [WIP]Level3 Ethereum 資產轉移
+
+```
+--dojo.eth 6 --name lv3
+```
+
+## [WIP]Level4 Hyperledger Fabric 資產轉移
+```
+--dojo.fabric 6 --name lv4
+```
 
 # 參考連結
 

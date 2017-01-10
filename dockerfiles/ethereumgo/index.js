@@ -6,6 +6,7 @@ var request = require('request')
 const RPCURL = 'http://localhost:8545'
 var jayson = require('jayson')
 var clientRpc = jayson.client.http(RPCURL);
+const tokenSource = ' contract token { mapping (address => uint) public coinBalanceOf; event CoinTransfer(address sender, address receiver, uint amount); /* Initializes contract with initial supply tokens to the creator of the contract */ function token(uint supply) { coinBalanceOf[msg.sender] = supply; } /* Very simple trade function */ function sendCoin(address receiver, uint amount) returns(bool sufficient) { if (coinBalanceOf[msg.sender] < amount) return false; coinBalanceOf[msg.sender] -= amount; coinBalanceOf[receiver] += amount; CoinTransfer(msg.sender, receiver, amount); return true; } }'
 
 web3.setProvider(new web3.providers.HttpProvider(RPCURL))
 
@@ -54,7 +55,7 @@ function getInfo(debug) {
         ethBlockNumber: web3.eth.blockNumber,
         ethGetBalance: balance,
         ethCoinbase: coinbase,
-        ethSyncing : web3.eth.syncing,
+        ethSyncing: web3.eth.syncing,
         netPeerCount: web3.net.peerCount,
         ethDefaultAccount: web3.eth.defaultAccount,
         balanceEther: web3.fromWei(balance, 'ether')
@@ -76,6 +77,28 @@ function recoverKeyFromAddress(datadir, address, password) {
         key: privateKey,
         keyhex: privateKey.toString('hex')
     }
+}
+
+function createToken(supply, accountAddress) {
+    var tokenCompiled = eth.compile.solidity(tokenSource)
+        //var supply = 10000;
+    var tokenContract = web3.eth.contract(tokenCompiled.token.info.abiDefinition);
+    var token = tokenContract.new(
+        supply, {
+            from: accountAddress,
+            data: tokenCompiled.token.code,
+            gas: 1000000
+        },
+        function(e, contract) {
+            if (!e) {
+                if (!contract.address) {
+                    console.log("Contract transaction send: TransactionHash: " + contract.transactionHash + " waiting to be mined...");
+                } else {
+                    console.log("Contract mined! Address: " + contract.address);
+                    console.log(contract);
+                }
+            }
+        })
 }
 
 function cout(obj) {
@@ -113,7 +136,7 @@ require('yargs')
         command: 'sendeth <accountAddress> <accountPassword> <toAddress> <ether>',
         desc: 'sendeth',
         handler: (argv) => {
-            var r = sendTransaction(argv.accountAddress,argv.accountPassword, argv.toAddress, argv.ether)
+            var r = sendTransaction(argv.accountAddress, argv.accountPassword, argv.toAddress, argv.ether)
             cout(r)
         }
     })
@@ -122,7 +145,7 @@ require('yargs')
         desc: 'tx',
         handler: (argv) => {
             var transaction = web3.eth.getTransaction(argv.hash)
-            if(transaction) {
+            if (transaction) {
                 transaction.ether = web3.fromWei(r.value, 'ether')
             }
             cout(r)

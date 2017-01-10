@@ -3,6 +3,8 @@
 const _ = require('lodash')
 const fs = require('fs')
 const YAML = require('yamljs')
+const IMG_ETH = 'y12docker/dltdojo-ethgo:1.5.6.a0'
+const IMG_BTC = 'y12docker/dltdojo-bitcoin:0.13.1.core'
 
 function buildHead(title, sep) {
     return `# Distributed Ledger Technology Dojo (DLTDOJO) ${sep}# https://github.com/y12studio/dltdojo${sep}# ${title}${sep}`
@@ -18,7 +20,7 @@ function buildAlias(name, peers, vpid) {
         //foo1_bvp1_1
         //foo1_bvp1_2
         //foo1_bvp1_3
-        var vpname = i == 0 ? `${vpid}${i}_1`:`${vpid}1_${i}`
+        var vpname = i == 0 ? `${vpid}${i}_1` : `${vpid}1_${i}`
         r.push(`alias vp${i}='docker exec -i -t ${name}_${vpname}'`)
     })
     return r
@@ -26,12 +28,13 @@ function buildAlias(name, peers, vpid) {
 
 
 function BitcoinCore() {}
+
 function EthereumGo() {}
 
 BitcoinCore.prototype.buildDojoAlias = function() {
     var name = this.name
     var peers = this.peers
-    var r = buildAlias(name,peers,'bvp')
+    var r = buildAlias(name, peers, 'bvp')
     _.range(peers).forEach(function(e, i, a) {
         r.push(`alias vp${i}cli='vp${i} bitcoin-cli -conf=/opt/btc/bitcoin.conf -regtest -rpcport=18332'`)
     })
@@ -44,7 +47,7 @@ BitcoinCore.prototype.buildDojoPeer = function() {
         version: '2',
         services: {
             bvp: {
-                image: 'y12docker/dltdojo-bitcoin:0.13.1.core',
+                image: IMG_BTC,
                 expose: ['18332', '18333'],
                 command: 'bitcoind -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcport=18332 -addnode=bvp0:18333'
             }
@@ -98,20 +101,19 @@ EthereumGo.prototype.buildDojo = function(path, name, peers) {
 
 EthereumGo.prototype.buildDojoPeer = function() {
     var name = this.name
-    var imagename = 'y12docker/dltdojo-ethgo:1.5.5.a0'
-    // bootnodes url IP address only. DNS name(evp0) are not allowed.
-    // "tail -f /dev/null" keep evp running for all time
+        // bootnodes url IP address only. DNS name(evp0) are not allowed.
+        // "tail -f /dev/null" keep evp running for all time
     var rpcopts = '--rpc --rpccorsdomain="*" --rpcaddr="0.0.0.0" --rpcapi "miner,admin,db,personal,eth,net,web3" --ipcdisable'
     var dc = {
         version: '2',
         services: {
             evp: {
-                image: imagename,
+                image: IMG_ETH,
                 entrypoint: '/start.sh',
                 command: `--networkid=919717 ${rpcopts} --datadir=~/.ethereum/devchain --bootnodes="enode://288b97262895b1c7ec61cf314c2e2004407d0a5dc77566877aad1f2a36659c8b698f4b56fd06c4a0c0bf007b4cfb3e7122d907da3b005fa90e724441902eb19e@XXX:30303"`
             },
             bootnode: {
-                image: imagename,
+                image: IMG_ETH,
                 command: `--networkid=919717 ${rpcopts} --datadir=~/.ethereum/devchain --nodekeyhex=091bd6067cb4612df85d9c1ff85cc47f259ced4d4cd99816b14f35650f59c322`
             }
         }
@@ -132,7 +134,7 @@ EthereumGo.prototype.buildDojoPeers = function() {
         dc.services[vpid] = {
             extends: {
                 file: peerfile,
-                service: i==0? 'bootnode' :'evp'
+                service: i == 0 ? 'bootnode' : 'evp'
             },
             hostname: vpid
         }
@@ -143,7 +145,7 @@ EthereumGo.prototype.buildDojoPeers = function() {
 EthereumGo.prototype.buildDojoAlias = function() {
     var name = this.name
     var peers = this.peers
-    var r = buildAlias(name,peers,'evp')
+    var r = buildAlias(name, peers, 'evp')
     _.range(peers).forEach(function(e, i, a) {
         // vp1 /curlrpc.sh
         r.push(`alias vp${i}curl='vp${i} /curlrpc.sh'`)
@@ -155,24 +157,20 @@ EthereumGo.prototype.buildDojoAlias = function() {
 
 function main() {
     var argv = require('yargs')
-        .usage('Usage: $0 --path=[string] --name=[string] --peers=[num] --level=[num]')
-        .demandOption(['path', 'name', 'peers'])
-        .default('level', 1)
+        .usage('Usage: $0 --dojo.btc=[num] --dojo.eth=[num] --path=[string] --name=[string]')
+        .demandOption(['dojo', 'name'])
         .default('path', '/tmp')
         .argv
         // console.log(argv)
-    switch (argv.level) {
-        case 1:
-            var bc = new BitcoinCore()
-            bc.buildDojo(argv.path, argv.name, argv.peers)
-            break;
-        case 2:
-            var eth = new EthereumGo()
-            eth.buildDojo(argv.path, argv.name, argv.peers)
-            break;
-        default:
-           console.log(argv)
-
+    var dojo = argv.dojo
+    if (dojo.btc) {
+        var bc = new BitcoinCore()
+        bc.buildDojo(argv.path, argv.name, dojo.btc)
+    } else if (dojo.eth) {
+        var eth = new EthereumGo()
+        eth.buildDojo(argv.path, argv.name, dojo.eth)
+    } else {
+        console.log(argv)
     }
 }
 

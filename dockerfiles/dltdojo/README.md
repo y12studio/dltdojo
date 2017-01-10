@@ -1,5 +1,14 @@
 # LOG
 
+## y12docker/dltdojo:0.0.5
+
+```
+$ docker build -t y12docker/dltdojo:0.0.5 .
+$ cd dockerfiles/dltdojo/examples && mkdir v0.0.5 && cd v0.0.5
+$ docker run -v $(pwd):/tmp y12docker/dltdojo:0.0.5 --dojo.eth 4 --name foo
+$ docker push y12docker/dltdojo:0.0.5
+```
+
 ## LOG0109_1
 
 ```
