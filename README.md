@@ -10,7 +10,7 @@
 
 ```
 $ mkdir foo && cd foo
-$ docker run -v $(pwd):/tmp y12docker/dltdojo:0.0.5 --dojo.btc 4 --name lv1
+$ docker run -v $(pwd):/tmp y12docker/dltdojo --dojo.btc 4 --name lv1
 $ source lv1-alias.sh
 $ dcup
 ...
