@@ -16,7 +16,12 @@
     "keythereum": "^0.3.2",
     "lodash": "^4.17.4",
     "request": "^2.79.0",
+    "solc": "^0.4.7",
     "web3": "^0.18.0",
     "yargs": "^6.6.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
   }
 }

@@ -18,7 +18,7 @@ $ dcup
 $ dc stop && dc rm
 ```
 
-## Level2 Ethereum 轉帳
+## [WIP]Level2 Ethereum 轉帳
 
 ```
 --dojo.eth 6 --name lv2
@@ -27,7 +27,7 @@ $ dc stop && dc rm
 ## [WIP]Level3 Ethereum 資產轉移
 
 ```
---dojo.eth 6 --name lv3
+--dojo.eth 2 --name lv3
 ```
 
 ## [WIP]Level4 Hyperledger Fabric 資產轉移

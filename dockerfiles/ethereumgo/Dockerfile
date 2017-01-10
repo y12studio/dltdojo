@@ -1,7 +1,5 @@
 FROM alpine:3.5
 
-ADD package.json /tmp/package.json
-
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
     && apk --update --no-cache add bash curl jq git nodejs==6.9.4-r0 \
     && apk add --virtual .builddeps build-base python go musl-dev \
@@ -9,7 +7,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositori
     && (cd go-ethereum && make geth) \
     && cp go-ethereum/build/bin/geth /geth \
     && rm -rf /go-ethereum && rm -rf /var/cache/apk/* \
-    && cd /tmp && npm install \
+    && cd /tmp && npm install keythereum\
     && apk del .builddeps \
     && mkdir -p /opt/app \
     && cp -a /tmp/node_modules /opt/app/ \
@@ -18,8 +16,10 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositori
 EXPOSE 8545
 EXPOSE 30303
 
-ADD start.sh curlrpc.sh genesis.json ./
-RUN chmod +x start.sh && chmod +x curlrpc.sh
 WORKDIR /opt/app
-ADD index.js keyrecover.js /opt/app/
+ADD package.json /opt/app/package.json
+RUN npm install && npm install -g solc
+ADD start.sh curlrpc.sh genesis.json /
+RUN chmod +x /start.sh && chmod +x /curlrpc.sh
+ADD index.js keyrecover.js contractutils.js /opt/app/
 ENTRYPOINT ["/geth"]

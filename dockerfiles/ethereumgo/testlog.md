@@ -1,3 +1,21 @@
+## LOG0110_2
+
+```
+$ docker build -t y12docker/dltdojo-ethgo:1.5.6.a1 .
+$ docker run -it --entrypoint solcjs y12docker/dltdojo-ethgo:1.5.6.a1 --version
+0.4.7+commit.822622cf.Emscripten.clang
+$ docker run -it --entrypoint node y12docker/dltdojo-ethgo:1.5.6.a1 index.js newToken 0x400f8578b27715236e2f4ee0259c07cadcf396ff 1000
+{ errors: [ ':1:413: Error: Undeclared identifier.\npragma solidity ^0.4.7; contract Coin { address public minter; mapping (address => uint) public balances; function Coin() { minter = msg.sender; } function mint(address receiver, uint amount) { if (msg.sender != minter) return; balances[receiver] += amount; } function send(address receiver, uint amount) { if (balances[msg.sender] < amount) return; balances[msg.sender] -= amount; balances[receiver] += amount; Sent(msg.sender, receiver, amount); } }\n                                                                                                                                                                                                                                                                                                                                                                                                                            ^--^\n' ] }
+index.js newToken <accountAddress> <supply>
+
+Options:
+  -h, --help  Show help                                                [boolean]
+
+Cannot read property 'info' of undefined
+
+$ docker push y12docker/dltdojo-ethgo:1.5.6.a1
+```
+
 
 ## LOG0110_1
 

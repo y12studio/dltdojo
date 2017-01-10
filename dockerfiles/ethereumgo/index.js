@@ -1,12 +1,12 @@
 var keythereum = require('keythereum')
 var Web3 = require('web3')
 var web3 = new Web3()
+var CU = require('./contractutils')
 var _ = require('lodash')
 var request = require('request')
 const RPCURL = 'http://localhost:8545'
 var jayson = require('jayson')
 var clientRpc = jayson.client.http(RPCURL);
-const tokenSource = ' contract token { mapping (address => uint) public coinBalanceOf; event CoinTransfer(address sender, address receiver, uint amount); /* Initializes contract with initial supply tokens to the creator of the contract */ function token(uint supply) { coinBalanceOf[msg.sender] = supply; } /* Very simple trade function */ function sendCoin(address receiver, uint amount) returns(bool sufficient) { if (coinBalanceOf[msg.sender] < amount) return false; coinBalanceOf[msg.sender] -= amount; coinBalanceOf[receiver] += amount; CoinTransfer(msg.sender, receiver, amount); return true; } }'
 
 web3.setProvider(new web3.providers.HttpProvider(RPCURL))
 
@@ -77,28 +77,36 @@ function recoverKeyFromAddress(datadir, address, password) {
         key: privateKey,
         keyhex: privateKey.toString('hex')
     }
+
 }
 
-function createToken(supply, accountAddress) {
-    var tokenCompiled = eth.compile.solidity(tokenSource)
-        //var supply = 10000;
-    var tokenContract = web3.eth.contract(tokenCompiled.token.info.abiDefinition);
-    var token = tokenContract.new(
-        supply, {
-            from: accountAddress,
-            data: tokenCompiled.token.code,
-            gas: 1000000
-        },
-        function(e, contract) {
-            if (!e) {
-                if (!contract.address) {
-                    console.log("Contract transaction send: TransactionHash: " + contract.transactionHash + " waiting to be mined...");
-                } else {
-                    console.log("Contract mined! Address: " + contract.address);
-                    console.log(contract);
-                }
-            }
-        })
+function getAbiFromSrc(source, nameContract) {
+    // https://github.com/ethereum/solc-js
+    // var output = solc.compile(input, 1); // 1 activates the optimiser
+    var compiledContract = solc.compile(source, 1);
+    var abi = compiledContract.contracts[nameContract].interface;
+    var bytecode = compiledContract.contracts['nameContract'].bytecode;
+    return {
+        abi: JSON.parse(abi),
+        data: bytecode
+    }
+}
+
+function createToken(accountAddress, accountPassword) {
+    // Creates a contract object for a solidity contract, which can be used to initiate contracts on an address.
+    var resultAbi = CU.GetCoinAbi()
+    var gasEstimate = web3.eth.estimateGas({
+        data: resultAbi.data
+    });
+    var web3Contract = web3.eth.contract(resultAbi.abi);
+    var unlock = web3.personal.unlockAccount(accountAddress, accountPassword, 300)
+    // All binary data is serialised in hexadecimal form. Hex strings always have a hex prefix 0x.
+    var instanceContract = web3Contract.new({
+        from: accountAddress,
+        data: resultAbi.data,
+        gas: gasEstimate
+    })
+    console.log(instanceCountract)
 }
 
 function cout(obj) {
@@ -149,6 +157,13 @@ require('yargs')
                 transaction.ether = web3.fromWei(r.value, 'ether')
             }
             cout(r)
+        }
+    })
+    .command({
+        command: 'newToken <accountAddress> <accountPassword>',
+        desc: 'create a new token',
+        handler: (argv) => {
+            createToken(argv.accountAddress, argv.accountPassword)
         }
     })
     .demandCommand(1)
