@@ -3,7 +3,7 @@
 const _ = require('lodash')
 const fs = require('fs')
 const YAML = require('yamljs')
-const IMG_ETH = 'y12docker/dltdojo-ethgo:1.5.6.a1'
+const IMG_ETH = 'y12docker/dltdojo-ethgo:1.5.5.a1'
 const IMG_BTC = 'y12docker/dltdojo-bitcoin:0.13.1.core'
 
 function buildHead(title, sep) {

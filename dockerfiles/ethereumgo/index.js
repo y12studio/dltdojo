@@ -106,7 +106,7 @@ function createToken(accountAddress, accountPassword) {
         data: resultAbi.data,
         gas: gasEstimate
     })
-    console.log(instanceCountract)
+    console.log(instanceContract.transactionHash)
 }
 
 function cout(obj) {
@@ -114,6 +114,13 @@ function cout(obj) {
 }
 
 require('yargs')
+    .command({
+        command: 'rpcreq <method> [params..]',
+        desc: 'json rpc by request',
+        handler: (argv) => {
+            rpcPost(argv.method, argv.params)
+        }
+    })
     .command({
         command: 'rpc <method> [params..]',
         desc: 'json rpc interface',

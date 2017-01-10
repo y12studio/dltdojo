@@ -1,9 +1,12 @@
 FROM alpine:3.5
 
+ENV VERSION=1.5.5
+
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
     && apk --update --no-cache add bash curl jq git nodejs==6.9.4-r0 \
     && apk add --virtual .builddeps build-base python go musl-dev \
-    && git clone --depth 1 --branch release/1.5 https://github.com/ethereum/go-ethereum \
+    && curl --insecure -sL https://github.com/ethereum/go-ethereum/archive/v$VERSION.tar.gz | tar zx \
+    && mv go-ethereum-$VERSION go-ethereum \
     && (cd go-ethereum && make geth) \
     && cp go-ethereum/build/bin/geth /geth \
     && rm -rf /go-ethereum && rm -rf /var/cache/apk/* \

@@ -1,3 +1,14 @@
+## LOG0110_3
+
+https://gitter.im/ethereum/go-ethereum/archives/2016/12/25
+
+y12docker/dltdojo-ethgo:1.5.6.a1 Error: invalid argument 2: cannot unmarshal non-string as hex data
+
+```
+$ docker build -t y12docker/dltdojo-ethgo:1.5.5.a1 .
+
+```
+
 ## LOG0110_2
 
 ```
