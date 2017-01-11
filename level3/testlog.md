@@ -1,5 +1,14 @@
 ## LOG
 
+### Wed Jan 11 17:49:52 CST 2017
+
+```
+$ dsolc $VP1ID hahacoin.sol HahaCoin
+$ dcp1 /opt/app/hahacoin.sol .
+$ dsolc1 hahacoin.sol HahaCoin
+$ dsolc0 hahacoin.sol HahaCoin
+```
+
 ### Wed Jan 11 16:52:17 CST 2017
 ```
 $ dcup

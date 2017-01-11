@@ -1,7 +1,7 @@
 # Distributed Ledger Technology Dojo (DLTDOJO) 
 # https://github.com/y12studio/dltdojo
 # EthereumGo peers yml file ,name:lv2, peers:6
-# DATETIME:2017-01-11T09:13:51.202Z
+# DATETIME:2017-01-11T10:08:51.800Z
 version: '2'
 services:
   evp0:

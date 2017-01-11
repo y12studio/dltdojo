@@ -16,12 +16,11 @@ function buildAlias(name, peers, vpid) {
     _.range(peers).forEach(function(e, i, a) {
         // alias vp0sh='docker exec -i -t ${DCN}_vp0_1'
         var vpname = i == 0 ? `${vpid}${i}_1` : `${vpid}1_${i}`
-        r.push(`VP${i}ID=$\{DCNAME\}_${vpname}`)
-        r.push(`alias vp${i}='docker exec -it $VP${i}ID'`)
+        r.push(`VPID${i}=$\{DCNAME\}_${vpname}`)
+        r.push(`alias vp${i}='docker exec -it $VPID${i}'`)
     })
     return r
 }
-
 
 function BitcoinCore() {}
 
@@ -149,8 +148,12 @@ EthereumGo.prototype.buildDojoAlias = function() {
     var name = this.name
     var peers = this.peers
     var r = buildAlias(name, peers, 'evp')
+    r.push('dsolc() { docker cp "$2" "$1":/tmp/; docker exec -it "$1" node index.js solc /tmp/"$2" "$3"; }')
+    r.push('dcp() { docker cp "$1":${2} ${3}; }')
     _.range(peers).forEach(function(e, i, a) {
         // vp1 /curlrpc.sh
+        r.push(`alias dsolc${i}='dsolc $VPID${i}'`)
+        r.push(`alias dcp${i}='dcp $VPID${i}'`)
         r.push(`alias vp${i}curl='vp${i} /curlrpc.sh'`)
         r.push(`alias vp${i}cli='vp${i} node index.js'`)
     })
