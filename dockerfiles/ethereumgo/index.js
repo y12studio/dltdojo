@@ -94,7 +94,7 @@ function getAbiFromSrc(source, nameContract) {
 
 function createToken(accountAddress, accountPassword) {
     // Creates a contract object for a solidity contract, which can be used to initiate contracts on an address.
-    var resultAbi = CU.GetCoinAbi()
+    var resultAbi = CU.GetHahaCoinAbi()
     var gasEstimate = web3.eth.estimateGas({
         data: resultAbi.data
     });
@@ -171,6 +171,13 @@ require('yargs')
         desc: 'create a new token',
         handler: (argv) => {
             createToken(argv.accountAddress, argv.accountPassword)
+        }
+    })
+    .command({
+        command: 'solc <filepath> <nameContract>',
+        desc: 'compile a sol file',
+        handler: (argv) => {
+            console.log(CU.GetAbiFromFile(argv.filepath, argv.nameContract))
         }
     })
     .demandCommand(1)

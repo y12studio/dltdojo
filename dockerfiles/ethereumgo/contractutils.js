@@ -1,11 +1,12 @@
 var solc = require('solc')
+var fs = require('fs')
 
 function ContractUtils() {
 }
 
 ContractUtils.SOLCOIN = `pragma solidity ^0.4.0;
 
-contract Coin {
+contract HahaCoin {
     // The keyword "public" makes those variables
     // readable from outside.
     address public minter;
@@ -38,11 +39,18 @@ ContractUtils.GetAbiFromSrc = function(source, nameContract) {
     // https://github.com/ethereum/solc-js
     // var output = solc.compile(input, 1); // 1 activates the optimiser
     var compiledContract = solc.compile(source, 1);
+    // console.log(compiledContract)
     var abi = compiledContract.contracts[nameContract].interface;
     var bytecode = compiledContract.contracts[nameContract].bytecode;
     return {abi:JSON.parse(abi), data: '0x'+bytecode}
 }
-ContractUtils.GetCoinAbi = function(){
-    return ContractUtils.GetAbiFromSrc(ContractUtils.SOLCOIN,'Coin')
+
+ContractUtils.GetAbiFromFile = function(filename, nameContract) {
+    var f = fs.readFileSync(filename, "utf-8")
+    return ContractUtils.GetAbiFromSrc(f,nameContract)
+}
+
+ContractUtils.GetHahaCoinAbi = function(){
+    return ContractUtils.GetAbiFromSrc(ContractUtils.SOLCOIN,'HahaCoin')
 }
 module.exports = ContractUtils

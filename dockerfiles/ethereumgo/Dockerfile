@@ -24,5 +24,5 @@ ADD package.json /opt/app/package.json
 RUN npm install && npm install -g solc
 ADD start.sh curlrpc.sh genesis.json /
 RUN chmod +x /start.sh && chmod +x /curlrpc.sh
-ADD index.js keyrecover.js contractutils.js /opt/app/
+ADD index.js keyrecover.js contractutils.js hahacoin.sol /opt/app/
 ENTRYPOINT ["/geth"]

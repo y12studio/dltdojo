@@ -1,3 +1,77 @@
+## LOG
+
+### Wed Jan 11 16:52:17 CST 2017
+```
+$ dcup
+$ ls
+lv3-alias.sh  lv3-peers.yml  lv3-peer.yml  README.md  testlog.md
+$ docker cp $VP1ID:/opt/app/hahacoin.sol .
+$ ls
+hahacoin.sol  lv3-alias.sh  lv3-peers.yml  lv3-peer.yml  README.md  testlog.md
+// copy into container and compile sol file.
+$ docker cp hahacoin.sol $VP1ID:/tmp/ && vp1cli solc /tmp/hahacoin.sol HahaCoin
+// or $ docker cp hahacoin.sol $VP1ID:/tmp/ && vp1 node index.js solc /tmp/hahacoin.sol HahaCoin
+```
+
+### Wed Jan 11 16:22:13 CST 2017
+```
+$ source lv3-alias.sh
+$ dcup
+$ vp1 ls
+contractutils.js  index.js          node_modules
+hahacoin.sol      keyrecover.js     package.json
+// copy hahacoin.sol to host
+$ dc ps
+   Name                 Command               State          Ports
+-------------------------------------------------------------------------
+lv3_evp0_1   /geth --dev --networkid=58 ...   Up      30303/tcp, 8545/tcp
+lv3_evp1_1   /start.sh --dev --networki ...   Up      30303/tcp, 8545/tcp
+$ docker cp lv3_evp1_1:/opt/app/hahacoin.sol .
+$ ls
+hahacoin.sol  lv3-alias.sh  lv3-peers.yml  lv3-peer.yml  README.md  testlog.md
+$ vp1 ls /tmp
+ethash-test154592981  npm-6-0cd5ad3c
+$ docker cp hahacoin.sol lv3_evp1_1:/tmp/
+$ vp1 ls /tmp
+ethash-test154592981  hahacoin.sol          npm-6-0cd5ad3c
+$ vp1cli solc /tmp/hahacoin.sol HahaCoin
+{ abi:
+   [ { constant: true,
+       inputs: [],
+       name: 'minter',
+       outputs: [Object],
+       payable: false,
+       type: 'function' },
+     { constant: true,
+       inputs: [Object],
+       name: 'balances',
+       outputs: [Object],
+       payable: false,
+       type: 'function' },
+     { constant: false,
+       inputs: [Object],
+       name: 'mint',
+       outputs: [],
+       payable: false,
+       type: 'function' },
+     { constant: false,
+       inputs: [],
+       name: 'Coin',
+       outputs: [],
+       payable: false,
+       type: 'function' },
+     { constant: false,
+       inputs: [Object],
+       name: 'send',
+       outputs: [],
+       payable: false,
+       type: 'function' },
+     { anonymous: false,
+       inputs: [Object],
+       name: 'Sent',
+       type: 'event' } ],
+  data: '0x606060405234610000575b61023d806100196000396000f300606060405263ffffffff60e060020a60003504166307546172811461005057806327e235e31461007957806340c10f19146100a4578063a77b2e37146100c2578063d0679d34146100d1575b610000565b346100005761005d6100ef565b60408051600160a060020a039092168252519081900360200190f35b3461000057610092600160a060020a03600435166100fe565b60408051918252519081900360200190f35b34610000576100c0600160a060020a0360043516602435610110565b005b34610000576100c061014e565b005b34610000576100c0600160a060020a0360043516602435610179565b005b600054600160a060020a031681565b60016020526000908152604090205481565b60005433600160a060020a0390811691161461012b5761014a565b600160a060020a03821660009081526001602052604090208054820190555b5050565b6000805473ffffffffffffffffffffffffffffffffffffffff191633600160a060020a03161790555b565b600160a060020a0333166000908152600160205260409020548190101561019f5761014a565b600160a060020a0333811660008181526001602090815260408083208054879003905593861680835291849020805486019055835192835282015280820183905290517f3990db2d31862302a685e8086b5755072a6e2b5b780af1ee81ece35ee3cd33459181900360600190a15b50505600a165627a7a72305820685d57996086b8d1056f7b207420ca43d703828be3d9bc2c39919d6711be27d80029' }
+```
 ## LOG0110_2
 
 ```

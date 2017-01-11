@@ -11,16 +11,13 @@ function buildHead(title, sep) {
 
 function buildAlias(name, peers, vpid) {
     var r = [
-        `DCN=${name}`, `alias dc='docker-compose -p ${name} -f ${name}-peers.yml'`, `alias dcup='dc stop && dc rm && dc up -d && dc scale ${vpid}1=${peers-1}'`
+        `DCNAME=${name}`, `alias dc='docker-compose -p $DCNAME -f $DCNAME-peers.yml'`, `alias dcup='dc stop && dc rm && dc up -d && dc scale ${vpid}1=${peers-1}'`
     ]
     _.range(peers).forEach(function(e, i, a) {
         // alias vp0sh='docker exec -i -t ${DCN}_vp0_1'
-        //foo1_bvp0_1
-        //foo1_bvp1_1
-        //foo1_bvp1_2
-        //foo1_bvp1_3
         var vpname = i == 0 ? `${vpid}${i}_1` : `${vpid}1_${i}`
-        r.push(`alias vp${i}='docker exec -i -t ${name}_${vpname}'`)
+        r.push(`VP${i}ID=$\{DCNAME\}_${vpname}`)
+        r.push(`alias vp${i}='docker exec -it $VP${i}ID'`)
     })
     return r
 }

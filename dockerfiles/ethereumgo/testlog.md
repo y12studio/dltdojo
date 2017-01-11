@@ -1,5 +1,57 @@
 ## LOG0110_3
 
+Wed Jan 11 15:16:58 CST 2017
+
+```
+$ docker build -t y12docker/dltdojo-ethgo .
+$ docker run --entrypoint ls y12docker/dltdojo-ethgo
+contractutils.js
+hahacoin.sol
+index.js
+keyrecover.js
+node_modules
+package.json
+$ docker run -v $(pwd):/tmp --entrypoint ls y12docker/dltdojo-ethgo /tmp
+$ docker run -v $(pwd):/tmp --entrypoint cat y12docker/dltdojo-ethgo /tmp/hahacoin.sol
+$ docker run -v $(pwd):/tmp --entrypoint node y12docker/dltdojo-ethgo index.js solc /tmp/hahacoin.sol HahaCoin
+{ abi:
+   [ { constant: true,
+       inputs: [],
+       name: 'minter',
+       outputs: [Object],
+       payable: false,
+       type: 'function' },
+     { constant: true,
+       inputs: [Object],
+       name: 'balances',
+       outputs: [Object],
+       payable: false,
+       type: 'function' },
+     { constant: false,
+       inputs: [Object],
+       name: 'mint',
+       outputs: [],
+       payable: false,
+       type: 'function' },
+     { constant: false,
+       inputs: [],
+       name: 'Coin',
+       outputs: [],
+       payable: false,
+       type: 'function' },
+     { constant: false,
+       inputs: [Object],
+       name: 'send',
+       outputs: [],
+       payable: false,
+       type: 'function' },
+     { anonymous: false,
+       inputs: [Object],
+       name: 'Sent',
+       type: 'event' } ],
+  data: '0x606060405234610000575b61023d806100196000396000f300606060405263ffffffff60e060020a60003504166307546172811461005057806327e235e31461007957806340c10f19146100a4578063a77b2e37146100c2578063d0679d34146100d1575b610000565b346100005761005d6100ef565b60408051600160a060020a039092168252519081900360200190f35b3461000057610092600160a060020a03600435166100fe565b60408051918252519081900360200190f35b34610000576100c0600160a060020a0360043516602435610110565b005b34610000576100c061014e565b005b34610000576100c0600160a060020a0360043516602435610179565b005b600054600160a060020a031681565b60016020526000908152604090205481565b60005433600160a060020a0390811691161461012b5761014a565b600160a060020a03821660009081526001602052604090208054820190555b5050565b6000805473ffffffffffffffffffffffffffffffffffffffff191633600160a060020a03161790555b565b600160a060020a0333166000908152600160205260409020548190101561019f5761014a565b600160a060020a0333811660008181526001602090815260408083208054879003905593861680835291849020805486019055835192835282015280820183905290517f3990db2d31862302a685e8086b5755072a6e2b5b780af1ee81ece35ee3cd33459181900360600190a15b50505600a165627a7a72305820685d57996086b8d1056f7b207420ca43d703828be3d9bc2c39919d6711be27d80029' }
+```
+
 https://gitter.im/ethereum/go-ethereum/archives/2016/12/25
 
 y12docker/dltdojo-ethgo:1.5.6.a1 Error: invalid argument 2: cannot unmarshal non-string as hex data

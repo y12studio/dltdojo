@@ -1,12 +1,17 @@
-# LOG
+## LOG
 
-Wed Jan 11 07:30:34 CST 2017
+#### Wed Jan 11 17:17:08 CST 2017
+```
+$ docker build -t y12docker/dltdojo .
+$ docker push y12docker/dltdojo:latest
+```
+#### Wed Jan 11 07:30:34 CST 2017
 ```
 $ docker build -t y12docker/dltdojo .
 $ docker push y12docker/dltdojo
 ```
 
-## y12docker/dltdojo:0.0.5
+#### y12docker/dltdojo:0.0.5
 
 ```
 $ docker build -t y12docker/dltdojo:0.0.5 .
@@ -15,7 +20,7 @@ $ docker run -v $(pwd):/tmp y12docker/dltdojo:0.0.5 --dojo.eth 4 --name foo
 $ docker push y12docker/dltdojo:0.0.5
 ```
 
-## LOG0109_1
+#### LOG0109_1
 
 ```
 $ node index.js --level 2 --path level2 --name level2 --peers 6
@@ -24,7 +29,7 @@ $ docker run -v $(pwd):/tmp y12docker/dltdojo:0.0.4 --level 2 --name level2 --pe
 $ docker push y12docker/dltdojo:0.0.4
 ```
 
-## LOG0107
+#### LOG0107
 
 ```
 $ docker build -t y12docker/dltdojo:0.0.3 .
@@ -40,7 +45,7 @@ $ vp1curl personal_newAccount '"vp1pass"'
 }
 ```
 
-## LOG0106 0.0.2
+#### LOG0106 0.0.2
 ```
 $ date && docker -v
 Fri Jan  6 17:59:57 CST 2017
@@ -80,7 +85,7 @@ $ vp5cli getpeerinfo
 $ dc stop && dc rm
 $ docker push y12docker/dltdojo:0.0.2
 ```
-## LOG0106
+#### LOG0106
 ```
 $ date && docker -v
 Fri Jan  6 13:44:01 CST 2017

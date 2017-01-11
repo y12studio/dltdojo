@@ -2,14 +2,18 @@ var assert = require('chai').assert;
 var CU = require('../contractutils');
 
 describe('# ContractUtils TEST', function() {
+    this.timeout(10000);
     it('getAbiFromSrc', function() {
-        this.timeout(10000);
-        var r = CU.GetCoinAbi()
-        console.log(r)
+        var r = CU.GetHahaCoinAbi()
+        //console.log(r)
         assert.isOk(r.abi)
         assert.isOk(r.data)
         // web3 data 0x prefix for hex data.
         assert.isOk(r.data.startsWith('0x'))
-        console.log(JSON.stringify({params:["0x100","0x200"]}))
+    });
+    it('getAbiFromFile', function() {
+        var rf = CU.GetAbiFromFile('hahacoin.sol','HahaCoin')
+        console.log(rf)
+        assert.isOk(rf.abi)
     });
 });

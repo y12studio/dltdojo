@@ -1,16 +1,22 @@
 # Distributed Ledger Technology Dojo (DLTDOJO) 
 # https://github.com/y12studio/dltdojo
 # EthereumGo alias script, name:lv2, peers:6
-# DATETIME:2017-01-10T23:40:36.706Z
-DCN=lv2
-alias dc='docker-compose -p lv2 -f lv2-peers.yml'
+# DATETIME:2017-01-11T09:13:51.202Z
+DCNAME=lv2
+alias dc='docker-compose -p $DCNAME -f $DCNAME-peers.yml'
 alias dcup='dc stop && dc rm && dc up -d && dc scale evp1=5'
-alias vp0='docker exec -i -t lv2_evp0_1'
-alias vp1='docker exec -i -t lv2_evp1_1'
-alias vp2='docker exec -i -t lv2_evp1_2'
-alias vp3='docker exec -i -t lv2_evp1_3'
-alias vp4='docker exec -i -t lv2_evp1_4'
-alias vp5='docker exec -i -t lv2_evp1_5'
+VP0ID=${DCNAME}_evp0_1
+alias vp0='docker exec -it $VP0ID'
+VP1ID=${DCNAME}_evp1_1
+alias vp1='docker exec -it $VP1ID'
+VP2ID=${DCNAME}_evp1_2
+alias vp2='docker exec -it $VP2ID'
+VP3ID=${DCNAME}_evp1_3
+alias vp3='docker exec -it $VP3ID'
+VP4ID=${DCNAME}_evp1_4
+alias vp4='docker exec -it $VP4ID'
+VP5ID=${DCNAME}_evp1_5
+alias vp5='docker exec -it $VP5ID'
 alias vp0curl='vp0 /curlrpc.sh'
 alias vp0cli='vp0 node index.js'
 alias vp1curl='vp1 /curlrpc.sh'
