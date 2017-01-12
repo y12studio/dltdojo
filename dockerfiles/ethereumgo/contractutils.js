@@ -18,8 +18,9 @@ contract HahaCoin {
 
     // This is the constructor whose code is
     // run only when the contract is created.
-    function Coin() {
+    function HahaCoin() {
         minter = msg.sender;
+        balances[tx.origin] = 10000;
     }
 
     function mint(address receiver, uint amount) {
@@ -42,7 +43,7 @@ ContractUtils.GetAbiFromSrc = function(source, nameContract) {
     // console.log(compiledContract)
     var abi = compiledContract.contracts[nameContract].interface;
     var bytecode = compiledContract.contracts[nameContract].bytecode;
-    return {abi:JSON.parse(abi), data: '0x'+bytecode}
+    return {abi:JSON.parse(abi), code: '0x'+bytecode}
 }
 
 ContractUtils.GetAbiFromFile = function(filename, nameContract) {

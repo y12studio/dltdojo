@@ -1,6 +1,10 @@
 ## LOG0110_3
 
-Wed Jan 11 15:16:58 CST 2017
+### Thu Jan 12 16:12:20 CST 2017
+```
+$ docker build -t y12docker/dltdojo-ethgo .
+```
+### Wed Jan 11 15:16:58 CST 2017
 
 ```
 $ docker build -t y12docker/dltdojo-ethgo .

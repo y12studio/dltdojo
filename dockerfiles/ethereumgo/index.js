@@ -81,24 +81,62 @@ function recoverKeyFromAddress(datadir, address, password) {
     }
 }
 
-function createContract(accountAddress, accountPassword, resultAbi) {
-    // Creates a contract object for a solidity contract, which can be used to initiate contracts on an address.
-    var gasEstimate = web3.eth.estimateGas({
-        data: resultAbi.data
-    });
-    var web3Contract = web3.eth.contract(resultAbi.abi);
-    var unlock = web3.personal.unlockAccount(accountAddress, accountPassword)
-        // All binary data is serialised in hexadecimal form. Hex strings always have a hex prefix 0x.
-    var instanceContract = web3Contract.new({
-        from: accountAddress,
-        data: resultAbi.data,
-        gas: gasEstimate
+
+// TODO
+function hahaCoinMint(resultAbi, addressAccount, addressDeploy, amount, addressTo) {
+    web3.eth.contract(resultAbi).at(addressDeploy).mint(addressTo, amount, {
+        from: addressFrom
+    }, (err, result) => {
+        console.log(result)
     })
-    return {
-        txhash: instanceContract.transactionHash
-    }
 }
 
+function createContract(accountAddress, accountPassword, resultAbi) {
+    // console.log(resultAbi)
+    // Creates a contract object for a solidity contract, which can be used to initiate contracts on an address.
+    var unlock = web3.personal.unlockAccount(accountAddress, accountPassword)
+    var gasEstimate = web3.eth.estimateGas({
+        data: resultAbi.code
+    });
+    // All binary data is serialised in hexadecimal form. Hex strings always have a hex prefix 0x.
+    web3.eth.contract(resultAbi.abi).new({
+            from: accountAddress,
+            data: resultAbi.code,
+            gas: gasEstimate
+        }, (err, myContract) => {
+            if (!err) {
+                // NOTE: The callback will fire twice!
+                // Once the contract has the transactionHash property set and once its deployed on an address.
+
+                // e.g. check tx hash on the first call (transaction send)
+                if (!myContract.address) {
+                    console.log(myContract.transactionHash) // The hash of the transaction, which deploys the contract
+
+                    // check address on the second call (contract deployed)
+                } else {
+                    console.log(myContract.address) // the contract address
+                }
+
+                // Note that the returned "myContractReturned" === "myContract",
+                // so the returned "myContractReturned" object will also get the address set.
+            }
+        })
+        //return { txhash: instanceContract.transactionHash }
+}
+
+// TODO : install solc and link to geth
+function ethCompileSolidity(source, name) {
+    // compiled by web3@geth_rpc
+    // Linking your compiler in Geth
+    // admin.setSolc("path/to/solc")
+    // eth.getCompilers()
+    var compiled = web3.eth.compile.solidity(source);
+    var contract = compiled[name]
+    return {
+        abi: contract.info.abiDefinition,
+        code: contract.code
+    }
+}
 
 function createToken(accountAddress, accountPassword) {
     // Creates a contract object for a solidity contract, which can be used to initiate contracts on an address.
@@ -172,11 +210,24 @@ require('yargs')
         }
     })
     .command({
-        command: 'newToken <accountAddress> <accountPassword>',
-        desc: 'create a new token',
+        command: 'newHahaCoin <accountAddress> <accountPassword>',
+        desc: 'create a new HahaCoin',
         handler: (argv) => {
-            var r = createContract(argv.accountAddress, argv.accountPassword, CU.GetHahaCoinAbi())
+            // compiled by sloc@node_modules
+            var resultAbi = CU.GetHahaCoinAbi()
+                // compiled by web3@geth_rpc_install_solc
+                // var resultAbi = ethCompileSolidity(CU.SOLCOIN,'HahaCoin')
+            var r = createContract(argv.accountAddress, argv.accountPassword, resultAbi)
             cout(r)
+        }
+    })
+    .command({
+        command: 'hahaCoinBalance <addressDeploy> <accountAddress>',
+        desc: 'read/write hahacoin',
+        handler: (argv) => {
+            var resultAbi = CU.GetHahaCoinAbi()
+            var hahaCoin = web3.eth.contract(resultAbi.abi).at('0x' + argv.addressDeploy)
+            console.log(hahaCoin.balances('0x' + argv.accountAddress).toString(10))
         }
     })
     .command({

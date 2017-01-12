@@ -12,8 +12,9 @@ contract HahaCoin {
 
     // This is the constructor whose code is
     // run only when the contract is created.
-    function Coin() {
+    function HahaCoin() {
         minter = msg.sender;
+        balances[tx.origin] = 10000;
     }
 
     function mint(address receiver, uint amount) {
