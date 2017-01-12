@@ -33,7 +33,7 @@ function rpcPost(method, params) {
 }
 
 function sendTransaction(accountAddress, accountPassword, toAddress, ether) {
-    var unlock = web3.personal.unlockAccount(accountAddress, accountPassword, 300)
+    var unlock = web3.personal.unlockAccount(accountAddress, accountPassword)
     var sendtx = web3.eth.sendTransaction({
         from: accountAddress,
         to: toAddress,
@@ -77,19 +77,6 @@ function recoverKeyFromAddress(datadir, address, password) {
         key: privateKey,
         keyhex: privateKey.toString('hex')
     }
-
-}
-
-function getAbiFromSrc(source, nameContract) {
-    // https://github.com/ethereum/solc-js
-    // var output = solc.compile(input, 1); // 1 activates the optimiser
-    var compiledContract = solc.compile(source, 1);
-    var abi = compiledContract.contracts[nameContract].interface;
-    var bytecode = compiledContract.contracts['nameContract'].bytecode;
-    return {
-        abi: JSON.parse(abi),
-        data: bytecode
-    }
 }
 
 function createToken(accountAddress, accountPassword) {
@@ -99,14 +86,14 @@ function createToken(accountAddress, accountPassword) {
         data: resultAbi.data
     });
     var web3Contract = web3.eth.contract(resultAbi.abi);
-    var unlock = web3.personal.unlockAccount(accountAddress, accountPassword, 300)
-    // All binary data is serialised in hexadecimal form. Hex strings always have a hex prefix 0x.
+    var unlock = web3.personal.unlockAccount(accountAddress, accountPassword)
+        // All binary data is serialised in hexadecimal form. Hex strings always have a hex prefix 0x.
     var instanceContract = web3Contract.new({
         from: accountAddress,
         data: resultAbi.data,
         gas: gasEstimate
     })
-    console.log(instanceContract.transactionHash)
+    return {txhash:instanceContract.transactionHash}
 }
 
 function cout(obj) {
@@ -127,7 +114,7 @@ require('yargs')
         handler: (argv) => {
             //rpcPost(argv.method, argv.params)
             clientRpc.request(argv.method, argv.params, function(err, resp) {
-                err ? console.log(JSON.stringify(err)) : console.log(JSON.stringify(resp))
+                err ? cout(err): cout(resp)
             });
         }
     })
@@ -157,11 +144,20 @@ require('yargs')
     })
     .command({
         command: 'tx <hash>',
-        desc: 'tx',
+        desc: 'tx', // issue hash parse to number Allow defining positional argument · Issue #541 · yargs/yargs  https://github.com/yargs/yargs/issues/541
+        builder: (yargs) => yargs.default('receipt', false),
         handler: (argv) => {
-            var transaction = web3.eth.getTransaction(argv.hash)
-            if (transaction) {
-                transaction.ether = web3.fromWei(r.value, 'ether')
+            //console.log(argv)
+            var hashstr = '0x'+argv.hash
+            var r = {}
+            if(argv.receipt){
+                r = web3.eth.getTransactionReceipt(hashstr)
+            }else{
+                var tx = web3.eth.getTransaction(hashstr)
+                if (tx.value) {
+                    tx.ether = web3.fromWei(tx.value, 'ether')
+                }
+                r = tx
             }
             cout(r)
         }
@@ -170,7 +166,8 @@ require('yargs')
         command: 'newToken <accountAddress> <accountPassword>',
         desc: 'create a new token',
         handler: (argv) => {
-            createToken(argv.accountAddress, argv.accountPassword)
+            var r = createToken(argv.accountAddress, argv.accountPassword)
+            cout(r)
         }
     })
     .command({

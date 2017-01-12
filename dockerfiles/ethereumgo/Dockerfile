@@ -1,6 +1,6 @@
 FROM alpine:3.5
 
-ENV VERSION=1.5.5
+ENV VERSION=1.5.6
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
     && apk --update --no-cache add bash curl jq git nodejs==6.9.4-r0 \

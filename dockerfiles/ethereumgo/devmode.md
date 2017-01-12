@@ -1,5 +1,38 @@
 ## --dev mode
 
+#### web3.eth.getTransaction
+
+```
+$ docker run ethereum/client-go:v1.5.5 version
+Geth
+Version: 1.5.6-stable
+Git Commit: 2a609af51873204c940a9b2a7215e6b5a97b0656
+Protocol Versions: [63 62]
+Network Id: 1
+Go Version: go1.5.4
+OS: linux
+GOPATH=
+GOROOT=/usr/lib/go
+
+$ docker run -it ethereum/client-go:v1.5.6 --verbosity 0 --dev console
+
+instance: Geth/v1.5.6-stable-2a609af5/linux/go1.5.4
+ modules: admin:1.0 debug:1.0 eth:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 shh:1.0 txpool:1.0 web3:1.0
+
+> personal.newAccount('mypasswd')
+"0x8071b5974ea55c380f914bba715f317ca5889680"
+> miner.start()
+true
+> eth.getBalance(eth.accounts[0])
+85000000000000000000
+> personal.unlockAccount(eth.accounts[0],"mypasswd", 300)
+true
+> eth.sendTransaction({from: eth.accounts[0], to: "0x364d385977b17b26fce6d245329c7ab992f557eb", gasPrice: "1000"})
+"0x4cf129d96f1ef7983c9f08915225b0558c6306d5b45300cbe6c651539953b6c9"
+> web3.eth.getTransaction("0x0b47e13335c46b544c20097dc967d5eb58a9f590d330977c1738cf8997b5196a")
+```
+
+
 console: personal.unlockAccount cannot unmarshal non-string as hex data
 v1.5.6 test
 
