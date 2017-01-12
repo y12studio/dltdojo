@@ -149,9 +149,11 @@ EthereumGo.prototype.buildDojoAlias = function() {
     var peers = this.peers
     var r = buildAlias(name, peers, 'evp')
     r.push('dsolc() { docker cp "$2" "$1":/tmp/; docker exec -it "$1" node index.js solc /tmp/"$2" "$3"; }')
+    r.push('dnc() { docker cp "$2" "$1":/tmp/; docker exec -it "$1" node index.js newContract /tmp/"$2" "$3" "$4" "$5"; }')
     r.push('dcp() { docker cp "$1":${2} ${3}; }')
     _.range(peers).forEach(function(e, i, a) {
         // vp1 /curlrpc.sh
+        r.push(`alias dnc${i}='dnc $VPID${i}'`)
         r.push(`alias dsolc${i}='dsolc $VPID${i}'`)
         r.push(`alias dcp${i}='dcp $VPID${i}'`)
         r.push(`alias vp${i}curl='vp${i} /curlrpc.sh'`)

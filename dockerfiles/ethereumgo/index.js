@@ -3,9 +3,11 @@ var Web3 = require('web3')
 var web3 = new Web3()
 var CU = require('./contractutils')
 var _ = require('lodash')
+var Promise = require("bluebird")
 var request = require('request')
 const RPCURL = 'http://localhost:8545'
-var jayson = require('jayson')
+    //var jayson = require('jayson')
+var jayson = require('jayson/promise')
 var clientRpc = jayson.client.http(RPCURL);
 
 web3.setProvider(new web3.providers.HttpProvider(RPCURL))
@@ -79,9 +81,8 @@ function recoverKeyFromAddress(datadir, address, password) {
     }
 }
 
-function createToken(accountAddress, accountPassword) {
+function createContract(accountAddress, accountPassword, resultAbi) {
     // Creates a contract object for a solidity contract, which can be used to initiate contracts on an address.
-    var resultAbi = CU.GetHahaCoinAbi()
     var gasEstimate = web3.eth.estimateGas({
         data: resultAbi.data
     });
@@ -93,7 +94,16 @@ function createToken(accountAddress, accountPassword) {
         data: resultAbi.data,
         gas: gasEstimate
     })
-    return {txhash:instanceContract.transactionHash}
+    return {
+        txhash: instanceContract.transactionHash
+    }
+}
+
+
+function createToken(accountAddress, accountPassword) {
+    // Creates a contract object for a solidity contract, which can be used to initiate contracts on an address.
+
+    return createContract(accountAddress, accountPassword, CU.GetHahaCoinAbi())
 }
 
 function cout(obj) {
@@ -113,9 +123,8 @@ require('yargs')
         desc: 'json rpc interface',
         handler: (argv) => {
             //rpcPost(argv.method, argv.params)
-            clientRpc.request(argv.method, argv.params, function(err, resp) {
-                err ? cout(err): cout(resp)
-            });
+            clientRpc.request(argv.method, argv.params).then((resp) => cout(resp)).catch((err) =>
+                cout(err))
         }
     })
     .command({
@@ -148,11 +157,11 @@ require('yargs')
         builder: (yargs) => yargs.default('receipt', false),
         handler: (argv) => {
             //console.log(argv)
-            var hashstr = '0x'+argv.hash
+            var hashstr = '0x' + argv.hash
             var r = {}
-            if(argv.receipt){
+            if (argv.receipt) {
                 r = web3.eth.getTransactionReceipt(hashstr)
-            }else{
+            } else {
                 var tx = web3.eth.getTransaction(hashstr)
                 if (tx.value) {
                     tx.ether = web3.fromWei(tx.value, 'ether')
@@ -166,7 +175,16 @@ require('yargs')
         command: 'newToken <accountAddress> <accountPassword>',
         desc: 'create a new token',
         handler: (argv) => {
-            var r = createToken(argv.accountAddress, argv.accountPassword)
+            var r = createContract(argv.accountAddress, argv.accountPassword, CU.GetHahaCoinAbi())
+            cout(r)
+        }
+    })
+    .command({
+        command: 'newContract <filepath> <nameContract> <accountAddress> <accountPassword>',
+        desc: 'create a new contract',
+        handler: (argv) => {
+            var resultAbi = CU.GetAbiFromFile(argv.filepath, argv.nameContract)
+            var r = createContract(argv.accountAddress, argv.accountPassword, resultAbi)
             cout(r)
         }
     })
@@ -175,6 +193,20 @@ require('yargs')
         desc: 'compile a sol file',
         handler: (argv) => {
             console.log(CU.GetAbiFromFile(argv.filepath, argv.nameContract))
+        }
+    })
+    .command({
+        command: 'dev <case>',
+        desc: 'devmode',
+        handler: (argv) => {
+            console.log(argv)
+            if (argv.case == 1) {
+                clientRpc.request('personal_newAccount', ['vp1pass']).then((resp) => {
+                    console.log(resp)
+                    return clientRpc.request('miner_start', [1])
+                }).then((r) => console.log(r)).catch((err) =>
+                    cout(err))
+            }
         }
     })
     .demandCommand(1)

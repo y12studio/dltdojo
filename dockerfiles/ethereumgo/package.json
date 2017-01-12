@@ -12,6 +12,7 @@
   "author": "JOYE LIN <y12studio@gmail.com> (https://y12.tw)",
   "license": "Apache-2.0",
   "dependencies": {
+    "bluebird": "^3.4.7",
     "jayson": "^2.0.2",
     "keythereum": "^0.3.2",
     "lodash": "^4.17.4",
