@@ -65,6 +65,7 @@ function getInfo(debug) {
     if (debug) {
         r.ethMining = web3.eth.mining
         r.ethGetBlockPending = web3.eth.getBlock("pending")
+        r.cliNewHahaCoin = `vp1cli newHahaCoin ${coinbase.replace('0x','')} vp1pass`
     }
     return r
 }
@@ -99,6 +100,13 @@ function createContract(accountAddress, accountPassword, resultAbi) {
         data: resultAbi.code
     });
     // All binary data is serialised in hexadecimal form. Hex strings always have a hex prefix 0x.
+    var r = {
+        accountAddress: accountAddress,
+        txHash: '',
+        contractAddress: '',
+        cliBalance: '',
+        cliSend: ''
+    }
     web3.eth.contract(resultAbi.abi).new({
             from: accountAddress,
             data: resultAbi.code,
@@ -110,11 +118,17 @@ function createContract(accountAddress, accountPassword, resultAbi) {
 
                 // e.g. check tx hash on the first call (transaction send)
                 if (!myContract.address) {
-                    console.log(myContract.transactionHash) // The hash of the transaction, which deploys the contract
-
-                    // check address on the second call (contract deployed)
+                    r.txHash = myContract.transactionHash
+                        // console.log(r) // The hash of the transaction, which deploys the contract
+                        // check address on the second call (contract deployed)
                 } else {
-                    console.log(myContract.address) // the contract address
+                    r.contractAddress = myContract.address
+                    var conaddr = r.contractAddress.replace('0x', '')
+                    var accaddr = r.accountAddress.replace('0x', '')
+                    r.cliBalance = `vp1cli hahaCoinBalance ${conaddr} ${accaddr}`
+                    r.cliSend = `vp1cli hahaCoinSend ${conaddr} ${accaddr} vp1pass <toAddress> <amount>`
+                        // console.log(myContract.address) // the contract address
+                    console.log(r)
                 }
 
                 // Note that the returned "myContractReturned" === "myContract",
@@ -217,17 +231,33 @@ require('yargs')
             var resultAbi = CU.GetHahaCoinAbi()
                 // compiled by web3@geth_rpc_install_solc
                 // var resultAbi = ethCompileSolidity(CU.SOLCOIN,'HahaCoin')
-            var r = createContract(argv.accountAddress, argv.accountPassword, resultAbi)
-            cout(r)
+            createContract(argv.accountAddress, argv.accountPassword, resultAbi)
         }
     })
     .command({
         command: 'hahaCoinBalance <addressDeploy> <accountAddress>',
         desc: 'read/write hahacoin',
         handler: (argv) => {
+            console.log(argv)
             var resultAbi = CU.GetHahaCoinAbi()
             var hahaCoin = web3.eth.contract(resultAbi.abi).at('0x' + argv.addressDeploy)
-            console.log(hahaCoin.balances('0x' + argv.accountAddress).toString(10))
+            var theMethod = hahaCoin['balances']
+            console.log(theMethod('0x' + argv.accountAddress).toString(10))
+        }
+    })
+    .command({
+        command: 'hahaCoinSend <addressDeploy> <accountAddress> <accountPass> <toAddress> <amount>',
+        desc: 'read/write hahacoin',
+        handler: (argv) => {
+            var resultAbi = CU.GetHahaCoinAbi()
+            var hahaCoin = web3.eth.contract(resultAbi.abi).at('0x' + argv.addressDeploy)
+            var theMethod = hahaCoin['send']
+            var unlock = web3.personal.unlockAccount(argv.accountAddress, argv.accountPass)
+            theMethod.sendTransaction('0x' + argv.toAddress, argv.amount, {
+                from: '0x' + argv.accountAddress
+            }, (err, result) => {
+                console.log(err ? err : result)
+            })
         }
     })
     .command({
@@ -235,8 +265,7 @@ require('yargs')
         desc: 'create a new contract',
         handler: (argv) => {
             var resultAbi = CU.GetAbiFromFile(argv.filepath, argv.nameContract)
-            var r = createContract(argv.accountAddress, argv.accountPassword, resultAbi)
-            cout(r)
+            createContract(argv.accountAddress, argv.accountPassword, resultAbi)
         }
     })
     .command({

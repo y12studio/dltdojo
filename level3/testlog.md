@@ -1,37 +1,110 @@
 ## LOG
 
+### Thu Jan 12 21:03:31 CST 2017
+
+```
+// $ vp1cli dev 1
+// $ vp1cli info --debug
+$ vp1cli newHahaCoin 138ddf52657d804e92047429e70e1951a7fb590d vp1pass
+{ accountAddress: '138ddf52657d804e92047429e70e1951a7fb590d',
+  txHash: '0x68609f527d20f02aaad3c7212657f14541cd01cbb9a19c79fbaa2b652659db73',
+  contractAddress: '0x04b34b4b5fd1012a025d0de27829bf3d32fcb0d3',
+  cliBalance: 'vp1cli hahaCoinBalance 04b34b4b5fd1012a025d0de27829bf3d32fcb0d3 138ddf52657d804e92047429e70e1951a7fb590d',
+  cliSend: 'vp1cli hahaCoinSend 04b34b4b5fd1012a025d0de27829bf3d32fcb0d3 138ddf52657d804e92047429e70e1951a7fb590d vp1pass <toAddress> <amount>' }
+$ vp1cli hahaCoinBalance 04b34b4b5fd1012a025d0de27829bf3d32fcb0d3 138ddf52657d804e92047429e70e1951a7fb590d
+  10000
+$ vp1cli hahaCoinSend 04b34b4b5fd1012a025d0de27829bf3d32fcb0d3 138ddf52657d804e92047429e70e1951a7fb590d vp1pass 0b54f84fdd1f2e423ed7cfdd9738750c5c2fa729 10
+{ _: [ 'hahaCoinSend' ],
+  help: false,
+  h: false,
+  '$0': 'index.js',
+  addressDeploy: '04b34b4b5fd1012a025d0de27829bf3d32fcb0d3',
+  accountAddress: '138ddf52657d804e92047429e70e1951a7fb590d',
+  accountPass: 'vp1pass',
+  toAddress: '0b54f84fdd1f2e423ed7cfdd9738750c5c2fa729',
+  amount: 10 }
+0x20b1e85050179a127cdcb9f64f20c378ab2b2638d1212fac89c074d03120114f
+$ vp1cli hahaCoinBalance 04b34b4b5fd1012a025d0de27829bf3d32fcb0d3 138ddf52657d804e92047429e70e1951a7fb590d
+9990
+```
+
+### Thu Jan 12 19:29:10 CST 2017
+```
+$ vp1cli dev 1
+$ vp1cli info --debug
+{
+ "ethBlockNumber": 2,
+ "ethGetBalance": "10000000000000000000",
+ "ethCoinbase": "0x4a3d9afc6fa0df1f9341b96ae36db586fe8bac9d",
+ "ethSyncing": false,
+ "netPeerCount": 0,
+ "balanceEther": "10",
+ "ethMining": true,
+ "ethGetBlockPending": {
+  "difficulty": "131200",
+  "extraData": "0xd783010506846765746887676f312e372e33856c696e7578",
+  "gasLimit": 4712388,
+  "gasUsed": 0,
+  "hash": null,
+  "logsBloom": null,
+  "miner": null,
+  "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "nonce": null,
+  "number": 3,
+  "parentHash": "0x9dd84c83aa3398c086c9b0252167ef5b53db65558944ed9fc4314f98d1505b44",
+  "receiptsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+  "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+  "size": 535,
+  "stateRoot": "0xdedfd2a380a531183a92fe927a73c86c5e4cb5ffff2c156a1807fcb13f06f8dc",
+  "timestamp": 1484220785,
+  "totalDifficulty": "0",
+  "transactions": [],
+  "transactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+  "uncles": []
+ },
+ "cliNewHahaCoin": "vp1cli newHahaCoin 4a3d9afc6fa0df1f9341b96ae36db586fe8bac9d vp1pass"
+}
+$ vp1cli newHahaCoin 4a3d9afc6fa0df1f9341b96ae36db586fe8bac9d vp1pass
+{ accountAddress: '4a3d9afc6fa0df1f9341b96ae36db586fe8bac9d',
+  txHash: '0x5197d4a4818126d6fe93142f40c38313ac47f6eea5edb2497b50427cd0a59931',
+  contractAddress: '0x865b1bbacbfafd6f631edf38f60f9f4e8fbe8630',
+  cliBalance: 'vp1cli hahaCoinBalance 865b1bbacbfafd6f631edf38f60f9f4e8fbe8630 4a3d9afc6fa0df1f9341b96ae36db586fe8bac9d' }
+$ vp1cli hahaCoinBalance 865b1bbacbfafd6f631edf38f60f9f4e8fbe8630 4a3d9afc6fa0df1f9341b96ae36db586fe8bac9d
+10000
+
+```
+
 ### Thu Jan 12 16:17:47 CST 2017
 
 ```
 $ vp1cli dev 1
 $ vp1cli info
 {
- "ethBlockNumber": 1,
- "ethGetBalance": "5000000000000000000",
- "ethCoinbase": "0x96f5298b5394342ecffe74766223dda7c24fe935",
+ "ethBlockNumber": 10,
+ "ethGetBalance": "50000000000000000000",
+ "ethCoinbase": "0x0b54f84fdd1f2e423ed7cfdd9738750c5c2fa729",
  "ethSyncing": false,
  "netPeerCount": 0,
- "balanceEther": "5"
+ "balanceEther": "50"
 }
-$ vp1cli newHahaCoin 96f5298b5394342ecffe74766223dda7c24fe935 vp1pass
-undefined
-0x8cb9a7dcc50622cd692482c8cd747fa2d868d0b0242b930bb1c140cccf099808
-0x61b7843a0dbc8e33a3184bf05112038c8dfd90d5
-$ vp1cli hahaCoinBalance 61b7843a0dbc8e33a3184bf05112038c8dfd90d5 96f5298b5394342ecffe74766223dda7c24fe935
+$ vp1cli newHahaCoin 0b54f84fdd1f2e423ed7cfdd9738750c5c2fa729 vp1pass
+{ txHash: '0xc0a58f8928a531440118fb37aadf16debe2ee3404cec8eba5770b7932de5f431',
+  addressDeploy: '0xb21bd7fb53cf80520a7f06c99209a96f22ba3423' }
+$ vp1cli hahaCoinBalance b21bd7fb53cf80520a7f06c99209a96f22ba3423 0b54f84fdd1f2e423ed7cfdd9738750c5c2fa729
 10000
-$ vp1cli tx 8cb9a7dcc50622cd692482c8cd747fa2d868d0b0242b930bb1c140cccf099808 --receipt
+$ vp1cli tx c0a58f8928a531440118fb37aadf16debe2ee3404cec8eba5770b7932de5f431 --receipt
 {
- "blockHash": "0x422967202e6a0c2e30fc22b2f69df2453f1e85ac19d975f8ffdc84c0c3e381a9",
- "blockNumber": 7,
- "contractAddress": "0x61b7843a0dbc8e33a3184bf05112038c8dfd90d5",
+ "blockHash": "0x966faf6bc2f27875e9b75d6d029a27c20417a48a5b848499b50f74e57da19e92",
+ "blockNumber": 4,
+ "contractAddress": "0xb21bd7fb53cf80520a7f06c99209a96f22ba3423",
  "cumulativeGasUsed": 199179,
- "from": "0x96f5298b5394342ecffe74766223dda7c24fe935",
+ "from": "0x0b54f84fdd1f2e423ed7cfdd9738750c5c2fa729",
  "gasUsed": 199179,
  "logs": [],
  "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
- "root": "0x8a5801eb84e64ab90fbfaed06439fbe04aa3ca134da0c8d41fbc85e422491ec5",
+ "root": "0xfbdc14c814754ba014f5d9fa336095739d7530c0315d756830aec87c87a41a15",
  "to": null,
- "transactionHash": "0x8cb9a7dcc50622cd692482c8cd747fa2d868d0b0242b930bb1c140cccf099808",
+ "transactionHash": "0xc0a58f8928a531440118fb37aadf16debe2ee3404cec8eba5770b7932de5f431",
  "transactionIndex": 0
 }
 ```
