@@ -99,13 +99,6 @@ function createContract(accountAddress, accountPassword, resultAbi) {
         data: resultAbi.code
     });
     // All binary data is serialised in hexadecimal form. Hex strings always have a hex prefix 0x.
-    var r = {
-        accountAddress: accountAddress,
-        txHash: '',
-        contractAddress: '',
-        cliBalance: '',
-        cliSend: ''
-    }
     web3.eth.contract(resultAbi.abi).new({
             from: accountAddress,
             data: resultAbi.code,
@@ -116,22 +109,23 @@ function createContract(accountAddress, accountPassword, resultAbi) {
                 // Once the contract has the transactionHash property set and once its deployed on an address.
 
                 // e.g. check tx hash on the first call (transaction send)
-                if (!myContract.address) {
-                    r.txHash = myContract.transactionHash
-                        // console.log(r) // The hash of the transaction, which deploys the contract
-                        // check address on the second call (contract deployed)
-                } else {
-                    r.contractAddress = myContract.address
-                    var conaddr = r.contractAddress.replace('0x', '')
-                    var accaddr = r.accountAddress.replace('0x', '')
-                    r.cliBalance = `vp1cli hahaCoinBalance ${conaddr} ${accaddr}`
-                    r.cliSend = `vp1cli hahaCoinSend ${conaddr} ${accaddr} vp1pass <toAddress> <amount>`
-                        // console.log(myContract.address) // the contract address
-                    console.log(r)
+                if (myContract.address) {
+
+                    // r.contractAddress = myContract.address
+                    // console.log(myContract.address) // the contract address
+                    // console.log(r)
+                    appendSaving('contract', {
+                        tx: myContract.transactionHash,
+                        address: myContract.address,
+                        resultAbi: resultAbi
+                    })
+                    console.log(getLatestSaving())
                 }
 
                 // Note that the returned "myContractReturned" === "myContract",
                 // so the returned "myContractReturned" object will also get the address set.
+            } else {
+                console.log(err)
             }
         })
         //return { txhash: instanceContract.transactionHash }
@@ -161,11 +155,19 @@ function createToken(accountAddress, accountPassword) {
     return createContract(accountAddress, accountPassword, CU.GetHahaCoinAbi())
 }
 
+function appendSaving(name, obj) {
+    var sr = getLatestSaving()
+    var x = sr.input
+    x[name] = obj
+    x.info = getInfo()
+    saving(sr.saving.sname, sr.saving.address, x)
+}
+
 function saving(sname, accAddr, input) {
     var filename = `/tmp/${sname}_${accAddr}.json`
     var r = {
         input: input,
-        saving:{
+        saving: {
             sname: sname,
             address: accAddr,
             file: filename
@@ -257,25 +259,39 @@ require('yargs')
     .command({
         command: 'hahacoin',
         desc: 'HahaCoin',
+        builder: (yargs) => {
+            yargs.implies('send', 'to')
+        },
         handler: (argv) => {
             // compiled by sloc@node_modules
-            if(argv.new){
-                var sa = getLatestSaving()
-                sa.resultAbi = CU.GetHahaCoinAbi()
-                console.dir(sa)
-                createContract(sa.input.account, sa.input.password, sa.resultAbi)
+            var sa = getLatestSaving()
+            if (argv.new) {
+                var resultAbi = CU.GetHahaCoinAbi()
+                    //console.dir(sa)
+                createContract(sa.input.account, sa.input.password, resultAbi)
+            } else if (sa.input.contract) {
+                // show balance
+                var sc = sa.input.contract
+                var account = sa.input.account
+                var password = sa.input.password
+                var hahaCoin = web3.eth.contract(sc.resultAbi.abi).at(sc.address)
+                if (argv.send && argv.amount && argv.to) {
+                    var unlock = web3.personal.unlockAccount(account, password)
+                    hahaCoin.send('0x' + argv.to, argv.amount, {
+                        from: account
+                    }, (err, result) => {
+                        console.log(err ? err : result)
+                    })
+                } else {
+                    var balance = hahaCoin.balances(account).toString(10)
+                    console.log({
+                        account: account,
+                        balance: balance
+                    })
+                }
+            } else {
+                console.log('contract not found.')
             }
-        }
-    })
-    .command({
-        command: 'hahaCoinBalance <addressDeploy> <accountAddress>',
-        desc: 'read/write hahacoin',
-        handler: (argv) => {
-            console.log(argv)
-            var resultAbi = CU.GetHahaCoinAbi()
-            var hahaCoin = web3.eth.contract(resultAbi.abi).at('0x' + argv.addressDeploy)
-            var theMethod = hahaCoin['balances']
-            console.log(theMethod('0x' + argv.accountAddress).toString(10))
         }
     })
     .command({
@@ -306,14 +322,6 @@ require('yargs')
         desc: 'compile a sol file',
         handler: (argv) => {
             console.log(CU.GetAbiFromFile(argv.filepath, argv.nameContract))
-        }
-    })
-    .command({
-        command: 'saving <sname> [accountAddress]',
-        desc: 'save a file',
-        builder: (yargs) => yargs.default('accountAddress', web3.eth.coinbase),
-        handler: (argv) => {
-            var r = saving(argv.sname, argv.accountAddress, getInfo(argv.debug))
         }
     })
     .command({

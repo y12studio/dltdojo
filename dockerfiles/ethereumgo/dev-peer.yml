@@ -6,5 +6,4 @@ version: '2'
 services:
   evp:
     build: .
-    entrypoint: /start.sh
     command: '--dev --nodiscover --rpc --rpccorsdomain="*" --rpcaddr="0.0.0.0" --rpcapi "miner,admin,db,personal,eth,net,web3"'

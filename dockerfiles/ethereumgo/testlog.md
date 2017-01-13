@@ -1,5 +1,55 @@
 ## LOG0110_3
 
+### Fri Jan 13 14:50:06 CST 2017
+```
+$ njs dev 1 pass
+{ input:
+   { name: 'dev mode 1',
+     password: 'pass',
+     account: '0xa58e7d2b366de5fb352d8f08b1620f226a9c1fed',
+     info:
+      { ethBlockNumber: 0,
+        ethGetBalance: '0',
+        ethCoinbase: '0xa58e7d2b366de5fb352d8f08b1620f226a9c1fed',
+        ethSyncing: false,
+        netPeerCount: 0,
+        balanceEther: '0' } },
+  saving:
+   { sname: 'dev1',
+     address: '0xa58e7d2b366de5fb352d8f08b1620f226a9c1fed',
+     file: '/tmp/dev1_0xa58e7d2b366de5fb352d8f08b1620f226a9c1fed.json' } }
+$ njs hahacoin --new
+// wait....
+{ input:
+   { name: 'dev mode 1',
+     password: 'pass',
+     account: '0xa58e7d2b366de5fb352d8f08b1620f226a9c1fed',
+     info:
+      { ethBlockNumber: 5,
+        ethGetBalance: '25000000000000000000',
+        ethCoinbase: '0xa58e7d2b366de5fb352d8f08b1620f226a9c1fed',
+        ethSyncing: false,
+        netPeerCount: 0,
+        balanceEther: '25' },
+     contract:
+      { tx: '0xf7be1884ad4c1cd7b22c278b37babc863b5de6c7dd79f88844905d2b3d8fdd9e',
+        address: '0x28529c20654ebfdd60ad158f126efbeb375fd792',
+        resultAbi: [Object] } },
+  saving:
+   { sname: 'dev1',
+     address: '0xa58e7d2b366de5fb352d8f08b1620f226a9c1fed',
+     file: '/tmp/dev1_0xa58e7d2b366de5fb352d8f08b1620f226a9c1fed.json' } }
+
+$ njs hahacoin
+{ account: '0xa58e7d2b366de5fb352d8f08b1620f226a9c1fed',
+  balance: '10000' }
+$ njs hahacoin --send --to 0de51d24bd6c97564f99bb829c789b4748a3d0d7 --amount 99
+// wait...
+$ njs hahacoin
+{ account: '0xa58e7d2b366de5fb352d8f08b1620f226a9c1fed',
+  balance: '9901' }
+```
+
 ### Fri Jan 13 08:18:43 CST 2017
 ```
 $ source alias.sh
