@@ -3,7 +3,7 @@ FROM alpine:3.5
 ENV VERSION=1.5.6
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
-    && apk --update --no-cache add bash curl jq git nodejs==6.9.4-r0 \
+    && apk --update --no-cache add bash curl jq git nodejs \
     && apk add --virtual .builddeps build-base python go musl-dev \
     && curl --insecure -sL https://github.com/ethereum/go-ethereum/archive/v$VERSION.tar.gz | tar zx \
     && mv go-ethereum-$VERSION go-ethereum \
@@ -21,7 +21,7 @@ EXPOSE 30303
 
 WORKDIR /opt/app
 ADD package.json /opt/app/package.json
-RUN npm install && npm install -g solc
+RUN npm install
 ADD start.sh curlrpc.sh genesis.json /
 RUN chmod +x /start.sh && chmod +x /curlrpc.sh
 ADD index.js keyrecover.js contractutils.js hahacoin.sol /opt/app/

@@ -1,0 +1,10 @@
+# Distributed Ledger Technology Dojo (DLTDOJO)
+# https://github.com/y12studio/dltdojo
+# EthereumGo peer yml file ,  name:lv3
+# DATETIME:2017-01-12T04:14:13.410Z
+version: '2'
+services:
+  evp:
+    build: .
+    entrypoint: /start.sh
+    command: '--dev --nodiscover --rpc --rpccorsdomain="*" --rpcaddr="0.0.0.0" --rpcapi "miner,admin,db,personal,eth,net,web3"'

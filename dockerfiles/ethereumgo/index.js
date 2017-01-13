@@ -1,15 +1,15 @@
+var sh = require('shelljs');
 var keythereum = require('keythereum')
 var Web3 = require('web3')
 var web3 = new Web3()
+var jsonfile = require('jsonfile')
 var CU = require('./contractutils')
 var _ = require('lodash')
 var Promise = require("bluebird")
 var request = require('request')
 const RPCURL = 'http://localhost:8545'
-    //var jayson = require('jayson')
 var jayson = require('jayson/promise')
 var clientRpc = jayson.client.http(RPCURL);
-
 web3.setProvider(new web3.providers.HttpProvider(RPCURL))
 
 var rpcId = 0
@@ -59,7 +59,6 @@ function getInfo(debug) {
         ethCoinbase: coinbase,
         ethSyncing: web3.eth.syncing,
         netPeerCount: web3.net.peerCount,
-        ethDefaultAccount: web3.eth.defaultAccount,
         balanceEther: web3.fromWei(balance, 'ether')
     }
     if (debug) {
@@ -152,10 +151,31 @@ function ethCompileSolidity(source, name) {
     }
 }
 
+function getLatestSaving() {
+    return jsonfile.readFileSync('/tmp/saving-latest.json')
+}
+
 function createToken(accountAddress, accountPassword) {
     // Creates a contract object for a solidity contract, which can be used to initiate contracts on an address.
 
     return createContract(accountAddress, accountPassword, CU.GetHahaCoinAbi())
+}
+
+function saving(sname, accAddr, input) {
+    var filename = `/tmp/${sname}_${accAddr}.json`
+    var r = {
+        input: input,
+        saving:{
+            sname: sname,
+            address: accAddr,
+            file: filename
+        }
+    }
+    jsonfile.writeFileSync(filename, r, {
+        spaces: 2
+    })
+    sh.cp(filename, '/tmp/saving-latest.json')
+    return r
 }
 
 function cout(obj) {
@@ -235,6 +255,19 @@ require('yargs')
         }
     })
     .command({
+        command: 'hahacoin',
+        desc: 'HahaCoin',
+        handler: (argv) => {
+            // compiled by sloc@node_modules
+            if(argv.new){
+                var sa = getLatestSaving()
+                sa.resultAbi = CU.GetHahaCoinAbi()
+                console.dir(sa)
+                createContract(sa.input.account, sa.input.password, sa.resultAbi)
+            }
+        }
+    })
+    .command({
         command: 'hahaCoinBalance <addressDeploy> <accountAddress>',
         desc: 'read/write hahacoin',
         handler: (argv) => {
@@ -276,15 +309,39 @@ require('yargs')
         }
     })
     .command({
-        command: 'dev <case>',
+        command: 'saving <sname> [accountAddress]',
+        desc: 'save a file',
+        builder: (yargs) => yargs.default('accountAddress', web3.eth.coinbase),
+        handler: (argv) => {
+            var r = saving(argv.sname, argv.accountAddress, getInfo(argv.debug))
+        }
+    })
+    .command({
+        command: 'latest',
+        desc: 'get the latest saving file',
+        handler: (argv) => {
+            console.log(getLatestSaving())
+        }
+    })
+    .command({
+        command: 'dev <case> <password>',
         desc: 'devmode',
         handler: (argv) => {
-            console.log(argv)
+            //console.log(argv)
             if (argv.case == 1) {
-                clientRpc.request('personal_newAccount', ['vp1pass']).then((resp) => {
-                    console.log(resp)
+                var x = {
+                    name: 'dev mode 1',
+                    password: argv.password
+                }
+                clientRpc.request('personal_newAccount', [argv.password]).then((resp) => {
+                    //console.log(resp)
+                    x.account = resp.result
                     return clientRpc.request('miner_start', [1])
-                }).then((r) => console.log(r)).catch((err) =>
+                }).then((r) => {
+                    x.info = getInfo()
+                    var sr = saving('dev1', x.account, x)
+                    console.log(getLatestSaving())
+                }).catch((err) =>
                     cout(err))
             }
         }

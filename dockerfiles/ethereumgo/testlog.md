@@ -1,5 +1,46 @@
 ## LOG0110_3
 
+### Fri Jan 13 08:18:43 CST 2017
+```
+$ source alias.sh
+$ dcup
+$ njs dev 1 vp1pass
+{ _: [ 'dev' ],
+  help: false,
+  h: false,
+  '$0': 'index.js',
+  case: 1,
+  password: 'vp1pass' }
+{ jsonrpc: '2.0',
+  id: '7e7fab48-9a07-4a7c-a912-02387603ca75',
+  result: '0x0de51d24bd6c97564f99bb829c789b4748a3d0d7' }
+{ jsonrpc: '2.0',
+  id: '9a886296-a20e-4cae-a983-28e867cf4c2d',
+  result: true }
+$ njs latest
+{ input:
+   { name: 'dev mode 1',
+     password: 'pass',
+     account: '0x54050a6c7ca66e20eaca5d28e3b192f81c5e292b',
+     info:
+      { ethBlockNumber: 0,
+        ethGetBalance: '0',
+        ethCoinbase: '0x54050a6c7ca66e20eaca5d28e3b192f81c5e292b',
+        ethSyncing: false,
+        netPeerCount: 0,
+        balanceEther: '0' } },
+  saving:
+   { sname: 'dev1',
+     address: '0x54050a6c7ca66e20eaca5d28e3b192f81c5e292b',
+     file: '/tmp/dev1_0x54050a6c7ca66e20eaca5d28e3b192f81c5e292b.json' } }
+$ nsh ls /tmp
+dev1_0x0de51d24bd6c97564f99bb829c789b4748a3d0d7.json
+ethash-test362343188
+ethereum_dev_mode
+npm-7-7c343517
+saving-latest.json
+$ njs hahacoin --new
+```
 ### Thu Jan 12 16:12:20 CST 2017
 ```
 $ docker build -t y12docker/dltdojo-ethgo .
