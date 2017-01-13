@@ -26,17 +26,14 @@ $ dc stop && dc rm
 $ docker run -v $(pwd):/tmp y12docker/dltdojo --dojo.eth 6 --name lv2
 ```
 
-## WIP [Level3](level3) Ethereum 資產轉移
+## [Level3](level3) Ethereum 資產轉移
 
 ```
-docker run -v $(pwd):/tmp y12docker/dltdojo --dojo.eth 6 --name lv3
+$ docker run -v $(pwd):/tmp y12docker/dltdojo --dojo.eth 6 --name lv3
 ```
 
 ## WIP Level4 Hyperledger Fabric 資產轉移
 
-```
---dojo.fabric 6 --name lv4
-```
 
 # 參考連結
 

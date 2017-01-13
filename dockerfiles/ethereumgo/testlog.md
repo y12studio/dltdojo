@@ -1,5 +1,17 @@
 ## LOG0110_3
 
+### Fri Jan 13 21:02:34 CST 2017
+```
+$ njs account alice --new --password pass1
+$ njs info alice
+$ njs account bob --new --password pass1
+$ njs info bob
+$ njs account alice --send --to 0xa58e7d2b366de5fb352d8f08b1620f226a9c1fed --ether 2.5
+
+$ njs hahacoin alice --new
+$ njs hahacoin alice --send --to 0xa58e7d2b366de5fb352d8f08b1620f226a9c1fed --amount 100
+
+```
 ### Fri Jan 13 15:45:33 CST 2017
 ```
 $ njs account --new --password vp1pass

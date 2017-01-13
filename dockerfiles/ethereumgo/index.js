@@ -1,3 +1,4 @@
+var fs = require('fs');
 var sh = require('shelljs');
 var keythereum = require('keythereum')
 var Web3 = require('web3')
@@ -7,8 +8,11 @@ var CU = require('./contractutils')
 var _ = require('lodash')
 var Promise = require("bluebird")
 var request = require('request')
-const RPCURL = 'http://localhost:8545'
 var jayson = require('jayson/promise')
+
+const RPCURL = 'http://localhost:8545'
+const SAVINGPATH = '/tmp/saving-latest.json'
+    //
 var clientRpc = jayson.client.http(RPCURL);
 web3.setProvider(new web3.providers.HttpProvider(RPCURL))
 
@@ -34,32 +38,30 @@ function rpcPost(method, params) {
     });
 }
 
-function sendTransaction(accountAddress, accountPassword, toAddress, ether) {
-    var unlock = web3.personal.unlockAccount(accountAddress, accountPassword)
-    var sendtx = web3.eth.sendTransaction({
-        from: accountAddress,
-        to: toAddress,
-        value: web3.toWei(ether, "ether")
-    })
-    return {
-        unlock: unlock,
-        sendtx: sendtx
-    }
-}
-
-function getInfo(debug) {
+function getInfo(argv) {
+    var debug = argv.debug
     var coinbase = web3.eth.coinbase;
-    var balance = web3.eth.getBalance(coinbase)
+    var balanceCoinbase = web3.eth.getBalance(coinbase)
         // var value = web3.fromWei('21000000000000', 'finney');
         // https://github.com/ethereum/web3.js/issues/388
         // https://github.com/ethereum/web3.js/blob/master/lib/web3/methods/personal.js
     var r = {
         ethBlockNumber: web3.eth.blockNumber,
-        ethGetBalance: balance,
         ethCoinbase: coinbase,
         ethSyncing: web3.eth.syncing,
         netPeerCount: web3.net.peerCount,
-        balanceEther: web3.fromWei(balance, 'ether')
+        balanceCoinbaseEther: web3.fromWei(balanceCoinbase, 'ether')
+    }
+    var sa = getLatestSaving()
+    if (sa[argv.name]) {
+        var c = sa[argv.name]
+        var addr = c.init.address
+        var balanceAcc = web3.eth.getBalance(addr)
+        r.account = {
+            name: argv.name,
+            address: addr,
+            balanceEther: web3.fromWei(balanceAcc, 'ether')
+        }
     }
     if (debug) {
         r.ethMining = web3.eth.mining
@@ -91,7 +93,7 @@ function hahaCoinMint(resultAbi, addressAccount, addressDeploy, amount, addressT
     })
 }
 
-function createContract(accountAddress, accountPassword, resultAbi) {
+function createContract(name, accountAddress, accountPassword, resultAbi) {
     // console.log(resultAbi)
     // Creates a contract object for a solidity contract, which can be used to initiate contracts on an address.
     var unlock = web3.personal.unlockAccount(accountAddress, accountPassword)
@@ -114,12 +116,12 @@ function createContract(accountAddress, accountPassword, resultAbi) {
                     // r.contractAddress = myContract.address
                     // console.log(myContract.address) // the contract address
                     // console.log(r)
-                    appendSaving('contract', {
+                    appendSaving(name, 'contract', {
                         tx: myContract.transactionHash,
                         address: myContract.address,
                         resultAbi: resultAbi
                     })
-                    console.log(getLatestSaving())
+                    console.log(myContract.address)
                 }
 
                 // Note that the returned "myContractReturned" === "myContract",
@@ -145,9 +147,6 @@ function ethCompileSolidity(source, name) {
     }
 }
 
-function getLatestSaving() {
-    return jsonfile.readFileSync('/tmp/saving-latest.json')
-}
 
 function createToken(accountAddress, accountPassword) {
     // Creates a contract object for a solidity contract, which can be used to initiate contracts on an address.
@@ -155,15 +154,26 @@ function createToken(accountAddress, accountPassword) {
     return createContract(accountAddress, accountPassword, CU.GetHahaCoinAbi())
 }
 
-function appendSaving(name, obj) {
+function appendSaving(acname, key, obj) {
     var sr = getLatestSaving()
-    var x = sr.input
-    x[name] = obj
-    x.info = getInfo()
-    saving(sr.saving.sname, sr.saving.address, x)
+    var ac = sr[acname]
+    if (ac) {
+        ac[key] = obj
+        saving(sr)
+    }
 }
 
-function saving(sname, accAddr, input) {
+function getLatestSaving() {
+    return fs.existsSync(SAVINGPATH) ? jsonfile.readFileSync(SAVINGPATH) : {}
+}
+
+function saving(obj) {
+    jsonfile.writeFileSync('/tmp/saving-latest.json', obj, {
+        spaces: 2
+    })
+}
+
+function savingX(sname, accAddr, input) {
     var filename = `/tmp/${sname}_${accAddr}.json`
     var r = {
         input: input,
@@ -185,24 +195,45 @@ function cout(obj) {
 }
 
 function handleAccountNew(argv) {
-    var x = {
-        name: argv.name,
-        password: argv.password
-    }
-    clientRpc.request('personal_newAccount', [argv.password]).then((resp) => {
+    var accountName = argv.name
+    return clientRpc.request('personal_newAccount', [argv.password]).then((resp) => {
         //console.log(resp)
-        x.account = resp.result
-        x.keyrecover = recoverKeyFromAddress('/root/.ethereum/devchain', x.account, argv.password)
-        x.info = getInfo()
-        var sr = saving(argv.name, x.account, x)
-        if (argv.debug) {
-            console.log(getLatestSaving())
+        var r = {}
+        r.address = resp.result
+        r.password = argv.password
+        r.keyrecover = recoverKeyFromAddress('/root/.ethereum/devchain', r.address, r.password)
+        var sa = getLatestSaving()
+        if (sa[accountName]) {
+            sa[accountName].init = r
         } else {
-            console.log(x.account)
+            sa[accountName] = {
+                init: r
+            }
         }
-    }).catch((err) => {
-        console.log(err)
+        saving(sa)
+        return r.address
     })
+}
+
+function handleAccountSend(argv) {
+    //console.log('SEND', argv)
+    var sa = getLatestSaving()
+    if (sa[argv.name]) {
+        var account = sa[argv.name]
+            //console.log(account)
+        var address = account.init.address
+        var password = account.init.password
+            // console.log(address,password)
+        var unlock = web3.personal.unlockAccount(address, password)
+        if (unlock) {
+            var r = web3.eth.sendTransaction({
+                from: address,
+                to: argv.to,
+                value: web3.toWei(argv.ether, "ether")
+            })
+            cout(r)
+        }
+    }
 }
 
 require('yargs')
@@ -223,10 +254,13 @@ require('yargs')
         }
     })
     .command({
-        command: 'info',
+        command: 'info [name]',
         desc: 'info',
+        builder: (yargs) => {
+            yargs.string('name').default('name', 'alice')
+        },
         handler: (argv) => {
-            cout(getInfo(argv.debug))
+            cout(getInfo(argv))
         }
     })
     .command({
@@ -270,61 +304,53 @@ require('yargs')
         command: 'account [name]',
         desc: 'command account',
         builder: (yargs) => {
-            yargs.string('to').default('name','t1')
+            yargs.string('to').default('name', 'alice')
         },
         handler: (argv) => {
             if (argv.new && argv.password) {
-                handleAccountNew(argv)
+                handleAccountNew(argv).then((resp) => console.log(resp))
             } else if (argv.key) {
                 var sa = getLatestSaving()
-                console.log(sa.input.keyrecover.keyhex)
+                console.log(sa[argv.name].init.keyrecover.keyhex)
             } else if (argv.send && argv.to && argv.ether) {
-                //console.log('SEND', argv)
-                var sa = getLatestSaving()
-                var account = sa.input.account
-                var password = sa.input.password
-                var r = sendTransaction(account, password, argv.to, argv.ether)
-                cout(r)
+                handleAccountSend(argv)
             } else {
                 var sa = getLatestSaving()
-                if (sa.input.account) {
-                    console.log(sa.input.account)
-                } else {
-                    console.log(`${argv.name} key not found.`)
-                }
+                console.log(sa[argv.name])
             }
         }
     })
     .command({
-        command: 'hahacoin',
+        command: 'hahacoin [name]',
         desc: 'HahaCoin',
         builder: (yargs) => {
-            yargs.implies('send', 'to').string('to')
+            yargs.implies('send', 'to').string('to').default('name', 'alice')
         },
         handler: (argv) => {
             // compiled by sloc@node_modules
             var sa = getLatestSaving()
-            if (argv.new) {
+            var ac = sa[argv.name]
+            if (ac && argv.new) {
                 var resultAbi = CU.GetHahaCoinAbi()
                     //console.dir(sa)
-                createContract(sa.input.account, sa.input.password, resultAbi)
-            } else if (sa.input.contract) {
+                createContract(argv.name, ac.init.address, ac.init.password, resultAbi)
+            } else if (ac && ac.contract) {
                 // show balance
-                var sc = sa.input.contract
-                var account = sa.input.account
-                var password = sa.input.password
+                var sc = ac.contract
+                var accountAddress = ac.init.address
+                var password = ac.init.password
                 var hahaCoin = web3.eth.contract(sc.resultAbi.abi).at(sc.address)
                 if (argv.send && argv.amount && argv.to) {
-                    var unlock = web3.personal.unlockAccount(account, password)
-                    hahaCoin.send('0x' + argv.to, argv.amount, {
-                        from: account
+                    var unlock = web3.personal.unlockAccount(accountAddress, password)
+                    hahaCoin.send(argv.to, argv.amount, {
+                        from: accountAddress
                     }, (err, result) => {
                         console.log(err ? err : result)
                     })
                 } else {
-                    var balance = hahaCoin.balances(account).toString(10)
+                    var balance = hahaCoin.balances(accountAddress).toString(10)
                     console.log({
-                        account: account,
+                        account: accountAddress,
                         balance: balance
                     })
                 }
@@ -367,25 +393,20 @@ require('yargs')
         }
     })
     .command({
-        command: 'dev <case> <password>',
+        command: 'dev <case>',
         desc: 'devmode',
         handler: (argv) => {
             //console.log(argv)
             if (argv.case == 1) {
-                var x = {
-                    name: 'dev mode 1',
-                    password: argv.password
-                }
-                clientRpc.request('personal_newAccount', [argv.password]).then((resp) => {
-                    //console.log(resp)
-                    x.account = resp.result
+                argv.name = 'alice'
+                argv.password = 'passAlice'
+                handleAccountNew(argv).then((resp) => {
                     return clientRpc.request('miner_start', [1])
-                }).then((r) => {
-                    x.info = getInfo()
-                    var sr = saving('dev1', x.account, x)
-                    console.log(getLatestSaving())
-                }).catch((err) =>
-                    cout(err))
+                }).then((resp) => {
+                    argv.name = 'bob'
+                    argv.password = 'passBob'
+                    return handleAccountNew(argv)
+                })
             }
         }
     })
