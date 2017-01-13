@@ -20,14 +20,16 @@ $ dc stop && dc rm
 
 ## [Level2](level2) Ethereum 轉帳
 
+如要避免實際部署網路時間，可使用--dojo.eth 2設定開啟雙點獨立開發模式，不需另外下載DAG檔，開發模式節點不互通無法做跨節點轉帳練習。
+
 ```
---dojo.eth 6 --name lv2
+$ docker run -v $(pwd):/tmp y12docker/dltdojo --dojo.eth 6 --name lv2
 ```
 
 ## WIP [Level3](level3) Ethereum 資產轉移
 
 ```
---dojo.eth 6 --name lv3
+docker run -v $(pwd):/tmp y12docker/dltdojo --dojo.eth 6 --name lv3
 ```
 
 ## WIP Level4 Hyperledger Fabric 資產轉移

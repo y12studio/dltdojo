@@ -6,4 +6,4 @@ version: '2'
 services:
   evp:
     build: .
-    command: '--dev --nodiscover --rpc --rpccorsdomain="*" --rpcaddr="0.0.0.0" --rpcapi "miner,admin,db,personal,eth,net,web3"'
+    command: '--dev --datadir=~/.ethereum/devchain --rpc --rpccorsdomain="*" --rpcaddr="0.0.0.0" --rpcapi "miner,admin,db,personal,eth,net,web3"'

@@ -64,7 +64,7 @@ function getInfo(debug) {
     if (debug) {
         r.ethMining = web3.eth.mining
         r.ethGetBlockPending = web3.eth.getBlock("pending")
-        r.cliNewHahaCoin = `vp1cli newHahaCoin ${coinbase.replace('0x','')} vp1pass`
+            //r.cliNewHahaCoin = `vp1cli newHahaCoin ${coinbase.replace('0x','')} vp1pass`
     }
     return r
 }
@@ -184,6 +184,27 @@ function cout(obj) {
     console.log(_.isString(obj) ? obj : JSON.stringify(obj, null, ' '))
 }
 
+function handleAccountNew(argv) {
+    var x = {
+        name: argv.name,
+        password: argv.password
+    }
+    clientRpc.request('personal_newAccount', [argv.password]).then((resp) => {
+        //console.log(resp)
+        x.account = resp.result
+        x.keyrecover = recoverKeyFromAddress('/root/.ethereum/devchain', x.account, argv.password)
+        x.info = getInfo()
+        var sr = saving(argv.name, x.account, x)
+        if (argv.debug) {
+            console.log(getLatestSaving())
+        } else {
+            console.log(x.account)
+        }
+    }).catch((err) => {
+        console.log(err)
+    })
+}
+
 require('yargs')
     .command({
         command: 'rpcreq <method> [params..]',
@@ -246,21 +267,39 @@ require('yargs')
         }
     })
     .command({
-        command: 'newHahaCoin <accountAddress> <accountPassword>',
-        desc: 'create a new HahaCoin',
+        command: 'account [name]',
+        desc: 'command account',
+        builder: (yargs) => {
+            yargs.string('to').default('name','t1')
+        },
         handler: (argv) => {
-            // compiled by sloc@node_modules
-            var resultAbi = CU.GetHahaCoinAbi()
-                // compiled by web3@geth_rpc_install_solc
-                // var resultAbi = ethCompileSolidity(CU.SOLCOIN,'HahaCoin')
-            createContract(argv.accountAddress, argv.accountPassword, resultAbi)
+            if (argv.new && argv.password) {
+                handleAccountNew(argv)
+            } else if (argv.key) {
+                var sa = getLatestSaving()
+                console.log(sa.input.keyrecover.keyhex)
+            } else if (argv.send && argv.to && argv.ether) {
+                //console.log('SEND', argv)
+                var sa = getLatestSaving()
+                var account = sa.input.account
+                var password = sa.input.password
+                var r = sendTransaction(account, password, argv.to, argv.ether)
+                cout(r)
+            } else {
+                var sa = getLatestSaving()
+                if (sa.input.account) {
+                    console.log(sa.input.account)
+                } else {
+                    console.log(`${argv.name} key not found.`)
+                }
+            }
         }
     })
     .command({
         command: 'hahacoin',
         desc: 'HahaCoin',
         builder: (yargs) => {
-            yargs.implies('send', 'to')
+            yargs.implies('send', 'to').string('to')
         },
         handler: (argv) => {
             // compiled by sloc@node_modules
@@ -295,21 +334,6 @@ require('yargs')
         }
     })
     .command({
-        command: 'hahaCoinSend <addressDeploy> <accountAddress> <accountPass> <toAddress> <amount>',
-        desc: 'read/write hahacoin',
-        handler: (argv) => {
-            var resultAbi = CU.GetHahaCoinAbi()
-            var hahaCoin = web3.eth.contract(resultAbi.abi).at('0x' + argv.addressDeploy)
-            var theMethod = hahaCoin['send']
-            var unlock = web3.personal.unlockAccount(argv.accountAddress, argv.accountPass)
-            theMethod.sendTransaction('0x' + argv.toAddress, argv.amount, {
-                from: '0x' + argv.accountAddress
-            }, (err, result) => {
-                console.log(err ? err : result)
-            })
-        }
-    })
-    .command({
         command: 'newContract <filepath> <nameContract> <accountAddress> <accountPassword>',
         desc: 'create a new contract',
         handler: (argv) => {
@@ -329,6 +353,17 @@ require('yargs')
         desc: 'get the latest saving file',
         handler: (argv) => {
             console.log(getLatestSaving())
+        }
+    })
+    .command({
+        command: 'miner',
+        desc: 'miner command',
+        handler: (argv) => {
+            if (argv.start) {
+                clientRpc.request('miner_start', [1]).then((r) => console.log(r))
+            } else if (argv.stop) {
+                clientRpc.request('miner_stop').then((r) => console.log(r))
+            }
         }
     })
     .command({

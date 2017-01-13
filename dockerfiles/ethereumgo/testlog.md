@@ -1,5 +1,17 @@
 ## LOG0110_3
 
+### Fri Jan 13 15:45:33 CST 2017
+```
+$ njs account --new --password vp1pass
+0x8c8b25cc14c351a7d4da4b6dde4976f36af9b4ac
+$ njs account
+0xea926dadc30779f8526d1bb7726d01ed8e575ebc
+$ njs account --key
+f94443cf4936c2770c49eea22fed95d8827a74dc91262e66269f5bc7a12ebcc4
+$ njs miner --start
+$ njs info
+$ njs account --send --to 0xa58e7d2b366de5fb352d8f08b1620f226a9c1fed --ether 2.5
+```
 ### Fri Jan 13 14:50:06 CST 2017
 ```
 $ njs dev 1 pass
