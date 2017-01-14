@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  mariadb-master:
+    image: mariadb:10.1
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    command: --wsrep-new-cluster --bind-address=0.0.0.0 --wsrep_cluster_name=galera_cluster --wsrep_cluster_address=gcomm://
+
+  mariadb-slave:
+    image: mariadb:10.1
+    depends_on:
+        - mariadb-master
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    command: --bind-address=0.0.0.0 --wsrep_cluster_name=galera_cluster --wsrep_cluster_address=gcomm://mariadb-master
