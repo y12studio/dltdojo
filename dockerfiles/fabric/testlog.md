@@ -1,5 +1,19 @@
 ## TESTLOG
 
+### Sat Jan 14 21:42:35 CST 2017
+
+peerx3
+```
+$ peer1 chaincode deploy -n test_cc -p github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02 -c '{"Args":["init","a","100","b","200"]}'
+$ peer1 chaincode invoke -n test_cc -c '{"Args":["query","a"]}'
+$ peer2 chaincode invoke -n test_cc -c '{"Args":["query","a"]}'
+$ peer1 chaincode invoke -n test_cc -c '{"Args":["query","b"]}'
+$ peer2 chaincode invoke -n test_cc -c '{"Args":["query","b"]}'
+
+$ peer2 chaincode invoke -n test_cc -c '{"Args":["invoke","a","b","10"]}'
+$ peer2 chaincode invoke -n test_cc -c '{"Args":["query","a"]}'
+$ peer1 chaincode invoke -n test_cc -c '{"Args":["query","b"]}'
+```
 ### Sat Jan 14 16:18:58 CST 2017
 
 https://github.com/yeasy/docker-compose-files/tree/master/hyperledger/1.0
