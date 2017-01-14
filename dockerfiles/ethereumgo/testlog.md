@@ -1,5 +1,29 @@
 ## LOG0110_3
 
+### Sat Jan 14 10:58:46 CST 2017
+```
+$ njs dev 1
+$ njs info alice
+{
+ "ethBlockNumber": 16,
+ "ethCoinbase": "0xd4d270e493b9b0cca7defd92b2a4b8e0433d75a7",
+ "ethSyncing": false,
+ "netPeerCount": 0,
+ "balanceCoinbaseEther": "80",
+ "account": {
+  "name": "alice",
+  "address": "0xd4d270e493b9b0cca7defd92b2a4b8e0433d75a7",
+  "balanceEther": "80"
+ }
+}
+$ njs hahacoin alice --new
+$ njs hahacoin alice --contract 0x2be3cb9031a18e06bd9b362117d46c06cd0c0a33
+{ account: '0xbe05f1ff430613b1fea22970a2ba6dbed564ab77',
+  contractAddress: '0x2be3cb9031a18e06bd9b362117d46c06cd0c0a33',
+  contractBalance: '10000' }
+$ njs hahacoin alice --send --contract 0x2be3cb9031a18e06bd9b362117d46c06cd0c0a33 --to 0xa58e7d2b366de5fb352d8f08b1620f226a9c1fed --amount 100
+
+```
 ### Fri Jan 13 21:02:34 CST 2017
 ```
 $ njs account alice --new --password pass1

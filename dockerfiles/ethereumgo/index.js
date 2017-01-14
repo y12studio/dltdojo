@@ -324,7 +324,7 @@ require('yargs')
         command: 'hahacoin [name]',
         desc: 'HahaCoin',
         builder: (yargs) => {
-            yargs.implies('send', 'to').string('to').default('name', 'alice')
+            yargs.implies('send', 'to').string('to').string('contract').default('name', 'alice')
         },
         handler: (argv) => {
             // compiled by sloc@node_modules
@@ -339,8 +339,10 @@ require('yargs')
                 var sc = ac.contract
                 var accountAddress = ac.init.address
                 var password = ac.init.password
-                var hahaCoin = web3.eth.contract(sc.resultAbi.abi).at(sc.address)
-                if (argv.send && argv.amount && argv.to) {
+                // var contractAddressInSaving = sc.address
+                var contractAddress = argv.contract
+                var hahaCoin = web3.eth.contract(sc.resultAbi.abi).at(contractAddress)
+                if (argv.send && argv.contract && argv.amount && argv.to) {
                     var unlock = web3.personal.unlockAccount(accountAddress, password)
                     hahaCoin.send(argv.to, argv.amount, {
                         from: accountAddress
@@ -348,10 +350,14 @@ require('yargs')
                         console.log(err ? err : result)
                     })
                 } else {
+                    if(!contractAddress){
+                         contractAddress = sc.address
+                    }
                     var balance = hahaCoin.balances(accountAddress).toString(10)
                     console.log({
                         account: accountAddress,
-                        balance: balance
+                        contractAddress: contractAddress,
+                        contractBalance: balance
                     })
                 }
             } else {

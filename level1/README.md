@@ -57,3 +57,6 @@ $ vp1cli getbalance
 $ vp1cli getbalance
 144.99996160
 ```
+# T7 其餘練習
+
+將數個節點停止後重開再互相發送。
