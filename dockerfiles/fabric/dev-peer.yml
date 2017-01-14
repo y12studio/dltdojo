@@ -1,0 +1,48 @@
+# This is the default base file to config env and command
+# Notice that chaincode is executed inside docker in default net mode
+# https://github.com/yeasy/docker-compose-files
+
+# Depends on the hyperledger/fabric-peer image.
+
+version: '2'
+services:
+  cop:
+    image: hyperledger/fabric-cop
+    container_name: fabric-cop
+    hostname: cop
+    ports:
+      - "8888:8888"
+    command: cop server start -ca testdata/ec.pem -ca-key testdata/ec-key.pem -config testdata/cop.json -address="0.0.0.0"
+
+  orderer:
+    image: hyperledger/fabric-orderer
+    container_name: fabric-orderer
+    hostname: orderer
+    environment:
+        - ORDERER_GENERAL_LEDGERTYPE=ram
+        - ORDERER_GENERAL_BATCHTIMEOUT=10s
+        - ORDERER_GENERAL_MAXMESSAGECOUNT=10
+        - ORDERER_GENERAL_MAXWINDOWSIZE=1000
+        - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+        - ORDERER_RAMLEDGER_HISTORY_SIZE=100
+        - ORDERER_GENERAL_ORDERERTYPE=solo
+    ports:
+      - "7050:7050"
+    command: orderer
+
+  vp0:
+    extends:
+      file: peer.yml
+      service: peer
+    hostname: vp0
+    environment:
+      - CORE_PEER_ID=vp0
+      - CORE_PEER_COMMITTER_LEDGER_ORDERER=orderer:7050
+    links:
+      - cop
+      - orderer
+    ports:
+      - 7051:7051
+    depends_on:
+      - cop
+      - orderer
