@@ -30,15 +30,23 @@ services:
       - "7050:7050"
     command: orderer
 
-  vp:
+  vp0:
     extends:
       file: peer.yml
       service: peer
     environment:
+      - CORE_PEER_ID=vp0
       - CORE_PEER_COMMITTER_LEDGER_ORDERER=orderer:7050
-    links:
+    depends_on:
       - cop
       - orderer
+  vp1:
+    extends:
+      file: peer.yml
+      service: peer
+    environment:
+      - CORE_PEER_ID=vp1
+      - CORE_PEER_COMMITTER_LEDGER_ORDERER=orderer:7050
     depends_on:
       - cop
       - orderer

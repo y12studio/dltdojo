@@ -1,7 +1,7 @@
 # Distributed Ledger Technology Dojo (DLTDOJO) 
 # https://github.com/y12studio/dltdojo
-# BitcoinCore peers yml file ,name:lv1, peers:4
-# DATETIME:2017-01-11T10:03:42.251Z
+# BitcoinCore peers yml file ,name:lv1, peers:6
+# DATETIME:2017-01-15T09:40:36.208Z
 version: '2'
 services:
   bvp0:
