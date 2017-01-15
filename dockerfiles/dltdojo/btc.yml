@@ -9,12 +9,20 @@ services:
       - '18333'
     command: 'bitcoind -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcport=18332 -rpcallowip=172.99.0.1/16 -addnode=bvp0:18333'
     networks:
-        - dev1
+      - dev1
   bvp1:
     extends: bvp0
     ports:
       - "127.0.0.1:18332:18332"
       - "127.0.0.1:18333:18333"
+  bvp2:
+    extends: bvp0
+    
+  dltdojo:
+    image: y12docker/dltdojo
+    command: 'start'
+    networks:
+      - dev1
 
 networks:
   dev1:
