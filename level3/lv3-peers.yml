@@ -1,16 +1,22 @@
 # Distributed Ledger Technology Dojo (DLTDOJO) 
 # https://github.com/y12studio/dltdojo
 # EthereumGo peers yml file ,name:lv3, peers:2
-# DATETIME:2017-01-13T10:05:32.184Z
+# DATETIME:2017-01-16T10:32:00.871Z
 version: '2'
 services:
-  evp0:
-    extends:
-      file: lv3-peer.yml
-      service: bootnode
-    hostname: evp0
-  evp1:
-    extends:
-      file: lv3-peer.yml
-      service: evp
-    hostname: evp1
+  dltdojo:
+    image: y12docker/dltdojo
+    command: start
+  bootnode:
+    image: y12docker/dltdojo-ethgo
+    command: '--dev --networkid=573078 --rpc --rpccorsdomain="*" --rpcaddr="0.0.0.0" --rpcapi "miner,admin,db,personal,eth,net,web3" --ipcdisable --datadir=~/.ethereum/devchain --nodekeyhex=091bd6067cb4612df85d9c1ff85cc47f259ced4d4cd99816b14f35650f59c322'
+  ethp:
+    image: y12docker/dltdojo-ethgo
+    entrypoint: /start.sh
+    command: '--dev --networkid=573078 --rpc --rpccorsdomain="*" --rpcaddr="0.0.0.0" --rpcapi "miner,admin,db,personal,eth,net,web3" --ipcdisable --datadir=~/.ethereum/devchain --bootnodes="enode://288b97262895b1c7ec61cf314c2e2004407d0a5dc77566877aad1f2a36659c8b698f4b56fd06c4a0c0bf007b4cfb3e7122d907da3b005fa90e724441902eb19e@XXX:30303"'
+  ethp1:
+    extends: ethp
+    hostname: ethp1
+  ethp2:
+    extends: ethp
+    hostname: ethp2

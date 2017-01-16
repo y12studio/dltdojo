@@ -1,3 +1,29 @@
+### Mon Jan 16 14:16:38 CST 2017
+```
+$ edcup
+$ edc ps
+Name             Command             State              Ports
+-------------------------------------------------------------------------
+ddj_bootnode_1     /geth --dev        Up                 30303/tcp,
+             --networkid=88                        8545/tcp
+             ...
+ddj_dltdojo_1      node index.js      Up
+             start
+ddj_ethp1_1        /start.sh --dev    Up                 30303/tcp, 127.0
+             --networki ...                        .0.1:8545->8545/
+                                                   tcp
+ddj_ethp_1         /start.sh --dev    Up                 30303/tcp,
+             --networki ...                        8545/tcp
+
+$ node index.js eth localhost account --password pass1 --new
+$ node index.js eth localhost miner --start
+$ node index.js eth localhost info
+$ node index.js eth localhost send --to 0x8b8c1c00dc15980434ff4d679103fb21be205816 --eth 3.6 --password pass1
+$ node index.js eth localhost info
+$ ethp1exec ls /root/.ethereum/devchain/keystore | sort -n
+$ ethp1exec find /root/.ethereum/devchain/keystore -maxdepth 1 -name "UTC*" -print -exec cat {} \;
+
+```
 ### Mon Jan 16 09:06:15 CST 2017
 ```
 $ bdcup

@@ -4,6 +4,9 @@ const Client = require('bitcoin-core')
 var _ = require('lodash')
 var Promise = require("bluebird")
 var jayson = require('jayson/promise')
+var keythereum = require('keythereum')
+var Web3 = require('web3')
+var web3 = new Web3()
 const RPCPORT = 18168
 const BTCRPCPORT = 18332
 
@@ -35,6 +38,18 @@ var rpcMethods = {
     }
 }
 
+function recoverKeyFromAddress(datadir, address, password) {
+    // var datadir = "/root/.ethereum/devchain"
+    var keyObject = keythereum.importFromFile(address, datadir)
+    var privateKey = keythereum.recover(password, keyObject)
+    return {
+        ko: keyObject,
+        key: privateKey,
+        keyhex: privateKey.toString('hex')
+    }
+}
+
+
 function getBtcClient(hostname) {
     return new Client({
         host: hostname,
@@ -43,6 +58,14 @@ function getBtcClient(hostname) {
         username: 'user',
         password: 'pass'
     })
+}
+
+function getEthRpcUrl(hostname) {
+    return `http://${hostname}:8545`
+}
+
+function getEthClient(hostname) {
+    return jayson.client.http(getEthRpcUrl(hostname));
 }
 
 function testRpc() {
@@ -86,8 +109,58 @@ function btcMethod(argv) {
             bc.generate(argv.num ? argv.num : 1).then(clog)
             break;
         case 'sendToAddress':
-            if(argv.to && argv.btc){
+            if (argv.to && argv.btc) {
                 bc.sendToAddress(argv.to, argv.btc).then(clog)
+            }
+            break;
+        default:
+            console.log(argv)
+    }
+}
+
+function ethMethod(argv) {
+    web3.setProvider(new web3.providers.HttpProvider(getEthRpcUrl(argv.hostname)))
+    var accounts = web3.eth.accounts;
+    switch (argv.method) {
+        case 'info':
+            var r = {
+                hostname: argv.hostname,
+                ethBlockNumber: web3.eth.blockNumber,
+                ethCoinbase: accounts.length > 0 ? web3.eth.coinbase : null,
+                ethAccounts: accounts.length,
+                ethSyncing: web3.eth.syncing,
+                netPeerCount: web3.net.peerCount,
+                ethBalance: accounts.length > 0 ? web3.fromWei(web3.eth.getBalance(web3.eth.coinbase), 'ether').toString(10) : 0,
+                ethMining: web3.eth.mining
+            }
+            clog(r)
+            break;
+        case 'account':
+            if (argv.new && argv.password) {
+                clog(web3.personal.newAccount(argv.password))
+            }
+            break;
+        case 'send':
+            if (argv.to && argv.eth && argv.password) {
+                var address = argv.account ? argv.account : accounts[0]
+                var password = argv.password
+                var unlock = web3.personal.unlockAccount(address, password)
+                if (unlock) {
+                    var r = web3.eth.sendTransaction({
+                        from: address,
+                        to: argv.to,
+                        value: web3.toWei(argv.eth, "ether")
+                    })
+                    clog(r)
+                }
+            }
+            break;
+        case 'miner':
+            clientRpc = getEthClient(argv.hostname)
+            if (argv.start) {
+                clientRpc.request('miner_start', [1]).then(clog)
+            } else if (argv.stop) {
+                clientRpc.request('miner_stop', []).then(clog)
             }
             break;
         default:
@@ -105,19 +178,20 @@ function main() {
             }
         })
         .command({
-            command: 'rpctest',
-            desc: 'test rpc',
-            handler: (argv) => {
-                testRpc()
-            }
-        })
-        .command({
             command: 'btc <hostname> <method>',
             desc: 'bitcond getinfo',
             builder: (yargs) => {
-                yargs.string('hostname')
+                yargs.string('to')
             },
             handler: btcMethod
+        })
+        .command({
+            command: 'eth <hostname> <method>',
+            desc: 'geth getinfo',
+            builder: (yargs) => {
+                yargs.string('to').string('address').string('account')
+            },
+            handler: ethMethod
         })
         .argv
 }

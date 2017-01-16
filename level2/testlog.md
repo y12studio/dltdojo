@@ -1,5 +1,118 @@
-## LOG0109_2
+## LOG
 
+### Mon Jan 16 16:02:28 CST 2017
+```
+// node build.js --name lv2 --path level2 --dojo.eth 2
+$ source lv2-alias.sh && dcup
+$ ethp1 account --new --password pass1
+$ ethp1 account --new --password pass2
+$ ethp1key
+{
+  "version": 3,
+  "id": "e23ec601-9fd1-4e16-af7b-13b86787c82e",
+  "crypto": {
+    "mac": "b435122d6d4a405830f9c1c71777b8ad4a49bb6907b1f864db7a4c80b70c2880",
+    "kdfparams": {
+      "salt": "998caaffbe934feccc149b78afaaeeb4007d73959b37beff6b52bd956cd568e0",
+      "r": 8,
+      "p": 1,
+      "n": 262144,
+      "dklen": 32
+    },
+    "kdf": "scrypt",
+    "cipherparams": {
+      "iv": "170ec7dcc975b2b97237cdf29920e672"
+    },
+    "ciphertext": "d49f68d2c8db98060c9298ad7940b882b345e0a6c8e3f908111c459f851f9ec9",
+    "cipher": "aes-128-ctr"
+  },
+  "address": "1721b4a00e53f4438a62a8648c74595062c23822"
+}
+{
+  "version": 3,
+  "id": "01d00309-9e52-4390-898e-81c4cee5e7ca",
+  "crypto": {
+    "mac": "19e45032fcb99e2ef2649b74db343dc9dc501a8ae414f33222a37a7625fcb5e2",
+    "kdfparams": {
+      "salt": "9ed5ed5555b88568dcfe214a1d44eeabd979723bb1c934699e1285f0bfd2ad9e",
+      "r": 8,
+      "p": 1,
+      "n": 262144,
+      "dklen": 32
+    },
+    "kdf": "scrypt",
+    "cipherparams": {
+      "iv": "d2397aaf95bb270c78e707aab3c369f7"
+    },
+    "ciphertext": "cd3232df1bbbabf0b98307dd3520011607d5dbd4c4b12fcc8f58b8eafed65694",
+    "cipher": "aes-128-ctr"
+  },
+  "address": "a07833d736b36cdfa5b8dff6ac9c746b1ae0d64a"
+}
+
+// node build.js --name lv2 --path level2 --dojo.eth 6
+$ source lv2-alias.sh && dcup
+$ dc ps
+Name             Command             State              Ports
+-------------------------------------------------------------------------
+lv2_bootnode_1     /geth --networki   Up                 30303/tcp,
+             d=406236 - ...                        8545/tcp
+lv2_ethp1_1        /start.sh          Up                 30303/tcp,
+             --networkid=4062                      8545/tcp
+             ...
+lv2_ethp2_1        /start.sh          Up                 30303/tcp,
+             --networkid=4062                      8545/tcp
+             ...
+lv2_ethp3_1        /start.sh          Up                 30303/tcp,
+             --networkid=4062                      8545/tcp
+             ...
+lv2_ethp4_1        /start.sh          Up                 30303/tcp,
+             --networkid=4062                      8545/tcp
+             ...
+lv2_ethp5_1        /start.sh          Up                 30303/tcp,
+             --networkid=4062                      8545/tcp
+             ...
+lv2_ethp6_1        /start.sh          Up                 30303/tcp,
+             --networkid=4062                      8545/tcp
+             ...
+lv2_ethp_1         /start.sh          Up                 30303/tcp,
+             --networkid=4062                      8545/tcp
+x
+
+$ ethp1 info
+{ hostname: 'ethp1',
+  ethBlockNumber: 0,
+  ethCoinbase: null,
+  ethAccounts: 0,
+  ethSyncing: false,
+  netPeerCount: 0,
+  ethBalance: 0,
+  ethMining: false }
+$ ethp1 account --new --password pass1
+  0x2661663b0b26a95709d794cbad27f89a30fc1377
+
+$ ethp2 account --new --password pass2
+$ ethp1 miner --start
+$ ethp2 miner --start
+$ ethp1 info && ethp2 info
+{ hostname: 'ethp1',
+  ethBlockNumber: 248,
+  ethCoinbase: '0x1e7afe2369dd103e53dcf78802133fb96081eb3b',
+  ethAccounts: 1,
+  ethSyncing: false,
+  netPeerCount: 3,
+  ethBalance: '904.21875',
+  ethMining: true }
+{ hostname: 'ethp2',
+  ethBlockNumber: 248,
+  ethCoinbase: '0x30d5f361b6d920365fab5592bd55377115d8daa2',
+  ethAccounts: 1,
+  ethSyncing: false,
+  netPeerCount: 4,
+  ethBalance: '368.28125',
+  ethMining: true }
+
+```
 // https://github.com/ethereum/go-ethereum/issues/2769
 // vp1(miner) vp2(non-miner)
 // vp1-3eth-to-vp2 ok but vp2-1eth-to-vp1

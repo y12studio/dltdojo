@@ -1,7 +1,7 @@
 # Distributed Ledger Technology Dojo (DLTDOJO) 
 # https://github.com/y12studio/dltdojo
 # BitcoinCore peers yml file ,name:lv1, peers:4
-# DATETIME:2017-01-16T04:06:34.974Z
+# DATETIME:2017-01-16T06:00:21.804Z
 version: '2'
 services:
   dltdojo:
@@ -16,7 +16,7 @@ services:
       - '18333'
     networks:
       - dev1
-    command: 'bitcoind -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcallowip=172.98.1.1/24 -rpcport=18332 -addnode=btcp:18333'
+    command: 'bitcoind -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcallowip=172.98.1.0/24 -rpcport=18332 -addnode=btcp:18333'
   btcp1:
     extends: btcp
     hostname: btcp1

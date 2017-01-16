@@ -27,7 +27,10 @@
     "bitcoin-core": "^1.1.0",
     "bluebird": "^3.4.7",
     "jayson": "^2.0.2",
+    "keythereum": "0.3.2",
     "lodash": "^4.17.4",
+    "solc": "^0.4.8",
+    "web3": "^0.18.2",
     "yamljs": "^0.2.8",
     "yargs": "^6.6.0"
   }
