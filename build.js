@@ -5,21 +5,14 @@ const fs = require('fs')
 const YAML = require('yamljs')
 
 function buildHead(title, sep) {
-    var time =  new Date().toISOString()
+    var time = new Date().toISOString()
     return `# Distributed Ledger Technology Dojo (DLTDOJO) ${sep}# https://github.com/y12studio/dltdojo${sep}# ${title}${sep}# DATETIME:${time}${sep}`
 }
 
-function buildAlias(name, peers, vpid) {
-    var r = [
-        `DCNAME=${name}`, `alias dc='docker-compose -p $DCNAME -f $DCNAME-peers.yml'`, `alias dcup='dc stop && dc rm && dc up -d && dc scale ${vpid}1=${peers-1}'`
+function buildAlias(name, peers) {
+    return  [
+        `DCNAME=${name}`, `alias dc='docker-compose -p $DCNAME -f $DCNAME-peers.yml'`, `alias dcup='dc stop ; dc rm -f; dc up -d'`
     ]
-    _.range(peers).forEach(function(e, i, a) {
-        // alias vp0sh='docker exec -i -t ${DCN}_vp0_1'
-        var vpname = i == 0 ? `${vpid}${i}_1` : `${vpid}1_${i}`
-        r.push(`VPID${i}=$\{DCNAME\}_${vpname}`)
-        r.push(`alias vp${i}='docker exec -it $VPID${i}'`)
-    })
-    return r
 }
 
 function BitcoinCore() {}
@@ -29,58 +22,70 @@ function EthereumGo() {}
 BitcoinCore.prototype.buildDojoAlias = function() {
     var name = this.name
     var peers = this.peers
-    var r = buildAlias(name, peers, 'bvp')
+    var r = buildAlias(name, peers)
+    var vpid = 'btcp'
+    r.push(`alias dojoexec='docker exec -it $\{DCNAME\}_dltdojo_1'`)
+    r.push(`alias ddj='dojoexec node index.js'`)
+    //r.push('ddjbtc() { ddj btc "$2" "$1"; }')
     _.range(peers).forEach(function(e, i, a) {
-        r.push(`alias vp${i}cli='vp${i} bitcoin-cli -conf=/opt/btc/bitcoin.conf -regtest -rpcport=18332'`)
+        var vpname = i == 0 ? `${vpid}` : `${vpid}${i}`
+        r.push(`BTCPID${i}=$\{DCNAME\}_${vpname}_1`)
+        r.push(`alias ${vpid}${i}sh='docker exec -it $BTCPID${i}'`)
+        r.push(`alias ${vpid}${i}='ddj btc ${vpname}'`)
+        //r.push(`alias ${vpid}${i}cli='vp${i} bitcoin-cli -conf=/opt/btc/bitcoin.conf -regtest -rpcport=18332'`)
     })
     return buildHead(`BitcoinCore alias script, name:${name}, peers:${peers}`, '\n') + r.join('\n')
-}
-
-BitcoinCore.prototype.buildDojoPeer = function() {
-    var name = this.name
-    var img = this.img
-    var dc = {
-        version: '2',
-        services: {
-            bvp: {
-                image: img,
-                expose: ['18332', '18333'],
-                command: 'bitcoind -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcport=18332 -addnode=bvp0:18333'
-            }
-        }
-    }
-    return buildHead(`BitcoinCore peer yml file ,  name:${name}`, '\r\n') + YAML.stringify(dc, 4, 2)
 }
 
 BitcoinCore.prototype.buildDojoPeers = function() {
     var name = this.name
     var peers = this.peers
+    var img = this.img
     var dc = {
         version: '2',
-        services: {}
+        services: {
+            dltdojo:{
+                image: 'y12docker/dltdojo',
+                command: 'start',
+                networks:['dev1']
+            },
+            btcp: {
+                image: img,
+                expose: ['18332', '18333'],
+                networks: ['dev1'],
+                command: 'bitcoind -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcallowip=172.98.1.1/24 -rpcport=18332 -addnode=btcp:18333'
+            }
+        },
+        networks: {
+            dev1: {
+                driver: 'bridge',
+                ipam: {
+                    driver: 'default',
+                    config: [
+                        {subnet: '172.98.1.0/24',
+                        gateway: '172.98.1.254'}
+                    ]
+                }
+            }
+        }
     }
-    _.range(2).forEach(function(e, i, a) {
-        var vpid = `bvp${i}`
+    _.range(peers).forEach(function(e, i, a) {
+        var vpid = `btcp${i+1}`
         var peerfile = `${name}-peer.yml`
         dc.services[vpid] = {
-            extends: {
-                file: peerfile,
-                service: 'bvp'
-            },
+            extends: 'btcp',
             hostname: vpid
         }
     })
-    return buildHead(`BitcoinCore peers yml file ,name:${name}, peers:${peers}`, '\r\n') + YAML.stringify(dc, 4, 2)
+    return buildHead(`BitcoinCore peers yml file ,name:${name}, peers:${peers}`, '\r\n') + YAML.stringify(dc, 6, 2)
 }
 
 BitcoinCore.prototype.buildDojo = function(img, path, name, peers) {
     this.name = name
     this.peers = peers
     this.img = img
-    var strPeer = this.buildDojoPeer()
     var strPeers = this.buildDojoPeers()
     var strAlias = this.buildDojoAlias()
-    fs.writeFileSync(`${path}/${name}-peer.yml`, strPeer);
     fs.writeFileSync(`${path}/${name}-peers.yml`, strPeers);
     fs.writeFileSync(`${path}/${name}-alias.sh`, strAlias);
 }
@@ -105,7 +110,7 @@ EthereumGo.prototype.buildDojoPeer = function() {
         // bootnodes url IP address only. DNS name(evp0) are not allowed.
         // "tail -f /dev/null" keep evp running for all time
     var rpcopts = '--rpc --rpccorsdomain="*" --rpcaddr="0.0.0.0" --rpcapi "miner,admin,db,personal,eth,net,web3" --ipcdisable'
-    var networkid = _.random(100001,999999)
+    var networkid = _.random(100001, 999999)
     var dc = {
         version: '2',
         services: {

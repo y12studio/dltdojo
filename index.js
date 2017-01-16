@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 
-var bitcoin = require('bitcoin-promise')
+const Client = require('bitcoin-core')
 var _ = require('lodash')
 var Promise = require("bluebird")
 var jayson = require('jayson/promise')
 const RPCPORT = 18168
 const BTCRPCPORT = 18332
-
 
 var rpcMethods = {
     btcinfo: function(args) {
@@ -34,29 +33,16 @@ var rpcMethods = {
             reject(server.error(501, 'not implemented'));
         });
     }
-
 }
 
-
-function bitcoinRequest(host, port) {
-    var client = new bitcoin.Client({
-        host: host,
-        port: port,
-        user: 'user',
-        pass: 'pass',
-        timeout: 30000
-    });
-    // get a new address and return details about it
-    client.getNewAddress()
-        .then(function(addr) {
-            return client.validateAddress(addr);
-        })
-        .then(function(addrInfo) {
-            console.log(addrInfo);
-        })
-        .catch(function(err) {
-            console.log(err);
-        });
+function getBtcClient(hostname) {
+    return new Client({
+        host: hostname,
+        network: 'regtest',
+        port: BTCRPCPORT,
+        username: 'user',
+        password: 'pass'
+    })
 }
 
 function testRpc() {
@@ -72,6 +58,41 @@ function testRpc() {
     Promise.all(reqs).then(function(responses) {
         console.log(responses)
     });
+}
+
+function clog(r) {
+    console.log(r)
+}
+
+function btcMethod(argv) {
+    // https://github.com/seegno/bitcoin-core
+    var bc = getBtcClient(argv.hostname)
+    switch (argv.method) {
+        case 'getInfo':
+            bc.getInfo().then(clog)
+            break;
+        case 'getNewAddress':
+            bc.getNewAddress().then(clog)
+            break;
+        case 'getBalance':
+            bc.getBalance().then(clog)
+            break;
+        case 'dumpPrivKey':
+            if (argv.address) {
+                bc.dumpPrivKey(argv.address).then(clog)
+            }
+            break;
+        case 'generate':
+            bc.generate(argv.num ? argv.num : 1).then(clog)
+            break;
+        case 'sendToAddress':
+            if(argv.to && argv.btc){
+                bc.sendToAddress(argv.to, argv.btc).then(clog)
+            }
+            break;
+        default:
+            console.log(argv)
+    }
 }
 
 function main() {
@@ -91,14 +112,12 @@ function main() {
             }
         })
         .command({
-            command: 'btc getNewAddress <hostname>',
+            command: 'btc <hostname> <method>',
             desc: 'bitcond getinfo',
             builder: (yargs) => {
-                yargs.string('hostname').default('hostname', '127.0.0.1')
+                yargs.string('hostname')
             },
-            handler: (argv) => {
-                bitcoinRequest(argv.hostname, BTCRPCPORT)
-            }
+            handler: btcMethod
         })
         .argv
 }

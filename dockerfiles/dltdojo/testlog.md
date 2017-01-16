@@ -1,3 +1,49 @@
+### Mon Jan 16 09:06:15 CST 2017
+```
+$ bdcup
+$ node index.js btc localhost getInfo
+{ version: 130100,
+  protocolversion: 70014,
+  walletversion: 130000,
+  balance: 0,
+  blocks: 0,
+  timeoffset: 0,
+  connections: 2,
+  proxy: '',
+  difficulty: 4.656542373906925e-10,
+  testnet: false,
+  keypoololdest: 1484529019,
+  keypoolsize: 100,
+  paytxfee: 0,
+  relayfee: 0.00001,
+  errors: '' }
+$ node index.js btc localhost getNewAddress
+muWbBzvgXPmBoUw7Cc7ziTySqXgCK3ooU3
+$ node index.js btc localhost dumpPrivKey --address muWbBzvgXPmBoUw7Cc7ziTySqXgCK3ooU3
+cPB7Yuq17uvCchZefXmXkW7PMGajhuWi6mocBxcmCev7Sd344niU
+
+$ ddj btc btcp1 getInfo
+{ version: 130100,
+  protocolversion: 70014,
+  walletversion: 130000,
+  balance: 0,
+  blocks: 0,
+  timeoffset: 0,
+  connections: 1,
+  proxy: '',
+  difficulty: 4.656542373906925e-10,
+  testnet: false,
+  keypoololdest: 1484529019,
+  keypoolsize: 100,
+  paytxfee: 0,
+  relayfee: 0.00001,
+  errors: '' }
+$ ddj btc getNewAddress btcp1
+n2Niyx2H1ereJoSg4JwTguC2dKa3ruNwKu
+$ ddj btc getNewAddress btcp2
+n2z4DEQgkZadkb4d4WrQRzsJAAeSYak2yi
+
+```
 ### Sun Jan 15 21:33:18 CST 2017
 ```
 $ dcup

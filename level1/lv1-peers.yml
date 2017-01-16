@@ -1,16 +1,40 @@
 # Distributed Ledger Technology Dojo (DLTDOJO) 
 # https://github.com/y12studio/dltdojo
-# BitcoinCore peers yml file ,name:lv1, peers:6
-# DATETIME:2017-01-15T09:40:36.208Z
+# BitcoinCore peers yml file ,name:lv1, peers:4
+# DATETIME:2017-01-16T04:06:34.974Z
 version: '2'
 services:
-  bvp0:
-    extends:
-      file: lv1-peer.yml
-      service: bvp
-    hostname: bvp0
-  bvp1:
-    extends:
-      file: lv1-peer.yml
-      service: bvp
-    hostname: bvp1
+  dltdojo:
+    image: y12docker/dltdojo
+    command: start
+    networks:
+      - dev1
+  btcp:
+    image: y12docker/dltdojo-bitcoin
+    expose:
+      - '18332'
+      - '18333'
+    networks:
+      - dev1
+    command: 'bitcoind -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcallowip=172.98.1.1/24 -rpcport=18332 -addnode=btcp:18333'
+  btcp1:
+    extends: btcp
+    hostname: btcp1
+  btcp2:
+    extends: btcp
+    hostname: btcp2
+  btcp3:
+    extends: btcp
+    hostname: btcp3
+  btcp4:
+    extends: btcp
+    hostname: btcp4
+networks:
+  dev1:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        -
+          subnet: 172.98.1.0/24
+          gateway: 172.98.1.254

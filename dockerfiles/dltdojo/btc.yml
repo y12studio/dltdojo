@@ -1,23 +1,21 @@
-# Distributed Ledger Technology Dojo (DLTDOJO)
-# https://github.com/y12studio/dltdojo
 version: '2'
 services:
-  bvp0:
+  btcp:
     image: y12docker/dltdojo-bitcoin
     expose:
       - '18332'
       - '18333'
-    command: 'bitcoind -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcport=18332 -rpcallowip=172.99.0.1/16 -addnode=bvp0:18333'
+    command: 'bitcoind -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcport=18332 -rpcallowip=172.99.0.1/16 -addnode=btcp:18333'
     networks:
       - dev1
-  bvp1:
-    extends: bvp0
+  btcp1:
+    extends: btcp
     ports:
       - "127.0.0.1:18332:18332"
       - "127.0.0.1:18333:18333"
-  bvp2:
-    extends: bvp0
-    
+  btcp2:
+    extends: btcp
+
   dltdojo:
     image: y12docker/dltdojo
     command: 'start'

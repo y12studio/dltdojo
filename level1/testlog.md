@@ -1,6 +1,111 @@
 # TESTLOG
 
-## LOG0106
+### Mon Jan 16 11:08:00 CST 2017
+```
+$ node build.js --name lv1 --dojo.btc 4 --path level1
+$ cd level1
+$ source lv1-alias.sh
+$ dcup
+$ dc ps
+      Name             Command             State              Ports
+-------------------------------------------------------------------------
+lv1_btcp1_1        bitcoind           Up                 18332/tcp,
+                   -regtest                              18333/tcp
+                   -txindex ...
+lv1_btcp2_1        bitcoind           Up                 18332/tcp,
+                   -regtest                              18333/tcp
+                   -txindex ...
+lv1_btcp3_1        bitcoind           Up                 18332/tcp,
+                   -regtest                              18333/tcp
+                   -txindex ...
+lv1_btcp4_1        bitcoind           Up                 18332/tcp,
+                   -regtest                              18333/tcp
+                   -txindex ...
+lv1_btcp_1         bitcoind           Up                 18332/tcp,
+                   -regtest                              18333/tcp
+                   -txindex ...
+lv1_dltdojo_1      node index.js      Up
+                   start
+
+$ btcp1 getInfo
+{ version: 130100,
+  protocolversion: 70014,
+  walletversion: 130000,
+  balance: 0,
+  blocks: 0,
+  timeoffset: 0,
+  connections: 1,
+  proxy: '',
+  difficulty: 4.656542373906925e-10,
+  testnet: false,
+  keypoololdest: 1484539458,
+  keypoolsize: 100,
+  paytxfee: 0,
+  relayfee: 0.00001,
+  errors: '' }
+$ btcp1 getNewAddress
+mkUxg79fKXUiwSSQJMtfeYqPLyeemZYcw7
+$ btcp1 dumpPrivKey --address mkUxg79fKXUiwSSQJMtfeYqPLyeemZYcw7
+cQTNYybhp6UW39xPzT7RJXgyEDH6J2EvDrQLD42mJyPE8x7D4vsL
+
+$ ddj btc btcp1 getInfo
+{ version: 130100,
+  protocolversion: 70014,
+  walletversion: 130000,
+  balance: 0,
+  blocks: 0,
+  timeoffset: 0,
+  connections: 1,
+  proxy: '',
+  difficulty: 4.656542373906925e-10,
+  testnet: false,
+  keypoololdest: 1484536465,
+  keypoolsize: 100,
+  paytxfee: 0,
+  relayfee: 0.00001,
+  errors: '' }
+
+$ ddj btc btcp1 getNewAddress
+mqaCt78PzmoQfd5Y7zwUsFsZn81nE5YV3d
+$ ddj btc btcp1 dumpPrivKey --address mqaCt78PzmoQfd5Y7zwUsFsZn81nE5YV3d
+cVK5tHaHGLKYof54wbsX5n28pnAPPCKCZH5Mb38jorsPJpJbpUzS
+
+$ ddj btc getInfo btcp1
+{ version: 130100,
+  protocolversion: 70014,
+  walletversion: 130000,
+  balance: 0,
+  blocks: 0,
+  timeoffset: 0,
+  connections: 1,
+  proxy: '',
+  difficulty: 4.656542373906925e-10,
+  testnet: false,
+  keypoololdest: 1484536465,
+  keypoolsize: 100,
+  paytxfee: 0,
+  relayfee: 0.00001,
+  errors: '' }
+$ ddj btc getInfo btcp2
+{ version: 130100,
+  protocolversion: 70014,
+  walletversion: 130000,
+  balance: 0,
+  blocks: 0,
+  timeoffset: 0,
+  connections: 1,
+  proxy: '',
+  difficulty: 4.656542373906925e-10,
+  testnet: false,
+  keypoololdest: 1484536465,
+  keypoolsize: 100,
+  paytxfee: 0,
+  relayfee: 0.00001,
+  errors: '' }
+
+```
+
+### LOG0106
 ```
 $ date && docker -v && echo $BASH_VERSION
 Fri Jan  6 14:13:32 CST 2017
@@ -8,7 +113,7 @@ Docker version 1.12.5, build 7392c3b
 4.3.11(1)-release
 $
 ```
-#LOG0105
+### LOG0105
 ```
 $ docker-compose -v
 docker-compose version 1.9.0, build 2585387
