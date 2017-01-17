@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 
-const Client = require('bitcoin-core')
+const DBTC = require('./lib/dltbtc')
+const DETH = require('./lib/dlteth')
+const DU = require('./lib/dltutils')
+const DBUILDER = require('./lib/dltbuilder')
 var _ = require('lodash')
 var Promise = require("bluebird")
 var jayson = require('jayson/promise')
-var keythereum = require('keythereum')
-var Web3 = require('web3')
-var web3 = new Web3()
 const RPCPORT = 18168
-const BTCRPCPORT = 18332
 
 var rpcMethods = {
     btcinfo: function(args) {
@@ -38,36 +37,6 @@ var rpcMethods = {
     }
 }
 
-function recoverKeyFromAddress(datadir, address, password) {
-    // var datadir = "/root/.ethereum/devchain"
-    var keyObject = keythereum.importFromFile(address, datadir)
-    var privateKey = keythereum.recover(password, keyObject)
-    return {
-        ko: keyObject,
-        key: privateKey,
-        keyhex: privateKey.toString('hex')
-    }
-}
-
-
-function getBtcClient(hostname) {
-    return new Client({
-        host: hostname,
-        network: 'regtest',
-        port: BTCRPCPORT,
-        username: 'user',
-        password: 'pass'
-    })
-}
-
-function getEthRpcUrl(hostname) {
-    return `http://${hostname}:8545`
-}
-
-function getEthClient(hostname) {
-    return jayson.client.http(getEthRpcUrl(hostname));
-}
-
 function testRpc() {
     var client = jayson.client.http({
         port: RPCPORT
@@ -87,85 +56,6 @@ function clog(r) {
     console.log(r)
 }
 
-function btcMethod(argv) {
-    // https://github.com/seegno/bitcoin-core
-    var bc = getBtcClient(argv.hostname)
-    switch (argv.method) {
-        case 'info':
-            bc.getInfo().then(clog)
-            break;
-        case 'account':
-            if(argv.new){
-                bc.getNewAddress().then(clog)
-            }else if(argv.dumpkey && argv.address){
-                bc.dumpPrivKey(argv.address).then(clog)
-            }
-            break;
-        case 'getBalance':
-            bc.getBalance().then(clog)
-            break;
-        case 'miner':
-            bc.generate(argv.num ? argv.num : 1).then(clog)
-            break;
-        case 'send':
-            if (argv.to && argv.btc) {
-                bc.sendToAddress(argv.to, argv.btc).then(clog)
-            }
-            break;
-        default:
-            console.log(argv)
-    }
-}
-
-function ethMethod(argv) {
-    web3.setProvider(new web3.providers.HttpProvider(getEthRpcUrl(argv.hostname)))
-    var accounts = web3.eth.accounts;
-    switch (argv.method) {
-        case 'info':
-            var r = {
-                hostname: argv.hostname,
-                ethBlockNumber: web3.eth.blockNumber,
-                ethCoinbase: accounts.length > 0 ? web3.eth.coinbase : null,
-                ethAccounts: accounts.length,
-                ethSyncing: web3.eth.syncing,
-                netPeerCount: web3.net.peerCount,
-                ethBalance: accounts.length > 0 ? web3.fromWei(web3.eth.getBalance(web3.eth.coinbase), 'ether').toString(10) : 0,
-                ethMining: web3.eth.mining
-            }
-            clog(r)
-            break;
-        case 'account':
-            if (argv.new && argv.password) {
-                clog(web3.personal.newAccount(argv.password))
-            }
-            break;
-        case 'send':
-            if (argv.to && argv.eth && argv.password) {
-                var address = argv.account ? argv.account : accounts[0]
-                var password = argv.password
-                var unlock = web3.personal.unlockAccount(address, password)
-                if (unlock) {
-                    var r = web3.eth.sendTransaction({
-                        from: address,
-                        to: argv.to,
-                        value: web3.toWei(argv.eth, "ether")
-                    })
-                    clog(r)
-                }
-            }
-            break;
-        case 'miner':
-            clientRpc = getEthClient(argv.hostname)
-            if (argv.start) {
-                clientRpc.request('miner_start', [1]).then(clog)
-            } else if (argv.stop) {
-                clientRpc.request('miner_stop', []).then(clog)
-            }
-            break;
-        default:
-            console.log(argv)
-    }
-}
 
 function main() {
     require('yargs')
@@ -182,7 +72,7 @@ function main() {
             builder: (yargs) => {
                 yargs.string('to')
             },
-            handler: btcMethod
+            handler: DBTC.BtcMethod
         })
         .command({
             command: 'eth <hostname> <method>',
@@ -190,7 +80,17 @@ function main() {
             builder: (yargs) => {
                 yargs.string('to').string('address').string('account')
             },
-            handler: ethMethod
+            handler: DETH.EthMethod
+        })
+        .command({
+            command: 'build',
+            desc: 'build dojo',
+            builder: (yargs) => {
+                yargs.demandOption(['dojo', 'name']).default('path', '/tmp')
+                    .default('btcimg', 'y12docker/dltdojo-bitcoin')
+                    .default('ethimg', 'y12docker/dltdojo-ethgo')
+            },
+            handler: DBUILDER.BuildMethod
         })
         .argv
 }

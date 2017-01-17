@@ -13,5 +13,5 @@ services:
     ports:
       - "127.0.0.1:8545:8545"
   dltdojo:
-    image: y12docker/dltdojo
+    image: y12docker/dltdojo:dev
     command: 'start'

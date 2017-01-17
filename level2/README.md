@@ -1,10 +1,10 @@
 #Level2 ETH轉帳任務
 
-環境設置好之後有vp1-vp6共計5個節點可操作，vp0為啟動節點不同步無法當成帳號使用，下面用vp1為主，以vp1/vp2為採礦點，請注意兩個ETH挖礦點需要下載約2G的資料。
+環境設置好之後有ethp1-ethp6共計5個節點可操作，下面用ethp1為主，以ethp1/ethp2為採礦點，請注意兩個ETH挖礦點需要下載約2G的資料。
 
 ## T1 取得地址
 
-設定vp1帳號密碼vp1pass取得地址。
+設定ethp1帳號密碼vp1pass取得地址。
 
 ```
 $ ethp1 account --new --password vp1pass

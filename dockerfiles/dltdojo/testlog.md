@@ -1,3 +1,32 @@
+## TEST TASK
+
+btc test
+```
+$ bdcup
+$ node index.js btc localhost info
+$ node index.js btc localhost account --new
+$ node index.js btc localhost account --dumpkey --address xxxxx
+$ node index.js btc localhost miner --num 10
+$ node index.js btc localhost send --to mpywCp28LcmDHNKxJy9tUuXc1LcXK5gCoT --btc 1.88
+$ btcp1 info
+$ bdcend
+```
+eth test
+```
+$ edcup
+$ node index.js eth localhost info
+$ node index.js eth localhost account --new --password p1pass
+$ node index.js eth localhost send --to 0x8b8c1c00dc15980434ff4d679103fb21be205816 --eth 3.6 --password p1pass
+$ ethp1 info
+$ edcend
+```
+
+build test
+```
+$ node index.js build --dojo.btc 4 --name foo --path dockerfiles/dltdojo/examples
+$ node index.js build --dojo.eth 6 --name foo --path dockerfiles/dltdojo/examples
+```
+
 ### Tue Jan 17 09:40:04 CST 2017
 ```
 $ bdcup

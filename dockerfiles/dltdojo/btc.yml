@@ -15,5 +15,5 @@ services:
     extends: btcp
 
   dltdojo:
-    image: y12docker/dltdojo
+    image: y12docker/dltdojo:dev
     command: 'start'
