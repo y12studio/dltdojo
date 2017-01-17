@@ -1,5 +1,10 @@
 ## LOG0110_3
 
+###
+```
+$ docker tag y12docker/dltdojo-ethgo:latest y12docker/dltdojo-ethgo:1.5.6.a2
+$ docker push y12docker/dltdojo-ethgo:1.5.6.a2
+```
 ### Sat Jan 14 10:58:46 CST 2017
 ```
 $ njs dev 1
