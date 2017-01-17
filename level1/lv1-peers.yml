@@ -1,22 +1,18 @@
 # Distributed Ledger Technology Dojo (DLTDOJO) 
 # https://github.com/y12studio/dltdojo
 # BitcoinCore peers yml file ,name:lv1, peers:4
-# DATETIME:2017-01-16T06:00:21.804Z
+# DATETIME:2017-01-17T01:36:10.006Z
 version: '2'
 services:
   dltdojo:
     image: y12docker/dltdojo
     command: start
-    networks:
-      - dev1
   btcp:
     image: y12docker/dltdojo-bitcoin
     expose:
       - '18332'
       - '18333'
-    networks:
-      - dev1
-    command: 'bitcoind -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcallowip=172.98.1.0/24 -rpcport=18332 -addnode=btcp:18333'
+    command: '/start.sh -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcallowip=DLTDOJOSUBNETinSTARTSH -rpcport=18332 -addnode=btcp:18333'
   btcp1:
     extends: btcp
     hostname: btcp1
@@ -29,12 +25,3 @@ services:
   btcp4:
     extends: btcp
     hostname: btcp4
-networks:
-  dev1:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        -
-          subnet: 172.98.1.0/24
-          gateway: 172.98.1.254

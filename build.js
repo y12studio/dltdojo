@@ -51,8 +51,6 @@ EthereumGo.prototype.buildDojoAlias = function() {
         r.push(`alias ${vpname}exec='docker exec -it $\{DCNAME\}_${vpname}_1'`)
         r.push(`alias ${vpname}key='${vpname}exec find /root/.ethereum/devchain/keystore -maxdepth 1 -name "UTC*" -exec cat {} \\; | jq .'`)
         r.push(`alias ${vpname}='ddj eth ${vpname}'`)
-        // ethp1exec find /root/.ethereum/devchain/keystore -maxdepth 1 -name "UTC*" -print -exec cat {} \;
-        r.push(`alias ${vpid}${i}='ddj eth ${vpname}'`)
     })
     return buildHead(`EthereumGo alias script, name:${name}, peers:${peers}`, '\r\n') + r.join('\n')
 }
@@ -66,26 +64,12 @@ BitcoinCore.prototype.buildDojoPeers = function() {
         services: {
             dltdojo: {
                 image: 'y12docker/dltdojo',
-                command: 'start',
-                networks: ['dev1']
+                command: 'start'
             },
             btcp: {
                 image: img,
                 expose: ['18332', '18333'],
-                networks: ['dev1'],
-                command: 'bitcoind -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcallowip=172.98.1.0/24 -rpcport=18332 -addnode=btcp:18333'
-            }
-        },
-        networks: {
-            dev1: {
-                driver: 'bridge',
-                ipam: {
-                    driver: 'default',
-                    config: [{
-                        subnet: '172.98.1.0/24',
-                        gateway: '172.98.1.254'
-                    }]
-                }
+                command: '/start.sh -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcallowip=DLTDOJOSUBNETinSTARTSH -rpcport=18332 -addnode=btcp:18333'
             }
         }
     }

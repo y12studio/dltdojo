@@ -1,0 +1,32 @@
+version: '2'
+services:
+  btcp:
+    image: y12docker/dltdojo-bitcoin
+    expose:
+      - '18332'
+      - '18333'
+    command: 'bitcoind -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcport=18332 -rpcallowip=172.99.1.0/16 -addnode=btcp:18333'
+    networks:
+      - dev1
+  btcp1:
+    extends: btcp
+    ports:
+      - "127.0.0.1:18332:18332"
+      - "127.0.0.1:18333:18333"
+  btcp2:
+    extends: btcp
+
+  dltdojo:
+    image: y12docker/dltdojo
+    command: 'start'
+    networks:
+      - dev1
+
+networks:
+  dev1:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.99.0.0/16
+          gateway: 172.99.0.254

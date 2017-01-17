@@ -1,7 +1,7 @@
 # Distributed Ledger Technology Dojo (DLTDOJO) 
 # https://github.com/y12studio/dltdojo
 # BitcoinCore alias script, name:lv1, peers:4
-# DATETIME:2017-01-16T06:00:21.806Z
+# DATETIME:2017-01-17T01:36:10.008Z
 DCNAME=lv1
 alias dc='docker-compose -p $DCNAME -f $DCNAME-peers.yml'
 alias dcup='dc stop ; dc rm -f; dc up -d'

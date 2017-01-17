@@ -1,9 +1,19 @@
 # TESTLOG
 
+### Tue Jan 17 09:50:39 CST 2017
+```
+$ dcup
+$ btcp1 info
+$ btcp1 account --new
+$ btcp1 miner --num 101
+$ btcp1 send --to mpywCp28LcmDHNKxJy9tUuXc1LcXK5gCoT --btc 1.88
+$ btcp1 miner --num 1
+$ btcp1 info
+```
+
 ### Mon Jan 16 11:08:00 CST 2017
 ```
-$ node build.js --name lv1 --dojo.btc 4 --path level1
-$ cd level1
+// node build.js --name lv1 --dojo.btc 4 --path level1
 $ source lv1-alias.sh
 $ dcup
 $ dc ps

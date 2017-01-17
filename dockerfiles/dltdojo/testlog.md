@@ -1,3 +1,12 @@
+### Tue Jan 17 09:40:04 CST 2017
+```
+$ bdcup
+$ node index.js btc localhost info
+$ node index.js btc localhost account --new
+$ node index.js btc localhost account --dumpkey --address xxxxx
+$ node index.js btc localhost miner --num 10
+$ node index.js btc localhost send --to mpywCp28LcmDHNKxJy9tUuXc1LcXK5gCoT --btc 1.88
+```
 ### Mon Jan 16 14:16:38 CST 2017
 ```
 $ edcup

@@ -91,24 +91,23 @@ function btcMethod(argv) {
     // https://github.com/seegno/bitcoin-core
     var bc = getBtcClient(argv.hostname)
     switch (argv.method) {
-        case 'getInfo':
+        case 'info':
             bc.getInfo().then(clog)
             break;
-        case 'getNewAddress':
-            bc.getNewAddress().then(clog)
+        case 'account':
+            if(argv.new){
+                bc.getNewAddress().then(clog)
+            }else if(argv.dumpkey && argv.address){
+                bc.dumpPrivKey(argv.address).then(clog)
+            }
             break;
         case 'getBalance':
             bc.getBalance().then(clog)
             break;
-        case 'dumpPrivKey':
-            if (argv.address) {
-                bc.dumpPrivKey(argv.address).then(clog)
-            }
-            break;
-        case 'generate':
+        case 'miner':
             bc.generate(argv.num ? argv.num : 1).then(clog)
             break;
-        case 'sendToAddress':
+        case 'send':
             if (argv.to && argv.btc) {
                 bc.sendToAddress(argv.to, argv.btc).then(clog)
             }
