@@ -15,7 +15,7 @@ $ source lv1-alias.sh
 $ dcup
 ...
 ...
-$ dc stop && dc rm
+$ dcend
 ```
 
 ## [Level2](level2) Ethereum 轉帳

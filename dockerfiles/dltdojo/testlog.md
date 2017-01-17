@@ -27,6 +27,15 @@ $ node index.js build --dojo.btc 4 --name foo --path dockerfiles/dltdojo/example
 $ node index.js build --dojo.eth 6 --name foo --path dockerfiles/dltdojo/examples
 ```
 
+### Tue Jan 17 14:28:16 CST 2017
+```
+$ edcup
+$ node index.js eth localhost dev --case 1
+$ node index.js eth localhost info --hahacoin
+$ node index.js eth localhost hahacoin --new --address 0x631e86b905f9c118524660d379cfe5dacd489c33 --password passAlice
+$ node index.js eth localhost hahacoin --address 0x631e86b905f9c118524660d379cfe5dacd489c33 --password passAlice --contract 0xa17e49072ac8b4dd1ae37ee5d5e6c9fbbe09cfad
+$ node index.js eth localhost hahacoin send --address 0x631e86b905f9c118524660d379cfe5dacd489c33 --password passAlice --contract 0xa17e49072ac8b4dd1ae37ee5d5e6c9fbbe09cfad --to 0x8b8c1c00dc15980434ff4d679103fb21be205816 --amount 3.6
+```
 ### Tue Jan 17 09:40:04 CST 2017
 ```
 $ bdcup

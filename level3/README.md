@@ -1,45 +1,43 @@
 # [WIP] Level3 創立資產轉帳任務
 
 ## T1 取得帳號地址餘額
-過程參考Level2，這裡使用單一節點evp1示範。
+過程參考Level2，這裡使用單一節點evp1示範，密碼為pass1。
 ```
-$ evp1 info
-{
- "ethBlockNumber": 2,
- "ethCoinbase": "0xd39d4ff071756653cfbeebf863ae7276f60ad2b8",
- "ethSyncing": false,
- "netPeerCount": 0,
- "balanceCoinbaseEther": "10",
- "account": {
-  "name": "alice",
-  "address": "0xd39d4ff071756653cfbeebf863ae7276f60ad2b8",
-  "balanceEther": "10"
- }
-}
+$ ethp1 info
+{ hostname: 'ethp1',
+  ethBlockNumber: 3,
+  ethCoinbase: '0x757967a94e7d63f828067a8b0ba5790f670c239d',
+  ethAccounts: 1,
+  ethSyncing: false,
+  netPeerCount: 0,
+  ethBalance: '15',
+  ethMining: true }
 ```
 ## T2 部署資產合約
 部署合約需要等候區塊完成更新，同時傳回合約地址。
 ```
-$ evp1 hahacoin --new
-0x77adb4d3609b6b3db692cf8785adc75ee68b6e72
+$ ethp1 hahacoin --new --address 0x757967a94e7d63f828067a8b0ba5790f670c239d --password pass1
+{ tx: '0xad9e6cf16b85f509550140fc563f1c07e54d6aa5f842094d5314b7a967fd5d58',
+  contractAddress: '0xcf0999df518328f49be2ecadec910961da44ff59' }
 ```
 ## T3 查詢資產
 該合約創建時預設有10000單位的資產。
 ```
-$ evp1 hahacoin --contract 0x77adb4d3609b6b3db692cf8785adc75ee68b6e72
-{ account: '0xd39d4ff071756653cfbeebf863ae7276f60ad2b8',
-  contractAddress: '0x77adb4d3609b6b3db692cf8785adc75ee68b6e72',
+$ ethp1 hahacoin --address 0x757967a94e7d63f828067a8b0ba5790f670c239d --password pass1 --contract 0xcf0999df518328f49be2ecadec910961da44ff59
+{ account: '0x757967a94e7d63f828067a8b0ba5790f670c239d',
+  contractAddress: '0xcf0999df518328f49be2ecadec910961da44ff59',
   contractBalance: '10000' }
 ```
 ## T4 發送資產
-發送完畢需要等候區塊更新才能查詢正確餘額。
+發送完畢需要等候區塊更新才能查詢正確餘額，注意是資產餘額不是帳戶ETH餘額。
 ```
-$ evp1 hahacoin --send --contract 0x77adb4d3609b6b3db692cf8785adc75ee68b6e72 --to 0x0de51d24bd6c97564f99bb829c789b4748a3d0d7 --amount 99
-0xed60cb5303a33557464b2a72b329d4581789990fb957941810c6c5952d4372a6
-$ evp1 hahacoin --contract 0x77adb4d3609b6b3db692cf8785adc75ee68b6e72
-{ account: '0xd39d4ff071756653cfbeebf863ae7276f60ad2b8',
-  contractAddress: '0x77adb4d3609b6b3db692cf8785adc75ee68b6e72',
+$ ethp1 hahacoin --send --address 0x757967a94e7d63f828067a8b0ba5790f670c239d --password pass1 --contract 0xcf0999df518328f49be2ecadec910961da44ff59 --to 0x0de51d24bd6c97564f99bb829c789b4748a3d0d7 --amount 99
+
+$ ethp1 hahacoin --address 0x757967a94e7d63f828067a8b0ba5790f670c239d --password pass1 --contract 0xcf0999df518328f49be2ecadec910961da44ff59
+{ account: '0x757967a94e7d63f828067a8b0ba5790f670c239d',
+  contractAddress: '0xcf0999df518328f49be2ecadec910961da44ff59',
   contractBalance: '9901' }
+
 ```
 ## T5 接收資產
 將合約地址傳給對方由對方依T4方式發送。

@@ -78,7 +78,7 @@ function main() {
             command: 'eth <hostname> <method>',
             desc: 'geth getinfo',
             builder: (yargs) => {
-                yargs.string('to').string('address').string('account')
+                yargs.string('to').string('address').string('account').string('contract')
             },
             handler: DETH.EthMethod
         })
