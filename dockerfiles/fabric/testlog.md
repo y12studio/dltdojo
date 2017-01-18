@@ -1,5 +1,20 @@
 ## TESTLOG
 
+### Wed Jan 18 17:55:06 CST 2017
+```
+$ fabp0 peer channel create -c myc1
+$ fabp0 peer channel join -b myc1.block
+// fabp1 join myc1 channel
+$ fabp0 sh -c "export CORE_PEER_ADDRESS=fabp1:7051 ; peer channel join -b myc1.block"
+// fabp2 join myc1 channel
+$ fabp0 sh -c "export CORE_PEER_ADDRESS=fabp2:7051 ; peer channel join -b myc1.block"
+// deploy chaincode mycc
+$ fabp0 peer chaincode deploy -C myc1 -n mycc -p github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02 -c '{"Args":["init","a","100","b","200"]}'
+$ fabp1 peer chaincode query -C myc1 -n mycc -c '{"Args":["query","a"]}'
+$ fabp0 peer chaincode invoke -C myc1 -n mycc -c '{"Args":["invoke","a","b","10"]}'
+$ fabp2 peer chaincode query -C myc1 -n mycc -c '{"Args":["query","a"]}'
+$ fabp1 peer chaincode query -C myc1 -n mycc -c '{"Args":["query","b"]}'
+```
 ### Wed Jan 18 12:26:56 CST 2017
 
 https://github.com/hyperledger/fabric/blob/master/docs/channel-setup.md

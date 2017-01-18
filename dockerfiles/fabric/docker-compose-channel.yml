@@ -1,8 +1,7 @@
 version: '2'
 services:
   orderer:
-    container_name: orderer
-    image: hyperledger/fabric-orderer
+    image: y12docker/dltdojo-fabgoorderer:dev
     environment:
       - ORDERER_GENERAL_LEDGERTYPE=ram
       - ORDERER_GENERAL_BATCHTIMEOUT=10s
@@ -12,10 +11,9 @@ services:
       - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
       - ORDERER_GENERAL_LISTENPORT=5005
       - ORDERER_RAMLEDGER_HISTORY_SIZE=100
-    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer
     command: orderer
 
-  peer0:
+  fabp0:
     image: y12docker/dltdojo-fabgopeer:dev
     environment:
       - CORE_PEER_ADDRESSAUTODETECT=true
@@ -23,15 +21,19 @@ services:
       - CORE_LOGGING_LEVEL=DEBUG
       - CORE_NEXT=true
       - CORE_PEER_ENDORSER_ENABLED=true
-      - CORE_PEER_ID=peer0
       - CORE_PEER_PROFILE_ENABLED=true
-      - CORE_PEER_COMMITTER_LEDGER_ORDERER=orderer:5005
       - CORE_PEER_GOSSIP_ORGLEADER=true
+      - CORE_PEER_COMMITTER_LEDGER_ORDERER=orderer:5005
+      - CORE_PEER_ID=fabp0
     command: peer node start --peer-defaultchain=false
     volumes:
         - /var/run/:/host/var/run/
 
-  peer1:
-    extends: peer0
+  fabp1:
+    extends: fabp0
     environment:
-      - CORE_PEER_ID=peer1
+      - CORE_PEER_ID=fabp1
+  fabp2:
+    extends: fabp0
+    environment:
+      - CORE_PEER_ID=fabp2
