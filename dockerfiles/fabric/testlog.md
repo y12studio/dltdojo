@@ -7,15 +7,24 @@ https://github.com/hyperledger/fabric/blob/master/docs/channel-setup.md
 build y12docker/dltdojo-fabgopeer with examples
 ```
 $ docker build -t y12docker/dltdojo-fabgopeer:dev .
-$ dccup
-$ dcc run cli
-CORE_PEER_COMMITTER_LEDGER_ORDERER=orderer:5005 peer channel create -c myc1
-CORE_PEER_COMMITTER_LEDGER_ORDERER=orderer:5005 CORE_PEER_ADDRESS=peer0:7051 peer channel join -b myc1.block
-CORE_PEER_ADDRESS=peer0:7051 CORE_PEER_COMMITTER_LEDGER_ORDERER=orderer:5005 peer chaincode deploy -C myc1 -n mycc -p github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02 -c '{"Args":["init","a","100","b","200"]}'
+$ dcup
+$ vp1 peer channel create -c myc1
+$ vp1 ls -al
+-rw-r--r--    1 0        0             5904 Jan 18 07:09 myc1.block
+$ vp1 peer channel join -b myc1.block
+$ vp1 peer chaincode deploy -C myc1 -n mycc -p github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02 -c '{"Args":["init","a","100","b","200"]}'
+$ vp1 peer chaincode invoke -C myc1 -n mycc -c '{"Args":["invoke","a","b","10"]}'
+$ vp1 peer chaincode query -C myc1 -n mycc -c '{"Args":["query","a"]}'
+$ vp0 peer chaincode query -C myc1 -n mycc -c '{"Args":["query","a"]}'
+Error: Error endorsing query: rpc error: code = 2 desc = Failed to deserialize creator identity, err MSP DEFAULT is unknown
+// Join a channel by vp1
+$ vp1 sh
+# CORE_PEER_ADDRESS=peer0:7051 peer channel join -b myc1.block
+# exit
+// vp1 sh -c "export CORE_PEER_ADDRESS=peer0:7051 ; peer channel join -b myc1.block"
+$ vp0 peer chaincode query -C myc1 -n mycc -c '{"Args":["query","a"]}'
+Query Result: 90
 
-CORE_PEER_ADDRESS=peer0:7051 CORE_PEER_COMMITTER_LEDGER_ORDERER=orderer:5005 peer chaincode invoke -C myc1 -n mycc -c '{"Args":["invoke","a","b","10"]}'
-
-CORE_PEER_ADDRESS=peer0:7051 CORE_PEER_COMMITTER_LEDGER_ORDERER=orderer:5005 peer chaincode query -C myc1 -n mycc -c '{"Args":["query","a"]}'
 ```
 mount host's examples
 
