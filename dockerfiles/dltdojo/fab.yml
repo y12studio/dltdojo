@@ -1,0 +1,45 @@
+version: '2'
+services:
+  dltdojo:
+    image: y12docker/dltdojo:dev
+    command: 'start'
+  orderer:
+    image: y12docker/dltdojo-fabgo
+    hostname: orderer
+    environment:
+        - ORDERER_GENERAL_LEDGERTYPE=ram
+        - ORDERER_GENERAL_BATCHTIMEOUT=10s
+        - ORDERER_GENERAL_MAXMESSAGECOUNT=10
+        - ORDERER_GENERAL_MAXWINDOWSIZE=1000
+        - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+        - ORDERER_RAMLEDGER_HISTORY_SIZE=100
+        - ORDERER_GENERAL_ORDERERTYPE=solo
+    ports:
+      - "7050:7050"
+    command: orderer
+  fabp:
+    image: y12docker/dltdojo-fabgo
+    environment:
+      - CORE_PEER_ID=fabp
+      - CORE_PEER_ADDRESSAUTODETECT=true
+      - CORE_LOGGING_LEVEL=ERROR
+      - CORE_NEXT=true
+      - CORE_PEER_ENDORSER_ENABLED=true
+      - CORE_PEER_COMMITTER_ENABLED=true
+      - CORE_PEER_PROFILE_ENABLED=false
+      - CORE_PEER_COMMITTER_LEDGER_ORDERER=orderer:7050
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: peer node start
+  fabp1:
+    extends: fabp
+    hostname: fabp1
+    environment:
+      - CORE_PEER_ID=fabp1
+    ports:
+      - 7051:7051
+  fabp2:
+    extends: fabp
+    hostname: fabp2
+    environment:
+      - CORE_PEER_ID=fabp2

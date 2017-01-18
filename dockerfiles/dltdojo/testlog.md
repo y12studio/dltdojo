@@ -27,6 +27,27 @@ $ node index.js build --dojo.btc 4 --name foo --path dockerfiles/dltdojo/example
 $ node index.js build --dojo.eth 6 --name foo --path dockerfiles/dltdojo/examples
 ```
 
+### Tue Jan 17 19:25:07 CST 2017
+```
+$ fdcup
+$ fabp1peer version
+Fabric peer server version 1.0.0-preview
+$ fabp1peer chaincode deploy -n test_cc -p github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02 -c '{"Args":["init","a","100","b","200"]}'
+$ fabp1peer chaincode invoke -n test_cc -c '{"Args":["query","a"]}'
+$ fdc ps
+      Name             Command             State              Ports
+-------------------------------------------------------------------------
+ddj_cop_1          cop server start   Up                 0.0.0.0:8888->88
+                   -ca testd ...                         88/tcp
+ddj_dltdojo_1      node index.js      Up
+                   start
+ddj_fabp1_1        peer node start    Up                 0.0.0.0:7051->70
+                                                         51/tcp
+ddj_fabp2_1        peer node start    Up
+ddj_fabp_1         peer node start    Up
+ddj_orderer_1      orderer            Up                 0.0.0.0:7050->70
+                                                         50/tcp
+```
 ### Tue Jan 17 14:28:16 CST 2017
 ```
 $ edcup
