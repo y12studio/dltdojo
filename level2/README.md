@@ -14,7 +14,7 @@ $ ethp1 account --new --password vp1pass
 ## T2 取得金鑰
 
 ```
-$ ethp1key
+$ ethp1exec /keyfind.sh
 {
   "version": 3,
   "id": "0191a9ea-c675-4996-854c-28e9ae41aa70",

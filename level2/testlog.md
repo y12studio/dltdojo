@@ -1,5 +1,10 @@
 ## LOG
 
+### Thu Jan 19 14:41:18 CST 2017
+```
+// node index.js build  --name lv2 --path level2 --dojo.eth 6
+```
+
 ### Mon Jan 16 16:02:28 CST 2017
 ```
 // node build.js --name lv2 --path level2 --dojo.eth 2

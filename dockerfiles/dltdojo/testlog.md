@@ -29,23 +29,22 @@ $ node index.js build --dojo.eth 6 --name foo --path dockerfiles/dltdojo/example
 
 ### Thu Jan 19 11:26:24 CST 2017
 ```
-$ node index.js build --bulkuser --num 5 --prefix pa | jq .
-$ node index.js build --bulkuser --num 3 --prefix pa | jq -r .accounts[].script
-useradd -m pa1dltdojo; echo -e "L5HE79NNHtpcZfNL\nL5HE79NNHtpcZfNL" | passwd pa1dltdojo ; echo -e "alias ll='ls -al'" > /home/pa1dltdojo/.bashrc
-useradd -m pa2dltdojo; echo -e "Kx9XPnNX3CuHncb8\nKx9XPnNX3CuHncb8" | passwd pa2dltdojo ; echo -e "alias ll='ls -al'" > /home/pa2dltdojo/.bashrc
-useradd -m pa3dltdojo; echo -e "L3g4Hv1XovAr34bp\nL3g4Hv1XovAr34bp" | passwd pa3dltdojo ; echo -e "alias ll='ls -al'" > /home/pa3dltdojo/.bashrc
+$ node index.js build --bulkuser --num 3 --prefix ha --dojoname d119 | jq .
+$ node index.js build --bulkuser --num 3 --prefix ha --dojoname d119 | jq -r .accounts[].script
+useradd -m ha1dlt; echo -e "KweR4viGkCrx4sRC\nKweR4viGkCrx4sRC" | passwd ha1dlt ; echo -e "alias ddjexec='docker exec -t d119_dltdojo_1'\nalias ddj='ddjexec node index.js'\nalias btcp1exec='docker exec -t d119_btcp1_1'\nalias btcp1='ddj btc btcp1'\nalias etcp1exec='docker exec -t d119_etcp1_1'\nalias etcp1='ddj etc etcp1'\nalias fabp1exec='docker exec -t d119_fabp1_1'\nalias fabp1='ddj fab fabp1'" > /home/ha1dlt/.bashrc
+useradd -m ha2dlt; echo -e "L4wyyd1BSiotB3pb\nL4wyyd1BSiotB3pb" | passwd ha2dlt ; echo -e "alias ddjexec='docker exec -t d119_dltdojo_1'\nalias ddj='ddjexec node index.js'\nalias btcp2exec='docker exec -t d119_btcp2_1'\nalias btcp2='ddj btc btcp2'\nalias etcp2exec='docker exec -t d119_etcp2_1'\nalias etcp2='ddj etc etcp2'\nalias fabp2exec='docker exec -t d119_fabp2_1'\nalias fabp2='ddj fab fabp2'" > /home/ha2dlt/.bashrc
+useradd -m ha3dlt; echo -e "KzwhsDTghBjcQZyA\nKzwhsDTghBjcQZyA" | passwd ha3dlt ; echo -e "alias ddjexec='docker exec -t d119_dltdojo_1'\nalias ddj='ddjexec node index.js'\nalias btcp3exec='docker exec -t d119_btcp3_1'\nalias btcp3='ddj btc btcp3'\nalias etcp3exec='docker exec -t d119_etcp3_1'\nalias etcp3='ddj etc etcp3'\nalias fabp3exec='docker exec -t d119_fabp3_1'\nalias fabp3='ddj fab fabp3'" > /home/ha3dlt/.bashrc
 
 $ docker run -it ubuntu bash
-root@a945593828d3:/# useradd pa1dltdojo; echo -e "L11xsU9mfZowpsYx\nL11xsU9mfZowpsYx" | passwd pa1dltdojo
-Enter new UNIX password: Retype new UNIX password: passwd: password updated successfully
-root@6e25a6fc85fe:/# su - pa1dltdojo
-pa1dltdojo@6e25a6fc85fe:~$ ll
-total 20
-drwxr-xr-x 2 pa1dltdojo pa1dltdojo 4096 Jan 19 04:14 .
-drwxr-xr-x 5 root       root       4096 Jan 19 04:14 ..
--rw-r--r-- 1 pa1dltdojo pa1dltdojo  220 Aug 31  2015 .bash_logout
--rw-r--r-- 1 pa1dltdojo pa1dltdojo 3771 Aug 31  2015 .bashrc
--rw-r--r-- 1 pa1dltdojo pa1dltdojo  655 Jun 24  2016 .profile
+// run script
+root@6e25a6fc85fe:/# su - ha1dlt
+$ cat .bashrc
+alias btcp1='docker exec -t d119_btcp1_1'
+alias etcp1='docker exec -t d119_etcp1_1'
+alias fabp1='docker exec -t d119_fabp1_1'
+
+$ docker run -t y12docker/dltdojo build --bulkuser --num 3 --prefix ha | jq .
+
 ```
 ### Tue Jan 17 19:25:07 CST 2017
 ```
