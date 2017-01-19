@@ -86,7 +86,7 @@ function main() {
             command: 'build',
             desc: 'build dojo',
             builder: (yargs) => {
-                yargs.demandOption(['dojo', 'name']).default('path', '/tmp')
+                yargs.default('path', '/tmp')
                     .default('btcimg', 'y12docker/dltdojo-bitcoin')
                     .default('ethimg', 'y12docker/dltdojo-ethgo')
             },

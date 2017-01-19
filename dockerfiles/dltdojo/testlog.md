@@ -27,6 +27,26 @@ $ node index.js build --dojo.btc 4 --name foo --path dockerfiles/dltdojo/example
 $ node index.js build --dojo.eth 6 --name foo --path dockerfiles/dltdojo/examples
 ```
 
+### Thu Jan 19 11:26:24 CST 2017
+```
+$ node index.js build --bulkuser --num 5 --prefix pa | jq .
+$ node index.js build --bulkuser --num 3 --prefix pa | jq -r .accounts[].script
+useradd -m pa1dltdojo; echo -e "L5HE79NNHtpcZfNL\nL5HE79NNHtpcZfNL" | passwd pa1dltdojo ; echo -e "alias ll='ls -al'" > /home/pa1dltdojo/.bashrc
+useradd -m pa2dltdojo; echo -e "Kx9XPnNX3CuHncb8\nKx9XPnNX3CuHncb8" | passwd pa2dltdojo ; echo -e "alias ll='ls -al'" > /home/pa2dltdojo/.bashrc
+useradd -m pa3dltdojo; echo -e "L3g4Hv1XovAr34bp\nL3g4Hv1XovAr34bp" | passwd pa3dltdojo ; echo -e "alias ll='ls -al'" > /home/pa3dltdojo/.bashrc
+
+$ docker run -it ubuntu bash
+root@a945593828d3:/# useradd pa1dltdojo; echo -e "L11xsU9mfZowpsYx\nL11xsU9mfZowpsYx" | passwd pa1dltdojo
+Enter new UNIX password: Retype new UNIX password: passwd: password updated successfully
+root@6e25a6fc85fe:/# su - pa1dltdojo
+pa1dltdojo@6e25a6fc85fe:~$ ll
+total 20
+drwxr-xr-x 2 pa1dltdojo pa1dltdojo 4096 Jan 19 04:14 .
+drwxr-xr-x 5 root       root       4096 Jan 19 04:14 ..
+-rw-r--r-- 1 pa1dltdojo pa1dltdojo  220 Aug 31  2015 .bash_logout
+-rw-r--r-- 1 pa1dltdojo pa1dltdojo 3771 Aug 31  2015 .bashrc
+-rw-r--r-- 1 pa1dltdojo pa1dltdojo  655 Jun 24  2016 .profile
+```
 ### Tue Jan 17 19:25:07 CST 2017
 ```
 $ fdcup
