@@ -51,6 +51,8 @@ $ docker run -v $(pwd):/tmp y12docker/dltdojo build --dojo.eth 6 --name lv3
 
 ### WIP Level4 Hyperledger Fabric 資產轉移
 
+### WIP Level4 Zcash
+
 ## 參考連結
 
 <https://github.com/bitcoin/bitcoin>

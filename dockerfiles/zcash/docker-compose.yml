@@ -1,0 +1,6 @@
+version: '2'
+
+services:
+  zcash:
+    image: y12docker/dltdojo-zcash
+    command: zcashd
