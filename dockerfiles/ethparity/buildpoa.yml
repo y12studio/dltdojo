@@ -1,0 +1,8 @@
+version: '2'
+services:
+  poa0:
+    image: y12docker/dltdojo-ethparity:1.5.0
+    command: '--chain /opt/parity/poa-final-spec.json -d /tmp/parity --port 30300 --jsonrpc-port 8540 --ui-port 8180 --dapps-port 8080 --jsonrpc-apis web3,eth,net,personal,parity,parity_set,traces,rpc,parity_accounts'
+  poa1:
+    extends: poa0
+    command: '--chain /opt/parity/poa-final-spec.json -d /tmp/parity --port 30300 --jsonrpc-port 8540 --ui-port 8180 --dapps-port 8080 --jsonrpc-apis web3,eth,net,personal,parity,parity_set,traces,rpc,parity_accounts'
