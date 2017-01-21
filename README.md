@@ -21,37 +21,13 @@ DLCODE代表下面概念。
 * 區塊鏈智能合約
 * 分散式帳本智能合約
 
-## SETUP
+## LEVELS
 
-### [Level1](levels/level1/) Bitcoin 比特幣轉帳
+* [Level1](levels/level1/) Bitcoin 比特幣
+* [Level2](levels/level2/) Ethereum 以太坊
+* WIP Levelx Zcash
+* WIP Levelx Hyperledger Fabric
 
-```
-$ mkdir foo && cd foo
-$ docker run -v $(pwd):/tmp y12docker/dltdojo build --dojo.btc 4 --name lv1
-$ source lv1-alias.sh
-$ dcup
-...
-...
-$ dcend
-```
-
-### [Level2](levels/level2/) Ethereum 轉帳
-
-如要避免實際部署網路時間，可使用--dojo.eth 2設定開啟雙點獨立開發模式，不需另外下載DAG檔，開發模式節點不互通無法做跨節點轉帳練習。
-
-```
-$ docker run -v $(pwd):/tmp y12docker/dltdojo build --dojo.eth 6 --name lv2
-```
-
-### [Level3](levels/level3/) Ethereum 資產轉移
-
-```
-$ docker run -v $(pwd):/tmp y12docker/dltdojo build --dojo.eth 6 --name lv3
-```
-
-### WIP Level4 Hyperledger Fabric 資產轉移
-
-### WIP Level4 Zcash
 
 ## 參考連結
 
