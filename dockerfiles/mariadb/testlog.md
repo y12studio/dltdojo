@@ -1,5 +1,35 @@
 ## TESTLOG
 
+### Sat Jan 21 14:34:11 CST 2017
+```
+$ dc ps
+      Name                    Command             State    Ports
+------------------------------------------------------------------
+devmdb_mariadb1_1   docker-entrypoint.sh mysqld   Up      3306/tcp
+devmdb_mariadb2_1   docker-entrypoint.sh mysqld   Up      3306/tcp
+$ mysql1 -e 'CREATE DATABASE mydb;'
+$ mysql1 -e 'show databases;'
+$ mysql1 -e 'CREATE TABLE mytable ( id INT PRIMARY KEY, name VARCHAR(34) , balance INT UNSIGNED );' mydb
+$ mysql1 -e 'show tables;' mydb
+$ mysql1 -e 'INSERT INTO mytable VALUES ( 1, "mpywCp28LcmDHNKxJy9tUuXc1LcXK5gCoT", 1000);' mydb
+$ mysql1 -e 'INSERT INTO mytable VALUES ( 2, "mjisABTPq6DwgUv4rzBtt1gY44hwBX4zZy", 2000);' mydb
+$ mysql1 -e 'SELECT * FROM mytable WHERE id = 1;' mydb
+$ mysql1 -e 'SELECT * FROM mytable;' mydb
++----+----------------------+---------+
+| id | name                 | balance |
++----+----------------------+---------+
+|  1 | mpywCp28LcmDHNKxJy9t |    1000 |
+|  2 | mjisABTPq6DwgUv4rzBt |    2000 |
++----+----------------------+---------+
+$ mysql1 -e 'START TRANSACTION; UPDATE mytable SET balance=balance-80 WHERE id=1; UPDATE mytable SET balance=balance+80 WHERE id=2; COMMIT;' mydb
+$ mysql1 -e 'SELECT * FROM mytable;' mydb
++----+----------------------+---------+
+| id | name                 | balance |
++----+----------------------+---------+
+|  1 | mpywCp28LcmDHNKxJy9t |     920 |
+|  2 | mjisABTPq6DwgUv4rzBt |    2080 |
++----+----------------------+---------+
+```
 ### Sat Jan 14 16:18:58 CST 2017
 ```
 $ source alias.sh

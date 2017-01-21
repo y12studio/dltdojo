@@ -57,9 +57,90 @@ $ btcp2 info
 
 該任務需要提交地址請對方協助，如無練習對手可使用vp0節點。完成後vp1會收到5個以及新熟成50個，所以餘額增加55個。
 
-#### T7 其餘練習
+#### T7 帳本同步
 
-將數個節點停止後重開再互相發送。
+將節點停止後重開再檢視是否同步並互相發送測試。
+
+```
+$ btcp1 info
+$ dc stop btcp1
+$ dc ps
+      Name             Command             State              Ports
+-------------------------------------------------------------------------
+lv1_btcp1_1        /start.sh          Exit 137
+                   -regtest -txinde
+                   ...
+lv1_btcp2_1        /start.sh          Up                 18332/tcp,
+                   -regtest -txinde                      18333/tcp
+                   ...
+lv1_btcp3_1        /start.sh          Up                 18332/tcp,
+                   -regtest -txinde                      18333/tcp
+                   ...
+lv1_btcp4_1        /start.sh          Up                 18332/tcp,
+                   -regtest -txinde                      18333/tcp
+                   ...
+lv1_btcp_1         /start.sh          Up                 18332/tcp,
+                   -regtest -txinde                      18333/tcp
+                   ...
+lv1_dltdojo_1      node index.js      Up start
+
+$ btcp2 miner --num 10
+$ btcp2 info
+{ version: 130100,
+  protocolversion: 70014,
+  walletversion: 130000,
+  balance: 550,
+  blocks: 212,
+  timeoffset: 0,
+  connections: 1,
+  proxy: '',
+  difficulty: 4.656542373906925e-10,
+  testnet: false,
+  keypoololdest: 1484976398,
+  keypoolsize: 100,
+  paytxfee: 0,
+  relayfee: 0.00001,
+  errors: '' }
+$ dc start btcp1
+Starting btcp1 ... done
+$ dc ps
+      Name             Command             State              Ports
+-------------------------------------------------------------------------
+lv1_btcp1_1        /start.sh          Up                 18332/tcp,
+                   -regtest -txinde                      18333/tcp
+                   ...
+lv1_btcp2_1        /start.sh          Up                 18332/tcp,
+                   -regtest -txinde                      18333/tcp
+                   ...
+lv1_btcp3_1        /start.sh          Up                 18332/tcp,
+                   -regtest -txinde                      18333/tcp
+                   ...
+lv1_btcp4_1        /start.sh          Up                 18332/tcp,
+                   -regtest -txinde                      18333/tcp
+                   ...
+lv1_btcp_1         /start.sh          Up                 18332/tcp,
+                   -regtest -txinde                      18333/tcp
+                   ...
+lv1_dltdojo_1      node index.js      Up   start
+
+$ btcp1 info
+{ version: 130100,
+  protocolversion: 70014,
+  walletversion: 130000,
+  balance: 5050,
+  blocks: 212,
+  timeoffset: 0,
+  connections: 1,
+  proxy: '',
+  difficulty: 4.656542373906925e-10,
+  testnet: false,
+  keypoololdest: 1484976398,
+  keypoolsize: 100,
+  paytxfee: 0,
+  relayfee: 0.00001,
+  errors: '' }
+
+```
 
 
 ## SETUP

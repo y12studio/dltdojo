@@ -1,0 +1,7 @@
+version: '2'
+
+services:
+  mongo1:
+    image: mongo:3.4
+  mongo2:
+    extends: mongo1
