@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  multichain1:
+    image: y12docker/dltdojo-multichain
+    command: multichaind chain1 -rpcuser=user -rpcpassword=pass
+  multichain2:
+    extends: multichain1

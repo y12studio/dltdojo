@@ -1,3 +1,9 @@
 DNAME=y12docker/dltdojo-multichain
 alias build='docker build -t ${DNAME} . ; echo "docker build -t ${DNAME}"'
 alias drun='docker run -it ${DNAME}'
+DCNAME=devmultichain
+alias dc='docker-compose -p $DCNAME -f peers.yml'
+alias dcend='dc stop ; dc rm -f'
+alias dcup='dcend ; dc up -d;'
+alias dexec1='docker exec -it ${DCNAME}_multichain1_1'
+alias mcli1='docker exec -it ${DCNAME}_multichain1_1 multichain-cli'

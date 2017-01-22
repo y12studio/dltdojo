@@ -45,22 +45,12 @@ $ btcp1 info
 $ btcp1 send --to mgUMfoXL57yH9s1WjwB3CE3MeDWZNxzexU --btc 10
 7e6223443890d468addd9fdac6202d200145c2d0bbdce02d5f3cfb580bd27528
 $ btcp1 info
-$ btcp2 miner --num 1
-[
-  "0a95959a1230abcfbaabeef669ea5b2169104d9925e0e7e0d52a983979fb8332"
-]
-$ btcp1 info
-$ btcp2 info
+$ btcp1 miner --num 1
 ```
-
 #### T6 收到5個比特幣
-
-該任務需要提交地址請對方協助，如無練習對手可使用vp0節點。完成後vp1會收到5個以及新熟成50個，所以餘額增加55個。
-
+該任務需要提交地址請對方協助，完成後btcp1會收到5個以及新熟成50個，餘額55個。
 #### T7 帳本同步
-
 將節點停止後重開再檢視是否同步並互相發送測試。
-
 ```
 $ btcp1 info
 $ dc stop btcp1
@@ -141,10 +131,7 @@ $ btcp1 info
   errors: '' }
 
 ```
-
-
 ## SETUP
-
 ```
 $ mkdir level1 && cd level1
 $ docker run -v $(pwd):/tmp y12docker/dltdojo build --dojo.btc 4 --name lv1

@@ -1,4 +1,11 @@
-## LOG
+### Sun Jan 22 11:34:45 CST 2017
+```
+// node index.js build --name 2b --dojo.eth 2 --path levels/level2
+$ source alias2b.sh
+$ dcup
+$ dc ps
+$ dcend
+```
 
 ### Thu Jan 12 21:03:31 CST 2017
 

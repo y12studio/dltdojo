@@ -1,5 +1,16 @@
 ## TESTLOG
-
+### Sun Jan 22 09:56:12 CST 2017
+```
+$ dmysql -u root -proot
+>
+CREATE DATABASE mydb;
+CREATE USER 'haha1'@'localhost' IDENTIFIED BY 'haha1pass';
+CREATE USER 'haha2'@'localhost' IDENTIFIED BY 'haha2pass';
+GRANT ALL PRIVILEGES ON mydb.* TO 'haha1'@'localhost';
+GRANT ALL PRIVILEGES ON mydb.* TO 'haha2'@'localhost';
+FLUSH PRIVILEGES;
+$ dmysql -u haha1 -phaha1pass
+```
 ### Sat Jan 21 14:34:11 CST 2017
 ```
 $ dc ps

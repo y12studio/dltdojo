@@ -1,5 +1,12 @@
-# TESTLOG
+###
+```
+// node index.js build --name 1a --dojo.btc 4 --path levels/level1
+$ source alias1a.sh
+$ dcup
+$ btcp1 info
+$ dcend
 
+```
 ### Tue Jan 17 09:50:39 CST 2017
 ```
 $ dcup

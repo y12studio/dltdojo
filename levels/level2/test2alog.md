@@ -1,4 +1,12 @@
-## LOG
+### Sun Jan 22 11:34:45 CST 2017
+```
+// node index.js build --name 2a --dojo.eth 6 --path levels/level2
+$ source alias2a.sh
+$ dcup
+$ ethp1 account --new --password haha
+0x9e17e482cc3a5031a4266bb3ee429d282546f992
+$ dcend
+```
 
 ### Thu Jan 19 14:41:18 CST 2017
 ```

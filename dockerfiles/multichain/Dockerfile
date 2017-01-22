@@ -6,3 +6,5 @@ RUN apt-get update ; apt-get install -y curl jq \
     && cd multichain ; mv multichaind multichain-cli multichain-util /usr/local/bin
 ADD start.sh /
 RUN chmod +x /start.sh
+RUN multichain-util create chain1 ; multichain-util create chain2
+RUN echo 'rpcuser=user\nrpcpassword=pass' >> /root/.multichain/multichain.conf
