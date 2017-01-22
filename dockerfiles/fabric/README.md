@@ -4,6 +4,8 @@ https://github.com/hyperledger/fabric/blob/master/docs/dev-setup/build.md
 
 https://jira.hyperledger.org/projects/FAB/issues/FAB-1594?filter=allopenissues
 
+https://github.com/hyperledger/fabric-sdk-node/blob/master/test/fixtures/docker-compose.yml
+
 ```
 $ cd $GOPATH/src/github.com/hyperledger
 $ git clone --single-branch -b master --depth 1 http://gerrit.hyperledger.org/r/fabric

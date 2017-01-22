@@ -1,5 +1,3 @@
-## TESTLOG
-
 ### Fri Jan 20 22:31:53 CST 2017
 ```
 $ dcup

@@ -25,18 +25,10 @@ DLCODE代表下面概念。
 
 * [Level1](levels/level1/) Bitcoin 比特幣
 * [Level2](levels/level2/) Ethereum 以太坊
-* WIP Levelx Zcash
-* WIP Levelx Hyperledger Fabric
-
+* [Level3](levels/level3/) Hyperledger Fabric (WIP)
+* [Level4](levels/level4/) Zcash (WIP)
+* [Level5](levels/level5/) Mixing DLT/SQL/NOSQL (WIP)
 
 ## 參考連結
-
-<https://github.com/bitcoin/bitcoin>
-
-<https://github.com/ethereum/>
-
-<https://github.com/yeasy/docker-compose-files/tree/master/hyperledger/1.0>
-
-<https://github.com/corda/corda>
 
 y12docker/dltdojo - Docker Hub <https://hub.docker.com/r/y12docker/dltdojo/>
