@@ -1,7 +1,7 @@
 # Distributed Ledger Technology Dojo (DLTDOJO) 
 # https://github.com/y12studio/dltdojo
-# Dltdojo peers yml file , name:1a  btc peers:4
-# DATETIME:2017-01-23T09:12:45.117Z
+# Dltdojo peers yml file , name:4a  btc peers:6 mariadb peers:1 mongodb peers:1
+# DATETIME:2017-01-23T09:39:20.596Z
 version: '2'
 services:
   btcp:
@@ -22,6 +22,18 @@ services:
   btcp4:
     extends: btcp
     hostname: btcp4
+  btcp5:
+    extends: btcp
+    hostname: btcp5
+  btcp6:
+    extends: btcp
+    hostname: btcp6
+  mariadb1:
+    image: 'mariadb:10.1'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+  mongo1:
+    image: 'mongo:3.4'
   dltdojo:
     image: y12docker/dltdojo
     command: start

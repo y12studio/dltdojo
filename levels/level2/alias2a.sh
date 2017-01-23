@@ -1,10 +1,10 @@
 # Distributed Ledger Technology Dojo (DLTDOJO) 
 # https://github.com/y12studio/dltdojo
-# EthereumGo alias script, name:2a, peers:6
-# DATETIME:2017-01-22T03:37:27.635Z
+# Dltdojo peers yml file , name:2a  eth peers:6
+# DATETIME:2017-01-23T08:50:32.501Z
 DCNAME=2a
 alias dc='docker-compose -p $DCNAME -f peers$DCNAME.yml'
-alias dcup='dc stop ; dc rm -f; dc up -d'
+alias dcup='dcend ; dc up -d; dc ps'
 alias dcend='dc stop ; dc rm -f'
 alias dojoexec='docker exec -it ${DCNAME}_dltdojo_1'
 alias ddj='dojoexec node index.js'

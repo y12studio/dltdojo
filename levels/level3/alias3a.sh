@@ -1,7 +1,7 @@
 # Distributed Ledger Technology Dojo (DLTDOJO) 
 # https://github.com/y12studio/dltdojo
-# Hyperledger Fabric alias script, name:3a, peers:6
-# DATETIME:2017-01-23T06:58:43.825Z
+# Dltdojo peers yml file , name:3a  fabric peers:6
+# DATETIME:2017-01-23T09:13:20.497Z
 DCNAME=3a
 alias dc='docker-compose -p $DCNAME -f peers$DCNAME.yml'
 alias dcup='dcend ; dc up -d; dc ps'

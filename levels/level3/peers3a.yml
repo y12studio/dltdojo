@@ -1,7 +1,7 @@
 # Distributed Ledger Technology Dojo (DLTDOJO) 
 # https://github.com/y12studio/dltdojo
-# Hyperledger Fabric peers yml file ,name:3a, peers:6
-# DATETIME:2017-01-23T06:58:43.824Z
+# Dltdojo peers yml file , name:3a  fabric peers:6
+# DATETIME:2017-01-23T09:13:20.495Z
 version: '2'
 services:
   orderer:
