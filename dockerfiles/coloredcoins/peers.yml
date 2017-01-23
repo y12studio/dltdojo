@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  ccoin1:
+    image: y12docker/dltdojo-ccoin
+    environment:
+      - BITCOIND_HOST=localhost
+      - BITCOIND_PORT=18332
+      - BITCOIND_USER=bitcoinuser
+      - BITCOIND_PASS=bitcoinpass
+    command: /start.sh
+  ccoin2:
+    extends: ccoin1
