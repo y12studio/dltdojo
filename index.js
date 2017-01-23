@@ -88,6 +88,7 @@ function main() {
             builder: (yargs) => {
                 yargs.default('path', '/tmp')
                     .default('btcimg', 'y12docker/dltdojo-bitcoin')
+                    .default('fabimg', 'y12docker/dltdojo-fabgopeer:dev')
                     .default('ethimg', 'y12docker/dltdojo-ethgo')
             },
             handler: DBUILDER.BuildMethod

@@ -1,0 +1,62 @@
+# Distributed Ledger Technology Dojo (DLTDOJO) 
+# https://github.com/y12studio/dltdojo
+# Hyperledger Fabric peers yml file ,name:3a, peers:6
+# DATETIME:2017-01-23T06:58:43.824Z
+version: '2'
+services:
+  orderer:
+    image: 'y12docker/dltdojo-fabgoorderer:dev'
+    environment:
+      - ORDERER_GENERAL_LEDGERTYPE=ram
+      - ORDERER_GENERAL_BATCHTIMEOUT=10s
+      - ORDERER_GENERAL_BATCHSIZE_MAXMESSAGECOUNT=10
+      - ORDERER_GENERAL_MAXWINDOWSIZE=1000
+      - ORDERER_GENERAL_ORDERERTYPE=solo
+      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+      - ORDERER_GENERAL_LISTENPORT=5005
+      - ORDERER_RAMLEDGER_HISTORY_SIZE=100
+    command: orderer
+  fabp:
+    image: 'y12docker/dltdojo-fabgopeer:dev'
+    environment:
+      - CORE_PEER_ADDRESSAUTODETECT=true
+      - 'CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock'
+      - CORE_NEXT=true
+      - CORE_PEER_ENDORSER_ENABLED=true
+      - CORE_PEER_PROFILE_ENABLED=true
+      - CORE_PEER_GOSSIP_ORGLEADER=true
+      - 'CORE_PEER_COMMITTER_LEDGER_ORDERER=orderer:5005'
+      - CORE_PEER_ID=fabp
+    command: 'peer node start --peer-defaultchain=false'
+    volumes:
+      - '/var/run/:/host/var/run/'
+  fabp1:
+    extends: fabp
+    environment:
+      - CORE_PEER_ID=fabp1
+    hostname: fabp1
+  fabp2:
+    extends: fabp
+    environment:
+      - CORE_PEER_ID=fabp2
+    hostname: fabp2
+  fabp3:
+    extends: fabp
+    environment:
+      - CORE_PEER_ID=fabp3
+    hostname: fabp3
+  fabp4:
+    extends: fabp
+    environment:
+      - CORE_PEER_ID=fabp4
+    hostname: fabp4
+  fabp5:
+    extends: fabp
+    environment:
+      - CORE_PEER_ID=fabp5
+    hostname: fabp5
+  fabp6:
+    extends: fabp
+    environment:
+      - CORE_PEER_ID=fabp6
+    hostname: fabp6
