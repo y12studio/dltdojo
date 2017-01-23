@@ -27,7 +27,7 @@ $ fabp1 peer chaincode invoke -C ch1 -n mycc1 -c '{"Args":["invoke","a","b","100
 ```
 $ fabp1 cat /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02/chaincode_example02.go
 ```
-#### SETUP Level3A
+## SETUP Level3A
 ```
 $ mkdir level3 ; cd level3
 $ docker run -v $(pwd):/tmp y12docker/dltdojo build --dojo.fab 6 --name 3a
@@ -36,3 +36,7 @@ $ dcup
 ...
 $ dcend
 ```
+
+## LINKS
+
+2016年区块链技术回顾与总结：联盟链与公有链的分道扬镳 http://www.infoq.com/cn/articles/review-and-summary-of-chain-technology-in-2016
