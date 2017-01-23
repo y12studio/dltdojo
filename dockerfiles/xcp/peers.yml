@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  xcp1:
+    image: y12docker/dltdojo-xcp
+    command: /start.sh
+  xcp2:
+    extends: xcp1
