@@ -1,7 +1,7 @@
 # Distributed Ledger Technology Dojo (DLTDOJO) 
 # https://github.com/y12studio/dltdojo
 # Dltdojo peers yml file , name:3a  fabric peers:6
-# DATETIME:2017-01-23T09:13:20.495Z
+# DATETIME:2017-01-24T03:38:36.488Z
 version: '2'
 services:
   orderer:
@@ -16,7 +16,7 @@ services:
       - ORDERER_GENERAL_LISTENPORT=5005
       - ORDERER_RAMLEDGER_HISTORY_SIZE=100
     command: orderer
-  fabp:
+  fabp0:
     image: 'y12docker/dltdojo-fabgopeer:dev'
     environment:
       - CORE_PEER_ADDRESSAUTODETECT=true
@@ -31,32 +31,32 @@ services:
     volumes:
       - '/var/run/:/host/var/run/'
   fabp1:
-    extends: fabp
+    extends: fabp0
     environment:
       - CORE_PEER_ID=fabp1
     hostname: fabp1
   fabp2:
-    extends: fabp
+    extends: fabp0
     environment:
       - CORE_PEER_ID=fabp2
     hostname: fabp2
   fabp3:
-    extends: fabp
+    extends: fabp0
     environment:
       - CORE_PEER_ID=fabp3
     hostname: fabp3
   fabp4:
-    extends: fabp
+    extends: fabp0
     environment:
       - CORE_PEER_ID=fabp4
     hostname: fabp4
   fabp5:
-    extends: fabp
+    extends: fabp0
     environment:
       - CORE_PEER_ID=fabp5
     hostname: fabp5
   fabp6:
-    extends: fabp
+    extends: fabp0
     environment:
       - CORE_PEER_ID=fabp6
     hostname: fabp6

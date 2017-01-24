@@ -2,19 +2,25 @@
 
 環境設置好之後有ethp1-ethp6共計5個節點可操作，下面用ethp1為主，以ethp1/ethp2為採礦點，請注意兩個ETH挖礦點需要下載約2G的資料。
 
+#### T0 設定使用編號
+根據編號切換操作節點，這裡設定為控制節點btcp1。
+```
+$ DLTDOJOID=1
+```
+
 #### T1 取得地址
 
 設定ethp1帳號密碼vp1pass取得地址。
 
 ```
-$ ethp1 account --new --password vp1pass
+$ ethp account --new --password vp1pass
 0x4f227dd841d7389318fd6f1f8d0a2c140124f569
 ```
 
 #### T2 取得金鑰
 
 ```
-$ ethp1exec /keyfind.sh
+$ ethpexec /keyfind.sh
 {
   "version": 3,
   "id": "0191a9ea-c675-4996-854c-28e9ae41aa70",
@@ -39,7 +45,7 @@ $ ethp1exec /keyfind.sh
 ```
 #### T3 查詢餘額
 ```
-$ ethp1 info
+$ ethp info
 { hostname: 'ethp1',
   ethBlockNumber: 0,
   ethCoinbase: '0x4f227dd841d7389318fd6f1f8d0a2c140124f569',
@@ -55,8 +61,8 @@ $ ethp1 info
 目前單點私鏈挖礦有時回出現無法同步收發交易的問題，建議ethp1點先進行挖礦，啟動挖礦需等候約1G的挖礦必備檔案下載，等候時間與頻寬有關，第一個區塊應該可在數十分鐘內完成，等到ethp1出塊後再啟動ethp2挖礦，等ethp2下載完畢再關掉ethp1挖礦。
 
 ```
-$ ethp1 miner --start
-$ ethp1 info
+$ ethp miner --start
+$ ethp info
 { hostname: 'ethp1',
   ethBlockNumber: 2,
   ethCoinbase: '0x4f227dd841d7389318fd6f1f8d0a2c140124f569',
@@ -67,26 +73,21 @@ $ ethp1 info
   ethMining: true }
 $ ethp1 miner --stop
 ```
-
 #### T5 轉出3個
-
 轉帳需要對方地址，如無人練習可使用ethp2節點重複T1取得地址。這裡假設對方地址為0xa58e7d2b366de5fb352d8f08b1620f226a9c1fed，轉完帳必須等產出區塊對方才能收到確認。
 ```
-$ ethp1 send --to 0xa58e7d2b366de5fb352d8f08b1620f226a9c1fed --eth 3.6 --password vp1pass
-$ ethp1 info
+$ ethp send --to 0xa58e7d2b366de5fb352d8f08b1620f226a9c1fed --eth 3.6 --password vp1pass
+$ ethp info
 ```
-
 #### T6 收到2個
-
-該任務需要提交地址請對方協助，如無練習對手可使用ethp2節點，沿用上例ethp2收到3個轉回2個，差額為手續費。
-
+該任務需要提交地址請對方協助，如無練習對手可使用ethp2節點，切換方式參閱Level1A T7，沿用上例ethp2收到3個轉回2個，差額為手續費。
 
 ## Level2B 創立資產轉帳任務
 
 #### T1 取得帳號地址餘額
-過程參考Level2A，這裡使用單一節點evp1示範，密碼為pass1。
+過程參考Level2A，這裡使用單一節點etp1示範，密碼為pass1。
 ```
-$ ethp1 info
+$ ethp info
 { hostname: 'ethp1',
   ethBlockNumber: 3,
   ethCoinbase: '0x757967a94e7d63f828067a8b0ba5790f670c239d',
@@ -97,16 +98,16 @@ $ ethp1 info
   ethMining: true }
 ```
 #### T2 部署資產合約
-部署合約需要等候區塊完成更新，同時傳回合約地址。
+部署合約需有餘額的帳號如上，執行後需等候區塊完成更新，同時傳回合約地址。
 ```
-$ ethp1 hahacoin --new --address 0x757967a94e7d63f828067a8b0ba5790f670c239d --password pass1
+$ ethp hahacoin --new --address 0x757967a94e7d63f828067a8b0ba5790f670c239d --password pass1
 { tx: '0xad9e6cf16b85f509550140fc563f1c07e54d6aa5f842094d5314b7a967fd5d58',
   contractAddress: '0xcf0999df518328f49be2ecadec910961da44ff59' }
 ```
 #### T3 查詢資產
-該合約創建時預設有10000單位的資產。
+該合約0xcf0999df518328f49be2ecadec910961da44ff59創建時預設有10000單位的資產。
 ```
-$ ethp1 hahacoin --address 0x757967a94e7d63f828067a8b0ba5790f670c239d --password pass1 --contract 0xcf0999df518328f49be2ecadec910961da44ff59
+$ ethp hahacoin --address 0x757967a94e7d63f828067a8b0ba5790f670c239d --password pass1 --contract 0xcf0999df518328f49be2ecadec910961da44ff59
 { account: '0x757967a94e7d63f828067a8b0ba5790f670c239d',
   contractAddress: '0xcf0999df518328f49be2ecadec910961da44ff59',
   contractBalance: '10000' }
@@ -114,9 +115,9 @@ $ ethp1 hahacoin --address 0x757967a94e7d63f828067a8b0ba5790f670c239d --password
 #### T4 發送資產
 發送完畢需要等候區塊更新才能查詢正確餘額，注意是資產餘額不是帳戶ETH餘額。
 ```
-$ ethp1 hahacoin --send --address 0x757967a94e7d63f828067a8b0ba5790f670c239d --password pass1 --contract 0xcf0999df518328f49be2ecadec910961da44ff59 --to 0x0de51d24bd6c97564f99bb829c789b4748a3d0d7 --amount 99
+$ ethp hahacoin --send --address 0x757967a94e7d63f828067a8b0ba5790f670c239d --password pass1 --contract 0xcf0999df518328f49be2ecadec910961da44ff59 --to 0x0de51d24bd6c97564f99bb829c789b4748a3d0d7 --amount 99
 
-$ ethp1 hahacoin --address 0x757967a94e7d63f828067a8b0ba5790f670c239d --password pass1 --contract 0xcf0999df518328f49be2ecadec910961da44ff59
+$ ethp hahacoin --address 0x757967a94e7d63f828067a8b0ba5790f670c239d --password pass1 --contract 0xcf0999df518328f49be2ecadec910961da44ff59
 { account: '0x757967a94e7d63f828067a8b0ba5790f670c239d',
   contractAddress: '0xcf0999df518328f49be2ecadec910961da44ff59',
   contractBalance: '9901' }
@@ -127,21 +128,35 @@ $ ethp1 hahacoin --address 0x757967a94e7d63f828067a8b0ba5790f670c239d --password
 
 ## WIP Level2C 非POW共識鏈代幣與資產轉帳
 Proof of Authority Chains https://github.com/ethcore/parity/wiki/Proof-of-Authority-Chains
+
 #### T1 取得帳號地址
+WIP
 
 #### T2 取得代幣轉帳
+WIP
 
 #### T3 部署合約轉帳
+WIP
 
 ## SETUP
 
-#### Level2A & Level2B
+#### Level2A
 如要避免實際部署網路時間，可使用--dojo.eth 2設定開啟雙點獨立開發模式，不需另外下載DAG檔，開發模式節點不互通無法做跨節點轉帳練習。
 ```
 $ mkdir level2 && cd level2
-$ docker run -v $(pwd):/tmp y12docker/dltdojo build --dojo.eth 6 --name lv2
-$ source lv2-alias.sh
+$ docker run -v $(pwd):/tmp y12docker/dltdojo build --dojo.eth 6 --name 2a
+$ source alias2a.sh
 $ dcup
-...
+// do the 2A tasks
+$ dcend
+```
+#### Level2B
+如要避免實際部署網路時間，可使用--dojo.eth 2設定開啟雙點獨立開發模式，不需另外下載DAG檔，開發模式節點不互通無法做跨節點轉帳練習。
+```
+$ mkdir level2 && cd level2
+$ docker run -v $(pwd):/tmp y12docker/dltdojo build --dojo.eth 2 --name 2b
+$ source alias2b.sh
+$ dcup
+// do the 2B tasks
 $ dcend
 ```
