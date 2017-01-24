@@ -1,15 +1,17 @@
 ## Level4A SQL/NOSQL/DLT 混合體驗
 
-Bitcoin/MariaDB/MongoDB
+Bitcoinx10/MariaDBx1/MongoDBx1
 
-#### T1 進行 Level 1A 後取得兩個地址
+#### T1 取得兩個比特幣地址
+先依照Level1A T0設置使用的編號控制後取得兩個地址當練習。
 ```
-$ btcp1 account --new
+$ btcp account --new
 mpywCp28LcmDHNKxJy9tUuXc1LcXK5gCoT
-$ btcp1 account --new
+$ btcp account --new
 mjisABTPq6DwgUv4rzBtt1gY44hwBX4zZy
 ```
-#### T1 SQL Database MariaDB
+#### T2 SQL Database MariaDB
+MariaDB資料庫為共用並使用最高權限只供練習體驗，請建立自用的資料庫例如CREATE DATABASE mydb2等避免與他人練習衝突。
 ```
 $ dmysql -u root -proot
 > CREATE DATABASE mydb1;
@@ -21,7 +23,8 @@ $ dmysql -u root -proot
 > SELECT * FROM mytable;
 exit
 ```
-#### T2 NOSQL Database MongoDB
+#### T3 NOSQL Database MongoDB
+MongoDB為共用並無權限設定只供練習體驗，請建立自用的資料庫例如db.mongot2等避免與他人練習衝突。
 ```
 $ dmongo
 > use test
@@ -35,12 +38,11 @@ $ dmongo
 > exit
 ```
 #### SETUP Level4A
-
 ```
 $ mkdir level4 ; cd level4
-$ docker run -v $(pwd):/tmp y12docker/dltdojo build --dojo.btc 6 --dojo.mariadb 1 --dojo.mongo 1 --name 4a
+$ docker run -v $(pwd):/tmp y12docker/dltdojo build --dojo.btc 2 --dojo.mariadb 1 --dojo.mongo 1 --name 4a
 $ source alias4a.sh
 $ dcup
-...
+// do the 4A tasks...
 $ dcend
 ```

@@ -1,11 +1,9 @@
 ## Level3A hyperledger fabric 資產轉移
 目前fabric-ca還在1.0改版中，這裡提供簡易概念練習無權限設定。
-#### T0 設定使用編號
-根據編號切換操作節點，這裡設定為控制節點fabp1。
-```
-$ DLTDOJOID=1
-```
+
 #### T1 建立頻道ch1並加入
+先依照Level1A T0設置使用的編號。
+
 ```
 $ fabp peer channel create -c ch1
 $ fabp peer channel join -b ch1.block

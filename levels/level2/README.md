@@ -2,15 +2,9 @@
 
 環境設置好之後有ethp1-ethp6共計5個節點可操作，下面用ethp1為主，以ethp1/ethp2為採礦點，請注意兩個ETH挖礦點需要下載約2G的資料。
 
-#### T0 設定使用編號
-根據編號切換操作節點，這裡設定為控制節點btcp1。
-```
-$ DLTDOJOID=1
-```
-
 #### T1 取得地址
 
-設定ethp1帳號密碼vp1pass取得地址。
+先依照Level1A T0設置使用的編號，設定ethp1帳號密碼vp1pass取得地址。
 
 ```
 $ ethp account --new --password vp1pass

@@ -1,33 +1,21 @@
 # Distributed Ledger Technology Dojo (DLTDOJO) 
 # https://github.com/y12studio/dltdojo
-# Dltdojo peers yml file , name:4a  btc peers:6 mariadb peers:1 mongodb peers:1
-# DATETIME:2017-01-23T09:39:20.596Z
+# Dltdojo peers yml file , name:4a  btc peers:2 mariadb peers:1 mongodb peers:1
+# DATETIME:2017-01-24T07:22:37.916Z
 version: '2'
 services:
-  btcp:
+  btcp0:
     image: y12docker/dltdojo-bitcoin
     expose:
       - '18332'
       - '18333'
-    command: '/start.sh -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcallowip=DLTDOJOSUBNETinSTARTSH -rpcport=18332 -addnode=btcp:18333'
+    command: '/start.sh -regtest -txindex -port=18333 -conf=/opt/btc/bitcoin.conf -datadir=/opt/btc/data -rpcallowip=DLTDOJOSUBNETinSTARTSH -rpcport=18332 -addnode=btcp0:18333'
   btcp1:
-    extends: btcp
+    extends: btcp0
     hostname: btcp1
   btcp2:
-    extends: btcp
+    extends: btcp0
     hostname: btcp2
-  btcp3:
-    extends: btcp
-    hostname: btcp3
-  btcp4:
-    extends: btcp
-    hostname: btcp4
-  btcp5:
-    extends: btcp
-    hostname: btcp5
-  btcp6:
-    extends: btcp
-    hostname: btcp6
   mariadb1:
     image: 'mariadb:10.1'
     environment:
