@@ -27,6 +27,43 @@ $ node index.js build --dojo.btc 4 --name foo --path dockerfiles/dltdojo/example
 $ node index.js build --dojo.eth 6 --name foo --path dockerfiles/dltdojo/examples
 ```
 
+### 2017-01-24T17:46:43+0800
+```
+$ node index.js build --bulkuser --num 30 --prefix tg --dojoname tiguan1 | jq .
+$ node index.js build --bulkuser --num 30 --prefix tg --dojoname tiguan1 | jq -r .accounts[].script
+$ cat /tmp/djsetup.sh
+$ cat /tmp/userinfo.txt
+$ cp events/tiguan1/aliastiguan1.sh /tmp/
+$ cp events/tiguan1/peerstiguan1.yml /tmp/
+$ docker run -it -v /tmp:/tmp/host ubuntu
+# cd /tmp/host
+# ls
+djsetup.sh         peerstiguan1.yml
+aliastiguan1.sh  npm-5890-67f05cfc  userinfo.txt
+#
+useradd -m tg28dlt; echo -e "Kx2Z5CZZXToDmHuP\nKx2Z5CZZXToDmHuP" | passwd tg28dlt
+sed -e 's/DLTDOJOID=1/DLTDOJOID=28/g' aliastiguan1.sh >> /home/tg28dlt/.bashrc
+cp peerstiguan1.yml /home/tg28dlt/
+# su - tg28dlt
+$ ls
+peerstiguan1.yml
+$ alias btcp
+alias btcp='ddj btc btcp${DLTDOJOID}'
+$ echo $DLTDOJOID
+28
+exit
+
+// test djsetup.sh
+$ docker run -it -v /tmp:/tmp/host ubuntu
+# cd /tmp/host
+# chmod a+x djsetup.sh ; ./djsetup.sh
+# su - tg16dlt
+$ ls
+peerstiguan1.yml
+$ echo $DLTDOJOID
+16
+```
+
 ### 2017-01-24T12:25:55+0800
 ```
 $ docker run -t y12docker/dltdojo ipfs hello
