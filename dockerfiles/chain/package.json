@@ -1,0 +1,31 @@
+{
+  "name": "@y12/dltdojo-chaincore",
+  "version": "0.0.1",
+  "description": "DLTDOJO",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/y12studio/dltdojo.git"
+  },
+  "keywords": [
+    "blockchain"
+  ],
+  "author": "JOYE LIN <y12studio@gmail.com> (https://y12.tw)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/y12studio/dltdojo/issues"
+  },
+  "homepage": "https://github.com/y12studio/dltdojo#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "chain-sdk": "^1.0.0",
+    "lodash": "^4.17.4",
+    "yargs": "^6.6.0"
+  }
+}

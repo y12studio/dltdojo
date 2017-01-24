@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  chaincore1:
+    image: y12docker/dltdojo-chaincore
+    ports:
+      - "1999:1999"
+  chaincore2:
+    image: y12docker/dltdojo-chaincore
+    ports:
+      - "2999:1999"
