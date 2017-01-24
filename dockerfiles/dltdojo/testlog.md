@@ -27,6 +27,12 @@ $ node index.js build --dojo.btc 4 --name foo --path dockerfiles/dltdojo/example
 $ node index.js build --dojo.eth 6 --name foo --path dockerfiles/dltdojo/examples
 ```
 
+### 2017-01-24T12:25:55+0800
+```
+$ docker run -t y12docker/dltdojo ipfs hello
+{ _: [ 'ipfs' ], '$0': 'index.js', method: 'hello' }
+DLTDOJO hello world!
+```
 ### Thu Jan 19 11:26:24 CST 2017
 ```
 $ node index.js build --bulkuser --num 3 --prefix ha --dojoname d119 | jq .

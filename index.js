@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const DBTC = require('./lib/dltbtc')
+const DIPFS = require('./lib/dltipfs')
 const DETH = require('./lib/dlteth')
 const DU = require('./lib/dltutils')
 const DBUILDER = require('./lib/dltbuilder')
@@ -92,6 +93,11 @@ function main() {
                     .default('ethimg', 'y12docker/dltdojo-ethgo')
             },
             handler: DBUILDER.BuildMethod
+        })
+        .command({
+            command: 'ipfs <method>',
+            desc: 'ipfs',
+            handler: DIPFS.Args
         })
         .argv
 }
