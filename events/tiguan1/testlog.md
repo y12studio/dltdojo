@@ -1,3 +1,37 @@
+### 2017-01-25T21:32:04+0800
+16 CPUs / 48 GB / DigitalOcean
+```
+# docker run -v $(pwd):/tmp y12docker/dltdojo build --dojo.btc 20 --dojo.eth 20 --dojo.fab 20 --dojo.mariadb 1 --dojo.mongo 1 --name tiguan1
+# docker run -v $(pwd):/tmp y12docker/dltdojo build --bulkuser --num 20 --prefix tg --dojoname tiguan1
+# chmod a+x djsetup.sh ; ./djsetup.sh
+# source aliastiguan1.sh
+# docker pull yeasy/hyperledger-fabric-base:latest
+# docker tag yeasy/hyperledger-fabric-base hyperledger/fabric-ccenv:x86_64-0.7.0-snapshot-75a4c82
+# dcup
+
+// ethp miner --start
+# ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n 20
+  PID  PPID CMD                         %MEM %CPU
+13461  8567 /geth --networkid=680256 --  2.4 41.2
+14050 12741 /geth --networkid=680256 --  2.4 55.9
+13112  6521 /geth --networkid=680256 --  0.3  2.6
+13963 12268 /geth --networkid=680256 --  0.3  3.5
+13767 10828 /geth --networkid=680256 --  0.3  3.0
+13210  8772 /geth --networkid=680256 --  0.3  2.8
+13605 12488 /geth --networkid=680256 --  0.3  3.3
+ 9079  5169 /geth --networkid=680256 --  0.3  2.2
+13427 11684 /geth --networkid=680256 --  0.3  2.7
+11911 10460 /geth --networkid=680256 --  0.3  1.6
+ 7459  7377 mysqld                       0.3  0.0
+ 7511  7455 /geth --networkid=680256 --  0.2  4.2
+13861 12594 /geth --networkid=680256 --  0.2  3.8
+10796  7045 /geth --networkid=680256 --  0.2  3.3
+13746 12088 /geth --networkid=680256 --  0.2  3.7
+10590  5355 /geth --networkid=680256 --  0.2  1.8
+12849 10837 /geth --networkid=680256 --  0.2  3.3
+ 1566     1 /usr/bin/dockerd -H fd://    0.2  1.1
+13823  9318 /geth --networkid=680256 --  0.2  1.6
+```
 ### 2017-01-25T18:14:20+0800
 4 CPUs / 8 GB / DigitalOcean / fabp issue
 ```

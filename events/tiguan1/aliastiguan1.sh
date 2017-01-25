@@ -1,7 +1,7 @@
 # Distributed Ledger Technology Dojo (DLTDOJO) 
 # https://github.com/y12studio/dltdojo
-# Dltdojo peers yml file , name:tiguan1  btc peers:15 eth peers:15 fabric peers:15 mariadb peers:1 mongodb peers:1
-# DATETIME:2017-01-25T10:38:41.029Z
+# Dltdojo peers yml file , name:tiguan1  btc peers:20 eth peers:20 fabric peers:20 mariadb peers:1 mongodb peers:1
+# DATETIME:2017-01-25T14:13:59.319Z
 confirm() {
     # call with a prompt string or use a default
     read -r -p "${1:-Are you sure? [y/N]} " response
