@@ -1,7 +1,7 @@
 # Distributed Ledger Technology Dojo (DLTDOJO) 
 # https://github.com/y12studio/dltdojo
-# Dltdojo peers yml file , name:tiguan1  btc peers:30 eth peers:30 fabric peers:30 mariadb peers:1 mongodb peers:1
-# DATETIME:2017-01-24T09:37:52.346Z
+# Dltdojo peers yml file , name:tiguan1  btc peers:15 eth peers:15 fabric peers:15 mariadb peers:1 mongodb peers:1
+# DATETIME:2017-01-25T10:38:41.029Z
 confirm() {
     # call with a prompt string or use a default
     read -r -p "${1:-Are you sure? [y/N]} " response
@@ -29,9 +29,9 @@ alias ethpstart='confirm && dc start ethp${DLTDOJOID}'
 alias fabpstop='confirm && dc stop fabp${DLTDOJOID}'
 alias fabpstart='confirm && dc start fabp${DLTDOJOID}'
 alias btcp='ddj btc btcp${DLTDOJOID}'
-alias btcpexec='docker exec -t ${DCNAME}_btcp${DLTDOJOID}_1'
+alias btcpexec='docker exec -it ${DCNAME}_btcp${DLTDOJOID}_1'
 alias ethp='ddj eth ethp${DLTDOJOID}'
-alias ethpexec='docker exec -t ${DCNAME}_ethp${DLTDOJOID}_1'
+alias ethpexec='docker exec -it ${DCNAME}_ethp${DLTDOJOID}_1'
 alias fabp='docker exec -t ${DCNAME}_fabp${DLTDOJOID}_1'
 alias dmariadbexec1='docker exec -it ${DCNAME}_mariadb1_1'
 alias dmysql='dmariadbexec1 mysql'

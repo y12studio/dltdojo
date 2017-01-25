@@ -1,8 +1,8 @@
 ## Level3A hyperledger fabric 資產轉移
 目前fabric-ca還在1.0改版中，這裡提供簡易概念練習無權限設定。
 
-#### T1 建立頻道ch1並加入
-先依照Level1A T0設置使用的編號。
+#### T1 建立頻道並加入
+新增ch1頻道，注意頻道名稱不能重複，建議根據編號設置頻道測試避免衝突，例如ch2/ch3等，下面所有指令的ch1部分都要依據當下建立頻道修改。
 ```
 $ fabp peer channel create -c ch1
 $ fabp peer channel join -b ch1.block
@@ -35,4 +35,6 @@ $ fabp cat /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/go/c
 
 ## LINKS
 
-2016年区块链技术回顾与总结：联盟链与公有链的分道扬镳 http://www.infoq.com/cn/articles/review-and-summary-of-chain-technology-in-2016
+2016年区块链技术回顾与总结：联盟链与公有链的分道扬镳
+
+http://www.infoq.com/cn/articles/review-and-summary-of-chain-technology-in-2016

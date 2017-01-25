@@ -1,3 +1,34 @@
+### 2017-01-25T18:14:20+0800
+4 CPUs / 8 GB / DigitalOcean / fabp issue
+```
+# docker run -v $(pwd):/tmp y12docker/dltdojo build --dojo.btc 15 --dojo.eth 15 --dojo.fab 15 --dojo.mariadb 1 --dojo.mongo 1 --name tiguan1
+# source aliastiguan1.sh
+# dcup
+# fabp peer channel create -c ch1
+# fabp peer channel join -b ch1.block
+# fabp peer chaincode deploy -C ch1 -n mycc1 -p github.com/hyperledger/fabric/examples/chaincode/go/chaincode_example02 -c '{"Args":["init","a","1000","b","2000"]}'
+
+2017-01-25 10:17:00.724 UTC [msp] Setup -> INFO 019 MSP manager setup complete, setup 1 msps
+Error: Error endorsing chaincode: rpc error: code = 2 desc = Failed to deploy chaincode spec(Error creating image: %!s(<nil>))
+# dc logs
+fabp1_1     | 2017-01-25 10:21:09.889 UTC [chaincode] Deploy -> DEBU 11e deploying chaincode mycc1:0/ch1(networkid:dev,peerid:fabp1)
+fabp1_1     | 2017-01-25 10:21:10.874 UTC [dockercontroller] deployImage -> ERRO 11f Error building images: manifest for hyperledger/fabric-ccenv:x86_64-0.7.0-snapshot-75a4c82 not found
+fabp1_1     | 2017-01-25 10:21:10.874 UTC [dockercontroller] deployImage -> ERRO 120 Image Output:
+fabp1_1     | ********************
+fabp1_1     | Step 1/4 : FROM hyperledger/fabric-ccenv:x86_64-0.7.0-snapshot-75a4c82
+fabp1_1     |
+fabp1_1     | ********************
+
+// https://github.com/yeasy/docker-compose-files/tree/master/hyperledger/1.0
+# docker pull yeasy/hyperledger-fabric-base:latest
+# docker tag yeasy/hyperledger-fabric-base hyperledger/fabric-ccenv:x86_64-0.7.0-snapshot-75a4c82
+
+// y12docker/dltdojo-fabric:dev host
+~/git/dltdojo$ docker images | grep fabric-ccenv
+hyperledger/fabric-ccenv  latest                          1a77263b1b1c        7 days ago          1.264 GB
+hyperledger/fabric-ccenv  x86_64-0.7.0-snapshot-75a4c82   1a77263b1b1c        7 days ago          1.264 GB
+hyperledger/fabric-ccenv  x86_64-1.0.0-preview            267ced313da1        11 days ago         790.8 MB
+```
 ### 2017-01-25T15:29:26+0800
 4 CPUs / 8 GB / DigitalOcean
 ```

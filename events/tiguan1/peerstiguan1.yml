@@ -1,7 +1,7 @@
 # Distributed Ledger Technology Dojo (DLTDOJO) 
 # https://github.com/y12studio/dltdojo
-# Dltdojo peers yml file , name:tiguan1  btc peers:30 eth peers:30 fabric peers:30 mariadb peers:1 mongodb peers:1
-# DATETIME:2017-01-24T09:37:52.342Z
+# Dltdojo peers yml file , name:tiguan1  btc peers:15 eth peers:15 fabric peers:15 mariadb peers:1 mongodb peers:1
+# DATETIME:2017-01-25T10:38:41.026Z
 version: '2'
 services:
   btcp0:
@@ -55,58 +55,13 @@ services:
   btcp15:
     extends: btcp0
     hostname: btcp15
-  btcp16:
-    extends: btcp0
-    hostname: btcp16
-  btcp17:
-    extends: btcp0
-    hostname: btcp17
-  btcp18:
-    extends: btcp0
-    hostname: btcp18
-  btcp19:
-    extends: btcp0
-    hostname: btcp19
-  btcp20:
-    extends: btcp0
-    hostname: btcp20
-  btcp21:
-    extends: btcp0
-    hostname: btcp21
-  btcp22:
-    extends: btcp0
-    hostname: btcp22
-  btcp23:
-    extends: btcp0
-    hostname: btcp23
-  btcp24:
-    extends: btcp0
-    hostname: btcp24
-  btcp25:
-    extends: btcp0
-    hostname: btcp25
-  btcp26:
-    extends: btcp0
-    hostname: btcp26
-  btcp27:
-    extends: btcp0
-    hostname: btcp27
-  btcp28:
-    extends: btcp0
-    hostname: btcp28
-  btcp29:
-    extends: btcp0
-    hostname: btcp29
-  btcp30:
-    extends: btcp0
-    hostname: btcp30
   bootnode:
     image: y12docker/dltdojo-ethgo
-    command: ' --networkid=188652 --rpc --rpccorsdomain="*" --rpcaddr="0.0.0.0" --rpcapi "miner,admin,db,personal,eth,net,web3" --ipcdisable --datadir=~/.ethereum/devchain --nodekeyhex=091bd6067cb4612df85d9c1ff85cc47f259ced4d4cd99816b14f35650f59c322'
+    command: ' --networkid=541547 --rpc --rpccorsdomain="*" --rpcaddr="0.0.0.0" --rpcapi "miner,admin,db,personal,eth,net,web3" --ipcdisable --datadir=~/.ethereum/devchain --nodekeyhex=091bd6067cb4612df85d9c1ff85cc47f259ced4d4cd99816b14f35650f59c322'
   ethp0:
     image: y12docker/dltdojo-ethgo
     entrypoint: /start.sh
-    command: ' --networkid=188652 --rpc --rpccorsdomain="*" --rpcaddr="0.0.0.0" --rpcapi "miner,admin,db,personal,eth,net,web3" --ipcdisable --datadir=~/.ethereum/devchain --bootnodes="enode://288b97262895b1c7ec61cf314c2e2004407d0a5dc77566877aad1f2a36659c8b698f4b56fd06c4a0c0bf007b4cfb3e7122d907da3b005fa90e724441902eb19e@XXX:30303"'
+    command: ' --networkid=541547 --rpc --rpccorsdomain="*" --rpcaddr="0.0.0.0" --rpcapi "miner,admin,db,personal,eth,net,web3" --ipcdisable --datadir=~/.ethereum/devchain --bootnodes="enode://288b97262895b1c7ec61cf314c2e2004407d0a5dc77566877aad1f2a36659c8b698f4b56fd06c4a0c0bf007b4cfb3e7122d907da3b005fa90e724441902eb19e@XXX:30303"'
   ethp1:
     extends: ethp0
     hostname: ethp1
@@ -152,51 +107,6 @@ services:
   ethp15:
     extends: ethp0
     hostname: ethp15
-  ethp16:
-    extends: ethp0
-    hostname: ethp16
-  ethp17:
-    extends: ethp0
-    hostname: ethp17
-  ethp18:
-    extends: ethp0
-    hostname: ethp18
-  ethp19:
-    extends: ethp0
-    hostname: ethp19
-  ethp20:
-    extends: ethp0
-    hostname: ethp20
-  ethp21:
-    extends: ethp0
-    hostname: ethp21
-  ethp22:
-    extends: ethp0
-    hostname: ethp22
-  ethp23:
-    extends: ethp0
-    hostname: ethp23
-  ethp24:
-    extends: ethp0
-    hostname: ethp24
-  ethp25:
-    extends: ethp0
-    hostname: ethp25
-  ethp26:
-    extends: ethp0
-    hostname: ethp26
-  ethp27:
-    extends: ethp0
-    hostname: ethp27
-  ethp28:
-    extends: ethp0
-    hostname: ethp28
-  ethp29:
-    extends: ethp0
-    hostname: ethp29
-  ethp30:
-    extends: ethp0
-    hostname: ethp30
   orderer:
     image: 'y12docker/dltdojo-fabgoorderer:dev'
     environment:
@@ -298,81 +208,6 @@ services:
     environment:
       - CORE_PEER_ID=fabp15
     hostname: fabp15
-  fabp16:
-    extends: fabp0
-    environment:
-      - CORE_PEER_ID=fabp16
-    hostname: fabp16
-  fabp17:
-    extends: fabp0
-    environment:
-      - CORE_PEER_ID=fabp17
-    hostname: fabp17
-  fabp18:
-    extends: fabp0
-    environment:
-      - CORE_PEER_ID=fabp18
-    hostname: fabp18
-  fabp19:
-    extends: fabp0
-    environment:
-      - CORE_PEER_ID=fabp19
-    hostname: fabp19
-  fabp20:
-    extends: fabp0
-    environment:
-      - CORE_PEER_ID=fabp20
-    hostname: fabp20
-  fabp21:
-    extends: fabp0
-    environment:
-      - CORE_PEER_ID=fabp21
-    hostname: fabp21
-  fabp22:
-    extends: fabp0
-    environment:
-      - CORE_PEER_ID=fabp22
-    hostname: fabp22
-  fabp23:
-    extends: fabp0
-    environment:
-      - CORE_PEER_ID=fabp23
-    hostname: fabp23
-  fabp24:
-    extends: fabp0
-    environment:
-      - CORE_PEER_ID=fabp24
-    hostname: fabp24
-  fabp25:
-    extends: fabp0
-    environment:
-      - CORE_PEER_ID=fabp25
-    hostname: fabp25
-  fabp26:
-    extends: fabp0
-    environment:
-      - CORE_PEER_ID=fabp26
-    hostname: fabp26
-  fabp27:
-    extends: fabp0
-    environment:
-      - CORE_PEER_ID=fabp27
-    hostname: fabp27
-  fabp28:
-    extends: fabp0
-    environment:
-      - CORE_PEER_ID=fabp28
-    hostname: fabp28
-  fabp29:
-    extends: fabp0
-    environment:
-      - CORE_PEER_ID=fabp29
-    hostname: fabp29
-  fabp30:
-    extends: fabp0
-    environment:
-      - CORE_PEER_ID=fabp30
-    hostname: fabp30
   mariadb1:
     image: 'mariadb:10.1'
     environment:
