@@ -60,10 +60,10 @@ $ btcp miner --num 1
 將節點停止後重開再檢視是否同步並互相發送測試，注意請勿停掉或啟動道場中其他人正在練習的節點。
 ```
 $ btcp info
-$ dcstop
+$ btcpstop
 Stopping 1a_btcp1_1 ... done
 // Waiting for some blockchain change to happen...
-$ dcstart
+$ btcpstart
 Starting btcp1 ... done
 $ btcp info
 { version: 130100,
@@ -104,9 +104,10 @@ $ btcp info
   errors: '' }
 ```
 
-## Level1B Asset
+## Level1B TODO
 
+* UXTO
+* omni
 * bitcoin v0.3.24 2011 network
 * counterparty
 * coloredcoin
-* omni

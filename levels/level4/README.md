@@ -15,13 +15,28 @@ MariaDB資料庫為共用並使用最高權限只供練習體驗，請建立自�
 ```
 $ dmysql -u root -proot
 > CREATE DATABASE mydb1;
+> use mydb1;
 > CREATE TABLE mytable ( id INT PRIMARY KEY, name VARCHAR(34) , balance INT UNSIGNED );
 > INSERT INTO mytable VALUES ( 1, "mpywCp28LcmDHNKxJy9tUuXc1LcXK5gCoT", 1000);
 > INSERT INTO mytable VALUES ( 2, "mjisABTPq6DwgUv4rzBtt1gY44hwBX4zZy", 2000);
 > SELECT * FROM mytable;
+MariaDB [mydb1]> SELECT * FROM mytable;
++----+------------------------------------+---------+
+| id | name                               | balance |
++----+------------------------------------+---------+
+|  1 | mpywCp28LcmDHNKxJy9tUuXc1LcXK5gCoT |    1000 |
+|  2 | mjisABTPq6DwgUv4rzBtt1gY44hwBX4zZy |    2000 |
++----+------------------------------------+---------+
 > START TRANSACTION; UPDATE mytable SET balance=balance-80 WHERE id=1; UPDATE mytable SET balance=balance+80 WHERE id=2; COMMIT;
 > SELECT * FROM mytable;
-exit
+MariaDB [mydb1]> SELECT * FROM mytable;
++----+------------------------------------+---------+
+| id | name                               | balance |
++----+------------------------------------+---------+
+|  1 | mpywCp28LcmDHNKxJy9tUuXc1LcXK5gCoT |     920 |
+|  2 | mjisABTPq6DwgUv4rzBtt1gY44hwBX4zZy |    2080 |
++----+------------------------------------+---------+
+> exit
 ```
 #### T3 NOSQL Database MongoDB
 MongoDB為共用並無權限設定只供練習體驗，請建立自用的資料庫例如db.mongot2等避免與他人練習衝突。

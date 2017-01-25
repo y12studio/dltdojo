@@ -1,3 +1,34 @@
+### 2017-01-25T15:29:26+0800
+4 CPUs / 8 GB / DigitalOcean
+```
+# docker pull y12docker/dltdojo
+# docker run -v $(pwd):/tmp y12docker/dltdojo build --dojo.btc 15 --dojo.eth 15 --dojo.fab 15 --dojo.mariadb 1 --dojo.mongo 1 --name tiguan1
+# docker run -v $(pwd):/tmp y12docker/dltdojo build --bulkuser --num 15 --prefix tg --dojoname tiguan1
+# chmod a+x djsetup.sh ; ./djsetup.sh
+
+// ethp miner --start
+# ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n 20
+  PID  PPID CMD                         %MEM %CPU
+ 7960  4641 /geth --networkid=323509 -- 14.8 61.9
+ 9331  9225 mysqld                       1.9  0.0
+ 8952  4646 /geth --networkid=323509 --  1.8  3.0
+ 9801  4272 /geth --networkid=323509 --  1.8  2.8
+10158  8273 /geth --networkid=323509 --  1.8  3.2
+ 7453  5008 /geth --networkid=323509 --  1.8  3.6
+ 9045  3318 /geth --networkid=323509 --  1.7  3.3
+10087  7042 /geth --networkid=323509 --  1.5  3.6
+ 9813  6226 /geth --networkid=323509 --  1.5  2.9
+10194  8494 /geth --networkid=323509 --  1.4  3.7
+10301  8790 /geth --networkid=323509 --  1.4  2.9
+10009  9594 /geth --networkid=323509 --  1.4  3.6
+10080  8316 /geth --networkid=323509 --  1.4  3.5
+10379  9383 /geth --networkid=323509 --  1.4  2.6
+ 8802  4320 /geth --networkid=323509 --  1.4  3.3
+10174  5538 /geth --networkid=323509 --  1.4  1.7
+ 9781  8618 /geth --networkid=323509 --  1.4  3.7
+ 9082  9051 /geth --networkid=323509 --  1.1  3.7
+ 7824  7767 node index.js start          1.0  0.1
+```
 ### 2017-01-25T11:12:36+0800
 2 GB / 40 GB Disk / SFO2 - Ubuntu 16.04.1 x64 / DigitalOcean
 ```
@@ -14,10 +45,11 @@ docker-compose version 1.10.0, build 4bd6f1a
 # source aliastiguan1.sh
 # dcup
 # dcend
+# apt-get upgrade
 # shutdown -h now
-// Take snapshot
+// make a snapshot
 ```
-Change to 4 GB Memory / 60 GB Disk / SFO2 / snapshot image
+Change to 2 CUPs4 GB Memory / 60 GB Disk / SFO2 / snapshot image
 ```
 # docker run -v $(pwd):/tmp y12docker/dltdojo build --dojo.btc 5 --dojo.eth 5 --dojo.fab 5 --dojo.mariadb 1 --dojo.mongo 1 --name tiguan1
 # docker run -v $(pwd):/tmp y12docker/dltdojo build --bulkuser --num 5 --prefix tg --dojoname tiguan1

@@ -49,8 +49,9 @@ $ ethp info
   ethBalance: '0',
   ethMining: false }
 ```
-
 #### T4 挖礦取得ETH
+
+注意目前私鏈挖礦即使難度低還是會吃去大部分的CPU效能，建議一次只開一個挖礦節點輪流測試，否則其他節點會有嚴重延遲的問題發生。
 
 目前單點私鏈挖礦有時回出現無法同步收發交易的問題，建議ethp1點先進行挖礦，啟動挖礦需等候約1G的挖礦必備檔案下載，等候時間與頻寬有關，第一個區塊應該可在數十分鐘內完成，等到ethp1出塊後再啟動ethp2挖礦，等ethp2下載完畢再關掉ethp1挖礦。
 
@@ -120,14 +121,7 @@ $ ethp hahacoin --address 0x757967a94e7d63f828067a8b0ba5790f670c239d --password 
 #### T5 接收資產
 將合約地址傳給對方由對方依T4方式發送。
 
-## WIP Level2C 非POW共識鏈代幣與資產轉帳
-Proof of Authority Chains https://github.com/ethcore/parity/wiki/Proof-of-Authority-Chains
-
-#### T1 取得帳號地址
-WIP
-
-#### T2 取得代幣轉帳
-WIP
-
-#### T3 部署合約轉帳
-WIP
+## Level2C 非POW共識鏈代幣與資產轉帳
+TODO Proof of Authority Chains https://github.com/ethcore/parity/wiki/Proof-of-Authority-Chains
+## Level2D TheDAO
+TODO slockit/DAO: The Standard DAO Framework  https://github.com/slockit/DAO
