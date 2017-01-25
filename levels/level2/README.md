@@ -131,26 +131,3 @@ WIP
 
 #### T3 部署合約轉帳
 WIP
-
-## SETUP
-
-#### Level2A
-如要避免實際部署網路時間，可使用--dojo.eth 2設定開啟雙點獨立開發模式，不需另外下載DAG檔，開發模式節點不互通無法做跨節點轉帳練習。
-```
-$ mkdir level2 && cd level2
-$ docker run -v $(pwd):/tmp y12docker/dltdojo build --dojo.eth 6 --name 2a
-$ source alias2a.sh
-$ dcup
-// do the 2A tasks
-$ dcend
-```
-#### Level2B
-如要避免實際部署網路時間，可使用--dojo.eth 2設定開啟雙點獨立開發模式，不需另外下載DAG檔，開發模式節點不互通無法做跨節點轉帳練習。
-```
-$ mkdir level2 && cd level2
-$ docker run -v $(pwd):/tmp y12docker/dltdojo build --dojo.eth 2 --name 2b
-$ source alias2b.sh
-$ dcup
-// do the 2B tasks
-$ dcend
-```

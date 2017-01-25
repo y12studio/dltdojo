@@ -2,10 +2,12 @@
 
 環境設置好之後有btcp1-btcp4共計四個節點可操作，下面用btcp1為主。
 
-#### T0 設定使用編號
-根據編號切換操作節點，這裡設定DLTDOJOID=1代表控制節點btcp1，如要控制btcp2則改為DLTDOJOID=2以此類推。
+#### T0 查詢以及設定使用編號
+根據編號切換操作節點，這裡設定DLTDOJOID=1代表控制節點btcp1，如要控制btcp2則改為DLTDOJOID=2以此類推，目前並無權限控管除非確定請勿切換到其他節點操作影響他人。
 ```
 $ DLTDOJOID=1
+$ echo $DLTDOJOID
+1
 ```
 #### T1 取得地址
 ```
@@ -108,13 +110,3 @@ $ btcp info
 * counterparty
 * coloredcoin
 * omni
-
-## SETUP
-```
-$ mkdir level1 && cd level1
-$ docker run -v $(pwd):/tmp y12docker/dltdojo build --dojo.btc 4 --name 1a
-$ source alias1a.sh
-$ dcup
-// do the 1A tasks
-$ dcend
-```

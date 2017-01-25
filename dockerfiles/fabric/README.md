@@ -1,5 +1,7 @@
 https://github.com/hyperledger/fabric
 
+fabric v1.0 issues : https://jira.hyperledger.org/issues/?jql=project%20%3D%20FAB%20AND%20resolution%20%3D%20Unresolved%20AND%20fixVersion%20%3D%20v1.0
+
 https://github.com/hyperledger/fabric/blob/master/docs/dev-setup/build.md
 
 https://jira.hyperledger.org/projects/FAB/issues/FAB-1594?filter=allopenissues

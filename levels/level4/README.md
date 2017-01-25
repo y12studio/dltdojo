@@ -37,12 +37,3 @@ $ dmongo
 { "_id" : ObjectId("588313fd397926cb54d0ceea"), "address" : "mjisABTPq6DwgUv4rzBtt1gY44hwBX4zZy", "balance" : 2100 }
 > exit
 ```
-#### SETUP Level4A
-```
-$ mkdir level4 ; cd level4
-$ docker run -v $(pwd):/tmp y12docker/dltdojo build --dojo.btc 2 --dojo.mariadb 1 --dojo.mongo 1 --name 4a
-$ source alias4a.sh
-$ dcup
-// do the 4A tasks...
-$ dcend
-```

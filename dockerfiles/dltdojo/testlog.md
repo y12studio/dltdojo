@@ -26,7 +26,16 @@ build test
 $ node index.js build --dojo.btc 4 --name foo --path dockerfiles/dltdojo/examples
 $ node index.js build --dojo.eth 6 --name foo --path dockerfiles/dltdojo/examples
 ```
-
+### 2017-01-25T12:04:08+0800
+```
+$ node index.js build --bulkuser --num 3 --prefix tx --dojoname tiguan1 | jq -r .accounts[].script
+useradd -m tx1dlt; echo -e "L1vc3tAhuMCi5YJB\nL1vc3tAhuMCi5YJB" | passwd tx1dlt
+usermod -s /bin/bash tx1dlt;  usermod -aG docker tx1dlt
+sed -e 's/DLTDOJOID=1/DLTDOJOID=1/g' aliastiguan1.sh >> /home/tx1dlt/.bashrc
+cp peerstiguan1.yml /home/tx1dlt/
+$ su - tx1dlt
+$ docker info
+```
 ### 2017-01-24T17:46:43+0800
 ```
 $ node index.js build --bulkuser --num 30 --prefix tg --dojoname tiguan1 | jq .
