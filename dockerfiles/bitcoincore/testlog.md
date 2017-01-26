@@ -1,3 +1,42 @@
+#### 2017-01-26T21:02:35+0800
+```
+$ docker service create --name bitcoin --network devbtcnet --replicas 1 -p 18332:18332 -p 18333:18333 y12docker/dltdojo-bitcoin bitcoind \
+    -rpcallowip=10.0.9.0/24 -txindex -rpcport=18332 -port=18333
+$ docker service create --name bitcoinx3 --network devbtcnet --replicas 3 y12docker/dltdojo-bitcoin bitcoind \
+   -rpcallowip=10.0.9.0/24 -txindex -rpcport=18332 -port=18333 -addnode=bitcoin:18333
+$ docker service create --name dltdojo --network devbtcnet --replicas 1 --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock y12docker/dltdojo start
+$ docker ps --format '{{.Names}}'
+dltdojo.1.wd4lfwi331wv0eyd8lvd8f988
+bitcoinx3.3.os6t1cz5fa6k1775ma1i1qpvm
+bitcoinx3.1.mr75isimd884n509oo3u30g7v
+bitcoinx3.2.ryaqeghbmf1dsob9sgog7th6x
+bitcoin.1.ej4nhhsozdcszf8asxcp739rr
+$ DJID=$(docker ps --format '{{.Names}}' | grep dltdojo.1)
+$ docker exec -t $DJID node index.js docker ps | jq -r .[].Names
+[
+  "/dltdojo.1.wd4lfwi331wv0eyd8lvd8f988"
+]
+[
+  "/bitcoinx3.3.os6t1cz5fa6k1775ma1i1qpvm"
+]
+[
+  "/bitcoinx3.1.mr75isimd884n509oo3u30g7v"
+]
+[
+  "/bitcoinx3.2.ryaqeghbmf1dsob9sgog7th6x"
+]
+[
+  "/bitcoin.1.ej4nhhsozdcszf8asxcp739rr"
+]
+$ docker service rm bitcoinx3
+$ docker exec -t $DJID node index.js docker ps | jq -r .[].Names
+[
+  "/dltdojo.1.wd4lfwi331wv0eyd8lvd8f988"
+]
+[
+  "/bitcoin.1.ej4nhhsozdcszf8asxcp739rr"
+]
+```
 #### 2017-01-26T16:55:21+0800
 ```
 $ docker network inspect devbtcnet

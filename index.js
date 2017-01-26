@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const DBTC = require('./lib/dltbtc')
+const DDOCKER = require('./lib/dltdocker')
 const DIPFS = require('./lib/dltipfs')
 const DETH = require('./lib/dlteth')
 const DU = require('./lib/dltutils')
@@ -98,6 +99,11 @@ function main() {
             command: 'ipfs <method>',
             desc: 'ipfs',
             handler: DIPFS.Args
+        })
+        .command({
+            command: 'docker <method>',
+            desc: 'docker',
+            handler: DDOCKER.Args
         })
         .argv
 }

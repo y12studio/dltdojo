@@ -20,13 +20,134 @@ $ node index.js eth localhost send --to 0x8b8c1c00dc15980434ff4d679103fb21be2058
 $ ethp1 info
 $ edcend
 ```
-
 build test
 ```
 $ node index.js build --dojo.btc 4 --name foo --path dockerfiles/dltdojo/examples
 $ node index.js build --dojo.eth 6 --name foo --path dockerfiles/dltdojo/examples
 ```
+### 2017-01-26T23:15:46+0800
+```
+// docker service create --name dltdojo --network devbtcnet --replicas 1 --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock y12docker/dltdojo start
+$ docker run -t -v /var/run/docker.sock:/var/run/docker.sock y12docker/dltdojo docker dltdojo
+$ docker service ls
+ID            NAME     MODE        REPLICAS  IMAGE
+ua1kepyvok3y  dltdojo  replicated  1/1       y12docker/dltdojo:latest
+$ docker ps --format '{{.Names}}'
+dltdojo.1.ske5vehcvyhzknbhnrt8p70sz
+$ DJID=$(docker ps --format '{{.Names}}' | grep dltdojo.1)
+$ docker exec -it $DJID node index.js docker bitcoin
+$ docker service ls
+ID            NAME     MODE        REPLICAS  IMAGE
+jg8at751m6ab  btcpeer  replicated  3/3       y12docker/dltdojo-bitcoin:latest
+o7g2kf8x3k7t  btcboot  replicated  1/1       y12docker/dltdojo-bitcoin:latest
+ua1kepyvok3y  dltdojo  replicated  1/1       y12docker/dltdojo:latest
+$ docker ps --format '{{.Names}}'
+btcpeer.1.uvp8sd9ln9lt9bvkpjopl905l
+btcboot.1.w3qrfpvl8dvnvzqp1pzu0szsy
+btcpeer.2.o2cyx8rka63fdtgp16jw5awl0
+btcpeer.3.ieo0giz0nusggejdz56vdh4ku
+dltdojo.1.ske5vehcvyhzknbhnrt8p70sz
+$ B31=$(docker ps --format '{{.Names}}' | grep btcpeer.1)
+$ B32=$(docker ps --format '{{.Names}}' | grep btcpeer.2)
+$ docker exec -it $B31 bitcoin-cli getinfo
+$ docker exec -it $DJID node index.js btc $B31 miner --num 19
+$ docker exec -it $B31 bitcoin-cli getinfo
+```
+### 2017-01-26T23:02:48+0800
+```
+$ node index.js docker bitcoin
+$ docker service ls
+ID            NAME     MODE        REPLICAS  IMAGE
+gtqya9rgbukr  btcpeer  replicated  3/3       y12docker/dltdojo-bitcoin:latest
+t2t29zfv2otb  btcboot  replicated  1/1       y12docker/dltdojo-bitcoin:latest
+$  docker ps --format '{{.Names}}'
+btcpeer.3.yphd9dvxm1e37msph69srzx7j
+btcpeer.1.6gqudq6d9gjn0klj2v00sjilj
+btcpeer.2.jvsey2gc97lo1osfl06j9x2rs
+btcboot.1.okrl0lm97vt8lvwykpwspiduv
+$ B31=$(docker ps --format '{{.Names}}' | grep btcpeer.1)
+$ B32=$(docker ps --format '{{.Names}}' | grep btcpeer.2)
+$ docker exec -it $B31 bitcoin-cli getinfo
+{
+  "version": 130100,
+  "protocolversion": 70014,
+  "walletversion": 130000,
+  "balance": 0.00000000,
+  "blocks": 0,
+  "timeoffset": 0,
+  "connections": 1,
+  "proxy": "",
+  "difficulty": 4.656542373906925e-10,
+  "testnet": false,
+  "keypoololdest": 1485443006,
+  "keypoolsize": 100,
+  "paytxfee": 0.00000000,
+  "relayfee": 0.00001000,
+  "errors": ""
+}
+$ docker exec -it $B31 bitcoin-cli generate 5
+[
+  "62b844736606fc75991765a0f6dfd1006b2c16e7a2e446d828cfe2fd812f54de",
+  "49529fa5793d84764e0725e1d12e97ad005bc7e8f3e1848cc44474e107cd54ef",
+  "0bb0456eac0f622e2fabc581bc5644f1d1da000ebb9edc4cc44e774341fa1f4d",
+  "039c5be9699badcd188b423790361658aeaeaee92fc92a4e090995fb2572c9f9",
+  "4958a2a4c897b164d074931565a4d374b3f607c3f15ff0035456d99033197be5"
+]
+$ docker exec -it $B32 bitcoin-cli generate 2
+[
+  "028058596d311b099533dff17f014fcbab5c638ebd51b0cad22373bdbc551811",
+  "6eae38eb677d5431ea146deccc5d6552e912ad5fd0352e07c40de83c1d2f6e0e"
+]
+$ docker exec -it $B32 bitcoin-cli getinfo
+{
+  "version": 130100,
+  "protocolversion": 70014,
+  "walletversion": 130000,
+  "balance": 0.00000000,
+  "blocks": 7,
+  "timeoffset": 0,
+  "connections": 1,
+  "proxy": "",
+  "difficulty": 4.656542373906925e-10,
+  "testnet": false,
+  "keypoololdest": 1485443006,
+  "keypoolsize": 100,
+  "paytxfee": 0.00000000,
+  "relayfee": 0.00001000,
+  "errors": ""
+}
+$ docker service rm btcpeer
+btcpeer
+$ docker service rm btcboot
+btcboot
+```
+### 2017-01-26T20:20:38+0800
+```
+$ npm i dockerode -S
+$ source alias.sh
+$ build
+$ drun docker ps | jq .[].Names
+[
+  "/dreamy_euclid"
+]
+[
+  "/2b_ethp2_1"
+]
+[
+  "/2b_bootnode_1"
+]
+[
+  "/2b_dltdojo_1"
+]
+[
+  "/2b_ethp0_1"
+]
+[
+  "/2b_ethp1_1"
+]
 
+
+```
 ### 2017-01-26T08:31:56+0800
 tag v0.0.1
 ```

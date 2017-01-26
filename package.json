@@ -27,6 +27,7 @@
     "bitcoin-core": "^1.1.0",
     "bitcore-lib": "^0.13.19",
     "bluebird": "^3.4.7",
+    "dockerode": "^2.3.1",
     "ipfs-mini": "^1.0.2",
     "jayson": "^2.0.2",
     "keythereum": "0.3.2",
