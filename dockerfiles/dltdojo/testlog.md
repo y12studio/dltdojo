@@ -26,6 +26,82 @@ build test
 $ node index.js build --dojo.btc 4 --name foo --path dockerfiles/dltdojo/examples
 $ node index.js build --dojo.eth 6 --name foo --path dockerfiles/dltdojo/examples
 ```
+
+### 2017-01-26T08:31:56+0800
+tag v0.0.1
+```
+$ git log --pretty=oneline | head -n 3
+ec1467cd8d60680417eb6739efab8045d39e1bee updated tiguan1 event
+1361e29dd0e89ef433c01a87843adbe5f4d3c920 updated events tiguan1 hyperledger/fabric-ccenv:x86_64-0.7.0-snapshot-75a4c82 not found issue
+bc3ad104f724cc1e1ebe3bd4a1b55467e549e3c4 updated levels readme
+$ git tag -a v0.0.1 ec1467cd8d -m 'TiGuan1'
+$ git push --tags origin master
+```
+https://docs.docker.com/engine/reference/commandline/service_create/
+```
+$ docker version
+Client:
+ Version:      1.13.0
+ API version:  1.25
+ Go version:   go1.7.3
+ Git commit:   49bf474
+ Built:        Tue Jan 17 09:50:17 2017
+ OS/Arch:      linux/amd64
+
+Server:
+ Version:      1.13.0
+ API version:  1.25 (minimum version 1.12)
+ Go version:   go1.7.3
+ Git commit:   49bf474
+ Built:        Tue Jan 17 09:50:17 2017
+ OS/Arch:      linux/amd64
+ Experimental: false
+
+$ docker swarm init
+Swarm initialized: current node (dttwth4v7hkgrw9lm02uxcdjb) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join \
+    --token SWMTKN-1-55o1i56cacdocz5e8qcy210h5ud3yyozfbqjveom8bfnqnoal8-19uguutg4ewghnh442oq6zxz7 \
+    192.168.2.73:2377
+
+$ docker swarm join-token manager
+To add a manager to this swarm, run the following command:
+
+    docker swarm join \
+    --token SWMTKN-1-55o1i56cacdocz5e8qcy210h5ud3yyozfbqjveom8bfnqnoal8-3yyorggqxl1lgmda30kpubanr \
+    192.168.2.73:2377
+$ docker node ls
+ID                           HOSTNAME  STATUS  AVAILABILITY  MANAGER STATUS
+dttwth4v7hkgrw9lm02uxcdjb *  ubuntu73  Ready   Active        Leader
+$ docker service create --name redis --replicas 2 --publish 6379:6379 redis
+$ docker service ls
+ID            NAME   REPLICAS  IMAGE  COMMAND
+2udmmowcy0ir  redis  2/2       redis
+$ docker service ps 2udmm
+ID                         NAME     IMAGE  NODE      DESIRED STATE  CURRENT STATE           ERROR
+33hs2kgqe4ebo5kx9vaq37xvr  redis.1  redis  ubuntu73  Running        Running 22 minutes ago
+23p0ounnzpagsn8vavqeyh4jj  redis.2  redis  ubuntu73  Running        Running 22 minutes ago
+$ docker service rm redis
+redis
+$ docker service create --name dltdojo -p 18168:18168 y12docker/dltdojo start
+$ ds ls
+ID            NAME     MODE        REPLICAS  IMAGE
+jidxc7ddg5ox  dltdojo  replicated  1/1       y12docker/dltdojo:latest
+$ ds ps jidx
+ID            NAME       IMAGE                     NODE      DESIRED STATE  CURRENT STATE          ERROR  PORTS
+tbahum1v0qfr  dltdojo.1  y12docker/dltdojo:latest  ubuntu73  Running        Running 2 minutes ago
+// https://github.com/docker/docker/issues/23710
+$ docker inspect --format "{{.Status.ContainerStatus.ContainerID}}" tbahum1v0qfr
+5f7d3c1b60f37505b0c54211f062d22d85477ff3bbf3a00b258798a8a3b74c03
+$ docker logs 5f7d3c1b60f3750
+$ $ curl http://192.168.2.73:18168/
+Method Not Allowed
+$ ds rm dltdojo
+$ curl http://192.168.2.73:18168/
+curl: (7) Failed to connect to 192.168.2.73 port 18168: Connection refused
+```
 ### 2017-01-25T12:04:08+0800
 ```
 $ node index.js build --bulkuser --num 3 --prefix tx --dojoname tiguan1 | jq -r .accounts[].script

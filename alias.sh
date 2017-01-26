@@ -1,6 +1,7 @@
 # Distributed Ledger Technology Dojo (DLTDOJO)
 # https://github.com/y12studio/dltdojo
 DCNAME=ddj
+alias ds='docker service'
 alias bdc='docker-compose -p $DCNAME -f dockerfiles/dltdojo/btc.yml'
 alias edc='docker-compose -p $DCNAME -f dockerfiles/dltdojo/eth.yml'
 alias fdc='docker-compose -p $DCNAME -f dockerfiles/dltdojo/fab.yml'

@@ -8,7 +8,7 @@ $ docker push y12docker/dltdojo:latest
 #### Wed Jan 11 07:30:34 CST 2017
 ```
 $ docker build -t y12docker/dltdojo .
-$ docker push y12docker/dltdojo
+$ docker push y12docker/dltdojo:latest
 ```
 
 #### y12docker/dltdojo:0.0.5
