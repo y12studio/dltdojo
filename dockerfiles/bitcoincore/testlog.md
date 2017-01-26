@@ -1,3 +1,85 @@
+#### 2017-01-26T16:55:21+0800
+```
+$ docker network inspect devbtcnet
+$ docker service create --name bitcoin --network devbtcnet --replicas 1 -p 18332:18332 -p 18333:18333 y12docker/dltdojo-bitcoin bitcoind \
+    -rpcallowip=10.0.9.0/24 -txindex -rpcport=18332 -port=18333
+$ docker service create --name bitcoinx3 --network devbtcnet --replicas 3 y12docker/dltdojo-bitcoin bitcoind \
+   -rpcallowip=10.0.9.0/24 -txindex -rpcport=18332 -port=18333 -addnode=bitcoin:18333
+$ docker service create --name dltdojo --network devbtcnet --replicas 1 y12docker/dltdojo start
+$ docker service ls
+7ult86xivyc8  dltdojo    replicated  1/1       y12docker/dltdojo:latest
+ul0s72my1zz0  bitcoinx3  replicated  3/3       y12docker/dltdojo-bitcoin:latest
+x5v0y0i9kcj3  bitcoin    replicated  1/1       y12docker/dltdojo-bitcoin:latest
+$ docker ps --format '{{.Names}}'
+bitcoinx3.3.6lwypey0b76vif73uoj9kd14q
+bitcoinx3.2.6zxdtknaeef64k6up1hc6fowk
+bitcoinx3.1.va1b3t2zyqm7ki72107bldlth
+bitcoin.1.28sd285r8qjubu8me99iyaz4g
+dltdojo.1.dc6gu4qx4yj9vuo0t97noy9kl
+$ docker exec -it dltdojo.1.dc6gu4qx4yj9vuo0t97noy9kl node index.js btc bitcoinx3.1.va1b3t2zyqm7ki72107bldlth account --new
+mqApuvTVAkRQwNa84aLx3fVrREzdFb2eof
+$ DID=$(docker ps --format '{{.Names}}' | grep dltdojo.1)
+$ B31=$(docker ps --format '{{.Names}}' | grep bitcoinx3.1)
+$ B32=$(docker ps --format '{{.Names}}' | grep bitcoinx3.2)
+$ docker exec -it $DID node index.js btc $B31 account --new
+$ docker exec -it $DID node index.js btc $B32 account --new
+$ docker exec -it $DID node index.js btc $B32 miner --num 101
+$ docker exec -it $DID node index.js btc $B32 info
+{ version: 130100,
+  protocolversion: 70014,
+  walletversion: 130000,
+  balance: 50,
+  blocks: 101,
+  timeoffset: 0,
+  connections: 1,
+  proxy: '',
+  difficulty: 4.656542373906925e-10,
+  testnet: false,
+  keypoololdest: 1485418810,
+  keypoolsize: 100,
+  paytxfee: 0,
+  relayfee: 0.00001,
+  errors: '' }
+```
+#### 2017-01-26T16:35:04+0800
+hostname template
+```
+$ docker service create --name bitcoin --network devbtcnet --replicas 1 -p 18332:18332 -p 18333:18333 y12docker/dltdojo-bitcoin bitcoind \
+   -rpcallowip=10.0.9.0/24 -txindex -rpcport=18332 -port=18333
+$ docker service create --name bitcoinx3 --network devbtcnet --replicas 3 --hostname="{{.Service.Name}}-{{.Task.Slot}}" y12docker/dltdojo-bitcoin bitcoind \
+   -rpcallowip=10.0.9.0/24 -txindex -rpcport=18332 -port=18333 -addnode=bitcoin:18333
+$ docker ps
+$ alias bc31='docker exec -it 3b616868ab9e'
+$ alias bc32='docker exec -it bd0d9c9231fd'
+$ bc31 hostname
+bitcoinx3-1
+
+$ bc32 ping bitconx3-1
+ping: bad address 'bitconx3-1'
+
+$ bc32 ping bitcoinx3.1.va1b3t2zyqm7ki72107bldlth
+PING bitcoinx3.1.va1b3t2zyqm7ki72107bldlth (10.0.9.5): 56 data bytes
+64 bytes from 10.0.9.5: seq=0 ttl=64 time=0.245 ms
+64 bytes from 10.0.9.5: seq=1 ttl=64 time=0.081 ms
+
+$ bc32 nslookup tasks.bitcoinx3
+nslookup: can't resolve '(null)': Name does not resolve
+
+Name:      tasks.bitcoinx3
+Address 1: 10.0.9.6 bitcoinx3-2
+Address 2: 10.0.9.7 bitcoinx3.3.6lwypey0b76vif73uoj9kd14q.devbtcnet
+Address 3: 10.0.9.5 bitcoinx3.1.va1b3t2zyqm7ki72107bldlth.devbtcnet
+
+$ bc31 nslookup tasks.bitcoinx3
+nslookup: can't resolve '(null)': Name does not resolve
+
+Name:      tasks.bitcoinx3
+Address 1: 10.0.9.5 bitcoinx3-1
+Address 2: 10.0.9.6 bitcoinx3.2.6zxdtknaeef64k6up1hc6fowk.devbtcnet
+Address 3: 10.0.9.7 bitcoinx3.3.6lwypey0b76vif73uoj9kd14q.devbtcnet
+
+```
+
 #### 2017-01-26T13:34:46+0800
 ```
 $ docker network inspect devbtcnet
@@ -96,6 +178,12 @@ $ dj node index.js btc bitcoin info
   paytxfee: 0,
   relayfee: 0.00001,
   errors: '' }
+$ docker ps --format '{{.Names}}'
+dltdojo.1.dc6gu4qx4yj9vuo0t97noy9kl
+bitcoinx3.3.ubcuxkvok36j1j5n5b5l9rbqr
+bitcoinx3.2.1050f3x0mhh28r52xjy0iw29d
+bitcoinx3.1.s91pynv49g006iws6v7kmc4y1
+bitcoin.1.4xjgiqe3g1a6qrq816uu1w1fg
 ```
 #### 2017-01-26T12:40:29+0800
 ```
