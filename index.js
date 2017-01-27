@@ -101,7 +101,7 @@ function main() {
             handler: DIPFS.Args
         })
         .command({
-            command: 'docker <method>',
+            command: 'docker <cmd1> [cmd2] [id]',
             desc: 'docker',
             handler: DDOCKER.Args
         })

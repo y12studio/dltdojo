@@ -25,6 +25,107 @@ build test
 $ node index.js build --dojo.btc 4 --name foo --path dockerfiles/dltdojo/examples
 $ node index.js build --dojo.eth 6 --name foo --path dockerfiles/dltdojo/examples
 ```
+### 2017-01-27T15:03:20+0800
+```
+$ docker network inspect devbtcnet
+[
+    {
+        "Name": "devbtcnet",
+        "Id": "ucne49s491tv53uhnlgxfjntx",
+        "Created": "0001-01-01T00:00:00Z",
+        "Scope": "swarm",
+        "Driver": "overlay",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "10.0.9.0/24",
+                    "Gateway": "10.0.9.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Containers": null,
+        "Options": {
+            "com.docker.network.driver.overlay.vxlanid_list": "4096"
+        },
+        "Labels": null
+    }
+]
+$ source alias.sh
+$ node index.js docker service create dltdojo
+$ node index.js docker service create btcboot
+$ node index.js docker service create btcpeer --dojo.btc 6
+$ docker service ls
+ID            NAME     MODE        REPLICAS  IMAGE
+180nbspyct7m  btcpeer  replicated  6/6       y12docker/dltdojo-bitcoin:latest
+kxf23rjfwe33  dltdojo  replicated  1/1       y12docker/dltdojo:latest
+vp5n0udrr2dg  btcboot  replicated  1/1       y12docker/dltdojo-bitcoin:latest
+$ docker service rm btcpeer
+$ docker service rm btcboot
+$ docker service rm dltdojo
+$ docker push y12docker/dltdojo:latest
+$ djrun docker service create dltdojo
+$ djrun docker service create btcboot
+$ djrun docker service create btcpeer --dojo.btc 8
+$ docker service ls
+ID            NAME     MODE        REPLICAS  IMAGE
+exmo6xccpett  btcboot  replicated  1/1       y12docker/dltdojo-bitcoin:latest
+v8adsisnqj07  btcpeer  replicated  8/8       y12docker/dltdojo-bitcoin:latest
+zhqplyzq8b79  dltdojo  replicated  1/1       y12docker/dltdojo:latest
+$ djexec docker ps | jq .[].Names
+[
+  "/btcpeer.2.l4vcnx4165xicf9cm0eykfqc7"
+]
+[
+  "/btcpeer.4.g8xue371xd704qewtgt3emec0"
+]
+[
+  "/btcpeer.3.yum10jbasrs18dxbr72sii3lv"
+]
+[
+  "/btcpeer.5.kb8zfjkjtq306ehgmibuntb73"
+]
+[
+  "/btcpeer.8.16lmlayl6d0tuiozxebwb8usg"
+]
+[
+  "/btcpeer.6.up65qizfjfep5jt4vi58r9vky"
+]
+[
+  "/btcpeer.7.rpvplpefdyyw1ka22gk95n8fc"
+]
+[
+  "/btcpeer.1.i910digj3m4wd3c5s0ykyyivp"
+]
+[
+  "/btcboot.1.tna9sia1hp8qlhdfui552fgbe"
+]
+[
+  "/dltdojo.1.okxnlcqsefasya3vydl80p3bn"
+]
+$ djexec btc btcpeer.7.rpvplpefdyyw1ka22gk95n8fc account --new
+$ djexec btc btcpeer.7.rpvplpefdyyw1ka22gk95n8fc miner --num 5
+$ djexec btc btcpeer.8.16lmlayl6d0tuiozxebwb8usg info
+{ version: 130100,
+  protocolversion: 70014,
+  walletversion: 130000,
+  balance: 0,
+  blocks: 5,
+  timeoffset: 0,
+  connections: 1,
+  proxy: '',
+  difficulty: 4.656542373906925e-10,
+  testnet: false,
+  keypoololdest: 1485503570,
+  keypoolsize: 100,
+  paytxfee: 0,
+  relayfee: 0.00001,
+  errors: '' }
+```
 ### 2017-01-26T23:15:46+0800
 ```
 // docker service create --name dltdojo --network devbtcnet --replicas 1 --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock y12docker/dltdojo start

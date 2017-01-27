@@ -2,7 +2,8 @@
 # https://github.com/y12studio/dltdojo
 DCNAME=ddj
 alias build='docker build -t y12docker/dltdojo .'
-alias drun='docker run -t -v /var/run/docker.sock:/var/run/docker.sock y12docker/dltdojo'
+alias djrun='docker run -t -v /var/run/docker.sock:/var/run/docker.sock y12docker/dltdojo'
+alias djexec='DJID=$(docker ps --format "{{.Names}}" | grep dltdojo.1); docker exec -t $DJID node index.js'
 alias ds='docker service'
 alias bdc='docker-compose -p $DCNAME -f dockerfiles/dltdojo/btc.yml'
 alias edc='docker-compose -p $DCNAME -f dockerfiles/dltdojo/eth.yml'
