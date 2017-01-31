@@ -25,6 +25,34 @@ build test
 $ node index.js build --dojo.btc 4 --name foo --path dockerfiles/dltdojo/examples
 $ node index.js build --dojo.eth 6 --name foo --path dockerfiles/dltdojo/examples
 ```
+### 2017-01-31T09:09:11+0800
+```
+$ node index.js service dltdojo --new --network devbtcnet
+{"id":"mkqpz246g3tgysmad45imcfnm"}
+
+$ node index.js service btcboot --new --network devbtcnet
+{"id":"hkl8sdsxj1g3sn5vw4wyg4muz"}
+$ node index.js service btcpeer --new --network devbtcnet --dojo.btc 6
+{"id":"qz8upiyjoc0df50oukct3nb4l"}
+$ docker service ls
+ID            NAME     MODE        REPLICAS  IMAGE
+hkl8sdsxj1g3  btcboot  replicated  1/1       y12docker/dltdojo-bitcoin:latest
+mkqpz246g3tg  dltdojo  replicated  1/1       y12docker/dltdojo:latest
+qz8upiyjoc0d  btcpeer  replicated  6/6       y12docker/dltdojo-bitcoin:latest
+$ source alias.sh
+$ djexec docker ps | jq .[].Names
+...
+[
+  "/btcpeer.1.sn8z8rdf7x8zwy9co9a4g7jrb"
+]
+[
+  "/btcpeer.4.vwwb0aresqufu85kyqk854dbq"
+]
+...
+$ djexec btc btcpeer.1.sn8z8rdf7x8zwy9co9a4g7jrb account --new
+$ djexec btc btcpeer.1.sn8z8rdf7x8zwy9co9a4g7jrb miner --num 5
+$ djexec btc btcpeer.4.vwwb0aresqufu85kyqk854dbq info
+```
 ### 2017-01-27T15:03:20+0800
 ```
 $ docker network inspect devbtcnet

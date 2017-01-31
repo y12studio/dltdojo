@@ -101,7 +101,15 @@ function main() {
             handler: DIPFS.Args
         })
         .command({
-            command: 'docker <cmd1> [cmd2] [id]',
+            command: 'service <serviceName>',
+            desc: 'docker service',
+            builder: (yargs) => {
+                yargs.demandOption(['network'])
+            },
+            handler: DDOCKER.ServiceArgs
+        })
+        .command({
+            command: 'docker <cmd1> [cmd2] [cmd3]',
             desc: 'docker',
             handler: DDOCKER.Args
         })
