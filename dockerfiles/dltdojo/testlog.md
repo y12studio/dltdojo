@@ -25,6 +25,57 @@ build test
 $ node index.js build --dojo.btc 4 --name foo --path dockerfiles/dltdojo/examples
 $ node index.js build --dojo.eth 6 --name foo --path dockerfiles/dltdojo/examples
 ```
+### 2017-01-31T19:10:24+0800
+```
+$ node index.js service dltdojo --start --network devbtcnet
+$ node index.js service ethboot --start --network devbtcnet
+$ node index.js service ethpeer --start --network devbtcnet --dojo.eth 6
+$ docker ps --format '{{.Names}}'
+ethpeer.4.yp41c6dc38xsfck815i6cfrbc
+ethpeer.3.xxw39oi49h04by1ug4x5fxmkh
+ethpeer.2.d1po8um6pkts5afp7njwu6m0o
+ethpeer.6.anxd6sa2d34q3xgkxmz0bij4z
+ethpeer.5.jwc7k597oocta87fi5kq9y8to
+ethpeer.1.yh6op19jak3sd5o06jfc0ujwo
+dltdojo.1.ozeqe4t2cc23fil8qpg2u1w5c
+ethboot.1.unqn4cop3i79ryju3ye6xr9v6
+$ djexec eth ethpeer.5.jwc7k597oocta87fi5kq9y8to info
+{ hostname: 'ethpeer.5.jwc7k597oocta87fi5kq9y8to',
+  ethBlockNumber: 0,
+  ethCoinbase: null,
+  ethAccounts: 0,
+  ethSyncing: false,
+  netPeerCount: 2,
+  ethBalance: 0,
+  ethMining: false }
+$ djexec eth ethpeer.5.jwc7k597oocta87fi5kq9y8to account --new --password pass5
+$ djexec eth ethpeer.5.jwc7k597oocta87fi5kq9y8to miner --start
+$ djexec eth ethpeer.5.jwc7k597oocta87fi5kq9y8to info
+$ djexec eth ethpeer.2.d1po8um6pkts5afp7njwu6m0o info
+$ node index.js service eth --start --network devbtcnet --dojo.eth 3
+{"id":"j8zp13ofcgazbrtkmk1ibwjsh"}
+{"id":"xnlh1mgcefjznpwjfeuka6spb"}
+lin@ubuntu73:~/git/dltdojo$ docker service ls
+ID            NAME     MODE        REPLICAS  IMAGE
+j8zp13ofcgaz  ethboot  replicated  1/1       y12docker/dltdojo-ethgo:latest
+soo0c7vpr25x  dltdojo  replicated  1/1       y12docker/dltdojo:latest
+xnlh1mgcefjz  ethpeer  replicated  3/3       y12docker/dltdojo-ethgo:latest
+$ node index.js service eth --stop
+```
+### 2017-01-31T18:22:02+0800
+```
+$ node index.js service dltdojo --start --network devbtcnet
+$ node index.js service btc --start --network devbtcnet --dojo.btc 6
+$ node index.js service btc --stop
+$ node index.js service dltdojo --stop
+$ docker build -t y12docker/dltdojo .
+$ docker push y12docker/dltdojo:latest
+$ source alias.sh
+$ djrun service dltdojo --start --network devbtcnet
+$ djrun service btc --start --network devbtcnet --dojo.btc 6
+$ djrun service btc --stop
+$ djrun service dltdojo --stop
+```
 ### 2017-01-31T09:09:11+0800
 ```
 $ node index.js service dltdojo --new --network devbtcnet

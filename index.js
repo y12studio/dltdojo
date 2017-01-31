@@ -104,7 +104,7 @@ function main() {
             command: 'service <serviceName>',
             desc: 'docker service',
             builder: (yargs) => {
-                yargs.demandOption(['network'])
+                //yargs.demandOption(['network'])
             },
             handler: DDOCKER.ServiceArgs
         })
