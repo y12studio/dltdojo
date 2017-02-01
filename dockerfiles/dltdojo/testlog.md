@@ -25,6 +25,54 @@ build test
 $ node index.js build --dojo.btc 4 --name foo --path dockerfiles/dltdojo/examples
 $ node index.js build --dojo.eth 6 --name foo --path dockerfiles/dltdojo/examples
 ```
+### 2017-02-01T09:06:32+0800
+```
+$ node index.js service dltdojo --start --network devbtcnet
+$ node index.js service dojo --start --network devbtcnet --dojo.btc 5 --dojo.eth 3
+$ docker service ls
+ID            NAME     MODE        REPLICAS  IMAGE
+6354n5wwwped  ethboot  replicated  1/1       y12docker/dltdojo-ethgo:latest
+ilek011p8uxp  btcboot  replicated  1/1       y12docker/dltdojo-bitcoin:latest
+m7zopcnvrhxr  ethpeer  replicated  3/3       y12docker/dltdojo-ethgo:latest
+pvcmyhs3oz9i  dltdojo  replicated  1/1       y12docker/dltdojo:latest
+tdzlgl7o2mm0  btcpeer  replicated  5/5       y12docker/dltdojo-bitcoin:latest
+$ node index.js service btc --stop
+$ node index.js service eth --stop
+// node index.js service dojo --stop
+$ docker service ls
+ID            NAME     MODE        REPLICAS  IMAGE
+pvcmyhs3oz9i  dltdojo  replicated  1/1       y12docker/dltdojo:latest
+$ docker build -t y12docker/dltdojo .
+$ docker push y12docker/dltdojo:latest
+$ djrun service dltdojo --start --network devbtcnet
+$ djexec service dojo --start --network devbtcnet --dojo.btc 4 --dojo.eth 3
+$ docker ps --format '{{.Names}}'
+ethpeer.3.2m1qktfz3ultufox0xlcb7vui
+ethboot.1.gewy7v7bak8k3w8msonqvlz3b
+ethpeer.1.zhd0xrp4wuu1pb8e6k12vxb5j
+ethpeer.2.y6nbwe9ru45jtslgej3nottbg
+btcpeer.3.k7uezs7snjbur9xu4500bdskk
+btcpeer.4.tv1g73q1m60cw4i4kgokc3uyv
+btcpeer.2.6zix0f0n4faygxtelabnc4ggo
+btcboot.1.lutk7mzrni829s298oj999kaj
+btcpeer.1.ir687j3z9wcvka28r3qso584o
+dltdojo.1.n8t8ylenpl0jpxazufhmi5mg3
+$ djexec btc btcpeer.3.k7uezs7snjbur9xu4500bdskk account --new
+mpYTkserNKwrGKHMNVKF8qLeG3ShNp6KMB
+$ djexec eth ethpeer.2.y6nbwe9ru45jtslgej3nottbg account --new --password pass2
+0x75c509a0947f31c7e07d38e40697ef66cb1f2157
+$ djexec eth ethpeer.2.y6nbwe9ru45jtslgej3nottbg info
+{ hostname: 'ethpeer.2.y6nbwe9ru45jtslgej3nottbg',
+  ethBlockNumber: 0,
+  ethCoinbase: '0x75c509a0947f31c7e07d38e40697ef66cb1f2157',
+  ethAccounts: 1,
+  ethSyncing: false,
+  netPeerCount: 3,
+  ethBalance: '0',
+  ethMining: false }
+$ djexec service dojo --stop
+$ docker service rm dltdojo
+```
 ### 2017-01-31T19:10:24+0800
 ```
 $ node index.js service dltdojo --start --network devbtcnet
@@ -55,7 +103,7 @@ $ djexec eth ethpeer.2.d1po8um6pkts5afp7njwu6m0o info
 $ node index.js service eth --start --network devbtcnet --dojo.eth 3
 {"id":"j8zp13ofcgazbrtkmk1ibwjsh"}
 {"id":"xnlh1mgcefjznpwjfeuka6spb"}
-lin@ubuntu73:~/git/dltdojo$ docker service ls
+$ docker service ls
 ID            NAME     MODE        REPLICAS  IMAGE
 j8zp13ofcgaz  ethboot  replicated  1/1       y12docker/dltdojo-ethgo:latest
 soo0c7vpr25x  dltdojo  replicated  1/1       y12docker/dltdojo:latest
