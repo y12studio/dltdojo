@@ -1,3 +1,5 @@
+## Deprecated
+
 ## Level2A ETH 轉帳任務
 
 環境設置好之後有ethp1-ethp6共計5個節點可操作，下面用ethp1為主，以ethp1/ethp2為採礦點，請注意兩個ETH挖礦點需要下載約2G的資料。

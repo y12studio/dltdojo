@@ -1,3 +1,5 @@
+## Deprecated
+
 ## Level1A 比特幣轉帳
 
 環境設置好之後有btcp1-btcp4共計四個節點可操作，下面用btcp1為主。

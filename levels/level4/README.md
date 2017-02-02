@@ -1,3 +1,5 @@
+## Deprecated
+
 ## Level4A SQL/NOSQL/DLT 混合體驗
 
 Bitcoinx10/MariaDBx1/MongoDBx1

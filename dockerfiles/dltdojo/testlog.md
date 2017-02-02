@@ -25,6 +25,62 @@ build test
 $ node index.js build --dojo.btc 4 --name foo --path dockerfiles/dltdojo/examples
 $ node index.js build --dojo.eth 6 --name foo --path dockerfiles/dltdojo/examples
 ```
+### 2017-02-02T13:05:06+0800
+```
+$ node index.js service tiguan2 --start --network devbtcnet
+$ docker ps --format "{{.Names}}"
+dltdojo.1.vnu19yr8sx7xrodf4tvrn218q
+btcpeer.3.a9yilzvhqa9eqagud6u6tgzbx
+ethboot.1.u69sbg18f3wkw7r7ha2s0gh7z
+ethpeer.2.owi20cgio0wpbe98rwerug5x1
+mongo.1.iuucwsu97r75mkkn3rb6a5w23
+mariadb.1.6ezep05ei0h1sjwpd40i25c3b
+ethpeer.1.g1l2tdw5ahhk6pw3dm5bp2io3
+btcpeer.2.pfxf2004jlusxia73hxaqo2i6
+btcpeer.1.6o6xlel9b3hiaqtzy05la2f9q
+ethpeer.3.w92ykzn0zhsqy1wgelkn4ngip
+btcboot.1.sppw87nh83s8rjg5h2hqq2erf
+$ node index.js service tiguan2 --stop
+```
+### 2017-02-02T12:58:23+0800
+```
+$ node index.js service mariadb --start --network devbtcnet
+$ docker ps --format "{{.Names}}"
+mariadb.1.08qo72gee6xvw76g50cmy7cw3
+$ docker exec -it mariadb.1.08qo72gee6xvw76g50cmy7cw3 mysql -u root -proot
+$ node index.js service mariadb --stop
+$ node index.js service mongo --start --network devbtcnet
+$ docker ps --format "{{.Names}}"
+mongo.1.hz4lztdngjl6w1ftr2rmqukll
+$ docker exec -it mongo.1.hz4lztdngjl6w1ftr2rmqukll mongo --version
+MongoDB shell version v3.4.1
+git version: 5e103c4f5583e2566a45d740225dc250baacfbd7
+OpenSSL version: OpenSSL 1.0.1t  3 May 2016
+allocator: tcmalloc
+modules: none
+build environment:
+    distmod: debian81
+    distarch: x86_64
+    target_arch: x86_64
+$ node index.js service mongo --stop
+```
+### 2017-02-01T19:51:56+0800
+```
+$ node index.js service dojo --start --network devbtcnet --dojo.btc 5 --dojo.eth 3
+{"id":"j9pgsm0vdox4c9bn61glrdfbf"}
+{"id":"hbzwh8h2s2xc633easj00zyf9"}
+{"id":"2tm3dkwyk05mkjoflv5b6jw9z"}
+{"id":"kyylndxvjq1q9b35e4dyudp3w"}
+{"id":"qg442650dqe9pifjmjufp1j7d"}
+$ docker service ls
+ID            NAME     MODE        REPLICAS  IMAGE
+2tm3dkwyk05m  ethboot  replicated  1/1       y12docker/dltdojo-ethgo:latest
+hbzwh8h2s2xc  btcboot  replicated  1/1       y12docker/dltdojo-bitcoin:latest
+j9pgsm0vdox4  dltdojo  replicated  1/1       y12docker/dltdojo:latest
+kyylndxvjq1q  btcpeer  replicated  5/5       y12docker/dltdojo-bitcoin:latest
+qg442650dqe9  ethpeer  replicated  3/3       y12docker/dltdojo-ethgo:latest
+$ node index.js service dojo --stop
+```
 ### 2017-02-01T09:06:32+0800
 ```
 $ node index.js service dltdojo --start --network devbtcnet
