@@ -1,45 +1,39 @@
-## TEST TASK
-
-btc test
-```
-$ bdcup
-$ node index.js btc localhost info
-$ node index.js btc localhost account --new
-$ node index.js btc localhost account --dumpkey --address xxxxx
-$ node index.js btc localhost miner --num 10
-$ node index.js btc localhost send --to mpywCp28LcmDHNKxJy9tUuXc1LcXK5gCoT --btc 1.88
-$ btcp1 info
-$ bdcend
-```
-eth test
-```
-$ edcup
-$ node index.js eth localhost info
-$ node index.js eth localhost account --new --password p1pass
-$ node index.js eth localhost send --to 0x8b8c1c00dc15980434ff4d679103fb21be205816 --eth 3.6 --password p1pass
-$ ethp1 info
-$ edcend
-```
-build test
-```
-$ node index.js build --dojo.btc 4 --name foo --path dockerfiles/dltdojo/examples
-$ node index.js build --dojo.eth 6 --name foo --path dockerfiles/dltdojo/examples
-```
 ### 2017-02-02T13:05:06+0800
 ```
 $ node index.js service tiguan2 --start --network devbtcnet
 $ docker ps --format "{{.Names}}"
-dltdojo.1.vnu19yr8sx7xrodf4tvrn218q
-btcpeer.3.a9yilzvhqa9eqagud6u6tgzbx
-ethboot.1.u69sbg18f3wkw7r7ha2s0gh7z
-ethpeer.2.owi20cgio0wpbe98rwerug5x1
-mongo.1.iuucwsu97r75mkkn3rb6a5w23
-mariadb.1.6ezep05ei0h1sjwpd40i25c3b
-ethpeer.1.g1l2tdw5ahhk6pw3dm5bp2io3
-btcpeer.2.pfxf2004jlusxia73hxaqo2i6
-btcpeer.1.6o6xlel9b3hiaqtzy05la2f9q
-ethpeer.3.w92ykzn0zhsqy1wgelkn4ngip
-btcboot.1.sppw87nh83s8rjg5h2hqq2erf
+ethpeer.1.jq9ikh269iz5bzr9a7q48a83i
+btcpeer.1.emg5k0rbg6xxgbi51a34vz55b
+mongo.1.szarzs9wh77nzl3bs3e5jxj96
+ethboot.1.yhcrrnrvysk7q4so59jvsz68n
+ethpeer.2.u5fncawzrsqy39z9uv3ney6g9
+dltdojo.1.erw7z1nf3gkbre9g777pvbr6r
+mariadb.1.vh5hzv5jmlxy16d8sc2p6ck5r
+btcpeer.2.ckippelc65gb5icj1wiog92wq
+btcboot.1.5vkdzffwfm3yahod8sbbhqfv3
+ethpeer.3.kzfab7rux5gdfm4ycd6pi35r3
+btcpeer.3.trwc7308o56350ioc9jz6pry7
+$ DJID=$(docker ps --format "{{.Names}}" | grep dltdojo.1)
+$ BTCP1=$(docker ps --format "{{.Names}}" | grep btcpeer.1)
+$ BTCP2=$(docker ps --format "{{.Names}}" | grep btcpeer.2)
+$ alias dj='docker exec -t $DJID node index.js'
+$ dj btc $BTCP1 info
+$ dj btc $BTCP1 account --new
+$ dj btc $BTCP1 account --dumpkey --address mw6U8Rg6nMJa1kpdKz2rjrPh6tDcYDGiMa
+$ dj btc $BTCP1 miner --num 101
+$ dj btc $BTCP1 send --to mpywCp28LcmDHNKxJy9tUuXc1LcXK5gCoT --btc 1.88
+$ dj btc $BTCP2 miner --num 1
+$ dj btc $BTCP1 info
+$ dj btc $BTCP2 info
+$ ETHP1=$(docker ps --format "{{.Names}}" | grep ethpeer.1)
+$ ETHP2=$(docker ps --format "{{.Names}}" | grep ethpeer.2)
+$ dj eth $ETHP1 account --new --password pass1
+$ dj eth $ETHP1 info
+//  ethpexec /keyfind.sh
+$ docker exec -t $ETHP1 /keyfind.sh
+$ dj eth $ETHP1 miner --start
+$ dj eth $ETHP1 send --to 0xa58e7d2b366de5fb352d8f08b1620f226a9c1fed --eth 3.6 --password pass1
+$ dj eth $ETHP1 hahacoin --new --address 0x79c7af8103562bf3740ef40171decfb1d525b0aa --password pass1
 $ node index.js service tiguan2 --stop
 ```
 ### 2017-02-02T12:58:23+0800

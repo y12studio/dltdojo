@@ -6,12 +6,11 @@
 
 ## EVENTS
 
-* [TiGuan1](events/tiguan1/) 踢館壹
 * [TiGuan2](events/tiguan2/) 踢館貳
+* [TiGuan1](events/tiguan1/) 踢館壹
 
 ## TODO
 
-* [Level5](levels/level5/) Dashpay/Monero/Zcash (WIP)
 * [Zcash](dockerfiles/zcash/)
 * [Corda](dockerfiles/corda/)
 * [Chain](dockerfiles/chain/)
