@@ -1,5 +1,38 @@
-build poa images https://github.com/ethcore/parity/wiki/Demo-PoA-tutorial
-
+parity PoA https://github.com/ethcore/parity/wiki/Demo-PoA-tutorial
+### 2017-02-02T19:34:00+0800
+```
+$ source alias.sh
+$ build
+$ docker run -it y12docker/dltdojo-ethparity:1.5.0 /startpoa.sh node0
+NewAccountFromPhrase node0/node0 0x00bd138abd70e2f00903268f3db08f2d25677c9e
+NewAccountFromPhrase user/user 0x004ec07d2329997267ec62b4166639513386f32e
+engine-signer 0x00bd138abd70e2f00903268f3db08f2d25677c9e
+2017-02-02 14:46:05 UTC Starting Parity/v1.5.0-beta-d2e6fc0-20170119/x86_64-linux-gnu/rustc1.14.0
+2017-02-02 14:46:05 UTC State DB configuration: fast
+2017-02-02 14:46:05 UTC Operating mode: active
+2017-02-02 14:46:05 UTC Configured for DemoPoA using AuthorityRound engine
+2017-02-02 14:46:06 UTC Updated conversion rate to Ξ1 = US$10.64 (11188686000 wei/gas)
+2017-02-02 14:46:10 UTC Public node URL: enode://b68825a9978fb8d9fc3b426dd549d78a1aefe20241f385aef3b3b416167b8049510614d4b8e3e0543f8c05c6fb5a59812bfce9e024744c3b48a03ea1af522e51@172.17.0.2:30300
+$ docker run -it y12docker/dltdojo-ethparity:1.5.0 /startpoa.sh node1
+NewAccountFromPhrase node1/node1 0x00aa39d30f0d20ff03a22ccfc30b7efbfca597c2
+engine-signer 0x00aa39d30f0d20ff03a22ccfc30b7efbfca597c2
+$ docker run -it y12docker/dltdojo-ethparity:1.5.0 /startpoa.sh
+$ dcup
+$ dc ps
+Name               Command         State   Ports
+------------------------------------------------------
+devparity_peer1_1   /startpoa.sh         Up
+devparity_peer2_1   /startpoa.sh         Up
+devparity_poa0_1    /startpoa.sh node0   Up
+devparity_poa1_1    /startpoa.sh node1   Up
+$ docker exec -it devparity_poa0_1 curl --data '{"jsonrpc":"2.0","method":"parity_enode","params":[],"id":0}' -H "Content-Type: application/json" -X POST localhost:8540 | jq -r .result
+enode://3ffcc42dff909df1833594556be8d71264f6004e43804f274f52607542cbfddcfbe7612c0b75d46efc1148b40241d56d0dae85757893d4a6c486fd7b77a9818f@172.26.0.4:30300
+$ docker exec -it devparity_poa1_1 curl --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params":["enode://f1f4bf0bec35e3578e333287c444661aad595e3096802cda897f9fcfdd107f71870d45ed52707507e871f88e90717eb6881b4311c3cc0fd789be738e84132579@172.26.0.4:30300"],"id":0}' -H "Content-Type: application/json" -X POST localhost:8540
+$ docker exec -it devparity_peer1_1 curl --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params":["enode://f1f4bf0bec35e3578e333287c444661aad595e3096802cda897f9fcfdd107f71870d45ed52707507e871f88e90717eb6881b4311c3cc0fd789be738e84132579@172.26.0.4:30300"],"id":0}' -H "Content-Type: application/json" -X POST localhost:8540
+$ docker exec -it devparity_peer2_1 curl --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params":["enode://f1f4bf0bec35e3578e333287c444661aad595e3096802cda897f9fcfdd107f71870d45ed52707507e871f88e90717eb6881b4311c3cc0fd789be738e84132579@172.26.0.4:30300"],"id":0}' -H "Content-Type: application/json" -X POST localhost:8540
+$ docker exec -it devparity_poa0_1 curl --data '{"jsonrpc":"2.0","method":"net_peerCount","params":[],"id":0}' -H "Content-Type: application/json" -X POST localhost:8540 | jq -r .result
+0x3
+```
 ### Fri Jan 20 18:04:09 CST 2017
 ```
 $ poadcup
