@@ -10,5 +10,6 @@ RUN mkdir -p /opt/app && cp -a /tmp/node_modules /opt/app/ && rm -rf /tmp/*
 WORKDIR /opt/app
 ADD index.js /opt/app/
 ADD lib /opt/app/lib
+ADD scripts /opt/app/scripts
 EXPOSE 18168
 ENTRYPOINT ["node","index.js"]
