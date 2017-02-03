@@ -1,4 +1,45 @@
 parity PoA https://github.com/ethcore/parity/wiki/Demo-PoA-tutorial
+### 2017-02-03T10:32:50+0800
+```
+$ dcup
+$ dc ps
+       Name                      Command               State     Ports
+------------------------------------------------------------------------
+devparity_dltdojo_1   node index.js start              Up      18168/tcp
+devparity_peer1_1     /startpoa.sh peer devparit ...   Up
+devparity_peer2_1     /startpoa.sh peer devparit ...   Up
+devparity_poa0_1      /startpoa.sh node0               Up
+devparity_poa1_1      /startpoa.sh node1 devpari ...   Up
+$ docker exec -it devparity_peer1_1 curl --data '{"jsonrpc":"2.0","method":"net_peerCount","params":[],"id":0}' -H "Content-Type: application/json" -X POST localhost:8540 | jq -r .result
+0x3
+$ yocker exec -it devparity_poa1_1 curl --data '{"jsonrpc":"2.0","method":"net_peerCount","params":[],"id":0}' -H "Content-Type: application/json" -X POST localhost:8540 | jq -r .result
+0x3
+$ docker exec -t devparity_dltdojo_1 node index.js eth devparity_poa0_1 account --list
+{ '0x004ec07d2329997267ec62b4166639513386f32e': { balance: '9.9e+23', ethBalance: '990000' },
+  '0x00bd138abd70e2f00903268f3db08f2d25677c9e': { balance: '8.8e+23', ethBalance: '880000' } }
+$ docker exec -t devparity_dltdojo_1 node index.js eth devparity_peer1_1 account --new --password pass1
+$ docker exec -t devparity_dltdojo_1 node index.js eth devparity_peer1_1 account --list
+{ '0x2ce5c4fec6c5d886f869e813eea2146c44bd7148': { balance: '0', ethBalance: '0' } }
+$ docker exec -t devparity_dltdojo_1 node index.js eth devparity_poa0_1 send --account 0x004ec07d2329997267Ec62b4166639513386F32E --to 0x2ce5c4fec6c5d886f869e813eea2146c44bd7148 --eth 3688.55 --password user
+$ docker exec -t devparity_dltdojo_1 node index.js eth devparity_poa0_1 account --list
+{ '0x004ec07d2329997267ec62b4166639513386f32e':
+   { balance: '9.86311449743709212275e+23',
+     ethBalance: '986311.449743709212275' },
+  '0x00bd138abd70e2f00903268f3db08f2d25677c9e':
+   { balance: '8.80000000256290787725e+23',
+     ethBalance: '880000.000256290787725' } }
+$ docker exec -t devparity_dltdojo_1 node index.js eth devparity_peer1_1 account --list
+{ '0x2ce5c4fec6c5d886f869e813eea2146c44bd7148': { balance: '3.68855e+21', ethBalance: '3688.55' } }
+$ docker exec -t devparity_dltdojo_1 node index.js eth devparity_peer1_1 info
+{ hostname: 'devparity_peer1_1',
+  ethBlockNumber: 1,
+  ethCoinbase: '0x0000000000000000000000000000000000000000',
+  ethAccounts: 1,
+  ethSyncing: false,
+  netPeerCount: 3,
+  ethBalance: '0',
+  ethMining: false }
+```
 ### 2017-02-02T19:34:00+0800
 ```
 $ source alias.sh

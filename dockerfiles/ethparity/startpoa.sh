@@ -17,12 +17,28 @@ then
 else
   echo "Normal Peer"
 fi
+if [ -n "$2" ]
+then
+  sleep 5s
+  BOOTNODE_IP=`getent hosts ${2} | cut -d" " -f1`
+  ENODE_URL="enode://f1f4bf0bec35e3578e333287c444661aad595e3096802cda897f9fcfdd107f71870d45ed52707507e871f88e90717eb6881b4311c3cc0fd789be738e84132579@${BOOTNODE_IP}:30300"
+  echo enode url ${ENODE_URL}
+  # curl -s --data '{"jsonrpc":"2.0","method":"parity_addReservedPeer","params":["'${ENODE_URL}'"],"id":0}' -H "Content-Type: application/json" -X POST localhost:8540
+fi
 kill -9 `cat /tmp/parity.pid`
 sleep 2s
+# https://github.com/ethcore/parity/blob/master/parity/cli/usage.txt
 if [ -n "$SIGNER" ]
 then
   echo engine-signer $SIGNER
-  parity --chain /opt/parity/poa-final-spec.json -d /tmp/parity --password /opt/parity/node.pwds --engine-signer "${SIGNER}" --port 30300 --jsonrpc-port 8540 --ui-port 8180 --dapps-port 8080 --jsonrpc-apis web3,eth,net,personal,parity,parity_set,traces,rpc,parity_accounts
+  OPTSIGNER='--engine-signer='${SIGNER}
+  OPTPOA='--chain /opt/parity/poa-final-spec.json -d /tmp/parity --password /opt/parity/node.pwds --port 30300 --jsonrpc-interface=0.0.0.0 --jsonrpc-cors=* --jsonrpc-hosts=all --jsonrpc-port 8545 --ui-port 8180 --dapps-port 8080 --jsonrpc-apis web3,eth,net,personal,parity,parity_set,traces,rpc,parity_accounts'
+  if [ -n "${ENODE_URL}" ]
+  then
+    parity --bootnodes=${ENODE_URL} ${OPTSIGNER} ${OPTPOA}
+  else
+    parity ${OPTSIGNER} ${OPTPOA}
+  fi
 else
-  parity --chain /opt/parity/poa-final-spec.json -d /tmp/parity --port 30300 --jsonrpc-port 8540 --ui-port 8180 --dapps-port 8080 --jsonrpc-apis web3,eth,net,personal,parity,parity_set,traces,rpc,parity_accounts
+  parity --bootnodes=${ENODE_URL} --chain /opt/parity/poa-final-spec.json -d /tmp/parity --port 30300 --jsonrpc-interface=0.0.0.0 --jsonrpc-cors=* --jsonrpc-hosts=all --jsonrpc-port 8545 --ui-port 8180 --dapps-port 8080 --jsonrpc-apis web3,eth,net,personal,parity,parity_set,traces,rpc,parity_accounts
 fi

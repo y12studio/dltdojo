@@ -5,9 +5,12 @@ services:
     command: '/startpoa.sh node0'
   poa1:
     image: y12docker/dltdojo-ethparity:1.5.0
-    command: '/startpoa.sh node1'
+    command: '/startpoa.sh node1 devparity_poa0_1'
   peer1:
     image: y12docker/dltdojo-ethparity:1.5.0
-    command: '/startpoa.sh'
+    command: '/startpoa.sh peer devparity_poa0_1'
   peer2:
     extends: peer1
+  dltdojo:
+    image: y12docker/dltdojo
+    command: 'start'
