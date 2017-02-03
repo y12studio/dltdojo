@@ -7,9 +7,7 @@ EPA1=$(docker ps --format "{{.Names}}" | grep ethpoa1.1)
 EP1=$(docker ps --format "{{.Names}}" | grep ethpoapeer.1)
 EP2=$(docker ps --format "{{.Names}}" | grep ethpoapeer.2)
 EP3=$(docker ps --format "{{.Names}}" | grep ethpoapeer.3)
-docker ps --format "{{.Names}}"
-docker service ls
-dj eth $EPA0 account --list
-dj eth $EPA1 account --list
+alias dinfo='docker ps --format "{{.Names}}" ; docker service ls'
+alias poainfo='dj eth $EPA0 account --list ; dj eth $EPA1 account --list'
 
 # ---- script end ----
