@@ -1,3 +1,24 @@
+### 2017-02-04T17:19:42+0800
+```
+$ docker run -t -v /var/run/docker.sock:/var/run/docker.sock y12docker/dltdojo service btc --start --network devbtcnet
+# ---- script start ----
+DJID=$(docker ps --format "{{.Names}}" | grep dltdojo.1)
+alias dj='docker exec -t $DJID node index.js'
+alias dinfo='docker ps --format "{{.Names}}" ; docker service ls'
+alias djstop='docker run -t -v /var/run/docker.sock:/var/run/docker.sock y12docker/dltdojo service btc --stop'
+BTCP1=$(docker ps --format "{{.Names}}" | grep btcpeer.1)
+BTCP2=$(docker ps --format "{{.Names}}" | grep btcpeer.2)
+BTCP3=$(docker ps --format "{{.Names}}" | grep btcpeer.3)
+alias btcinfo='dj btc $BTCP1 info ; dj btc $BTCP2 info ; dj btc $BTCP3 info'
+
+# ---- script end ----
+$ dj btc $BTCP1 account --new && dj btc $BTCP1 miner --num 101
+// Open the Abe url http://host_ip:12750/ in the browser.
+$ dj btc $BTCP1 send --to moyx67cxJBFAnEGj1CxUTTWadpZGQHUmqB --btc 1.88
+$ dj btc $BTCP1 miner --num 1
+$ dj btc $BTCP1 info
+$ djstop
+```
 ### 2017-02-04T10:53:19+0800
 ```
 $ docker run -t -v /var/run/docker.sock:/var/run/docker.sock y12docker/dltdojo service btc --start --network devbtcnet
@@ -18,7 +39,6 @@ btcpeer.2.iv2smahxr9w8kk7xbuntnd3ev
 btcpeer.1.s6otneenlgpfwlt7gle26tuna
 dltdojo.1.wh70gz7lwekhil20me1emwm76
 btcpeer.3.rxo2ohp2cq3psr7277hafp28c
-certviewer_mongodb_1
 ID            NAME     MODE        REPLICAS  IMAGE
 2d0l6zjg2amh  dltdojo  replicated  1/1       y12docker/dltdojo:latest
 73qfmbk0fr4i  btcboot  replicated  1/1       y12docker/dltdojo-bitcoin:latest
