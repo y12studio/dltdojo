@@ -12,6 +12,18 @@ BTCP3=$(docker ps --format "{{.Names}}" | grep btcpeer.3)
 alias btcinfo='dj btc $BTCP1 info ; dj btc $BTCP2 info ; dj btc $BTCP3 info'
 
 # ---- script end ----
+$ dinfo
+dltdojo.1.vxgqpqg1ppob2g20kfytp1dr7
+btcpeer.3.guiy0hkn1v3epdm83nx50dhlf
+btcpeer.2.k1e6tywsyua7zbezmbl4mlcbo
+btcpeer.1.uyo3rw2alxpr2tvey5lrh7v73
+btcboot.1.jljzglo2efhly4h3szpi8nobb
+btcabe.1.mjy97sdelfkgptdl0t59pmenr
+ID            NAME     MODE        REPLICAS  IMAGE
+nl235bg706gm  btcpeer  replicated  3/3       y12docker/dltdojo-bitcoin:latest
+opw5bdc5pfbn  btcabe   replicated  1/1       y12docker/dltdojo-abe:latest
+so6oju83yp3j  dltdojo  replicated  1/1       y12docker/dltdojo:latest
+zgi4enpxfifg  btcboot  replicated  1/1       y12docker/dltdojo-bitcoin:latest
 $ dj btc $BTCP1 account --new && dj btc $BTCP1 miner --num 101
 // Open the Abe url http://host_ip:12750/ in the browser.
 $ dj btc $BTCP1 send --to moyx67cxJBFAnEGj1CxUTTWadpZGQHUmqB --btc 1.88

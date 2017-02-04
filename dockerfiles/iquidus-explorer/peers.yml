@@ -1,0 +1,7 @@
+version: '2'
+
+services:
+  mongo:
+    image: mongo:3.4
+  iquexp:
+    image: y12docker/dltdojo-iquexp
