@@ -1,10 +1,3 @@
-## LOG
-
-```
-$ docker tag y12docker/dltdojo-bitcoin:latest y12docker/dltdojo-bitcoin:0.13.1.core.a0
-$ docker push y12docker/dltdojo-bitcoin:0.13.1.core.a0
-```
-
 ### Wed Jan 11 07:30:34 CST 2017
 ```
 $ docker build -t y12docker/dltdojo-bitcoin .
