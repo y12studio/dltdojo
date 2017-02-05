@@ -11,9 +11,9 @@
 
   "dbsettings": {
     "user": "iquidus",
-    "password": "iquidus",
+    "password": "pass",
     "database": "explorerdb",
-    "address": "mongo",
+    "address": "localhost",
     "port": 27017
   },
 
