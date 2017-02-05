@@ -7,7 +7,10 @@ alias djstop='docker run -t -v /var/run/docker.sock:/var/run/docker.sock y12dock
 BTCP1=$(docker ps --format "{{.Names}}" | grep btcpeer.1)
 BTCP2=$(docker ps --format "{{.Names}}" | grep btcpeer.2)
 BTCP3=$(docker ps --format "{{.Names}}" | grep btcpeer.3)
+IQUEXP=$(docker ps --format "{{.Names}}" | grep btciquexp.1)
+alias iquexp_index='docker exec -t $IQUEXP node scripts/sync.js index'
 alias btcinfo='dj btc $BTCP1 info ; dj btc $BTCP2 info ; dj btc $BTCP3 info'
 # ---- script end ----
-# Abe browser http://host_ip:12750/
+# Abe Browser http://host_ip:12750/
+# Iquidus Explorer http://host_ip:12751/
 #
