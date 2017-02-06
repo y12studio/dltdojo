@@ -1,3 +1,7 @@
+### Projects
+* https://github.com/bitcoin/bitcoin
+* https://github.com/bitcoin-abe/bitcoin-abe
+
 ### 2017-02-04T17:19:42+0800
 ```
 $ docker run -t -v /var/run/docker.sock:/var/run/docker.sock y12docker/dltdojo service btc --start --network devbtcnet

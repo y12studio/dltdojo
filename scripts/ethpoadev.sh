@@ -9,5 +9,5 @@ EP2=$(docker ps --format "{{.Names}}" | grep ethpoapeer.2)
 EP3=$(docker ps --format "{{.Names}}" | grep ethpoapeer.3)
 alias dinfo='docker ps --format "{{.Names}}" ; docker service ls'
 alias poainfo='dj eth $EPA0 account --list ; dj eth $EPA1 account --list'
-
 # ---- script end ----
+# DLTDOJO https://github.com/y12studio/dltdojo

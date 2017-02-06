@@ -11,3 +11,5 @@ alias btcinfo='dj btc $BTCP1 info ; dj btc $BTCP2 info ; dj btc $BTCP3 info'
 # ---- script end ----
 # Abe browser http://host_ip:12750/
 #
+# DLTDOJO https://github.com/y12studio/dltdojo
+#
