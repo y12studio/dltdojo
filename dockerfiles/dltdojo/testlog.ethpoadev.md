@@ -1,3 +1,42 @@
+### Projects
+* https://github.com/ethcore/parity
+
+TODO
+* https://github.com/carsenk/explorer
+
+### 2017-02-06T17:18:32+0800
+```
+$ node index.js service ethpoadev --start --network devbtcnet
+# ---- script start ----
+DJID=$(docker ps --format "{{.Names}}" | grep dltdojo.1)
+alias dj='docker exec -t $DJID node index.js'
+alias dinfo='docker ps --format "{{.Names}}  {{.Ports}}" ; docker service ls'
+alias djstop='docker run -t -v /var/run/docker.sock:/var/run/docker.sock y12docker/dltdojo service ethpoadev --stop'
+EPA0=$(docker ps --format "{{.Names}}" | grep ethpoa0.1)
+EPA1=$(docker ps --format "{{.Names}}" | grep ethpoa1.1)
+EP1=$(docker ps --format "{{.Names}}" | grep ethpoapeer.1)
+EP2=$(docker ps --format "{{.Names}}" | grep ethpoapeer.2)
+EP3=$(docker ps --format "{{.Names}}" | grep ethpoapeer.3)
+alias poainfo='dj eth $EPA0 account --list ; dj eth $EPA1 account --list'
+# ---- script end ----
+# DLTDOJO https://github.com/y12studio/dltdojo
+$ dinfo
+ethpoa0.1.myoms7d8r7bjd0kfug01dyhhy  0.0.0.0:18180->8180/tcp
+ethpoa1.1.uzbfamwsbmcnbjmwxzw8n3gwk
+ethpoapeer.3.2ktwrslu9c9lujkvud38nqlyu
+ethpoapeer.2.5gkxwl30uat5lb5k8209upp0l
+dltdojo.1.tk65lovgivzsyfvthmwu8u9iw  18168/tcp
+ethpoapeer.1.iolobuqy69x1j1rgc99g8ro89
+ID            NAME        MODE        REPLICAS  IMAGE
+339rrc79pfp1  dltdojo     replicated  1/1       y12docker/dltdojo:latest
+8tu2uphwpkde  ethpoapeer  replicated  3/3       y12docker/dltdojo-ethparity:1.5.0
+va8oi5zz9it5  ethpoa0     replicated  1/1       y12docker/dltdojo-ethparity:1.5.0
+x0lch9ofanma  ethpoa1     replicated  1/1       y12docker/dltdojo-ethparity:1.5.0
+// http://192.168.2.73:18180/#/accounts/
+$ docker exec -it $EPA0 parity signer new-token
+Error generating token: Error { repr: Os { code: 2, message: "No such file or directory" } }
+$ node index.js service ethpoadev --stop
+```
 ### 2017-02-03T14:45:46+0800
 ```
 $ docker run -t -v /var/run/docker.sock:/var/run/docker.sock y12docker/dltdojo service ethpoadev --start --network devbtcnet

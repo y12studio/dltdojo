@@ -1,0 +1,12 @@
+version: '2'
+services:
+  ethdev:
+    image: y12docker/dltdojo-ethgo
+    command: '/startdev.sh'
+    ports:
+     - "8545:8545"
+  carexp:
+    image: y12docker/dltdojo-carexp
+    ports:
+     - "8000:8000"
+    command: '/start.sh'

@@ -32,7 +32,7 @@ if [ -n "$SIGNER" ]
 then
   echo engine-signer $SIGNER
   OPTSIGNER='--engine-signer='${SIGNER}
-  OPTPOA='--chain /opt/parity/poa-final-spec.json -d /tmp/parity --password /opt/parity/node.pwds --port 30300 --jsonrpc-interface=0.0.0.0 --jsonrpc-cors=* --jsonrpc-hosts=all --jsonrpc-port 8545 --ui-port 8180 --dapps-port 8080 --jsonrpc-apis web3,eth,net,personal,parity,parity_set,traces,rpc,parity_accounts'
+  OPTPOA='--chain /opt/parity/poa-final-spec.json -d /tmp/parity --password /opt/parity/node.pwds --port 30300 --jsonrpc-interface=0.0.0.0 --jsonrpc-cors=* --jsonrpc-hosts=all --jsonrpc-port 8545 --ui-port 8180 --ui-interface=0.0.0.0 --ui-no-validation --dapps-port 8080 --jsonrpc-apis web3,eth,net,personal,parity,parity_set,traces,rpc,parity_accounts'
   if [ -n "${ENODE_URL}" ]
   then
     parity --bootnodes=${ENODE_URL} ${OPTSIGNER} ${OPTPOA}
