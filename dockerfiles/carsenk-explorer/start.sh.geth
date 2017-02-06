@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+/geth --dev --rpc --rpccorsdomain="*" --rpcaddr="0.0.0.0" --rpcapi "miner,admin,db,personal,eth,net,web3" --ipcdisable &
+sleep 2s
+cd /opt/carexp
+# sed -ie 's/localhost";/ethdev";/g' app/app.js
+http-server ./app -a 0.0.0.0 -p 8000 -c-1

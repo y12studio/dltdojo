@@ -2,6 +2,7 @@
 * https://github.com/ethcore/parity
 
 TODO
+* https://github.com/ethereumproject/explorer
 * https://github.com/carsenk/explorer
 
 ### 2017-02-06T17:18:32+0800

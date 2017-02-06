@@ -9,4 +9,4 @@ services:
     image: y12docker/dltdojo-carexp
     ports:
      - "8000:8000"
-    command: '/start.sh'
+    command: '/start.sh 192.168.2.73'
