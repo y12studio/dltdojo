@@ -1,12 +1,29 @@
-## LOG0110_3
-
-###
+### 2017-02-07T09:49:01+0800
 ```
-$ docker tag y12docker/dltdojo-ethgo:latest y12docker/dltdojo-ethgo:1.5.6.a2
-$ docker push y12docker/dltdojo-ethgo:1.5.6.a2
+$ source alias.sh
+$ dcup
+$ dc ps
+      Name             Command             State              Ports
+-------------------------------------------------------------------------
+devethgo_ethboot   /start.sh boot     Up                 30303/tcp, 0.0.0
+_1                                                       .0:8545->8545/tc
+                                                         p
+devethgo_ethdev_   /start.sh dev      Up                 30303/tcp,
+1                                                        8545/tcp
+devethgo_ethpeer   /start.sh peer     Up                 30303/tcp,
+_1                                                       8545/tcp
+$ ethpeersh curl -X POST --data '{"jsonrpc":"2.0","method":"personal_newAccount","params":["vp1pass"],"id":67}' localhost:8545
+$ ethpeersh curl -X POST --data '{"jsonrpc":"2.0","method":"net_peerCount","params":[],"id":0}' localhost:8545
+{"jsonrpc":"2.0","id":0,"result":"0x1"}
+$ ethbootsh curl -X POST --data '{"jsonrpc":"2.0","method":"net_peerCount","params":[],"id":0}' localhost:8545
+{"jsonrpc":"2.0","id":0,"result":"0x1"}
+$ ethdevsh curl -X POST --data '{"jsonrpc":"2.0","method":"net_peerCount","params":[],"id":0}' localhost:8545
+{"jsonrpc":"2.0","id":0,"result":"0x0"}
 ```
 ### Sat Jan 14 10:58:46 CST 2017
 ```
+$ docker tag y12docker/dltdojo-ethgo:latest y12docker/dltdojo-ethgo:1.5.6.a2
+$ docker push y12docker/dltdojo-ethgo:1.5.6.a2
 $ njs dev 1
 $ njs info alice
 {

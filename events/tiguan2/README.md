@@ -4,7 +4,7 @@
 
 ### 環境要求 Prerequisites
 
-* docker >= 1.3.0
+* docker >= 1.13.0
 * bash
 
 ### 環境設置 Setup

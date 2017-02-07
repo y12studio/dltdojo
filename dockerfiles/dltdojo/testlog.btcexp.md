@@ -6,6 +6,7 @@
 
 TODO
 
+* https://github.com/bitpay/insight-ui
 * https://github.com/mhanne/block_browser
 * https://github.com/anders94/blockchain-demo/
 
