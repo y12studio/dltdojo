@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+const chalk = require('chalk')
+const log = console.log
 const DBTC = require('./lib/dltbtc')
 const DDOCKER = require('./lib/dltdocker')
 const DIPFS = require('./lib/dltipfs')
@@ -43,12 +45,10 @@ function testRpc() {
     var client = jayson.client.http({
         port: RPCPORT
     });
-
     var reqs = [
-        client.request('add', [1, 2, 3, 4, 5]),
-        client.request('rejection', [])
+        client.request('add', [1, 2, 3, 4, 5])
+        // client.request('rejection', [])
     ];
-
     Promise.all(reqs).then(function(responses) {
         console.log(responses)
     });
@@ -58,14 +58,51 @@ function clog(r) {
     console.log(r)
 }
 
+function startServer(argv) {
+    // jayson.server(rpcMethods).http().listen(RPCPORT);
+    var jsonParser = require('body-parser').json;
+    var jserver = jayson.server(rpcMethods)
+    var express = require('express')
+    var serveStatic = require('serve-static')
+    var app = express()
+    app.use(serveStatic('public/', {
+        'index': ['index.html']
+    }))
+    app.use(jsonParser())
+    app.use(jserver.middleware())
+    showServerMsg(argv.pubhost||'host_ip')
+    app.listen(RPCPORT)
+}
+
+function showServerMsg(pubhost) {
+    log('')
+    log(chalk.red('      Welcome to DLTDOJO World.'))
+    log(chalk.green('     _____  _   _______ _____   ____       _  ____  '))
+    log(chalk.green('    |  __ \\| | |__   __|  __ \\ / __ \\     | |/ __ \\ '))
+    log(chalk.green('    | |  | | |    | |  | |  | | |  | |    | | |  | |'))
+    log(chalk.green('    | |  | | |    | |  | |  | | |  | |_   | | |  | |'))
+    log(chalk.green('    | |__| | |____| |  | |__| | |__| | |__| | |__| |'))
+    log(chalk.green('    |_____/|______|_|  |_____/ \\____/ \\____/ \\____/ '))
+    log('');
+    log(chalk.blue('   Project:  https://github.com/y12studio/dltdojo'))
+    log('');
+    log(chalk.yellow(`   Server:  http://${pubhost}:18168/`))
+    log('')
+}
+
 
 function main() {
     require('yargs')
         .command({
             command: 'start',
-            desc: 'start rpc server',
-            handler: (argv) => {
-                jayson.server(rpcMethods).http().listen(RPCPORT);
+            desc: 'start file/rpc server',
+            handler: startServer
+        })
+        .command({
+            command: 'rpc',
+            desc: 'rpc client',
+            handler: (yargs) => {
+                testRpc()
             }
         })
         .command({

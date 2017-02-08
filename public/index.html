@@ -1,0 +1,44 @@
+<html lang="en">
+
+<head>
+    <title>DLTDOJO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+</head>
+
+<body ng-app="DltdojoApp" ng-cloak ng-controller="appCtrl">
+    <md-toolbar class="md-warn">
+        <div class="md-toolbar-tools">
+            <h2 class="md-flex">DLTDOJO</h2>
+        </div>
+    </md-toolbar>
+    <md-content flex layout-padding>
+        <div>
+            <a href="https://github.com/y12studio/dltdojo">Project Distributed Ledger Technology Dojo (DLTDOJO)</a>
+            <div>
+        <div>
+            <h3>TiGuan3</h3>
+            <ul>
+                <li ng-repeat="srv in services"><a href="http://{{host}}:{{srv.port}}/" target="_blank">{{srv.name}}</li>
+          </ul>
+      </div>
+      <div layout="row" layout-align="center">
+          <a href="https://github.com/y12studio/dltdojo"><img src="dltdojox600.png" height="300" width="300"/></a>
+      </div>
+      <md-content>
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+    <!-- Your application bootstrap  -->
+    <script type="text/javascript" src="app.js">
+    </script>
+
+</body>
+
+</html>

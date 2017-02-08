@@ -1,3 +1,45 @@
+### 2017-02-08T19:34:44+0800
+8 GB Memory / 4 CPUs / 80 GB Disk / SFO2 - Ubuntu DigitalOcean
+```
+$ dj eth $ETHP1 info
+{ hostname: 'ethpeer.1.r15qrkvy713wmjzfdalfh2ybj',
+  ethBlockNumber: 94,
+  ethCoinbase: '0x37fbfafea9388f583388d09c0091c8a73e80861a',
+  ethAccounts: 1,
+  ethSyncing: false,
+  netPeerCount: 0,
+  ethBalance: '466.4',
+  ethMining: false }
+// stuck syncing
+$  dj eth $ETHP2 info
+{ hostname: 'ethpeer.2.21yf3fin04c1ezs4it5461mc8',
+  ethBlockNumber: 0,
+  ethCoinbase: null,
+  ethAccounts: 0,
+  ethSyncing: false,
+  netPeerCount: 0,
+  ethBalance: 0,
+  ethMining: false }
+$ dj eth $EBOOT info
+{ hostname: 'ethboot.1.ab6ibtf25ju6qv617ada90wbo',
+  ethBlockNumber: 0,
+  ethCoinbase: null,
+  ethAccounts: 0,
+  ethSyncing: false,
+  netPeerCount: 1,
+  ethBalance: 0,
+  ethMining: false }
+
+```
+2 GB Memory / 2 CPUs / 40 GB Disk / SFO2 - Ubuntu DigitalOcean
+```
+$ docker run -t -v /var/run/docker.sock:/var/run/docker.sock y12docker/dltdojo service tiguan3 --start \
+   --network tiguan3net --pubhost 192.168.2.73
+$ dj eth $ETHP1 info
+index.js eth <hostname> <method>
+
+CONNECTION ERROR: Couldn't connect to node http://ethpeer.1.g4fu7dlpyzgnm7ce7yjk9m4fh:8545.
+```
 ### 2017-02-07T17:15:00+0800
 ```
 $ node index.js service tiguan3 --start --network devbtcnet --pubhost 192.168.2.73

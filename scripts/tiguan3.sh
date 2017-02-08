@@ -3,7 +3,7 @@
 DJID=$(docker ps --format "{{.Names}}" | grep dltdojo.1)
 alias dj='docker exec -t $DJID node index.js'
 alias dinfo='docker ps --format "{{.Names}}  {{.Ports}}" ; docker service ls'
-alias djstop='docker run -t -v /var/run/docker.sock:/var/run/docker.sock y12docker/dltdojo service btc --stop'
+alias djstop='docker run -t -v /var/run/docker.sock:/var/run/docker.sock y12docker/dltdojo service tiguan3 --stop'
 BTCP1=$(docker ps --format "{{.Names}}" | grep btcpeer.1)
 BTCP2=$(docker ps --format "{{.Names}}" | grep btcpeer.2)
 BTCP3=$(docker ps --format "{{.Names}}" | grep btcpeer.3)
@@ -16,13 +16,5 @@ MONGO=$(docker ps --format "{{.Names}}" | grep mongo.1)
 IQUEXP=$(docker ps --format "{{.Names}}" | grep btciquexp.1)
 alias iquexp_index='docker exec -t $IQUEXP node scripts/sync.js index'
 # ---- script end ----
-# Abe Browser
-#   http://host_ip:12750/
-# Iquidus Explorer
-#   http://host_ip:12751/
-# JornC Blockchain Transaction Explorer
-#   http://host_ip:12752/
-# carsenk explorer
-#   http://host_ip:18000/
 # DLTDOJO tiguan3
-#   https://github.com/y12studio/dltdojo/tree/master/events/tiguan3
+#   http://host_ip:18168/
