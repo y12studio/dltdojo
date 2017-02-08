@@ -1,0 +1,11 @@
+version: '2'
+services:
+  ethboot:
+    image: y12docker/dltdojo-ethgo
+    command: '/start.sh boot'
+    ports:
+        - "8545:8545"
+  cakeshop:
+    image: y12docker/dltdojo-cakeshop
+    ports:
+        - "8080:8080"

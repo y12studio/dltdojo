@@ -5,7 +5,6 @@ services:
     command: '/start.sh boot'
     ports:
         - "8545:8545"
-    cpu_shares: 200
   ethpeer:
     image: y12docker/dltdojo-ethgo
     command: '/start.sh peer ethboot'
