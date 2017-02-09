@@ -11,6 +11,6 @@ WORKDIR /opt/app
 ADD index.js /opt/app/
 ADD lib /opt/app/lib
 ADD scripts /opt/app/scripts
-ADD public /opt/app/public
+ADD docs /opt/app/docs
 EXPOSE 18168
 ENTRYPOINT ["node","index.js"]
