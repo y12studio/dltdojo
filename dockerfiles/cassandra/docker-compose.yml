@@ -1,0 +1,8 @@
+version: '2'
+services:
+  caseed:
+    image: cassandra:3
+  cas1:
+    image: cassandra:3
+    environment:
+      CASSANDRA_SEEDS: caseed
