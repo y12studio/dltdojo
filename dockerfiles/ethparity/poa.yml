@@ -1,16 +1,22 @@
 version: '2'
 services:
   poa0:
-    image: y12docker/dltdojo-ethparity:1.5.0
+    image: y12docker/dltdojo-ethparity
     command: '/startpoa.sh node0'
   poa1:
-    image: y12docker/dltdojo-ethparity:1.5.0
+    image: y12docker/dltdojo-ethparity
     command: '/startpoa.sh node1 devparity_poa0_1'
   peer1:
-    image: y12docker/dltdojo-ethparity:1.5.0
+    image: y12docker/dltdojo-ethparity
     command: '/startpoa.sh peer devparity_poa0_1'
   peer2:
     extends: peer1
+    ports:
+        - "8545:8545"
+        - "8180:8180"
+        - "8080:8080"
   dltdojo:
     image: y12docker/dltdojo
     command: 'start'
+    ports:
+        - "18168:18168"

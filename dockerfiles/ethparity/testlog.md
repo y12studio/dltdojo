@@ -1,4 +1,53 @@
 parity PoA https://github.com/ethcore/parity/wiki/Demo-PoA-tutorial
+
+### 2017-02-10T09:08:43+0800
+```
+$ docker run -d -p 8180:8180 y12docker/dltdojo-ethparity /dev.sh
+ffdae63d73d6391c1577a641b9203d07f4b480c2f82d4941a1cb5eea933c7555
+// open open http://192.168.2.73:8180/#/accounts/
+$ docker exec -t ffdae63 parity signer new-token
+Open: http://127.0.0.1:8180/#/auth?token=TfVf-p56g-r9YW-y2v1
+to authorize your browser.
+Or use the generated token:
+TfVf-p56g-r9YW-y2v1
+
+2017-02-10 02:12:29 UTC Unauthorized connection to Signer API blocked.
+2017-02-10 02:12:29 UTC Received old authentication request. (1486692749 vs 1486692737)
+2017-02-10 02:12:29 UTC Unauthorized connection to Signer API blocked.
+```
+### 2017-02-10T08:54:02+0800
+Release Parity 1.5.2 · ethcore/parity  https://github.com/ethcore/parity/releases/tag/v1.5.2
+```
+$ docker build -t y12docker/dltdojo-ethparity .
+$ docker push y12docker/dltdojo-ethparity:latest
+$ source alias.sh
+$ dcup
+$ dc ps
+      Name             Command             State              Ports
+-------------------------------------------------------------------------
+devparity_dltdoj   node index.js      Up                 0.0.0.0:18168->1
+o_1                start                                 8168/tcp
+devparity_peer1_   /startpoa.sh       Up
+1                  peer devparit
+                   ...
+devparity_peer2_   /startpoa.sh       Up                 0.0.0.0:8080->80
+1                  peer devparit                         80/tcp, 0.0.0.0:
+                   ...                                   8180->8180/tcp,
+                                                         0.0.0.0:8545->85
+                                                         45/tcp
+devparity_poa0_1   /startpoa.sh       Up
+                   node0
+devparity_poa1_1   /startpoa.sh       Up
+                   node1 devpari
+                   ...
+
+// open http://192.168.2.73:8180/#/accounts/
+// Unable to make a connection to the Parity Secure API. To update your secure token or to generate a new one, run parity signer new-token and supply the token below
+$ peer2 bash
+root@4161bcb5e93b:/opt/parity# parity signer new-token
+Error generating token: Error { repr: Os { code: 2, message: "No such file or directory" } }
+$ dcstop
+```
 ### 2017-02-03T10:32:50+0800
 ```
 $ dcup
