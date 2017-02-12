@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.css">
     <link href="app.css" rel="stylesheet">
 </head>
+
 <body ng-app="DltdojoApp" ng-cloak ng-controller="appCtrl">
     <md-toolbar class="md-warn">
         <div class="md-toolbar-tools">
@@ -14,20 +15,51 @@
     </md-toolbar>
     <div layout="column">
         <md-whiteframe class="wframe md-whiteframe-1dp">
+            <h4 class="md-flex">BlockCypher	Test Chain</h4>
             <div>
+                <md-input-container class="md-block">
+                    <label>Private Key(WIF)</label>
+                    <input ng-model="bcy.keywif">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Address</label>
+                    <input ng-model="bcy.address">
+                </md-input-container>
+            </div>
+            <div ng-if="bcy.address" layout="row">
+                <md-button class="md-primary" ng-href="https://live.blockcypher.com/bcy/address/{{bcy.address}}" target="_blank">Block Explorer</md-button>
+            </div>
+            <div layout="row">
+                <md-button md-no-ink class="md-raised md-primary" ng-click="ckPostAddrs()">New Key</md-button>
+            </div>
+            <div ng-if="api.addrs">
+                <h5>{{api.addrs.url}}</h5><pre>{{api.addrs | prettyJSON}}</pre></div>
+        </md-whiteframe>
+        <md-whiteframe class="wframe md-whiteframe-1dp">
+            <div layout="row">
+                <p>DLTDOJO - Y12STUDIO</p>
+                <md-button class="md-primary" ng-click="faucetmode = !faucetmode">DEVMODE</md-button>
+            </div>
+            <div ng-if="faucetmode">
                 <md-input-container class="md-block">
                     <label>API Token</label>
                     <input ng-model="bcy.token">
                 </md-input-container>
-            </div>
-            <div layout="row">
-                <md-button md-no-ink class="md-raised md-primary" ng-click="ckCheckToken()">Check</md-button>
-            </div>
-            <div>{{bcy.check.token}}</div>
-
+                <div layout="row">
+                    <md-button md-no-ink class="md-raised md-primary" ng-click="ckCheckToken()">Check</md-button>
+                    <md-button md-no-ink class="md-raised md-primary" ng-click="ckGetInfo()">Info</md-button>
+                    <md-button md-no-ink class="md-raised md-primary" ng-click="ckPostFaucet()">Faucet</md-button>
+                    <md-button md-no-ink class="md-raised md-primary" ng-click="ckPostSend()">Send</md-button>
+                </div>
+                <div ng-if="api.faucet">
+                    <h5>{{api.faucet.url}}</h5><pre>{{api.faucet | prettyJSON}}</pre></div>
+                </div>
+                <div ng-if="api.info"><h5>{{api.info.url}}</h5><pre>{{api.info | prettyJSON}}</pre></div>
+                <div ng-if="api.check"><h5>{{api.check.url}}</h5><pre>{{api.check | prettyJSON}}</pre></div>
         </md-whiteframe>
     </div>
     <!-- Angular Material requires Angular.js Libraries -->
+    <script src="https://cdn.jsdelivr.net/g/lodash@4.17.4,bitcoinjs@0.2.0"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
