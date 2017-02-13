@@ -1,9 +1,15 @@
 ### bitcoinjs 2.3.0
 bitcoinjs/bitcoinjs-lib: Bitcoin-related functions implemented in pure JavaScript  https://github.com/bitcoinjs/bitcoinjs-lib
 ```
-$ git clone --depth=1 https://github.com/bitcoinjs/bitcoinjs-lib.git
-$ cd bitcoinjs-lib
-$ npm i
-$ browserify src/index.js --standalone BitcoinJS > bitcoinjs.js
-$ cp bitcoinjs.js bitcoin-min.js $DLTDOJO_GIT/docs/api/js/bitcoinjs/2.3.0/
+$ cd docs/js/bitcoinjs
+$ cat index.js
+module.exports = {
+  base58: require('bs58'),
+  bitcoin: require('bitcoinjs-lib'),
+  ecurve: require('ecurve'),
+  BigInteger: require('bigi'),
+  Buffer: require('buffer')
+}
+$ npm install bs58 bitcoinjs-lib ecurve bigi buffer
+$ browserify index.js --standalone BitcoinJS > 2.3.0/bitcoinjs.js
 ```
