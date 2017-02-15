@@ -15,5 +15,7 @@ $ dj eth peer2 account --new --password pass
 0x526a67d42da5dd3405ac1078cc83986d74e85e03
 $ dj eth poa0 send --account 0x004ec07d2329997267Ec62b4166639513386F32E --to 0x526a67d42da5dd3405ac1078cc83986d74e85e03 --eth 3688.55 --password user
 $ dj eth poa0 send --account 0x004ec07d2329997267Ec62b4166639513386F32E --to 0x526a67d42da5dd3405ac1078cc83986d74e85e03 --eth 188.88 --password user
-$ dj eth peer2 account --list{ '0x526a67d42da5dd3405ac1078cc83986d74e85e03': { balance: '3.87743e+21', ethBalance: '3877.43' } }
+$ dj eth peer2 account --list
+{ '0x526a67d42da5dd3405ac1078cc83986d74e85e03': { balance: '3.87743e+21', ethBalance: '3877.43' } }
+$ dcstop
 ```
