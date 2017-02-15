@@ -47,6 +47,22 @@ apache/incubator-spot: Mirror of Apache Spot https://github.com/apache/incubator
 
 區塊鏈衝擊傳統事務所，KPMG將數位轉型探索全新的審計模式 | iThome  http://www.ithome.com.tw/news/111883
 
+### Copyright
+
+未來的著作權授權合約走向分散式分潤是否可讓原始著作權人擁有較多權利還有待觀察，跟某著作權協會簽約或是用SingularDTV的合約在ETH平台上締約，主要差異是分潤透明，收取權益不經過第三方。
+
+Blockchain to Disrupt Balance of Power in TV, Music and Film Industry  https://cointelegraph.com/news/blockchain-to-disrupt-balance-of-power-in-tv-music-and-film-industry
+
+区块链将打破电视、音乐和电影业的平衡，让利益回归内容创作者_巴比特  http://www.8btc.com/blockchain-to-disrupt-balance-of-power
+
+ConsenSys/singulardtv-contracts  https://github.com/ConsenSys/singulardtv-contracts
+
+'Bowie bonds' - the singer's financial innovation - BBC News  http://www.bbc.com/news/business-35280945
+
+The second coming of blockchain | Intel® Software https://software.intel.com/en-us/blogs/2017/02/14/the-second-coming-of-blockchain
+
+Open Music Initiative - Wikipedia  https://en.wikipedia.org/wiki/Open_Music_Initiative
+
 ### online courses
 
 anders的開源區塊鏈教材專案，推薦實際操作練習。anders Blockchain Demo https://anders.com/blockchain/
@@ -104,15 +120,3 @@ Arcade City Is the ‘Black Market’ Uber that Runs on Facebook - Motherboard  
 Miniature World: Measuring and Evaluating Blockchains  http://hackingdistributed.com/2017/02/10/miniature-world/
 
 丁丁糖：《奇異博士》里的科學原理 - 每日頭條  https://kknews.cc/zh-tw/news/g2b6589.html
-
-### Copyright
-
-未來的著作權授權合約走向分散式分潤是否可讓原始著作權人擁有較多權利還有待觀察，跟某著作權協會簽約或是用SingularDTV的合約在ETH平台上締約，主要差異是分潤透明，收取權益不經過第三方。
-
-Blockchain to Disrupt Balance of Power in TV, Music and Film Industry  https://cointelegraph.com/news/blockchain-to-disrupt-balance-of-power-in-tv-music-and-film-industry
-
-区块链将打破电视、音乐和电影业的平衡，让利益回归内容创作者_巴比特  http://www.8btc.com/blockchain-to-disrupt-balance-of-power
-
-ConsenSys/singulardtv-contracts  https://github.com/ConsenSys/singulardtv-contracts
-
-'Bowie bonds' - the singer's financial innovation - BBC News  http://www.bbc.com/news/business-35280945
