@@ -1,0 +1,13 @@
+version: '2'
+services:
+  btcboot:
+    image: y12docker/dltdojo-bitcoin
+    command: '/start.sh'
+  btc1:
+    image: y12docker/dltdojo-bitcoin
+    command: '/start.sh'
+  abe:
+    image: y12docker/dltdojo-abe
+    command: '/start.sh'
+    ports:
+        - "12750:12750"

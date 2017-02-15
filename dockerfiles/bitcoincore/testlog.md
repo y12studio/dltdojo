@@ -1,4 +1,37 @@
-#### 2017-01-26T21:02:35+0800
+### 2017-02-15T15:21:14+0800
+```
+$ source alias.sh && dcup
+$ dc ps
+     Name          Command    State            Ports
+--------------------------------------------------------------
+dcbtc_abe_1       /start.sh   Up      0.0.0.0:12750->12750/tcp
+dcbtc_btc1_1      /start.sh   Up      18332/tcp, 18333/tcp
+dcbtc_btcboot_1   /start.sh   Up      18332/tcp, 18333/tcp
+$ dc logs btc1
+Attaching to dcbtc_btc1_1
+btc1_1     | start bitcoind with rpcallowip 172.20.0.2/24
+$ dc exec btc1 bitcoin-cli generate 101
+$ dc exec btcboot bitcoin-cli getinfo
+{
+  "version": 130100,
+  "protocolversion": 70014,
+  "walletversion": 130000,
+  "balance": 0.00000000,
+  "blocks": 101,
+  "timeoffset": 0,
+  "connections": 2,
+  "proxy": "",
+  "difficulty": 4.656542373906925e-10,
+  "testnet": false,
+  "keypoololdest": 1487143346,
+  "keypoolsize": 100,
+  "paytxfee": 0.00000000,
+  "relayfee": 0.00001000,
+  "errors": ""
+}
+$ dcstop
+```
+### 2017-01-26T21:02:35+0800
 ```
 $ docker service create --name bitcoin --network devbtcnet --replicas 1 -p 18332:18332 -p 18333:18333 y12docker/dltdojo-bitcoin bitcoind \
     -rpcallowip=10.0.9.0/24 -txindex -rpcport=18332 -port=18333

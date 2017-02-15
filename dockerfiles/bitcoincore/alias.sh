@@ -1,4 +1,5 @@
-DNAME=y12docker/dltdojo-bitcoin
-alias build='docker build -t ${DNAME} . ; echo "docker build -t ${DNAME}";  docker images | grep ${DNAME}'
-alias drun='docker run -it ${DNAME}'
-alias ds='docker service'
+DCNAME=dcbtc
+alias dc='docker-compose -p $DCNAME'
+alias dcstop='dc stop && dc rm -f'
+alias dcup='dcstop && dc up -d'
+alias dj='dc exec dltdojo node index.js'

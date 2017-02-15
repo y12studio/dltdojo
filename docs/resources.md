@@ -1,3 +1,16 @@
+### Projects
+* https://github.com/bitcoin/
+* https://github.com/ethereum/
+* https://github.com/hyperledger/fabric
+* https://github.com/corda/corda
+* https://github.com/chain/chain
+* https://wiki.hyperledger.org/projects/iroha.md
+* https://wiki.hyperledger.org/projects/sawtooth-lake.md
+* https://github.com/jpmorganchase/quorum
+* https://github.com/dragonchain/dragonchain
+* https://github.com/monero-project/monero
+* https://github.com/kadena-io/juno
+
 ### Resources
 
 DLT介紹 EU Securities Watchdog: New DLT Regulations Would Be 'Premature' - CoinDesk  http://www.coindesk.com/eu-securities-watchdog-new-dlt-regulations-premature/
@@ -15,6 +28,24 @@ Blockchain Value Analysis for Investment Banks | Accenture https://www.accenture
 Hyperledger Fabric1.0架构概览_巴比特 http://www.8btc.com/hyperledger-fabric1-0
 
 Project Jasper: Lessons From Bank of Canada's First Blockchain Project - CoinDesk  http://www.coindesk.com/project-jasper-lessons-bank-of-canada-blockchain-project/
+
+### Apache spot
+
+Apache Spot以網路巨量資料的建立與安全分析並分享分析工具為主，未來千帳萬鏈時代，一天億萬筆資產智約交易的監控、分析結果也可因聯防安全互助或是智約需要的成立條件而藉由open data model (ODM) 分享。
+
+概念可參考目前apache spot提供的opennetworkinsight/oni-demo，只是不分析封包而可能是分析當下交易合約的比特幣標的物與比特幣目前網路的費率壅塞等等交叉分析是否有安全疑慮。比特幣目前的交易量雖然看不出有一天數億的處理量，不過串上閃電網路/側網/數位法幣/ETH/Hyperledger/Corda/Chain等等資產帳要分析時，這類數據只會倍增。
+
+Apache Spot Overview and Demo - YouTube  https://www.youtube.com/watch?v=tWlRQKI4I6o
+
+Apache推出新開源專案Spot，用機器學習加強網路弱點分析 | iThome  http://www.ithome.com.tw/news/108718
+
+Apache Spot (incubating) Documentation  http://spot.incubator.apache.org/doc/
+
+incubator-spot/open-data-model.md at master · apache/incubator-spot https://github.com/apache/incubator-spot/blob/master/docs/open-data-model/open-data-model.md
+
+apache/incubator-spot: Mirror of Apache Spot https://github.com/apache/incubator-spot
+
+區塊鏈衝擊傳統事務所，KPMG將數位轉型探索全新的審計模式 | iThome  http://www.ithome.com.tw/news/111883
 
 ### online courses
 
@@ -51,22 +82,6 @@ apache/activemq-artemis: Mirror of Apache ActiveMQ Artemis  https://github.com/a
 uber/cherami-server: Distributed, scalable, durable, and highly available message queue system.  https://github.com/uber/cherami-server
 
 Cherami：Uber Engineering的可持续和可扩展的任务队列  http://www.infoq.com/cn/articles/cherami-uber-engineering-task-queue
-
-### Apache spot
-
-Apache Spot以網路巨量資料的建立與安全分析並分享分析工具為主，未來千帳萬鏈時代，一天億萬筆資產智約交易的監控、分析結果也可因聯防安全互助或是智約需要的成立條件而藉由open data model (ODM) 分享。
-
-概念可參考目前apache spot提供的opennetworkinsight/oni-demo，只是不分析封包而可能是分析當下交易合約的比特幣標的物與比特幣目前網路的費率壅塞等等交叉分析是否有安全疑慮。比特幣目前的交易量雖然看不出有一天數億的處理量，不過串上閃電網路/側網/數位法幣/ETH/Hyperledger/Corda/Chain等等資產帳要分析時，這類數據只會倍增。
-
-Apache Spot Overview and Demo - YouTube  https://www.youtube.com/watch?v=tWlRQKI4I6o
-
-Apache推出新開源專案Spot，用機器學習加強網路弱點分析 | iThome  http://www.ithome.com.tw/news/108718
-
-Apache Spot (incubating) Documentation  http://spot.incubator.apache.org/doc/
-
-incubator-spot/open-data-model.md at master · apache/incubator-spot https://github.com/apache/incubator-spot/blob/master/docs/open-data-model/open-data-model.md
-
-apache/incubator-spot: Mirror of Apache Spot https://github.com/apache/incubator-spot
 
 ### LibreTaxi
 
