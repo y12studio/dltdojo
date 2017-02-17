@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  mariadb1:
+    image: mariadb:10.1
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+  mariadb2:
+    extends: mariadb1
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_HOST=mariadb1
+    ports:
+        - "8080:80"

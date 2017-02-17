@@ -12,5 +12,3 @@ ETHP1=$(docker ps --format "{{.Names}}" | grep ethpoapeer.1)
 ETHP2=$(docker ps --format "{{.Names}}" | grep ethpoapeer.2)
 ETHP3=$(docker ps --format "{{.Names}}" | grep ethpoapeer.3)
 # ---- script end ----
-# DLTDOJO tiguan3
-#   http://host_ip:18168/

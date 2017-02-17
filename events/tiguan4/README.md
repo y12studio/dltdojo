@@ -1,11 +1,17 @@
 ### PROJECTS
 
-* https://github.com/bitcoin/bitcoin
-* https://github.com/BitcoinUnlimited/BitcoinUnlimited
-* https://github.com/ethcore/parity
+* Bitcoin Core(BC) https://github.com/bitcoin/bitcoin
+* Bitcoin Unlimited(BU) https://github.com/BitcoinUnlimited/BitcoinUnlimited
+* Ethcore Parity https://github.com/ethcore/parity
 * https://github.com/bitcoin-abe/bitcoin-abe
 * https://github.com/JornC/bitcoin-transaction-explorer
 * https://github.com/carsenk/explorer
+
+### PEERS
+
+* BitcoinCore x6
+* BitcoinUnlimited x3
+* Ethcore Parity (PoA) x5
 
 ### PREREQUISITES
 

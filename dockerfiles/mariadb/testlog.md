@@ -1,4 +1,20 @@
-## TESTLOG
+### 2017-02-17T08:57:20+0800
+```
+$ source alias.sh
+$ dcup
+$ dc ps
+Name             Command             State              Ports
+-------------------------------------------------------------------------
+devmdb_mariadb1_   docker-            Up                 3306/tcp
+1                  entrypoint.sh
+             mysqld
+devmdb_mariadb2_   docker-            Up                 3306/tcp
+1                  entrypoint.sh
+             mysqld
+devmdb_phpmyadmi   /run.sh            Up                 0.0.0.0:8080->80
+n_1                phpmyadmin                            /tcp
+
+```
 ### Sun Jan 22 09:56:12 CST 2017
 ```
 $ dmysql -u root -proot
