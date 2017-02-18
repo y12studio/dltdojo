@@ -8,14 +8,6 @@ Distributed Ledger Technology Dojo (DLTDOJO) 提供快速練習驗證分散式�
 
 https://y12studio.github.io/dltdojo/
 
-## EVENTS
-
-* [TiGuan3](events/tiguan3/) 踢館參
-
-#### Deprecated
-* [TiGuan2](events/tiguan2/) 踢館貳
-* [TiGuan1](events/tiguan1/) 踢館壹
-
 ## LINKS
 
 * y12docker/dltdojo - Docker Hub https://hub.docker.com/r/y12docker/dltdojo/
