@@ -11,3 +11,8 @@ services:
     command: '/start.sh'
     ports:
         - "12750:12750"
+  jorexp:
+    image: y12docker/dltdojo-jorexp
+    command: '/start.sh'
+    ports:
+        - "12751:8080"

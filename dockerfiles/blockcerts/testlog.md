@@ -1,8 +1,43 @@
 ### 2017-02-18T18:26:33+0800
+* abe explorer http://192.168.2.73:12750/
+* jornc explorer http://192.168.2.73:12751/
+
 ```
 $ source alias.sh
 $ dcup
-// http://192.168.2.73:12750/
+$ dc ps
+      Name             Command             State              Ports
+-------------------------------------------------------------------------
+dcblockcerts_abe   /start.sh          Up                 0.0.0.0:12750->1
+_1                                                       2750/tcp
+dcblockcerts_btc   /start.sh          Up                 18332/tcp,
+boot_1                                                   18333/tcp
+dcblockcerts_cer   /entrypoint.sh     Up                 18332/tcp,
+t_1                /start.sh                             18333/tcp,
+                                                         18444/tcp,
+                                                         8332/tcp,
+                                                         8333/tcp
+dcblockcerts_jor   /docker-           Up                 0.0.0.0:12751->8
+exp_1              entrypoint.sh                         080/tcp
+                   /sta ...
+
+$ dc exec cert bitcoin-cli generate 5
+[
+  "00e5382212d117ef705a7d33dd917ebb47c012d89a491ace3421c39a5867b87b",
+  "0e5936e9ea5094c8ad947ff59c802ab33db98e37ee051fc9566243b1eefc50c5",
+  "0612fb4bb4a8b508aada88c68af6454697275a9c939ea7846774335ff8f372a3",
+  "58dc34c43334e76206044701ad4a17c83c8b86d57751ebca7f16fa37cc89bb33",
+  "24ad6c62d766d319804f0e26b14a507a3526c1026783f2617142aade2bba41f8"
+]
+$ dc exec btcboot bitcoin-cli generate 5
+[
+  "1c840e3b8d7c17e9942940d31694cebabc5bafead0f3ad7eaca1e141c35ec7cc",
+  "55dbc452a10efe5891e064443bdbd7516be8c264741b082fe76cfecdef00b338",
+  "5a2c2faa46e26affa6d32379f3ae835732e002fb256d34d154a361a56504a047",
+  "797de1ba3c3179005f4b885745d2a1be948cf86dcc86f9baed9782bc148b957a",
+  "69a5077f51580e216cb5adc756600373478f912ab6fa1153b958eccaf3577892"
+]
+$ dcstop
 ```
 ### 2017-02-18T18:13:24+0800
 ```
