@@ -1,3 +1,11 @@
+### 2017-02-18T07:45:36+0800
+```
+$ docker build -t y12docker/dltdojo-pandas-notebook .
+$ docker images | grep pandas
+y12docker/dltdojo-pandas-notebook                                                                                                                         latest                          387a83ef1849        22 seconds ago      4.3 GB
+$ docker run -it --rm -p 8888:8888 y12docker/dltdojo-pandas-notebook
+
+```
 ### 2017-02-17T12:44:56+0800
 ```
 $ docker pull jupyter/datascience-notebook
