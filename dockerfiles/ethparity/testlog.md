@@ -1,5 +1,33 @@
 parity PoA https://github.com/ethcore/parity/wiki/Demo-PoA-tutorial
 
+### 2017-02-18T11:15:07+0800
+Authority nodes run with --usd-per-tx 0 to make the transactions cheap.
+```
+$ docker build -t y12docker/dltdojo-ethparity .
+$ source alias.sh
+$ dcup
+$ dc exec dltdojo node index.js eth poa0 account --list
+{ '0x004ec07d2329997267ec62b4166639513386f32e': { balance: '9.9e+23', ethBalance: '990000' },
+  '0x00bd138abd70e2f00903268f3db08f2d25677c9e': { balance: '8.8e+23', ethBalance: '880000' } }
+$ dc exec dltdojo node index.js eth peer1 account --new --password pass1
+0x41a283b58e6f53a3a5788d859331ec699a3936c3
+$ dc exec dltdojo node index.js eth poa0 send --account 0x004ec07d2329997267Ec62b4166639513386F32E --to 0x41a283b58e6f53a3a5788d859331ec699a3936c3 --eth 188.55 --password user
+$ dc exec dltdojo node index.js eth peer1 account --list
+{ '0x41a283b58e6f53a3a5788d859331ec699a3936c3': { balance: '188550000000000000000', ethBalance: '188.55' } }
+$ dc exec dltdojo node index.js eth poa0 hahacoin --new --address 0x004ec07d2329997267ec62b4166639513386f32e --password user
+Error: The contract code couldn't be stored, please check your gas amount.
+    at Object.callback (/opt/app/node_modules/web3/lib/web3/contract.js:147:46)
+    at /opt/app/node_modules/web3/lib/web3/method.js:142:25
+    at /opt/app/node_modules/web3/lib/web3/requestmanager.js:89:9
+    at XMLHttpRequest.request.onreadystatechange (/opt/app/node_modules/web3/lib/web3/httpprovider.js:118:13)
+// http://192.168.2.73:8000/#/block/4
+// Hash #	0xd69c514477a81d5fe5e6c6f529f7f199fed1a2aaac8ea6e3ad0cf2d068d8cea0
+// Contract Address	0x7ba4324585cb5597adc283024819254345cd7c62
+$ dc exec dltdojo node index.js eth poa0 hahacoin --address 0x004ec07d2329997267ec62b4166639513386f32e --password user --contract 0x7ba4324585cb5597adc283024819254345cd7c62
+{ account: '0x004ec07d2329997267ec62b4166639513386f32e',
+  contractAddress: '0x7ba4324585cb5597adc283024819254345cd7c61',
+  contractBalance: '0' }
+```
 ### 2017-02-10T09:08:43+0800
 ```
 $ docker run -d -p 8180:8180 y12docker/dltdojo-ethparity /dev.sh

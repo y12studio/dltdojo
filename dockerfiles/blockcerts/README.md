@@ -1,14 +1,10 @@
-https://github.com/blockchain-certificates/cert-issuer
+Blockcerts : The Open Standard for Blockchain Certificates  http://www.blockcerts.org/
 
-https://github.com/blockchain-certificates/cert-viewer
+* https://github.com/blockchain-certificates/cert-issuer
+* https://github.com/blockchain-certificates/cert-viewer
+* chainpoint/chainpoint-validate-js  https://github.com/chainpoint/chainpoint-validate-js
+* https://github.com/Colored-Coins/Colored-Coins-Block-Explorer
 
-
-https://github.com/Colored-Coins/Colored-Coins-Block-Explorer
-
-https://github.com/chjj/termcoin
-
-https://github.com/arzzen/altcoin-bitcoin-explorer
-
-https://github.com/behas/bitcoingraph
-
-https://github.com/bitcoinprivacy/Bitcoin-Graph-Explorer
+```
+$ docker build -t y12docker/dltdojo-blockcerts .
+```

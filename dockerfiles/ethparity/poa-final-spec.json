@@ -6,8 +6,7 @@
                 "gasLimitBoundDivisor": "0x400",
                 "stepDuration": "5",
                 "validators" : {
-								    "list": [ "0x00Bd138aBD70e2F00903268F3Db08f2D25677C9e",
-        "0x00Aa39d30F0D20FF03a22cCfc30B7EfbFca597C2"]
+								    "list": [ "0x00Bd138aBD70e2F00903268F3Db08f2D25677C9e","0x00Aa39d30F0D20FF03a22cCfc30B7EfbFca597C2"]
 								}
             }
         }

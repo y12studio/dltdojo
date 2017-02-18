@@ -15,6 +15,11 @@ services:
         - "8545:8545"
         - "8180:8180"
         - "8080:8080"
+  carexp:
+    image: y12docker/dltdojo-carexp
+    ports:
+        - "8000:8000"
+    command: '/start.sh 192.168.2.73'
   dltdojo:
     image: y12docker/dltdojo
     command: 'start'

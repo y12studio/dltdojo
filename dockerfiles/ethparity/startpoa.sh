@@ -32,12 +32,14 @@ if [ -n "$SIGNER" ]
 then
   echo engine-signer $SIGNER
   OPTSIGNER='--engine-signer='${SIGNER}
+  # https://github.com/ethcore/parity/issues/2022
   OPTPOA='--chain /opt/parity/poa-final-spec.json --password /opt/parity/node.pwds --port 30300 --jsonrpc-interface=0.0.0.0 --jsonrpc-cors=* --jsonrpc-hosts=all --jsonrpc-port 8545 --ui-port 8180 --dapps-port 8080 --jsonrpc-apis web3,eth,net,personal,parity,parity_set,traces,rpc,parity_accounts'
+  OPTPOA2='-lsync=trace,txqueue=trace,own_tx=trace,miner=trace --usd-per-eth 10 --usd-per-tx 0.000000001'
   if [ -n "${ENODE_URL}" ]
   then
-    parity --bootnodes=${ENODE_URL} ${OPTSIGNER} ${OPTPOA}
+    parity --bootnodes=${ENODE_URL} ${OPTSIGNER} ${OPTPOA} ${OPTPOA2}
   else
-    parity ${OPTSIGNER} ${OPTPOA}
+    parity ${OPTSIGNER} ${OPTPOA} ${OPTPOA2}
   fi
 else
   parity --bootnodes=${ENODE_URL} --chain /opt/parity/poa-final-spec.json --port 30300 --jsonrpc-interface=0.0.0.0 --jsonrpc-cors=* --jsonrpc-hosts=all --jsonrpc-port 8545 --ui-port 8180 --ui-interface=0.0.0.0 --ui-no-validation --dapps-port 8080 --jsonrpc-apis web3,eth,net,personal,parity,parity_set,traces,rpc,parity_accounts

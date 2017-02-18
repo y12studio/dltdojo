@@ -3,9 +3,9 @@ services:
   btcboot:
     image: y12docker/dltdojo-bitcoin
     command: '/start.sh'
-  btc1:
-    image: y12docker/dltdojo-bitcoin
-    command: '/start.sh'
+  cert:
+     image: y12docker/dltdojo-blockcerts
+     command: '/start.sh'
   abe:
     image: y12docker/dltdojo-abe
     command: '/start.sh'
