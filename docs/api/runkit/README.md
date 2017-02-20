@@ -1,7 +1,12 @@
-### RunKit Endpoint Test (Bitcoin/Ethereum Keys)
-
 RunKit: Endpoint Documentation  https://runkit.com/docs/endpoint
 
-https://runkit.com/58a270fb3928da0014b26990/58a2718de1af40001418a714
+### RunKit Endpoint Test (Bitcoin/Ethereum Keys)
 
-https://runkit.io/58a270fb3928da0014b26990/58a2718de1af40001418a714/branches/master
+* https://runkit.com/y12/58a2718de1af40001418a714
+* https://runkit.io/y12/58a2718de1af40001418a714/branches/master
+
+### Bitcoin/Ethereum Hash
+
+* https://runkit.com/y12/58aa3a0b7ba62e0014b47d45
+* Bitcoin Hash Functions Explained - CoinDesk http://www.coindesk.com/bitcoin-hash-functions-explained/
+* anders Blockchain Demo https://anders.com/blockchain/
