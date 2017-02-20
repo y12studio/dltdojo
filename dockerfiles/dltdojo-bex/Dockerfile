@@ -14,6 +14,6 @@ RUN apk --update --no-cache add bash curl jq git \
     && apk --no-cache --purge del .builddeps \
     && rm -rf /tmp/*
 ADD bitcoin.conf /root/.bitcoin/
-ADD startbtc.sh starteth.sh genesis.json /
-RUN chmod +x /start*.sh
+ADD btc.sh eth.sh genesis.json /
+RUN chmod +x /*.sh
 ENTRYPOINT []

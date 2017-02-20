@@ -22,4 +22,5 @@ if version_gt 1.13.0 $VERSION; then
 fi
 echo "DLTDOJO"
 docker pull y12docker/dltdojo
+docker pull y12docker/dltdojo-bex
 show_info "tiguan4"

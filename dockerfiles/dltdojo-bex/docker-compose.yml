@@ -1,0 +1,28 @@
+version: '2'
+services:
+  btcboot:
+    image: y12docker/dltdojo-bex
+    command: '/btc.sh'
+  btc1:
+    image: y12docker/dltdojo-bex
+    command: '/btc.sh'
+  abe:
+    image: y12docker/dltdojo-abe
+    command: '/start.sh'
+    ports:
+        - "12750:12750"
+  ethdev:
+    image: y12docker/dltdojo-bex
+    command: '/eth.sh dev'
+    ports:
+        - "8545:8545"
+  carexp:
+    image: y12docker/dltdojo-carexp
+    ports:
+        - "18000:8000"
+    command: '/start.sh 192.168.2.73'
+  dltdojo:
+    image: y12docker/dltdojo
+    command: 'start'
+    ports:
+        - "18168:18168"
