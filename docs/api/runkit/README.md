@@ -10,3 +10,7 @@ RunKit: Endpoint Documentation  https://runkit.com/docs/endpoint
 * https://runkit.com/y12/58aa3a0b7ba62e0014b47d45
 * Bitcoin Hash Functions Explained - CoinDesk http://www.coindesk.com/bitcoin-hash-functions-explained/
 * anders Blockchain Demo https://anders.com/blockchain/
+
+### colu api
+* colu test | RunKit  https://runkit.com/y12/58aabd484771880014ce31a0
+* Colu Engine Documentation  http://documentation.colu.co/#ColuAPI

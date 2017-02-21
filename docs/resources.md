@@ -76,14 +76,17 @@ Microsoft Virtual Academy “Blockchain As A Service” Course https://decentral
 Blockchain: transforming the IoT’s security vulnerability into a strategic advantage  https://internetofbusiness.com/blockchain-iot-security-2/
 
 ### Car Wallet
+* 比特幣車錢包的IBM i3 API試驗案例，日前另一個Project Oaken使用ETH與Tesla當試驗示範平台。
+* EthanBIoT CarWallet - YouTube https://www.youtube.com/watch?v=_exyzLOnMJw
+* Blockchain Car Wallet: The First Of Its Kind - Blockgeeks http://blockgeeks.com/blockchain-car-wallet/
+* Project Oaken https://www.projectoaken.com/
 
-比特幣車錢包的IBM i3 API試驗案例，日前另一個Project Oaken使用ETH與Tesla當試驗示範平台。
+### Voting
 
-EthanBIoT CarWallet - YouTube https://www.youtube.com/watch?v=_exyzLOnMJw
-
-Blockchain Car Wallet: The First Of Its Kind - Blockgeeks http://blockgeeks.com/blockchain-car-wallet/
-
-Project Oaken https://www.projectoaken.com/
+* Voatz is using Blockchain technology to help you conveniently and securely cast your vote - IBM Global Entrepreneur  http://developer.ibm.com/startups/wp-content/uploads/sites/72/2016/11/voatz-demo.png
+* New Blockchain Partnership Proposes Solution for Remote Voting - CryptoCoinsNews  https://www.cryptocoinsnews.com/new-blockchain-partnership-proposes-solution-remote-voting/
+* After Chaotic First Day, Bitcoin Foundation Reboots Run-off Election | Bitcoin Magazine  https://bitcoinmagazine.com/articles/developing-story-bitcoin-foundation-elections-shambles-candidates-call-restart-1424917704/
+* 「無人管理」的區塊鏈新創The DAO，創下史上高額群眾募資紀錄：1.25億美元｜數位時代  https://www.bnext.com.tw/article/39603/BN-2016-05-17-172239-218
 
 ### Corda Messaging
 

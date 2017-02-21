@@ -1,0 +1,30 @@
+version: '2'
+services:
+  btcboot:
+    image: y12docker/dltdojo-lwmqndemo
+    command: '/start.sh 13030'
+    ports:
+        - "13000:3000"
+        - "13030:3030"
+  btc1:
+    image: y12docker/dltdojo-lwmqndemo
+    command: '/start.sh 13031'
+    ports:
+        - "13001:3000"
+        - "13031:3030"
+  btc2:
+    image: y12docker/dltdojo-lwmqndemo
+    command: '/start.sh 13032'
+    ports:
+        - "13002:3000"
+        - "13032:3030"
+  abe:
+    image: y12docker/dltdojo-abe
+    command: '/start.sh'
+    ports:
+        - "12750:12750"
+  dltdojo:
+    image: y12docker/dltdojo
+    command: 'start'
+    ports:
+        - "18168:18168"
