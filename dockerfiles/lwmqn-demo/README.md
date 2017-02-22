@@ -8,4 +8,5 @@ Fork of  https://github.com/lwmqn/lwmqn-demo projet. All credit goes to simen.
 
 ```
 $ docker build -t y12docker/dltdojo-lwmqndemo .
+$ docker push y12docker/dltdojo-lwmqndemo:latest
 ```
