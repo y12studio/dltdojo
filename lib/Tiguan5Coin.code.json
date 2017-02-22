@@ -1,0 +1,136 @@
+{
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "minter",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "x",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "balances",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "receiver",
+          "type": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "mint",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "y",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "z",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "receiver",
+          "type": "address"
+        },
+        {
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "send",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "payable": false,
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "Sent",
+      "type": "event"
+    }
+  ],
+  "code": "0x606060405234610000575b60008054600160a060020a03191633600160a060020a03908116919091178255321681526001602052604081206301406f40905560647fb1c0a0c4d68c420c50c282e486e1cdb3763b02c3d90d7a063b2b89cbbab66d445560c87f2fd74187001645d354c2268a641eaa7a7f54651b077d505f943098d2c2993f3b55734c41deb7f34a6e625458d62f3fb6553545e9ecfd905261012c7f17d7c390c557aeafac4d31c600c63b14b7154bf4dad29c4213214235e400a80f555b5b610363806100d36000396000f300606060405236156100675763ffffffff60e060020a60003504166307546172811461006c5780630c55699c1461009557806327e235e3146100be57806340c10f19146100e9578063a56dfe4a14610107578063c5d7802e14610130578063d0679d3414610159575b610000565b3461000057610079610177565b60408051600160a060020a039092168252519081900360200190f35b3461000057610079610186565b60408051600160a060020a039092168252519081900360200190f35b34610000576100d7600160a060020a036004351661019e565b60408051918252519081900360200190f35b3461000057610105600160a060020a03600435166024356101b0565b005b34610000576100796101ee565b60408051600160a060020a039092168252519081900360200190f35b3461000057610079610205565b60408051600160a060020a039092168252519081900360200190f35b3461000057610105600160a060020a036004351660243561021d565b005b600054600160a060020a031681565b73ef360a8b39442dc87c60aa957b07016cb396f16481565b60016020526000908152604090205481565b60005433600160a060020a039081169116146101cb576101ea565b600160a060020a03821660009081526001602052604090208054820190555b5050565b7228e590fc2789a2ae4da1824780390a3bc483a881565b734c41deb7f34a6e625458d62f3fb6553545e9ecfd81565b600160a060020a03331660009081526001602052604090205460060181901015610246576101ea565b600160a060020a0333811660008181526001602081815260408084208054600519908990030190557fb1c0a0c4d68c420c50c282e486e1cdb3763b02c3d90d7a063b2b89cbbab66d4480549093019092557f2fd74187001645d354c2268a641eaa7a7f54651b077d505f943098d2c2993f3b805460020190557f17d7c390c557aeafac4d31c600c63b14b7154bf4dad29c4213214235e400a80f805460030190559386168083529181902080548601905580519283529282015280820183905290517f3990db2d31862302a685e8086b5755072a6e2b5b780af1ee81ece35ee3cd33459181900360600190a15b50505600a165627a7a72305820172dbaa34ea259a1519c70c530e27e8f25450764420bc2ccc5e9b2b85a1907da0029"
+}

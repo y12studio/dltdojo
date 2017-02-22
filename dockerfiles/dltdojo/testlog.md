@@ -1,6 +1,57 @@
 ### TODO
 * http://www.grpc.io/docs/tutorials/basic/node.html
 
+### 2017-02-22T17:08:25+0800
+```
+$ docker run -it --rm -p 8545:8545 ethereum/client-go --dev --rpc --rpccorsdomain="*" --rpcaddr="0.0.0.0" --rpcapi "miner,admin,db,personal,eth,net,web3" --ipcdisable
+$ node index.js eth localhost account --new --password pass
+0x8e4eb442389172386cca6907f602089549faf99c
+
+$ node index.js eth localhost miner --start
+$ node index.js eth localhost account --list
+{ '0x8e4eb442389172386cca6907f602089549faf99c': { balance: '10000000000000000000', ethBalance: '10' } }
+$ node index.js eth localhost tiguan5coin --new --address 0x8e4eb442389172386cca6907f602089549faf99c --password pass
+{ tx: '0x0b3c23509b001af88e11888347bf50129450298f6641b3628cb16382738474f6',
+  contractAddress: '0x737c837ceb9a33482ca89dba7652ff0612a228ed' }
+
+$ node index.js eth localhost tiguan5coin --address 0x8e4eb442389172386cca6907f602089549faf99c --contract 0x737c837ceb9a33482ca89dba7652ff0612a228ed
+{ account: '0x8e4eb442389172386cca6907f602089549faf99c',
+  contractAddress: '0x737c837ceb9a33482ca89dba7652ff0612a228ed',
+  contractBalance: '21000000' }
+$ node index.js eth localhost tiguan5coin --address 0xef360a8b39442dc87c60aa957b07016cb396f164 --contract 0x737c837ceb9a33482ca89dba7652ff0612a228ed
+{ account: '0xef360a8b39442dc87c60aa957b07016cb396f164',
+  contractAddress: '0x737c837ceb9a33482ca89dba7652ff0612a228ed',
+  contractBalance: '100' }
+$ node index.js eth localhost tiguan5coin --address 0x0028e590fc2789a2ae4da1824780390a3bc483a8 --contract 0x737c837ceb9a33482ca89dba7652ff0612a228ed
+{ account: '0x0028e590fc2789a2ae4da1824780390a3bc483a8',
+  contractAddress: '0x737c837ceb9a33482ca89dba7652ff0612a228ed',
+  contractBalance: '200' }
+$ node index.js eth localhost tiguan5coin --send --to 0x93d5dc01a675abb8de4a810b94d24189c0359d8a --address 0x8e4eb442389172386cca6907f602089549faf99c --password pass --contract 0x737c837ceb9a33482ca89dba7652ff0612a228ed --amount 99
+
+$ node index.js eth localhost tiguan5coin --address 0x93d5dc01a675abb8de4a810b94d24189c0359d8a --contract 0x737c837ceb9a33482ca89dba7652ff0612a228ed
+99
+$ node index.js eth localhost tiguan5coin --address 0xef360a8b39442dc87c60aa957b07016cb396f164 --contract 0x737c837ceb9a33482ca89dba7652ff0612a228ed
+101
+$ node index.js eth localhost tiguan5coin --address 0x0028e590fc2789a2ae4da1824780390a3bc483a8 --contract 0x737c837ceb9a33482ca89dba7652ff0612a228ed
+202
+
+```
+### 2017-02-22T16:45:11+0800
+```
+$ testrpc --account="0x08e950346e37a07ffb360d32af9ff716661991f584d95159f3a1204398f826a8,1000"
+Available Accounts
+==================
+(0) 0x93d5dc01a675abb8de4a810b94d24189c0359d8a
+
+Private Keys
+==================
+(0) 08e950346e37a07ffb360d32af9ff716661991f584d95159f3a1204398f826a8
+
+$ node index.js eth localhost tiguan5coin --contractinfo
+$ node index.js eth localhost tiguan5coin --new --address 0x93d5dc01a675abb8de4a810b94d24189c0359d8a --password ''
+// TBD
+```
+
 ### 2017-02-02T13:05:06+0800
 ```
 $ node index.js service tiguan2 --start --network devbtcnet

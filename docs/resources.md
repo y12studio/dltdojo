@@ -29,6 +29,32 @@ Hyperledger Fabric1.0架构概览_巴比特 http://www.8btc.com/hyperledger-fabr
 
 Project Jasper: Lessons From Bank of Canada's First Blockchain Project - CoinDesk  http://www.coindesk.com/project-jasper-lessons-bank-of-canada-blockchain-project/
 
+### Ethereum Contracts
+
+ConsenSys/smart-contract-best-practices  https://github.com/ConsenSys/smart-contract-best-practices
+
+slockit/DAO: The Standard DAO Framework, inc. Whitepaper  https://github.com/slockit/DAO
+
+ConsenSys/Tokens: Ethereum Token Contracts  https://github.com/ConsenSys/Tokens
+
+boardroom-contracts/contracts  https://github.com/boardroom-project/boardroom-contracts/tree/master/contracts
+
+numerai/contract: The Numeraire Ethereum Smart Contract  https://github.com/numerai/contract
+
+### Fact/Prediction/Token
+
+Reality Keys - Facts about the future, cryptographic proof when they come true  https://www.realitykeys.com/
+
+An AI Hedge Fund Created a New Currency to Make Wall Street Work Like Open Source | WIRED  https://www.wired.com/2017/02/ai-hedge-fund-created-new-currency-make-wall-street-work-like-open-source/
+
+Numerai Used 7,500 Faceless Coders Paid in Bitcoin to Build Its Hedge Fund's Brain | WIRED  https://www.wired.com/2016/12/7500-faceless-coders-paid-bitcoin-built-hedge-funds-brain/
+
+A New Cryptocurrency For Coordinating Artificial Intelligence on Numerai – Numerai – Medium  https://medium.com/numerai/a-new-cryptocurrency-for-coordinating-artificial-intelligence-on-numerai-9251a131419a
+
+Decentralized Prediction Markets | Augur Project  https://augur.net/
+
+Make complex predictions with an easy to use prediction market | GNOSIS  https://gnosis.pm/
+
 ### United Nations
 
 UN Working Paper Explores How the Blockchain Can Empower Global Communities | Bitcoin Magazine  https://bitcoinmagazine.com/articles/un-working-paper-explores-how-the-blockchain-can-empower-global-communities-1455648791/
@@ -45,7 +71,7 @@ How to Sue A Decentralized Autonomous Organization - CoinDesk  http://www.coinde
 
 ### Healthcare
 
-Blockchain Technology in Healthcare: The Dream And The Reality  https://thenextweb.com/contributors/blockchain-technology-healthcare-dream-reality/#.tnw_71XElNXH
+Blockchain Technology in Healthcare: The Dream And The Reality  https://thenextweb.com/contributors/blockchain-technology-healthcare-dream-reality/
 
 ### Apache spot
 
