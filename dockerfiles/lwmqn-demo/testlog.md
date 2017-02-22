@@ -4,7 +4,44 @@
 * lwmqndemo btc2 http://192.168.2.73:13002
 * Bitcoin abe explorer http://192.168.2.73:12750
 * Bitcoin jornc explorer http://192.168.2.73:12751
+* Ethereum carsenk explorer http://hostip:18000
 
+### 2017-02-22T18:58:42+0800
+```
+$ source alias.sh
+$ dcup
+$ dj eth ethdev account --new --password pass
+0x711044f48fba8ec7c9a61c29155f98c2eda30b86
+$ ADDR=0x711044f48fba8ec7c9a61c29155f98c2eda30b86
+$ dj eth ethdev miner --start
+$ dj eth ethdev account --list
+$ dj eth ethdev tiguan5coin --new --address $ADDR --password pass
+{ tx: '0xd25355d3b1ef81c9804167664388bbad9e85d7cf39d6b445ca153caa5d7a781a',
+  contractAddress: '0xffc85c6f40176dcce1621aeae4c2eee14241bdff' }
+$ CADDR=0xffc85c6f40176dcce1621aeae4c2eee14241bdff
+$ dj eth ethdev tiguan5coin --address $ADDR --contract $CADDR
+{ account: '0x711044f48fba8ec7c9a61c29155f98c2eda30b86',
+  contractAddress: '0xffc85c6f40176dcce1621aeae4c2eee14241bdff',
+  contractBalance: '21000000' }
+// https://github.com/y12studio/dltdojo/blob/master/lib/Tiguan5Coin.sol
+$ dj eth ethdev tiguan5coin --address $XADDR --contract $CADDR
+{ account: '0xef360a8b39442dc87c60aa957b07016cb396f164',
+  contractAddress: '0xffc85c6f40176dcce1621aeae4c2eee14241bdff',
+  contractBalance: '100' }
+$ dj eth ethdev tiguan5coin --address $YADDR --contract $CADDR
+{ account: '0x0028e590fc2789a2ae4da1824780390a3bc483a8',
+  contractAddress: '0xffc85c6f40176dcce1621aeae4c2eee14241bdff',
+  contractBalance: '200' }
+$ dj eth ethdev tiguan5coin --address $ZADDR --contract $CADDR
+{ account: '0x4c41deb7f34a6e625458d62f3fb6553545e9ecfd',
+  contractAddress: '0xffc85c6f40176dcce1621aeae4c2eee14241bdff',
+  contractBalance: '300' }
+$ dj eth ethdev tiguan5coin --send --to 0x93d5dc01a675abb8de4a810b94d24189c0359d8a --address $ADDR --password pass --contract $CADDR --amount 99
+$ dj eth ethdev tiguan5coin --address $ZADDR --contract $CADDR
+{ account: '0x4c41deb7f34a6e625458d62f3fb6553545e9ecfd',
+  contractAddress: '0xffc85c6f40176dcce1621aeae4c2eee14241bdff',
+  contractBalance: '303' }
+```
 ### 2017-02-22T09:11:17+0800
 ```
 $ dj btc btcboot miner --num 101

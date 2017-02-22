@@ -28,6 +28,16 @@ services:
     command: '/start.sh'
     ports:
         - "12751:8080"
+  ethdev:
+    image: y12docker/dltdojo-bex
+    command: '/eth.sh dev'
+    ports:
+        - "8545:8545"
+  carexp:
+    image: y12docker/dltdojo-carexp
+    ports:
+        - "18000:8000"
+    command: '/start.sh 192.168.2.73'
   dltdojo:
     image: y12docker/dltdojo
     command: 'start'
