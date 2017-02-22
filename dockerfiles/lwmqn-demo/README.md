@@ -1,3 +1,7 @@
+### Credits
+
+Fork of  https://github.com/lwmqn/lwmqn-demo projet. All credit goes to simen.
+
 ### PROJECTS
 * https://github.com/lwmqn/lwmqn-demo
 * Fork version : https://github.com/y12studio/lwmqn-demo

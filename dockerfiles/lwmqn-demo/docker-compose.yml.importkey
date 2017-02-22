@@ -2,19 +2,19 @@ version: '2'
 services:
   btcboot:
     image: y12docker/dltdojo-lwmqndemo
-    command: '/start.sh 13030'
+    command: '/start.sh 13030 cNPEeLLePksC3Fc3myz52Bzk8rab8VaNm6m3W3RJLPi73gGAVVAu'
     ports:
         - "13000:3000"
         - "13030:3030"
   btc1:
     image: y12docker/dltdojo-lwmqndemo
-    command: '/start.sh 13031'
+    command: '/start.sh 13031 cN88RdiGQWr99xH6mN2wFabPmKhF1etvskg4ZCDKvXS512b3ZDbF'
     ports:
         - "13001:3000"
         - "13031:3030"
   btc2:
     image: y12docker/dltdojo-lwmqndemo
-    command: '/start.sh 13032'
+    command: '/start.sh 13032 cQfSMfwyNnqpJNpoJvdV9A1vTSPCyLeBMDjFChBywmFj8bxdAQap'
     ports:
         - "13002:3000"
         - "13032:3030"
@@ -23,11 +23,6 @@ services:
     command: '/start.sh'
     ports:
         - "12750:12750"
-  jorexp:
-    image: y12docker/dltdojo-jorexp
-    command: '/start.sh'
-    ports:
-        - "12751:8080"
   dltdojo:
     image: y12docker/dltdojo
     command: 'start'

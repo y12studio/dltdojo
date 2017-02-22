@@ -29,6 +29,24 @@ Hyperledger Fabric1.0架构概览_巴比特 http://www.8btc.com/hyperledger-fabr
 
 Project Jasper: Lessons From Bank of Canada's First Blockchain Project - CoinDesk  http://www.coindesk.com/project-jasper-lessons-bank-of-canada-blockchain-project/
 
+### United Nations
+
+UN Working Paper Explores How the Blockchain Can Empower Global Communities | Bitcoin Magazine  https://bitcoinmagazine.com/articles/un-working-paper-explores-how-the-blockchain-can-empower-global-communities-1455648791/
+
+Sustainable Development Goals  https://sustainabledevelopment.un.org/
+
+The UN Needs Blockchain to Achieve Its Goals - Blockgeeks  http://blockgeeks.com/the-un-needs-blockchain/
+
+Call for a Digital Geneva Convention Could Affect Bitcoin - Bitcoin News  https://news.bitcoin.com/call-for-a-digital-geneva-convention-could-affect-bitcoin/
+
+微软呼吁签署《数字日内瓦公约》，比特币矿工和交易者理应成为保护对象_巴比特  http://www.8btc.com/digital-geneva-convention-could-affect-bitcoin
+
+How to Sue A Decentralized Autonomous Organization - CoinDesk  http://www.coindesk.com/how-to-sue-a-decentralized-autonomous-organization/
+
+### Healthcare
+
+Blockchain Technology in Healthcare: The Dream And The Reality  https://thenextweb.com/contributors/blockchain-technology-healthcare-dream-reality/#.tnw_71XElNXH
+
 ### Apache spot
 
 Apache Spot以網路巨量資料的建立與安全分析並分享分析工具為主，未來千帳萬鏈時代，一天億萬筆資產智約交易的監控、分析結果也可因聯防安全互助或是智約需要的成立條件而藉由open data model (ODM) 分享。
@@ -116,6 +134,10 @@ Add support for Bitcoin payments · Issue #429 · ro31337/libretaxi https://gith
 
 Arcade City Is the ‘Black Market’ Uber that Runs on Facebook - Motherboard  https://motherboard.vice.com/en_us/article/arcade-city-is-the-black-market-uber-that-runs-on-facebook-christopher-david
 
+### Machine Learning
+
+開發者入門必讀：最值得看的十大機器學習公開課_幫趣網  http://bangqu.com/gpu/blog/5374
+
 ### Bitcoin Mirror World
 
 目前做比特幣網路鏡世界一比一模擬約需6000個節點，以上次踢館壹道場開20個模擬比特幣節點來估，全球各大洲布300個道場連線模擬做實驗成本不低。
@@ -123,3 +145,7 @@ Arcade City Is the ‘Black Market’ Uber that Runs on Facebook - Motherboard  
 Miniature World: Measuring and Evaluating Blockchains  http://hackingdistributed.com/2017/02/10/miniature-world/
 
 丁丁糖：《奇異博士》里的科學原理 - 每日頭條  https://kknews.cc/zh-tw/news/g2b6589.html
+
+### SANDBOX
+
+Regulatory sandbox | FCA  https://www.fca.org.uk/firms/project-innovate-innovation-hub/regulatory-sandbox
