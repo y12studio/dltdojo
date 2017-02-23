@@ -1,6 +1,12 @@
+## TiGuan5
+
+![DLTDOJO](dltdojo-alice-bob.png "DLTDOJO")
+
 ### PROJECTS
 * A simple smart home webappp demo https://github.com/lwmqn/lwmqn-demo
-* Bitcoin Core(BC) https://github.com/bitcoin/bitcoin
+* https://github.com/y12studio/lwmqn-demo
+* Bitcoin Core https://github.com/bitcoin/bitcoin
+* Ethereum https://github.com/ethereum/go-ethereum
 * https://github.com/bitcoin-abe/bitcoin-abe
 * https://github.com/JornC/bitcoin-transaction-explorer
 * https://github.com/carsenk/explorer
@@ -8,7 +14,7 @@
 ### PEERS
 * BitcoinCore regtest chain x5
 * Ethereum dev chain x1
-* lwmqn-demo x4
+* lwmqn-demo x3
 
 ### SERVICES
 * Bitcoin abe explorer http://hostip:12750
@@ -21,6 +27,7 @@
 ### SMART CONTRACTS
 * https://github.com/y12studio/dltdojo/blob/master/dockerfiles/lwmqn-demo/dltdojo.js
 * https://github.com/y12studio/dltdojo/blob/master/lib/Tiguan5Coin.sol
+* https://github.com/y12studio/dltdojo/tree/master/dockerfiles/lwmqn-demo
 
 ### SETUP
 ```
