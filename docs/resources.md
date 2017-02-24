@@ -11,23 +11,21 @@
 * https://github.com/monero-project/monero
 * https://github.com/kadena-io/juno
 
+
+### Demo site
+* https://y12studio.github.io/dltdojo/
+
 ### Resources
 
-DLT介紹 EU Securities Watchdog: New DLT Regulations Would Be 'Premature' - CoinDesk  http://www.coindesk.com/eu-securities-watchdog-new-dlt-regulations-premature/
-
-區塊鏈報導寫的深入淺出的不多，大力推薦。 Blockchain: The Invisible Technology That's Changing the World | PCMag.com  http://www.pcmag.com/article/351486/blockchain-the-invisible-technology-thats-changing-the-wor
-
-What’s in a Name? From Bitcoin to Blockchain to Distributed Ledgers - CoinDesk  http://www.coindesk.com/whats-in-a-name-from-bitcoin-to-blockchain-to-distributed-ledgers/
-
-Fintech 2017: Movements in blockchain, PSD2 and cybersecurity on the horizon https://www.siliconrepublic.com/enterprise/psd2-blockchain-fintech-2017
-
-Blockchain Value Analysis for Investment Banks | Accenture https://www.accenture.com/gr-en/insight-banking-on-blockchain
-
-小蚁张铮文：写给CTO的主流区块链架构横向剖析_巴比特 http://www.8btc.com/blockchain-architecture
-
-Hyperledger Fabric1.0架构概览_巴比特 http://www.8btc.com/hyperledger-fabric1-0
-
-Project Jasper: Lessons From Bank of Canada's First Blockchain Project - CoinDesk  http://www.coindesk.com/project-jasper-lessons-bank-of-canada-blockchain-project/
+* EU Parliament Report Explores Blockchain's 'Substantial Impact' - CoinDesk http://www.coindesk.com/eu-parliament-report-explores-blockchains-substantial-impact/
+* DLT介紹 EU Securities Watchdog: New DLT Regulations Would Be 'Premature' - CoinDesk http://www.coindesk.com/eu-securities-watchdog-new-dlt-regulations-premature/
+* Blockchain: The Invisible Technology That's Changing the World | PCMag.com  http://www.pcmag.com/article/351486/blockchain-the-invisible-technology-thats-changing-the-wor
+* What’s in a Name? From Bitcoin to Blockchain to Distributed Ledgers - CoinDesk  http://www.coindesk.com/whats-in-a-name-from-bitcoin-to-blockchain-to-distributed-ledgers/
+* Fintech 2017: Movements in blockchain, PSD2 and cybersecurity on the horizon https://www.siliconrepublic.com/enterprise/psd2-blockchain-fintech-2017
+* Blockchain Value Analysis for Investment Banks | Accenture https://www.accenture.com/gr-en/insight-banking-on-blockchain
+* 小蚁张铮文：写给CTO的主流区块链架构横向剖析_巴比特 http://www.8btc.com/blockchain-architecture
+* Hyperledger Fabric1.0架构概览_巴比特 http://www.8btc.com/hyperledger-fabric1-0
+* Project Jasper: Lessons From Bank of Canada's First Blockchain Project - CoinDesk  http://www.coindesk.com/project-jasper-lessons-bank-of-canada-blockchain-project/
 
 ### Ethereum Contracts
 * ConsenSys/smart-contract-best-practices  https://github.com/ConsenSys/smart-contract-best-practices
@@ -56,6 +54,7 @@ Project Jasper: Lessons From Bank of Canada's First Blockchain Project - CoinDes
 
 ![DLTDOJO](dltdojo-alice-bob-enclave.png "DLTDOJO")
 
+* Hardware Oracles: bridging the Real World to the Blockchain https://blog.ledger.co/hardware-oracles-bridging-the-real-world-to-the-blockchain-ca97c2fc3e6c
 * Scaling Bitcoin with Secure Hardware  http://hackingdistributed.com/2016/12/22/scaling-bitcoin-with-secure-hardware/
 * Implementing a trustless security solution with hardware wallets and multisignature – Medium
  https://medium.com/@Ledger/implementing-a-trustless-security-solution-with-hardware-wallets-and-multisignature-8f50732c6f4c
@@ -63,14 +62,13 @@ Project Jasper: Lessons From Bank of Canada's First Blockchain Project - CoinDes
  https://bitcoinmagazine.com/articles/the-teechan-solution-scaling-bitcoin-with-trusted-hardware-1482956340/
 
 ### Bank Note
-
 * Banknote - Wikipedia https://en.wikipedia.org/wiki/Banknote
 * Canadian Bank Notes and Dominion Notes: Lessons for Digital Currencies http://www.bankofcanada.ca/wp-content/uploads/2017/02/swp2017-5.pdf
 * Bank of Canada draws digital currencies lessons from history » Brave New Coin  http://bravenewcoin.com/news/bank-of-canada-draws-digital-currencies-lessons-from-history/
 
 ### Healthcare
 
-Blockchain Technology in Healthcare: The Dream And The Reality  https://thenextweb.com/contributors/blockchain-technology-healthcare-dream-reality/
+* Blockchain Technology in Healthcare: The Dream And The Reality  https://thenextweb.com/contributors/blockchain-technology-healthcare-dream-reality/
 
 ### Apache spot
 
@@ -78,17 +76,12 @@ Apache Spot以網路巨量資料的建立與安全分析並分享分析工具為
 
 概念可參考目前apache spot提供的opennetworkinsight/oni-demo，只是不分析封包而可能是分析當下交易合約的比特幣標的物與比特幣目前網路的費率壅塞等等交叉分析是否有安全疑慮。比特幣目前的交易量雖然看不出有一天數億的處理量，不過串上閃電網路/側網/數位法幣/ETH/Hyperledger/Corda/Chain等等資產帳要分析時，這類數據只會倍增。
 
-Apache Spot Overview and Demo - YouTube  https://www.youtube.com/watch?v=tWlRQKI4I6o
-
-Apache推出新開源專案Spot，用機器學習加強網路弱點分析 | iThome  http://www.ithome.com.tw/news/108718
-
-Apache Spot (incubating) Documentation  http://spot.incubator.apache.org/doc/
-
-incubator-spot/open-data-model.md at master · apache/incubator-spot https://github.com/apache/incubator-spot/blob/master/docs/open-data-model/open-data-model.md
-
-apache/incubator-spot: Mirror of Apache Spot https://github.com/apache/incubator-spot
-
-區塊鏈衝擊傳統事務所，KPMG將數位轉型探索全新的審計模式 | iThome  http://www.ithome.com.tw/news/111883
+* Apache Spot Overview and Demo - YouTube  https://www.youtube.com/watch?v=tWlRQKI4I6o
+* Apache推出新開源專案Spot，用機器學習加強網路弱點分析 | iThome  http://www.ithome.com.tw/news/108718
+* Apache Spot (incubating) Documentation  http://spot.incubator.apache.org/doc/
+* incubator-spot/open-data-model.md at master · apache/incubator-spot https://github.com/apache/incubator-spot/blob/master/docs/open-data-model/open-data-model.md
+* apache/incubator-spot: Mirror of Apache Spot https://github.com/apache/incubator-spot
+* 區塊鏈衝擊傳統事務所，KPMG將數位轉型探索全新的審計模式 | iThome  http://www.ithome.com.tw/news/111883
 
 ### Copyright
 
@@ -109,7 +102,7 @@ apache/incubator-spot: Mirror of Apache Spot https://github.com/apache/incubator
 
 ### IoT
 
-Blockchain: transforming the IoT’s security vulnerability into a strategic advantage  https://internetofbusiness.com/blockchain-iot-security-2/
+* Blockchain: transforming the IoT’s security vulnerability into a strategic advantage  https://internetofbusiness.com/blockchain-iot-security-2/
 
 ### Car Wallet
 * 比特幣車錢包的IBM i3 API試驗案例，日前另一個Project Oaken使用ETH與Tesla當試驗示範平台。

@@ -1,3 +1,7 @@
+### 2017-02-23T17:55:19+0800
+```
+$ docker build -t y12docker/dltdojo-truffle .
+```
 ### 2017-02-03T15:39:10+0800
 ```
 $ docker build -t y12docker/dltdojo-truffle .

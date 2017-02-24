@@ -2,11 +2,7 @@
 
 ![DLTDOJO](dltdojo.png "DLTDOJO")
 
-Distributed Ledger Technology Dojo (DLTDOJO) 提供快速練習驗證分散式帳本區塊鏈概念的環境，道場設計為不需背景知識都可練習實做。
-
-## Demo site
-
-https://y12studio.github.io/dltdojo/
+An testing framework for Distributed Ledger Technology Dojo (DLTDOJO)
 
 ## LINKS
 
