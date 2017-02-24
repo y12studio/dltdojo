@@ -2,7 +2,7 @@
 
 ![DLTDOJO](dltdojo.png "DLTDOJO")
 
-An testing framework for Distributed Ledger Technology Dojo (DLTDOJO)
+A learning framework for Distributed Ledger Technology Dojo (DLTDOJO)
 
 ## LINKS
 

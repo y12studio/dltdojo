@@ -27,7 +27,11 @@
     "bitcoin-core": "^1.1.0",
     "bitcore-lib": "^0.13.19",
     "ethereumjs-util": "^5.1.1",
+    "jsonwebtoken": "^7.3.0",
+    "jsrsasign": "^7.1.0",
+    "key-encoder": "^1.1.6",
     "lodash": "^4.17.4",
+    "pem": "^1.9.4",
     "request-promise": "^4.1.1"
   }
 }

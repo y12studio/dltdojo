@@ -2,6 +2,17 @@ https://runkit.com/y12
 
 RunKit: Endpoint Documentation  https://runkit.com/docs/endpoint
 
+### JSON Web Token(RS256)
+
+JSON Web Token RS256 | RunKit  https://runkit.com/y12/58aff2c1e4edc300143380ad
+
+* Data URI scheme - Wikipedia  https://en.wikipedia.org/wiki/Data_URI_scheme
+* RFC 7515 - JSON Web Signature (JWS)  https://tools.ietf.org/html/rfc7515#appendix-A
+* https://kjur.github.io/jsrsasign/slide_e/#/11/3
+* https://jwt.io/
+* https://github.com/auth0/node-jsonwebtoken
+* examples & tests for ES256  · auth0/node-jsonwebtoken https://github.com/auth0/node-jsonwebtoken/issues/97
+
 ### RunKit Endpoint Test (Bitcoin/Ethereum Keys)
 
 * https://runkit.com/y12/58a2718de1af40001418a714
