@@ -1,0 +1,8 @@
+.wframe{
+    padding:0.5em;
+    margin: 0.5em;
+}
+
+md-input-container .md-errors-spacer {
+    min-height: 0;
+}
