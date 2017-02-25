@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <title>DLTDOJO - ethjs examples</title>
+</head>
+<body>
+    <div>ethjs example</div>
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="https://cdn.jsdelivr.net/g/lodash@4.17.4"></script>
+    <script src="https://rawgit.com/ethjs/examples/master/ethjs.js"></script>
+    <script src="https://rawgit.com/ethjs/examples/master/ethereumjs-testrpc.js"></script>
+    <script type="text/javascript">
+        var eth = new Eth(TestRPC.provider())
+        eth.accounts((err, accounts) => {
+            if (accounts) {
+                // console.log(accounts)
+                var r = []
+                accounts.forEach((account) => {
+                    //console.log(account)
+                    eth.getBalance(account, (balanceError, balance) => {
+                        if (balance) {
+                            r.push({
+                                address: account,
+                                balance: Eth.fromWei(balance, 'ether')
+                            })
+                        }
+                    })
+                })
+                console.log(r)
+            }
+        })
+    </script>
+</body>
+</html>
