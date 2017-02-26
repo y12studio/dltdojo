@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <title>Bitcoin Fee - DLTDOJO</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,12 +10,12 @@
             padding: 0.5em;
             margin: 0.5em;
         }
-
         md-input-container .md-errors-spacer {
             min-height: 0;
         }
     </style>
 </head>
+
 <body ng-app="DltdojoApp" ng-cloak ng-controller="appCtrl">
     <md-toolbar class="md-warn">
         <div class="md-toolbar-tools">
@@ -24,17 +25,28 @@
     <div layout="column">
         <md-whiteframe class="wframe md-whiteframe-1dp">
             <h3 class="md-flex">DLTDOJO - Bitcoin Fee</h3>
-            <h3 class="md-flex">FastestFee(BTC/avg_tx)={{fastestbtc}}</h3>
-            <h3 class="md-flex">FastestFee(USD/avg_tx)={{fastestbtc*binfo.USD.last | number : 2}}</h3>
-            <h3 class="md-flex">FastestFee(TWD/avg_tx)={{fastestbtc*binfo.TWD.last | number : 2}}</h3>
-            <h4 class="md-flex">Average Bytes ={{avgbytes}}</h4>
-            <h4 class="md-flex">FastestFee(satoshis/byte)={{fee.fastestFee}}</h4>
-            <h4 class="md-flex">HalfHourFee(satoshis/byte)={{fee.halfHourFee}}</h4>
-            <h4 class="md-flex">HourFee(satoshis/byte)={{fee.hourFee}}</h4>
-            <h4 class="md-flex">BTCUSD={{binfo.USD.last}}</h4>
-            <h4 class="md-flex">BTCTWD={{binfo.TWD.last}}</h4>
+            <div layout="row">
+                <md-input-container class="md-block">
+                    <label>Transaction size(bytes)</label>
+                    <input type="number" ng-model="model.txbytes">
+                </md-input-container>
+                <md-button md-no-ink class="md-raised md-primary" ng-click="ckUpdate()">Update</md-button>
+                <md-button md-no-ink class="md-raised" ng-click="ckReload()">Reload</md-button>
+            </div>
+            <h3 class="md-flex">FastestFee(BTC/tx) = <i class="fa fa-btc" aria-hidden="true"></i>{{fastestbtc}}</h3>
+            <h3 class="md-flex">FastestFee(USD/tx) = {{fastestbtc*binfo.USD.last | number : 2}}</h3>
+            <h3 class="md-flex">FastestFee(TWD/tx) = {{fastestbtc*binfo.TWD.last | number : 2}}</h3>
+            <h4 class="md-flex">FastestFee(satoshis/byte) = {{fee.fastestFee}}</h4>
+            <h4 class="md-flex">HalfHourFee(satoshis/byte) = {{fee.halfHourFee}}</h4>
+            <h4 class="md-flex">HourFee(satoshis/byte) = {{fee.hourFee}}</h4>
+            <h4 class="md-flex">BTCUSD = {{binfo.USD.last}}</h4>
+            <h4 class="md-flex">BTCTWD = {{binfo.TWD.last}}</h4>
+        </md-whiteframe>
+        <md-whiteframe class="wframe md-whiteframe-1dp">
             <h4 class="md-flex"><a href="https://bitcoinfees.21.co/api/v1/fees/recommended">https://bitcoinfees.21.co/api/v1/fees/recommended</a></h4>
+            <div ng-if="fee"><pre>{{fee | json}}</pre></div>
             <h4 class="md-flex"><a href="https://blockchain.info/ticker">https://blockchain.info/ticker</a></h4>
+            <div ng-if="binfo"><pre>{{binfo | json}}</pre></div>
         </md-whiteframe>
     </div>
     <!-- Angular Material requires Angular.js Libraries -->
@@ -49,20 +61,27 @@
         app.controller('appCtrl', function($scope, $location, $http) {
             $scope.host = $location.host()
             console.log($scope.host)
-            $scope.avgbytes = 250
-            $http.get('https://bitcoinfees.21.co/api/v1/fees/recommended').then(function(res) {
-                console.log(res)
-                // { fastestFee: 160, halfHourFee: 160, hourFee: 140 }
-                $scope.fee = res.data
-                $scope.fastestbtc = $scope.fee.fastestFee*$scope.avgbytes/100000000
-                //  No 'Access-Control-Allow-Origin' header  https://api.coindesk.com/v1/bpi/currentprice/TWD.json
-                /// https://blockchain.info/ticker
-                $http.get('https://blockchain.info/ticker?cors=true').then(function(res){
+            $scope.model = {}
+            $scope.model.txbytes = 225
+            $scope.ckUpdate = function(){
+                $scope.fastestbtc = $scope.fee.fastestFee * $scope.model.txbytes / 100000000
+            }
+            $scope.ckReload = function(){
+                $http.get('https://bitcoinfees.21.co/api/v1/fees/recommended').then(function(res) {
                     console.log(res)
-                    $scope.binfo = res.data
+                    // { fastestFee: 160, halfHourFee: 160, hourFee: 140 }
+                    $scope.fee = res.data
+                    $scope.ckUpdate()
+                    //  No 'Access-Control-Allow-Origin' header  https://api.coindesk.com/v1/bpi/currentprice/TWD.json
+                    /// https://blockchain.info/ticker
+                    $http.get('https://blockchain.info/ticker?cors=true').then(function(res) {
+                        console.log(res)
+                        $scope.binfo = res.data
+                    })
                 })
-            })
+            }
         })
     </script>
 </body>
+
 </html>
