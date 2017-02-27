@@ -1,0 +1,14 @@
+{
+  "name": "dltdja",
+  "version": "0.0.1",
+  "description": "dltdojo a token",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "truffle test"
+  },
+  "author": "JOYE LIN <y12studio@gmail.com> (https://y12.tw)",
+  "license": "Apache-2.0"
+}
