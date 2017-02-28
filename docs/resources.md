@@ -18,6 +18,7 @@
 ### Resources
 
 * EU Parliament Report Explores Blockchain's 'Substantial Impact' - CoinDesk http://www.coindesk.com/eu-parliament-report-explores-blockchains-substantial-impact/
+* Distributed ledger in payment, clearing and settlement - an analytical framework http://www.bis.org/cpmi/publ/d157.htm
 * DLT介紹 EU Securities Watchdog: New DLT Regulations Would Be 'Premature' - CoinDesk http://www.coindesk.com/eu-securities-watchdog-new-dlt-regulations-premature/
 * Blockchain: The Invisible Technology That's Changing the World | PCMag.com  http://www.pcmag.com/article/351486/blockchain-the-invisible-technology-thats-changing-the-wor
 * What’s in a Name? From Bitcoin to Blockchain to Distributed Ledgers - CoinDesk  http://www.coindesk.com/whats-in-a-name-from-bitcoin-to-blockchain-to-distributed-ledgers/

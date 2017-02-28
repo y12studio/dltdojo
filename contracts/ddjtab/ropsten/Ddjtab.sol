@@ -126,14 +126,14 @@ contract Ddjtab is StandardToken {
         return true;
     }
 
-    function sendAliceBlue(address _to, uint16 _certid , uint256 _value, bytes _ipfsHash) returns (bool success) {
+    function sendAliceBlue(address _to, uint16 _certid , uint256 _value) returns (bool success) {
         if (balances[msg.sender] >= _value && _value > 0) {
             balances[msg.sender] -= _value;
             balances[_to] += _value;
-            SendAliceBlue(msg.sender, _to, _certid , _value, _ipfsHash, now);
+            SendAliceBlue(msg.sender, _to, _certid , _value);
             return true;
         } else { return false; }
     }
 
-    event SendAliceBlue(address indexed _from, address indexed _to, uint16 indexed _certid , uint256 _value, bytes _ipfsHash , uint _timestamp);
+    event SendAliceBlue(address indexed _from, address indexed _to, uint16 indexed _certid , uint256 _value);
 }

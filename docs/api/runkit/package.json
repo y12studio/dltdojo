@@ -29,6 +29,7 @@
     "ethereumjs-testrpc": "^3.0.3",
     "ethereumjs-util": "^5.1.1",
     "ethjs": "^0.2.4",
+    "ethjs-account": "^0.1.1",
     "jsonwebtoken": "^7.3.0",
     "jsrsasign": "^7.1.0",
     "key-encoder": "^1.1.6",

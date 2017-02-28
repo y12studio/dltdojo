@@ -1,4 +1,5 @@
 var Ddjtab = artifacts.require("./Ddjtab.sol");
+var SolidityCoder = require("web3/lib/solidity/coder.js");
 
 contract('Ddjtab', function(accounts) {
     it('deploy', function() {
@@ -86,9 +87,10 @@ contract('Ddjtab', function(accounts) {
         var ta;
         var amount = 1
         var certid = 9
+        var ipfsHash = "0x4afeb08a2bf63b8e42f4b67bd92dbf7e4a23f991c7acf0236a9d1c04462db278";
         Ddjtab.deployed().then(function(instance) {
             ta = instance;
-            return ta.sendAliceBlue(accounts[1], certid, amount);
+            return ta.sendAliceBlue(accounts[1], certid, amount, ipfsHash);
         }).then(result => {
             // result.tx => transaction hash, string
             // result.receipt => receipt object
@@ -100,7 +102,16 @@ contract('Ddjtab', function(accounts) {
             assert.equal(web3.toDecimal(log1.topics[1]), web3.toDecimal(accounts[0]))
             assert.equal(web3.toDecimal(log1.topics[2]), web3.toDecimal(accounts[1]))
             assert.equal(web3.toDecimal(log1.topics[3]), certid)
-            console.log(web3.toDecimal(log1.data), amount)
+            // console.log(web3.toDecimal(log1.data), amount)
+            // uint256 _value, bytes _ipfsHash , uint _timestamp
+            var data = SolidityCoder.decodeParams(["uint256", "bytes","uint"], log1.data.replace("0x", ""));
+            var decodeAmount = data[0].toNumber()
+            var decodeIpfsHash = data[1]
+            var decodeTime = data[2].toNumber()
+            assert.equal(decodeAmount, amount)
+            assert.equal(decodeIpfsHash, ipfsHash)
+            assert.isTrue(decodeTime < Date.now())
+            console.log(decodeAmount, decodeIpfsHash, decodeTime, Date.now())
         })
     });
 });
