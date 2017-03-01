@@ -6,7 +6,7 @@ let web3 = new Web3()
 web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'))
 // Read the compiled contract code
 // Compile with
-// solc Ddjtab.sol --combined-json abi,asm,ast,bin,bin-runtime,clone-bin,devdoc,interface,opcodes,srcmap,srcmap-runtime,userdoc > contracts.json
+// solc Ddjtab.sol --optimize --combined-json abi,bin > contracts.json
 let cname = "Ddjtab.sol:Ddjtab"
 let source = fs.readFileSync("contracts.json");
 let contracts = JSON.parse(source)["contracts"];
@@ -73,6 +73,17 @@ function getinfo() {
     console.log(r)
 }
 
+function moveCoin(addrFrom, password, addrTo, ether){
+    try {
+        web3.personal.unlockAccount(addrFrom, password);
+    } catch (e) {
+        console.log(e);
+        return;
+    }
+
+    web3.eth.sendTransaction({from:addrFrom, to:addrTo, value: web3.toWei(ether, "ether")})
+}
+
 var gas = getEstimate()
 console.log(gas)
 //
@@ -80,8 +91,7 @@ console.log(gas)
 // 1305876
 // throw new Error('The contract code couldn\'t be stored, please check your gas amount.');
 // deploy(web3.eth.coinbase, 'pass', gas*2)
-//var txhash = "0x4abec59c28a9cd601644ccdff90643ef5d76093d0e89a24147922760cbf75ec4"
-//checkReceipt(txhash)
+// moveCoin(web3.eth.accounts[1], "pass", web3.eth.accounts[0], 1)
 getinfo()
 /*
 Your contract has been deployed at http://testnet.etherscan.io/address/0x5842e1af411ecb042a150a12432627267d46ed34

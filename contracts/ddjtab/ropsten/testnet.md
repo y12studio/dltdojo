@@ -1,14 +1,33 @@
 https://github.com/ethereum/go-ethereum
 
 ### TESTNET
+* https://ropsten.io/
+* https://ropsten.ether.camp/
 * TokenMarketNet/ethereum-smart-contract-transaction-demo: https://github.com/TokenMarketNet/ethereum-smart-contract-transaction-demo
 * https://github.com/ethereum/wiki/wiki/JSON-RPC
 * https://ropsten.io/address/0xBBc7Bc660947ccF8Ee4346530003AC4185C6A3D4
 * https://ropsten.io/address/0x5ceb367689eb8726fc7a8ec75bee43b783661a95
 
+### ropsten softfork
+
+http://ethereum.stackexchange.com/questions/12589/geth-or-mist-do-not-sync-any-more/12590
+
+```
+$ curl -o ropsten-revert.json https://gist.githubusercontent.com/gavofyork/c89e1635d1b737234f9feae177e50705/raw
+$ dcoker stop geth
+$ docker rm geth
+$ cp ropsten-revert.json /home/lin/ethereum/
+$ cd /home/lin/ethereum
+$ sudo rm -rf .ethereum/testnet/geth/chaindata
+$ docker run -it --rm -v /home/lin/ethereum:/root ethereum/client-go --testnet init /root/ropsten-revert.json
+$ docker run -d --name geth -v /home/lin/ethereum:/root \
+           -p 8545:8545 -p 30303:30303 \
+           ethereum/client-go --fast --cache=1024 --testnet --rpc --rpccorsdomain="*" --rpcaddr="0.0.0.0" --rpcapi "miner,admin,db,personal,eth,net,web3"
+```
+
 ### 2017-02-28T12:52:27+0800
 ```
-$ cd contracts && solc Ddjtab.sol --combined-json abi,bin > ../ropsten/contracts.json
+$ cd contracts && solc Ddjtab.sol --optimize --combined-json abi,bin > ../ropsten/contracts.json
 ```
 ### 2017-02-28T08:58:36+0800
 ```
