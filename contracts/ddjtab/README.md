@@ -4,8 +4,8 @@ DltDoJo Token AliceBlue(DDJTAB)
 
 AliceBlue(#F0F8FF)
 
-* id 1 price api
-* id 2 TODO
+* id 1 q&a
+* id 2 price api html
 
 ### REFERENCE
 

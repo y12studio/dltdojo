@@ -3,8 +3,8 @@ https://github.com/ethereum/go-ethereum
 ### TESTNET
 * TokenMarketNet/ethereum-smart-contract-transaction-demo: https://github.com/TokenMarketNet/ethereum-smart-contract-transaction-demo
 * https://github.com/ethereum/wiki/wiki/JSON-RPC
-* https://testnet.etherscan.io/address/0xBBc7Bc660947ccF8Ee4346530003AC4185C6A3D4
-* https://testnet.etherscan.io/address/0x5ceb367689eb8726fc7a8ec75bee43b783661a95
+* https://ropsten.io/address/0xBBc7Bc660947ccF8Ee4346530003AC4185C6A3D4
+* https://ropsten.io/address/0x5ceb367689eb8726fc7a8ec75bee43b783661a95
 
 ### 2017-02-28T12:52:27+0800
 ```
