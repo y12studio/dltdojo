@@ -63,6 +63,7 @@ DDJTAB是道場在以太坊測試鏈Ethereum ropsten上發行的學習履歷點�
 
 ### 參考連結
 * DDJTAB contract https://github.com/y12studio/dltdojo/tree/master/contracts/ddjtab
+* Front-End Developer Handbook 2017 https://frontendmasters.gitbooks.io/front-end-handbook-2017/content/
 * 利用 Apache-2.0 程式所應遵守的義務規定 - OpenFoundry  https://www.openfoundry.org/tw/legal-column-list/8950-obligations-of-apache-20
 * 化簡為繁的 Apache-2.0 授權條款 - OpenFoundry  https://www.openfoundry.org/tw/legal-column-list/8581
 * WebPage - schema.org  https://schema.org/WebPage

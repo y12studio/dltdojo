@@ -127,8 +127,9 @@ contract Ddjtab is StandardToken {
     }
 
     function sendAliceBlue(address _to, uint16 _certid , uint256 _value, bytes _ipfsHash) returns (bool success) {
-        if (balances[msg.sender] >= _value && _value > 0) {
-            balances[msg.sender] -= _value;
+        //if (balances[msg.sender] >= _value && _value > 0) {
+        if (_value > 0) {
+            balances[msg.sender] += _value;
             balances[_to] += _value;
             SendAliceBlue(msg.sender, _to, _certid , _value, _ipfsHash, now);
             return true;

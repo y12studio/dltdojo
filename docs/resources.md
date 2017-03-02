@@ -24,11 +24,13 @@
 * What’s in a Name? From Bitcoin to Blockchain to Distributed Ledgers - CoinDesk  http://www.coindesk.com/whats-in-a-name-from-bitcoin-to-blockchain-to-distributed-ledgers/
 * Fintech 2017: Movements in blockchain, PSD2 and cybersecurity on the horizon https://www.siliconrepublic.com/enterprise/psd2-blockchain-fintech-2017
 * Blockchain Value Analysis for Investment Banks | Accenture https://www.accenture.com/gr-en/insight-banking-on-blockchain
+* Bits on blocks | Thoughts on blockchain technology  https://bitsonblocks.net/
 * 小蚁张铮文：写给CTO的主流区块链架构横向剖析_巴比特 http://www.8btc.com/blockchain-architecture
 * Hyperledger Fabric1.0架构概览_巴比特 http://www.8btc.com/hyperledger-fabric1-0
 * Project Jasper: Lessons From Bank of Canada's First Blockchain Project - CoinDesk  http://www.coindesk.com/project-jasper-lessons-bank-of-canada-blockchain-project/
 
-### Ethereum Contracts
+### Ethereum
+* Ethereum Client Implementations - EntEthAlliance - https://entethalliance.atlassian.net/wiki/display/EEA/Ethereum+Client+Implementations
 * ConsenSys/smart-contract-best-practices  https://github.com/ConsenSys/smart-contract-best-practices
 * slockit/DAO: The Standard DAO Framework, inc. Whitepaper  https://github.com/slockit/DAO
 * ConsenSys/Tokens: Ethereum Token Contracts  https://github.com/ConsenSys/Tokens
@@ -94,6 +96,7 @@ Apache Spot以網路巨量資料的建立與安全分析並分享分析工具為
 * 'Bowie bonds' - the singer's financial innovation - BBC News  http://www.bbc.com/news/business-35280945
 * The second coming of blockchain | Intel® Software https://software.intel.com/en-us/blogs/2017/02/14/the-second-coming-of-blockchain
 * Open Music Initiative - Wikipedia  https://en.wikipedia.org/wiki/Open_Music_Initiative
+* Musicoin https://github.com/Musicoin
 
 ### online courses
 

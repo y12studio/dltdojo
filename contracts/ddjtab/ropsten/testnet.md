@@ -5,19 +5,36 @@ https://github.com/ethereum/go-ethereum
 * https://ropsten.ether.camp/
 * TokenMarketNet/ethereum-smart-contract-transaction-demo: https://github.com/TokenMarketNet/ethereum-smart-contract-transaction-demo
 * https://github.com/ethereum/wiki/wiki/JSON-RPC
-* https://ropsten.io/address/0xBBc7Bc660947ccF8Ee4346530003AC4185C6A3D4
 * https://ropsten.io/address/0x5ceb367689eb8726fc7a8ec75bee43b783661a95
+* https://ropsten.io/address/0xBBc7Bc660947ccF8Ee4346530003AC4185C6A3D4
+
+### ropsten 2017-03-02T14:52:43+0800
+```
+$ wget https://transfer.sh/jDMLZ/ropsten-543210.snapshot
+$ parity --chain=ropsten restore ropsten-543210.snapshot
+$ wget https://gist.githubusercontent.com/gavofyork/c89e1635d1b737234f9feae177e50705/raw/f2e601c0ba1e47bf9197fcca6b4cf3672e854b20/ropsten-revert.json
+$ parity --chain=ropsten-revert.json
+```
+
+### ropsten 2017-03-02T09:33:16+0800
+```
+$ sudo rm -rf  /home/lin/ethereum/.ethereum/testnet/geth/chaindata
+$ cd /home/lin/ethereum && curl -o ropsten-revert.json https://gist.githubusercontent.com/gavofyork/c89e1635d1b737234f9feae177e50705/raw
+$ docker run -it --rm -v /home/lin/ethereum:/root ethereum/client-go --testnet init /root/ropsten-revert.json
+$ docker run -d --name geth -v /home/lin/ethereum:/root \
+           -p 8545:8545 -p 30303:30303 \
+           ethereum/client-go --fast --cache=1024 --testnet --rpc --rpccorsdomain="*" --rpcaddr="0.0.0.0" --rpcapi "miner,admin,db,personal,eth,net,web3"
+```
 
 ### ropsten softfork
-
 http://ethereum.stackexchange.com/questions/12589/geth-or-mist-do-not-sync-any-more/12590
 
 ```
-$ curl -o ropsten-revert.json https://gist.githubusercontent.com/gavofyork/c89e1635d1b737234f9feae177e50705/raw
 $ dcoker stop geth
 $ docker rm geth
-$ cp ropsten-revert.json /home/lin/ethereum/
 $ cd /home/lin/ethereum
+$ curl -o ropsten-revert.json https://gist.githubusercontent.com/gavofyork/c89e1635d1b737234f9feae177e50705/raw
+$ cp ropsten-revert.json /home/lin/ethereum/
 $ sudo rm -rf .ethereum/testnet/geth/chaindata
 $ docker run -it --rm -v /home/lin/ethereum:/root ethereum/client-go --testnet init /root/ropsten-revert.json
 $ docker run -d --name geth -v /home/lin/ethereum:/root \
