@@ -1,0 +1,44 @@
+{
+  "name": "Darkorange",
+  "dataDir": "darkorange",
+  "engine": {
+    "authorityRound": {
+      "params": {
+        "gasLimitBoundDivisor": "0x400",
+        "registrar" : "0x0000000000000000000000000000000000000091",
+        "stepDuration": "4",
+        "blockReward": "0x4563918244F40000",
+        "validators" : {
+          "list": [
+            "0x0000000000000000000000000000000000000092"
+          ]
+        }
+      }
+    }
+  },
+  "params": {
+    "maximumExtraDataSize": "0x20",
+    "minGasLimit": "0x1388",
+    "networkID" : "0x1688"
+  },
+  "genesis": {
+    "seal": {
+      "authorityRound": {
+        "step": "0x0",
+        "signature": "0x0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "difficulty": "0x20000",
+    "gasLimit": "0x5B8D80"
+  },
+  "accounts": {
+    "0x0000000000000000000000000000000000000001": { "balance": "1", "builtin": { "name": "ecrecover", "pricing": { "linear": { "base": 3000, "word": 0 } } } },
+    "0x0000000000000000000000000000000000000002": { "balance": "1", "builtin": { "name": "sha256", "pricing": { "linear": { "base": 60, "word": 12 } } } },
+    "0x0000000000000000000000000000000000000003": { "balance": "1", "builtin": { "name": "ripemd160", "pricing": { "linear": { "base": 600, "word": 120 } } } },
+    "0x0000000000000000000000000000000000000004": { "balance": "1", "builtin": { "name": "identity", "pricing": { "linear": { "base": 15, "word": 3 } } } },
+    "0x0000000000000000000000000000000000000093": { "balance": "1606938044258990275541962092341162602522202993782792835301376" }
+  },
+  "nodes": [
+    "enode://c005dd308256c60fab247813d8bf6d6e81f9cd354287837eb1c2fcf294adaa913a3208e88900ef5c55a8cba7042c301d80503edec2ad3f92a72e241ee6743854@127.0.0.1:30303"
+  ]
+}
