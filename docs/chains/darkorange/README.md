@@ -74,10 +74,12 @@ $ cd ~/.local/share/io.parity.ethereum/keys && tar xzf ~/darkorange-keys-backup.
 #### Service Period
 Starting the final darkorange chain
 ```
-$ curl -O https://y12studio.github.io/dltdojo/chains/darkorange/darkorange.json
+$ curl -OO https://y12studio.github.io/dltdojo/chains/darkorange/{darkorange.json,darkorange.js}
 $ parity --config node.toml
 or
 $ nohup parity --config node.toml > /dev/null 2>&1 &
+$ npm i web3 -S
+$ node darkorange.js
 ```
 
 ### References

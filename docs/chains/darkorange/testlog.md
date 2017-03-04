@@ -21,7 +21,7 @@ $ node
 Normal node
 ```
 $ bash <(curl https://get.parity.io -Lk)
-$ curl -OO https://y12studio.github.io/dltdojo/chains/darkorange/{darkorange.json,node.toml}
+$ curl -OOO https://y12studio.github.io/dltdojo/chains/darkorange/{darkorange.json,node.toml,darkorange.js}
 $ nohup parity --config node.toml > /dev/null 2>&1 &
 $ curl --data '{"jsonrpc":"2.0","method":"parity_enode","params":[],"id":0}' -H "Content-Type: application/json" -X POST localhost:8545
 {"jsonrpc":"2.0","result":"enode://d27868316ba6c53e9bcf26c0cbf4816d3488476d563ce762bb8c229b171e68c29760d8be83eb4eebbdb0a0ea6ee85ffcb6c7d07b0786d4319868f79396c6d594@128.199.124.120:30303","id":0}
@@ -33,6 +33,8 @@ $ node
 > web3.personal.newAccount('passhere')
 '0xf5d6adec950ea2d3075d702ef0e8ca653f2c96ab'
 > web3.fromWei(web3.eth.getBalance('0xf5d6adec950ea2d3075d702ef0e8ca653f2c96ab').toNumber(),'ether')
+> web3.personal.unlockAccount('0xf5d6adec950ea2d3075d702ef0e8ca653f2c96ab', 'passhere')
+> web3.eth.sendTransaction({from:'0xf5d6adec950ea2d3075d702ef0e8ca653f2c96ab', to:'0x4792d5fc595e237347d71acfc57948efdd7c5cf7', value: web3.toWei(20, "ether")})
 ```
 ### 2017-03-03T08:58:19+0800
 ```
