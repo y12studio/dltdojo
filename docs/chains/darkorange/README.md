@@ -14,23 +14,21 @@ Provide the following information.
 
 Open a terminal.
 ```
+$ bash <(curl https://get.parity.io -Lk)
 $ curl -OO https://y12studio.github.io/dltdojo/chains/darkorange/{darkorange-init.json,node.toml}
 $ mv darkorange-init.json darkorange.json
 $ parity --config node.toml
-...
-Public node URL: enode://df31c08a5797e2aae633ba09682fadad838221aa33f9f5d458977015a8c5fef7128da27eb027b2f25a6bbf2e10c7ca93574f97337f5347ce265d3a8eaad74a4f@192.168.2.73:30303
 ```
 Open another terminal.
 ```
+$ curl --data '{"jsonrpc":"2.0","method":"parity_enode","params":[],"id":0}' -H "Content-Type: application/json" -X POST localhost:8545
+{"jsonrpc":"2.0","result":"enode://f1967fd8190c25785a7cf24cb80f0202c43c284701ec642d5f2edfc10fd42b187be73b39de4c7265c9dc09b30043c9d04dfd5d2e782a4f8a70a0a7b1e6fdfe0c@138.68.2.245:30303","id":0}
+
 $ engine_signer_password=PASS_BLAH_BLAH
-$ user_password=PASS_BLAH_BLAH
 $ curl --data '{"jsonrpc":"2.0","method":"personal_newAccount","params":["'"$engine_signer_password"'"],"id":1}' -H "Content-Type: application/json" localhost:8545
 {"jsonrpc":"2.0","result":"0xeb6d82ff3cfa660c6ac7f8e485d899e167353e52","id":67}
-$ curl --data '{"jsonrpc":"2.0","method":"personal_newAccount","params":["'"$user_password"'"],"id":1}' -H "Content-Type: application/json" localhost:8545
-$ {"jsonrpc":"2.0","result":"0x8d190b974311339e9018031f16886333168a707f","id":67}
-$ engine_signer=0xeb6d82ff3cfa660c6ac7f8e485d899e167353e52
-$ user=0x8d190b974311339e9018031f16886333168a707f
 
+$ engine_signer=0xeb6d82ff3cfa660c6ac7f8e485d899e167353e52
 $ echo $engine_signer_password > node.pwds
 $ cat node.pwds
 YOUR_PASS_BLAH_BLAH
