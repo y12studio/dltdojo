@@ -39,6 +39,8 @@
 
 ### Fact/Prediction/Token
 * Reality Keys - Facts about the future, cryptographic proof when they come true  https://www.realitykeys.com/
+* Oraclize  https://github.com/oraclize
+* Daily Price Oracles » Brave New Coin http://bravenewcoin.com/services/oracles/daily-price-oracles
 * An AI Hedge Fund Created a New Currency to Make Wall Street Work Like Open Source | WIRED  https://www.wired.com/2017/02/ai-hedge-fund-created-new-currency-make-wall-street-work-like-open-source/
 * Numerai Used 7,500 Faceless Coders Paid in Bitcoin to Build Its Hedge Fund's Brain | WIRED  https://www.wired.com/2016/12/7500-faceless-coders-paid-bitcoin-built-hedge-funds-brain/
 * A New Cryptocurrency For Coordinating Artificial Intelligence on Numerai – Numerai – Medium  https://medium.com/numerai/a-new-cryptocurrency-for-coordinating-artificial-intelligence-on-numerai-9251a131419a
