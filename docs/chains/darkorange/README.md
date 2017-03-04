@@ -55,9 +55,7 @@ reseal_on_txs = "none"
 ```
 Stop parity and clean temporary chaindata.
 ```
-$ parity db kill --config node.toml
-Loading config file from node.toml
-2017-03-04 12:44:19  Database deleted.
+$ rm -rf ~/.local/share/io.parity.ethereum/chains/darkorange
 ```
 
 ### Backing up and Restroing
@@ -74,12 +72,18 @@ $ cd ~/.local/share/io.parity.ethereum/keys && tar xzf ~/darkorange-keys-backup.
 #### Service Period
 Starting the final darkorange chain
 ```
-$ curl -OO https://y12studio.github.io/dltdojo/chains/darkorange/{darkorange.json,darkorange.js}
+$ curl -O https://y12studio.github.io/dltdojo/chains/darkorange/darkorange.json
+$ rm -rf ~/.local/share/io.parity.ethereum/chains/darkorange
 $ parity --config node.toml
 or
 $ nohup parity --config node.toml > /dev/null 2>&1 &
-$ npm i web3 -S
-$ node darkorange.js
+```
+#### web3 setup
+```
+$ curl -OO https://y12studio.github.io/dltdojo/chains/darkorange/{package.json,darkorange.js}
+$ npm i
+$ node darkorange.js getinfo
+$ node darkorange.js sendEther 4792d5fc595e237347d71acfc57948efdd7c5cf7 pass 6846497f3d3b505d7317f5890bd2dbcd9f995905 10
 ```
 
 ### References
