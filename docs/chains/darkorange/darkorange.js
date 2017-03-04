@@ -2,7 +2,7 @@ let Web3 = require('web3')
 let web3 = new Web3()
 web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'))
 module.exports = {
-  getinfo : function(){
+  getInfo : function(){
       var balances = {}
       web3.eth.accounts.forEach(address => {
           balances[address] = web3.fromWei(web3.eth.getBalance(address), 'ether').toString(10)
@@ -16,6 +16,10 @@ module.exports = {
           ethMining: web3.eth.mining
       }
       return r
+  },
+
+  newAccount : function(password){
+      web3.personal.newAccount(password)
   },
 
   sendEther : function(addrFrom, password, addrTo, ether){
