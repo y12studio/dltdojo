@@ -10,13 +10,13 @@
 * https://github.com/dragonchain/dragonchain
 * https://github.com/monero-project/monero
 * https://github.com/kadena-io/juno
+* https://github.com/lhartikk/naivechain
 
 
 ### Demo site
 * https://y12studio.github.io/dltdojo/
 
 ### Resources
-
 * EU Parliament Report Explores Blockchain's 'Substantial Impact' - CoinDesk http://www.coindesk.com/eu-parliament-report-explores-blockchains-substantial-impact/
 * Distributed ledger in payment, clearing and settlement - an analytical framework http://www.bis.org/cpmi/publ/d157.htm
 * DLT介紹 EU Securities Watchdog: New DLT Regulations Would Be 'Premature' - CoinDesk http://www.coindesk.com/eu-securities-watchdog-new-dlt-regulations-premature/
@@ -36,6 +36,14 @@
 * ConsenSys/Tokens: Ethereum Token Contracts  https://github.com/ConsenSys/Tokens
 * boardroom-contracts/contracts  https://github.com/boardroom-project/boardroom-contracts/tree/master/contracts
 * numerai/contract: The Numeraire Ethereum Smart Contract  https://github.com/numerai/contract
+
+### Contracts
+* Proposal for Ricardian Contracts in Open Bazaar  https://gist.github.com/drwasho/a5380544c170bdbbbad8
+* Colored Coins and Ricardian Contracts - Coinprism Blog  http://blog.coinprism.com/2014/12/10/colored-coins-and-ricardian-contracts/
+* On the intersection of Ricardian and Smart Contracts  http://iang.org/papers/intersection_ricardian_smart.html
+* The Case for Dumb Contracts – Medium  https://medium.com/@therealopenbazaar/the-case-for-dumb-contracts-6308aa5b757
+* Blockchain and supply chain examples  http://www.fintechblue.com/2016/08/blockchain-supply-chain-examples/
+* domschiener/cargochain: Shanghai Blockchain Hackathon winning project  https://github.com/domschiener/cargochain
 
 ### Fact/Prediction/Token
 * Reality Keys - Facts about the future, cryptographic proof when they come true  https://www.realitykeys.com/
@@ -99,9 +107,9 @@ Apache Spot以網路巨量資料的建立與安全分析並分享分析工具為
 * The second coming of blockchain | Intel® Software https://software.intel.com/en-us/blogs/2017/02/14/the-second-coming-of-blockchain
 * Open Music Initiative - Wikipedia  https://en.wikipedia.org/wiki/Open_Music_Initiative
 * Musicoin https://github.com/Musicoin
+* COALAIP/specs: COALA IP Specification  https://github.com/COALAIP/specs
 
 ### online courses
-
 * anders的開源區塊鏈教材專案，推薦實際操作練習。anders Blockchain Demo https://anders.com/blockchain/
 * Microsoft Blockchain as a Service - Microsoft Virtual Academy  https://mva.microsoft.com/en-US/training-courses/microsoft-blockchain-as-a-service-17104
 * Microsoft Virtual Academy Blockchain As A Service Course https://decentralize.today/microsoft-virtual-academy-blockchain-as-a-service-course-d6c9be7abb4d#.sv5wfzekk
@@ -157,3 +165,24 @@ Corda的訊息網路層是抽象化作法，目前使用既有AMQP協定實做Ap
 ### SANDBOX
 
 Regulatory sandbox | FCA  https://www.fca.org.uk/firms/project-innovate-innovation-hub/regulatory-sandbox
+
+### SQL
+* How to use web3.js to sign a contract call — Ethereum Community Forum  https://forum.ethereum.org/discussion/5039/how-to-use-web3-js-to-sign-a-contract-call
+
+sql concept code
+```
+('INSERT INTO accounts (balance, id) VALUES (9988, toAccount)').sign(privatekey)
+```
+
+ethereum concept code
+```
+var SolidityFunction = require('web3/lib/web3/function');
+var solidityFunction = new SolidityFunction('', _.find(ABI, { name: 'sendCoin' }), '');
+var payloadData = solidityFunction.toPayload([toAccount, 9988]).data;
+var tx = {
+    to: toAccount,
+    from: fromAccount,
+    data: payloadData
+};
+tx.sign(privateKey);
+```

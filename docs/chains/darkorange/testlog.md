@@ -1,3 +1,8 @@
+* Getting Synced · ethcore/parity Wiki  https://github.com/ethcore/parity/wiki/Getting-Synced
+* Syncing is stuck around block 2,421,000 or 2,675,000  https://github.com/ethcore/parity/wiki/FAQ#syncing-is-stuck-around-block-2421000-or-2675000
+* Is it possible to make the Parity software sync faster? http://ethereum.stackexchange.com/questions/10465/is-it-possible-to-make-the-parity-software-sync-faster
+* synchronization - What is the parity light pruning mode? http://ethereum.stackexchange.com/questions/3332/what-is-the-parity-light-pruning-mode
+
 ### 2017-03-04T14:03:00+0800
 ```
 $ curl -O https://y12studio.github.io/dltdojo/chains/darkorange/darkorange.json
