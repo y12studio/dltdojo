@@ -10,7 +10,7 @@
         "blockReward": "0x4563918244F40000",
         "validators" : {
           "list": [
-            "0xe395929b9e00db8fc913399614b76dabf4aee790","0xf5d6adec950ea2d3075d702ef0e8ca653f2c96ab"
+            "0xe395929b9e00db8fc913399614b76dabf4aee790","0xf5d6adec950ea2d3075d702ef0e8ca653f2c96ab","0xfa8874fa61f88f1078a5a72b31ab5949d7ea1654"
           ]
         }
       }
