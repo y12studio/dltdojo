@@ -3,6 +3,33 @@
 * Is it possible to make the Parity software sync faster? http://ethereum.stackexchange.com/questions/10465/is-it-possible-to-make-the-parity-software-sync-faster
 * synchronization - What is the parity light pruning mode? http://ethereum.stackexchange.com/questions/3332/what-is-the-parity-light-pruning-mode
 
+### 2017-03-06T14:11:32+0800
+```
+$ node darkorange.js
+--------make-runnable-error---------
+One of the following must be specified as an argument, to run/print the corresponding function/property:
+
+deployFoo,getTxReceipts,getInfo,newAccount,sendEther
+
+Example:
+        node /usr/bin/nodejs darkorange.js deployFoo xyz → module.exports.deployFoo("xyz")
+------------------------------------
+$ node darkorange.js deployFoo 6846497f3d3b505d7317f5890bd2dbcd9f995905 password
+$ node darkorange.js getTxReceipts
+--------make-runnable-output--------
+[ { blockHash: '0x78714bfc63f05fd3d0fe26683f2a239dd406c72910286e5dd3d351eb839e181c',
+    blockNumber: 24,
+    contractAddress: '0xeb878cb83cf19ee6369e1bd2229a6307a3111f24',
+    cumulativeGasUsed: 86219,
+    gasUsed: 86219,
+    logs: [],
+    logsBloom: '0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
+    root: null,
+    transactionHash: '0x59271b7fe1d0713deb0927e8174fe366bad081089859475e6d71858a0ef0b3c1',
+    transactionIndex: 0 } ]
+------------------------------------
+
+```
 ### 2017-03-04T14:03:00+0800
 ```
 $ curl -O https://y12studio.github.io/dltdojo/chains/darkorange/darkorange.json
