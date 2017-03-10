@@ -6,6 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 * angular4 - SyntaxError: Unexpected token 'const' for testing.es5.js - Stack Overflow  http://stackoverflow.com/questions/42513591/syntaxerror-unexpected-token-const-for-testing-es5-js
 * Lodash  https://lodash.com/
 * bitpay/bitcore-lib: A pure and powerful JavaScript Bitcoin library  https://github.com/bitpay/bitcore-lib
+* Making use of RxJS in Angular  https://auth0.com/blog/making-use-of-rxjs-angular/
 
 #### PhantomJS setup 2017-03-10T12:05:19+0800
 ```
