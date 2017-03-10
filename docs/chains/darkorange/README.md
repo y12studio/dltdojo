@@ -1,6 +1,12 @@
-### Darkorange chain
+### DARKORANGE testnet
 
 ![#ff8c00](https://placehold.it/16/ff8c00/000000?text=+) `DARKORANGE #FF8C00` chain is a modified Kovan chain based on Ethercore Parity Proof-of-Authority(PoA) consensus engine.
+
+### DARKORANGE Blockchain Explorer
+
+Service Period: 2017-03-08 to 2017-06-08
+
+http://128.199.124.120/
 
 ### Quick start
 
