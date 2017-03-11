@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { BitcoreComponent } from './bitcore/bitcore.component';
+import { GqlComponent } from './gql/gql.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BitcoreComponent
+    BitcoreComponent,
+    GqlComponent
   ],
   imports: [
     BrowserModule,

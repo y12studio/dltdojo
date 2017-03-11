@@ -17,7 +17,7 @@ const PrivateKey = bitcorelib.PrivateKey;
 export class BitcoreComponent implements OnInit {
 
   address = '0x0006';
-  key = '0x00';
+  key = '0x0002';
   ran = 10;
   rawprice: {};
   twdprice:0;
@@ -29,7 +29,7 @@ export class BitcoreComponent implements OnInit {
     var pkey = new PrivateKey();
     this.address = pkey.toAddress().toString();
     this.key = pkey.toString();
-    this.ran = _.random(5, 86);
+    this.ran = _.random(12, 86);
     this.priceService.getBitcoinPrice().subscribe(v => {
       this.rawprice = v;
       this.twdprice = v.TWD.last;
