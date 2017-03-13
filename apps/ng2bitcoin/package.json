@@ -9,6 +9,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "graphql:json": "apollo-codegen introspect-schema src/app/schema.graphql --output src/app/schema.json",
+    "graphql:schema": "apollo-codegen generate src/app/gql/*.graphql --schema src/app/schema.json --target typescript --output src/app/gql/schema.ts",
     "dltdojo:bundle": "browserify DltdojoBundle.js -s DltdojoBundle -o src/dltdojo.bundle.js",
     "dltdojo:inline": "ng build -prod && html-inline dist/index.html > dist/app.html"
   },

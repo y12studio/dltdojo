@@ -3,6 +3,34 @@
 * Is it possible to make the Parity software sync faster? http://ethereum.stackexchange.com/questions/10465/is-it-possible-to-make-the-parity-software-sync-faster
 * synchronization - What is the parity light pruning mode? http://ethereum.stackexchange.com/questions/3332/what-is-the-parity-light-pruning-mode
 
+### Deploy DDJTAB
+```
+$ parity --config node.toml
+$ node darkorange.js deployDdjtab Ddjtab.sol 6846497f3d3b505d7317f5890bd2dbcd9f995905 pass
+// http://128.199.124.120/account/0xa2954bb883c00c4d5c964fd3e933f8086f56c71e
+$ node darkorange.js getDdjtabInfo Ddjtab.sol a2954bb883c00c4d5c964fd3e933f8086f56c71e
+21000000
+$ node darkorange.js getDdjtabInfo Ddjtab.sol a2954bb883c00c4d5c964fd3e933f8086f56c71e 6846497f3d3b505d7317f5890bd2dbcd9f995905
+--------make-runnable-output--------
+undefined
+------------------------------------
+balance is 21000000
+21000000
+
+```
+
+
+### Google Cloud VM
+* Google雲端免費試用期放寬到1年，GCP和GCS也有永久限量免費額度了 | iThome  http://www.ithome.com.tw/news/112701
+* Google 雲端平台架設網站，享受台灣機房飛快速度 | 傑克分想  http://jackthink.com/content/31
+* Micro VM/ 10G HD
+```
+$ bash <(curl https://get.parity.io -Lk)
+$ mkdir darkorange && cd darkorange
+$ curl -OO https://y12studio.github.io/dltdojo/chains/darkorange/{darkorange.json,node.toml}
+$ parity --config node.toml
+```
+
 ### 2017-03-10T21:41:53+0800
 * gobitfly/etherchain-light: Lightweight Ethereum blockchain explorer  https://github.com/gobitfly/etherchain-light
 

@@ -162,6 +162,9 @@ Corda的訊息網路層是抽象化作法，目前使用既有AMQP協定實做Ap
 * Miniature World: Measuring and Evaluating Blockchains  http://hackingdistributed.com/2017/02/10/miniature-world/
 * 丁丁糖：《奇異博士》里的科學原理 - 每日頭條  https://kknews.cc/zh-tw/news/g2b6589.html
 
+### Law
+* 民法§345-全國法規資料庫入口網站 http://law.moj.gov.tw/LawClass/LawSingle.aspx?Pcode=B0000001&FLNO=345
+
 ### SANDBOX
 
 Regulatory sandbox | FCA  https://www.fca.org.uk/firms/project-innovate-innovation-hub/regulatory-sandbox

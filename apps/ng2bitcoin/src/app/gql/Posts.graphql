@@ -1,0 +1,10 @@
+query Posts {
+  posts{
+      title
+      votes
+      author{
+          firstName
+          lastName
+      }
+  }
+}
