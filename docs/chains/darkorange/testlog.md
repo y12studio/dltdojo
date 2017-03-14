@@ -4,6 +4,7 @@
 * synchronization - What is the parity light pruning mode? http://ethereum.stackexchange.com/questions/3332/what-is-the-parity-light-pruning-mode
 
 ### Deploy DDJTAB
+darkorange
 ```
 $ parity --config node.toml
 $ node darkorange.js deployDdjtab Ddjtab.sol 6846497f3d3b505d7317f5890bd2dbcd9f995905 pass
@@ -11,14 +12,9 @@ $ node darkorange.js deployDdjtab Ddjtab.sol 6846497f3d3b505d7317f5890bd2dbcd9f9
 $ node darkorange.js getDdjtabInfo Ddjtab.sol a2954bb883c00c4d5c964fd3e933f8086f56c71e
 21000000
 $ node darkorange.js getDdjtabInfo Ddjtab.sol a2954bb883c00c4d5c964fd3e933f8086f56c71e 6846497f3d3b505d7317f5890bd2dbcd9f995905
---------make-runnable-output--------
-undefined
-------------------------------------
 balance is 21000000
 21000000
-
 ```
-
 
 ### Google Cloud VM
 * Google雲端免費試用期放寬到1年，GCP和GCS也有永久限量免費額度了 | iThome  http://www.ithome.com.tw/news/112701

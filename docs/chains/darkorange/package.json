@@ -6,6 +6,7 @@
   "author": "JOYE LIN <y12studio@gmail.com> (https://y12.tw)",
   "license": "Apache-2.0",
   "dependencies": {
+    "ipfs-js": "0.0.11",
     "lodash": "^4.17.4",
     "make-runnable": "^1.1.1",
     "solc": "^0.4.9",

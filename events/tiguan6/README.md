@@ -61,6 +61,11 @@ DDJTAB是道場在以太坊測試鏈Ethereum ropsten上發行的學習履歷點�
 </html>
 ```
 
+### Kovan & Darkorange
+* https://kovan.etherscan.io/token/0xA654ED908b49F0D0c5d330927D3364d4571B74C3
+* https://kovan.etherscan.io/tx/0xc22c277dd411ba1e841f28926c62b4a1b1ff3a48edaee011146ccb655bb05bb5#eventlog
+* http://128.199.124.120/account/0xa2954bb883c00c4d5c964fd3e933f8086f56c71e
+
 ### 參考連結
 * DDJTAB contract https://github.com/y12studio/dltdojo/tree/master/contracts/ddjtab
 * Front-End Developer Handbook 2017 https://frontendmasters.gitbooks.io/front-end-handbook-2017/content/
