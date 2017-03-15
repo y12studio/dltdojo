@@ -3,6 +3,34 @@
 * Is it possible to make the Parity software sync faster? http://ethereum.stackexchange.com/questions/10465/is-it-possible-to-make-the-parity-software-sync-faster
 * synchronization - What is the parity light pruning mode? http://ethereum.stackexchange.com/questions/3332/what-is-the-parity-light-pruning-mode
 
+### Deploy Oracle
+darkorange
+```
+$ node darkorange.js getInfo
+{ ethBlockNumber: 29,
+  ethCoinbase: '0x6846497f3d3b505d7317f5890bd2dbcd9f995905',
+  ethAccounts:
+   { '0x6846497f3d3b505d7317f5890bd2dbcd9f995905': '49544115984.093301400088909845',
+     '0xcb9529427e16ee3ad5d41fc71256d97f5dbdc279': '2135.999237753330147045' },
+  ethNonces:
+   { '0x6846497f3d3b505d7317f5890bd2dbcd9f995905': 20,
+     '0xcb9529427e16ee3ad5d41fc71256d97f5dbdc279': 2 },
+  ethSyncing: false,
+  netPeerCount: 4,
+  ethMining: false }
+
+$ node darkorange.js deployOracle 6846497f3d3b505d7317f5890bd2dbcd9f995905 pass
+// (hash aba3471da23f93506fba49a82daecff2fc13df309a853b55af7dbfe9e50e490f)
+// http://128.199.124.120/account/0x88a9a5b182deadf8cea182133042cdf63c0d547e
+$ node darkorange.js updateOracle 88a9a5b182deadf8cea182133042cdf63c0d547e 6846497f3d3b505d7317f5890bd2dbcd9f995905 pass 100
+$ node darkorange.js getOracleValue 88a9a5b182deadf8cea182133042cdf63c0d547e 6846497f3d3b505d7317f5890bd2dbcd9f995905
+oracle.current is 199
+$ node darkorange.js updateOracleBtcTwd 88a9a5b182deadf8cea182133042cdf63c0d547e 6846497f3d3b505d7317f5890bd2dbcd9f995905 pass
+$ node darkorange.js getOracleValue 88a9a5b182deadf8cea182133042cdf63c0d547e 6846497f3d3b505d7317f5890bd2dbcd9f995905
+oracle.updateAt blocknum is 30
+oracle.current is 38871
+
+```
 ### Deploy DDJTAB
 darkorange
 ```

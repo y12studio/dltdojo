@@ -5,7 +5,48 @@ const Web3 = require('web3')
 const web3 = new Web3()
 const eth = web3.eth
 const solc = require('solc')
+const fetch = require('node-fetch')
 const source = 'pragma solidity ^0.4.6; contract Foo { function f(uint x) returns (uint) { return x * x; } }'
+// https://github.com/oraclekit/smart_oracle/tree/master/lib/assets/contracts
+const oracleSol = `pragma solidity ^0.4.6;
+contract Owned {
+  address public owner;
+
+  event UpdatedOwner(address to, address from);
+
+  modifier onlyOwner {
+    if (msg.sender == owner) _;
+  }
+
+  function Owned() {
+    owner = msg.sender;
+  }
+
+  function setOwner(address newOwner) onlyOwner {
+    if (newOwner != address(0)) {
+      address oldOwner = owner;
+      owner = newOwner;
+      UpdatedOwner(newOwner, oldOwner);
+    }
+  }
+}
+contract Uint256Oracle is Owned {
+  uint256 public current;
+  uint public updatedAt;
+  uint requestCounter;
+
+  event Updated(uint256 current);
+
+  function Uint256Oracle() {
+  }
+
+  function update(uint256 newCurrent) onlyOwner {
+    current = newCurrent;
+    updatedAt = block.number;
+    Updated(current);
+  }
+}
+`
 web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'))
 
 function getDdjtabCode (solfile) {
@@ -13,6 +54,21 @@ function getDdjtabCode (solfile) {
   var output = solc.compile(source, 1) // 1 activates the optimiser
     // console.log(contractName)
   var outputContract = output.contracts[':Ddjtab']
+  if (!outputContract) {
+    console.log(Object.keys(output.contracts))
+    return
+  }
+    // console.log(outputContract)
+  return {
+    code: '0x' + outputContract.bytecode,
+    abi: JSON.parse(outputContract.interface)
+  }
+}
+
+function getOracleCode () {
+  var output = solc.compile(oracleSol, 1) // 1 activates the optimiser
+    // console.log(contractName)
+  var outputContract = output.contracts[':Uint256Oracle']
   if (!outputContract) {
     console.log(Object.keys(output.contracts))
     return
@@ -63,6 +119,58 @@ module.exports = {
       from: addrFrom,
       gas: gas,
       data: code
+    })
+  },
+
+  deployOracle: function (addrFrom, password) {
+    var gas = 2000000
+    this.deploy(oracleSol, ':Uint256Oracle', addrFrom, password, gas)
+  },
+
+  updateOracle: function (contractAddress, addrFrom, password, value) {
+    if (!web3.personal.unlockAccount(addrFrom, password)) {
+      return
+    }
+    var gas = 1000000
+    var oracleCode = getOracleCode()
+    var abi = oracleCode.abi
+    var oc = web3.eth.contract(abi).at(contractAddress)
+    oc.update.sendTransaction(value, {from: '0x' + addrFrom, gas: gas})
+  },
+
+  updateOracleBtcTwd: function (contractAddress, addrFrom, password) {
+    var root = this
+    fetch('https://blockchain.info/ticker?cors=true').then(r => {
+      return r.json()
+    }).then(res => {
+      root.updateOracle(contractAddress, addrFrom, password, Math.round(res.TWD.last))
+      console.log(res.TWD)
+    })
+  },
+
+  getOracleValue: function (contractAddress, account) {
+    var oracleCode = getOracleCode()
+    var abi = oracleCode.abi
+    var oc = web3.eth.contract(abi).at(contractAddress)
+
+    var accountAddress = '0x' + account
+
+    oc.current.call({
+      from: accountAddress
+    }, function (err, current) {
+      if (err) {
+        console.error(err)
+      }
+      console.log('oracle.current is ' + current.toString(10))
+    })
+    // updatedAt
+    oc.updatedAt.call({
+      from: accountAddress
+    }, function (err, res) {
+      if (err) {
+        console.error(err)
+      }
+      console.log('oracle.updateAt blocknum is ' + res.toString(10))
     })
   },
 

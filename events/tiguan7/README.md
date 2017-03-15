@@ -1,5 +1,6 @@
 
 #### References
+* oraclekit/smart_oracle: a ruby implementation of a Smart Oracle  https://github.com/oraclekit/smart_oracle
 * Daily Price Oracles » Brave New Coin  https://bravenewcoin.com/services/oracles/daily-price-oracles
 * Oracle - Wikipedia https://en.wikipedia.org/wiki/Oracle
 * I Am Sir Oracle, And When I Ope My Lips, Let No Dog Bark! - No Fear Shakespeare: The Merchant of Venice: Act 1, Scene 1, Page 4

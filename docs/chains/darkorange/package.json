@@ -9,6 +9,7 @@
     "ipfs-js": "0.0.11",
     "lodash": "^4.17.4",
     "make-runnable": "^1.1.1",
+    "node-fetch": "^1.6.3",
     "solc": "^0.4.9",
     "web3": "^0.18.2"
   }
