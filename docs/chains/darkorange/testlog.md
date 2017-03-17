@@ -3,6 +3,48 @@
 * Is it possible to make the Parity software sync faster? http://ethereum.stackexchange.com/questions/10465/is-it-possible-to-make-the-parity-software-sync-faster
 * synchronization - What is the parity light pruning mode? http://ethereum.stackexchange.com/questions/3332/what-is-the-parity-light-pruning-mode
 
+### browser-solidity
+http://remix.ethereum.org
+```
+$ node darkorange.js getInfo
+{ ethBlockNumber: 29,
+  ethCoinbase: '0x6846497f3d3b505d7317f5890bd2dbcd9f995905',
+  ethAccounts:
+   { '0x6846497f3d3b505d7317f5890bd2dbcd9f995905': '49544115984.093301400088909845',
+     '0xcb9529427e16ee3ad5d41fc71256d97f5dbdc279': '2135.999237753330147045' },
+  ethNonces:
+   { '0x6846497f3d3b505d7317f5890bd2dbcd9f995905': 20,
+     '0xcb9529427e16ee3ad5d41fc71256d97f5dbdc279': 2 },
+  ethSyncing: false,
+  netPeerCount: 4,
+  ethMining: false }
+
+$ cat node.toml
+[parity]
+chain = "darkorange.json"
+[network]
+port = 30303
+[rpc]
+interface = "192.168.2.73"
+port = 8545
+cors = "http://remix.ethereum.org"
+apis = ["web3", "eth", "net", "personal", "parity", "parity_set", "traces", "rpc", "parity_accounts"]
+# [ui]
+# port = 8180
+# [dapps]
+# port = 8080
+[account]
+unlock = ["0x6846497f3d3b505d7317f5890bd2dbcd9f995905"]
+password = ["node.pwds"]
+[mining]
+#engine_signer = "0x0000000000000000000000000000000000000092"
+reseal_on_txs = "none"
+
+$ cat node.pwds
+pass
+
+$ parity --config=node.toml
+```
 ### Deploy Oracle
 darkorange
 ```

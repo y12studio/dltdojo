@@ -47,7 +47,7 @@ contract Uint256Oracle is Owned {
   }
 }
 `
-const oracleAbi=`[{"constant":false,"inputs":[{"name":"newOwner","type":"address"}],"name":"setOwner","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"updatedAt","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"newCurrent","type":"uint256"}],"name":"update","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"current","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"inputs":[],"payable":false,"type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"current","type":"uint256"}],"name":"Updated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"to","type":"address"},{"indexed":false,"name":"from","type":"address"}],"name":"UpdatedOwner","type":"event"}]`
+const oracleAbi = `[{"constant":false,"inputs":[{"name":"newOwner","type":"address"}],"name":"setOwner","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"updatedAt","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"newCurrent","type":"uint256"}],"name":"update","outputs":[],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"current","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"inputs":[],"payable":false,"type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"current","type":"uint256"}],"name":"Updated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"to","type":"address"},{"indexed":false,"name":"from","type":"address"}],"name":"UpdatedOwner","type":"event"}]`
 
 web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'))
 
@@ -76,7 +76,7 @@ function getOracleCode () {
     return
   }
     // console.log(outputContract)
-  //console.log(outputContract.interface)
+  // console.log(outputContract.interface)
   return {
     code: '0x' + outputContract.bytecode,
     abi: JSON.parse(outputContract.interface)

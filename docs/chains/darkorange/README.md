@@ -45,6 +45,37 @@ Clean chaindata
 ```
 $ rm -rf ~/.local/share/io.parity.ethereum/chains/darkorange
 ```
+
+### Remix(browser-solidity) web3 provider setup
+
+* http://remix.ethereum.org
+* local web3 provider url http://192.168.2.73:8545
+
+```
+$ cat node.toml
+[parity]
+chain = "darkorange.json"
+[network]
+port = 30303
+[rpc]
+interface = "192.168.2.73"
+port = 8545
+cors = "http://remix.ethereum.org"
+apis = ["web3", "eth", "net", "personal", "parity", "parity_set", "traces", "rpc", "parity_accounts"]
+# [ui]
+# port = 8180
+# [dapps]
+# port = 8080
+[account]
+unlock = ["0x6846497f3d3b505d7317f5890bd2dbcd9f995905"]
+password = ["node.pwds"]
+[mining]
+#engine_signer = "0x0000000000000000000000000000000000000092"
+reseal_on_txs = "none"
+
+$ cat node.pwds
+pass
+```
 ### Recruiting validators
 * Recruiting Period: 2017-03-03 to 2017-03-08
 * Service Period: 2017-03-08 to 2017-06-08
