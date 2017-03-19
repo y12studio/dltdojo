@@ -1,0 +1,21 @@
+[parity]
+chain = "darkorange.json"
+[network]
+port = 30303
+[rpc]
+interface = "0.0.0.0"
+port = 8545
+#cors = "http://remix.ethereum.org"
+cors = "*"
+hosts = ["all"]
+apis = ["web3", "eth", "net", "personal", "parity", "parity_set", "traces", "rpc", "parity_accounts"]
+# [ui]
+# port = 8180
+# [dapps]
+# port = 8080
+[account]
+unlock = ["0x002cfe7604db809a84c45067d1e361d933514924"]
+password = ["nodefaucet.pwds"]
+[mining]
+#engine_signer = "0x0000000000000000000000000000000000000092"
+reseal_on_txs = "none"
