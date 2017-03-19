@@ -8,8 +8,7 @@ RUN apt-get update \
     && curl -sL https://deb.nodesource.com/setup_7.x | bash \
     && apt-get -y install nodejs
 WORKDIR /opt
-RUN git clone --depth=1 https://github.com/ethereum/browser-solidity.git \
-    && cd browser-solidity && npm i --verbose && npm run build
+RUN git clone -b gh-pages --depth=1 https://github.com/ethereum/browser-solidity.git
 RUN mkdir darkorange && cd darkorange \
     && curl -OOOO https://y12studio.github.io/dltdojo/chains/darkorange/{darkorange.json,node.toml,package.json,darkorange.js} \
     && npm i --verbose
@@ -23,6 +22,7 @@ ENV VER=1.6.2
 ENV DEB=parity_${VER}_amd64.deb
 ENV DEBURL=http://d1h4xl4cr1h0mo.cloudfront.net/v${VER}/x86_64-unknown-linux-gnu/$DEB
 RUN cd /tmp &&  curl -L -O $DEBURL &&  dpkg -i $DEB &&  dpkg-deb -c $DEB && rm $DEB
+RUN npm install http-server -g
 ADD darkorange.json nodefaucet.toml /opt/darkorange/
 RUN cd darkorange && echo "faucet" > nodefaucet.pwds
 ADD start.sh /

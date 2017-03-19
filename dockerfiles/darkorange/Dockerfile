@@ -21,6 +21,10 @@ ENV VER=1.6.2
 ENV DEB=parity_${VER}_amd64.deb
 ENV DEBURL=http://d1h4xl4cr1h0mo.cloudfront.net/v${VER}/x86_64-unknown-linux-gnu/$DEB
 RUN cd /tmp &&  curl -L -O $DEBURL &&  dpkg -i $DEB &&  dpkg-deb -c $DEB && rm $DEB
+RUN git clone -b gh-pages --depth=1 https://github.com/ethereum/browser-solidity.git \
+    && npm install http-server -g
+# Can I run it on a private chain？ · Issue #226 · kvhnuke/etherwallet https://github.com/kvhnuke/etherwallet/issues/226
+RUN git clone --depth=1 https://github.com/kvhnuke/etherwallet.git
 ADD darkorange.json nodefaucet.toml /opt/darkorange/
 RUN cd darkorange && echo "faucet" > nodefaucet.pwds
 ADD start.sh /

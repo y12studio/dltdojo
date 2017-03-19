@@ -1,3 +1,23 @@
+#### 2017-03-20T00:16:00+0800
+MyEtherWallet
+
+Add Custom Node
+
+* URL http://hostip
+* PORT 8545
+* TYPE Custom
+
+Generate Wallet
+
+* Keystore File
+* wallet address
+
+Faucet (Send Ether & Tokens)
+
+* How would you like to access your wallet? (Parity Phrase)
+* faucet - unlock
+* send ether to wallet address
+
 #### 2017-03-19T15:29:09+0800
 ```
 $ docker build -t y12docker/dltdojo-darkorange .
