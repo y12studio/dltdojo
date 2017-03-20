@@ -1,3 +1,52 @@
+#### 2017-03-20T09:51:09+0800
+```
+$ docker build -t y12docker/dltdojo-darkorange .
+$ docker run -it -p 8545:8545 -p 9080:9080 -p 9081:9081 --rm y12docker/dltdojo-darkorange /start.sh unlock YOURPASSHERE
+
+unlock parity_newAccountFromPhrase YOURPASSHERE
+NewAccountFromPhrase YOURPASSHERE is 0x00f1667771080c41e6cdff68342f85494c5f3417
+start parity with nodefaucet.toml
+[parity]
+chain = "darkorange.json"
+[network]
+port = 30303
+[rpc]
+interface = "0.0.0.0"
+port = 8545
+#cors = "http://remix.ethereum.org"
+cors = "*"
+hosts = ["all"]
+apis = ["web3", "eth", "net", "personal", "parity", "parity_set", "traces", "rpc", "parity_accounts"]
+# [ui]
+# port = 8180
+# [dapps]
+# port = 8080
+[account]
+unlock = ["0x00f1667771080c41e6cdff68342f85494c5f3417"]
+password = ["nodefaucet.pwds"]
+[mining]
+#engine_signer = "0x0000000000000000000000000000000000000092"
+reseal_on_txs = "none"
+YOURPASSHERE
+Loading config file from nodefaucet.toml
+2017-03-20 01:51:58 UTC Starting Parity/v1.6.2-beta-8a27211-20170311/x86_64-linux-gnu/rustc1.15.1
+2017-03-20 01:51:58 UTC State DB configuration: fast
+2017-03-20 01:51:58 UTC Operating mode: active
+2017-03-20 01:51:58 UTC Configured for Darkorange using AuthorityRound engine
+2017-03-20 01:51:58 UTC Updated conversion rate to Ξ1 = US$43.02 (2767262000 wei/gas)
+2017-03-20 01:52:03 UTC Public node URL: enode://3bca10ef720baa83a7ca5d9e91ff5f68f230695a6743d2acfa02b784ccedc621b928d03afbd87dabee58da1a3e3cad12e9ed51cb21ccc9f02493773cc3ed4ca2@172.17.0.2:30303
+```
+
+MyEtherWallet
+```
+http://hostip:9081 - Send Ether & Tokens - Parity Parity Phrase - faucet - send ether to 0x00f1667771080c41e6cdff68342f85494c5f3417
+```
+
+browser-solidity
+```
+http://hostip:9080/ - Web Provider - http://hostip:8545
+```
+
 #### 2017-03-20T00:16:00+0800
 MyEtherWallet
 

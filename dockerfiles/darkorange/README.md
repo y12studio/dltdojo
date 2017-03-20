@@ -1,13 +1,28 @@
 ### Usage
-
-#### Faucet mode
-
-* host ip : 192.168.1.1
+* docker image y12docker/dltdojo-darkorange
 * MyEtherWallet http://hostip:9081
 * browser-solidity http://hostip:9080
 * local web3 provider url http://hostip:8545
 * darkorange block explorer http://128.199.124.120/
 
+#### NewAccountFromPhrase Mode
+```
+$ docker run -it -p 8545:8545 -p 9080:9080 -p 9081:9081 --rm y12docker/dltdojo-darkorange /start.sh unlock YOURPASSHERE
+...
+NewAccountFromPhrase YOURPASSHERE is 0x00f1667771080c41e6cdff68342f85494c5f3417
+...
+```
+Get darkorange ether from Parity Phrase Account (faucet) on local MyEtherWallet.
+```
+http://hostip:9081 - Send Ether & Tokens - Parity Phrase - faucet - send ether to 0x00f1667771080c41e6cdff68342f85494c5f3417
+```
+
+Test contract on local browser-solidity.
+```
+http://hostip:9080/ - Web Provider - http://hostip:8545
+```
+
+#### Faucet Mode
 ```
 $ docker run -it -p 8545:8545 -p 9080:9080 -p 9081:9081 --rm y12docker/dltdojo-darkorange /start.sh faucet
 ```
@@ -43,10 +58,12 @@ contract Faucet {
     function () payable {}
 }
 ```
-#### Normal  mode
+#### Peer Mode
 ```
-$ docker run -it -p 8545:8545 --rm y12docker/dltdojo-darkorange /start.sh darkorange
+$ docker run -it -p 8545:8545 -p 8545:8545 -p 9080:9080 -p 9081:9081 --rm y12docker/dltdojo-darkorange
 ```
 
 ### References
-* ethereum/remix: Ethereum IDE and tools for the web https://github.com/ethereum/remix
+* MyEtherWallet kvhnuke/etherwallet https://github.com/kvhnuke/etherwallet
+* ethereum/browser-solidity: Browser-Only Solidity IDE and Runtime Environment https://github.com/ethereum/browser-solidity
+* Cannot connect to my local geth node · Issue #136 · ethereum/browser-solidity https://github.com/ethereum/browser-solidity/issues/136

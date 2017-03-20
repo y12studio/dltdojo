@@ -25,7 +25,7 @@ RUN git clone -b gh-pages --depth=1 https://github.com/ethereum/browser-solidity
     && npm install http-server -g
 # Can I run it on a private chain？ · Issue #226 · kvhnuke/etherwallet https://github.com/kvhnuke/etherwallet/issues/226
 RUN git clone --depth=1 https://github.com/kvhnuke/etherwallet.git
-ADD darkorange.json nodefaucet.toml /opt/darkorange/
-RUN cd darkorange && echo "faucet" > nodefaucet.pwds
+ADD darkorange.json nodefaucet.toml node.toml /opt/darkorange/
 ADD start.sh /
 RUN chmod a+x /*.sh
+CMD /start.sh peer
