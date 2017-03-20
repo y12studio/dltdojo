@@ -3,9 +3,13 @@ services:
   btcboot:
     image: y12docker/dltdojo-btcunlimited
     command: '/start.sh'
+    ports:
+        - "18001:18332"
   btc1:
     image: y12docker/dltdojo-btcunlimited
     command: '/start.sh'
+    ports:
+        - "18002:18332"
   abe:
     image: y12docker/dltdojo-abe
     command: '/start.sh'

@@ -1,9 +1,8 @@
 FROM ubuntu:xenial
-RUN apt-get update && apt-get install -y curl jq
-ENV DVER=1.0.0.1
-ENV SVER=1.0.0
-RUN cd /tmp && curl --insecure -sL https://www.bitcoinunlimited.info/downloads/bitcoinUnlimited-${DVER}-linux64.tar.gz | tar zx
-RUN mv /tmp/bitcoinUnlimited-${SVER}/bin/* /usr/bin/
+RUN apt-get update && apt-get install -y curl jq software-properties-common \
+    && add-apt-repository ppa:bitcoin-unlimited/bu-ppa \
+    && apt-get update && apt-get install -y bitcoind
+#
 ADD bitcoin.conf /root/.bitcoin/
 ADD start.sh /
 RUN chmod +x /start.sh
