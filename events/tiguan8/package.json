@@ -1,0 +1,14 @@
+{
+  "name": "bcbu-tiguan8",
+  "version": "0.0.1",
+  "description": "-",
+  "main": "test.js",
+  "author": "-",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "bitcoin-core": "^1.2.0",
+    "bitcore-lib": "^0.14.0",
+    "lodash": "^4.17.4",
+    "make-runnable": "^1.1.1"
+  }
+}
