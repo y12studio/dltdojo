@@ -1,3 +1,41 @@
+### 2017-03-24T17:15:01+0800
+* https://github.com/hyperledger/fabric-sdk-node/tree/master/examples/balance-transfer
+
+```
+$ mkdir hackfest && cd hackfest
+$ curl -L https://raw.githubusercontent.com/hyperledger/fabric/master/examples/sfhackfest/sfhackfest.tar.gz -o sfhackfest.tar.gz 2> /dev/null; tar -xvf sfhackfest.tar.gz
+$ ls
+ccenv            docker-compose-gettingstarted.yml  src
+channel_test.sh  sfhackfest.tar.gz                  tmp
+$ docker-compose -f docker-compose-gettingstarted.yml build
+$ docker-compose -f docker-compose-gettingstarted.yml up -d
+Creating orderer
+Creating ccenv_latest
+Creating ccenv_snapshot
+Creating ca
+Creating peer0
+Creating peer1
+Creating peer2
+Creating cli
+$ docker exec -it cli bash
+
+/opt/gopath/src/github.com/hyperledger/fabric/peer# # cat results.txt
+SUCCESSFUL CHANNEL CREATION
+SUCCESSFUL JOIN CHANNEL on PEER0
+SUCCESSFUL JOIN CHANNEL on PEER1
+SUCCESSFUL JOIN CHANNEL on PEER2
+# exit
+
+$ curl -OOOOOO https://raw.githubusercontent.com/hyperledger/fabric-sdk-node/v1.0-alpha/examples/balance-transfer/{config.json,deploy.js,helper.js,invoke.js,query.js,package.json}
+$ npm i
+// Deploy initializes key value pairs of a=100 & b=200
+$ GOPATH=$PWD node deploy.js
+$ node invoke.js
+$ node query.js
+```
+
+
+
 ### Fri Jan 20 22:31:53 CST 2017
 ```
 $ dcup
