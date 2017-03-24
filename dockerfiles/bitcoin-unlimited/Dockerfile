@@ -1,5 +1,5 @@
 FROM ubuntu:xenial
-RUN apt-get update && apt-get install -y curl jq software-properties-common \
+RUN apt-get update && apt-get install -y jq curl software-properties-common \
     && add-apt-repository ppa:bitcoin-unlimited/bu-ppa \
     && apt-get update && apt-get install -y bitcoind
 #

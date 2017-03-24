@@ -16,7 +16,8 @@ RUN mkdir darkorange && cd darkorange \
 # parity 1.6.3 issue
 # Stage 4 block verification failed for #1 (afc3…e50a)
 # Error: Block(InvalidReceiptsRoot(Mismatch { expected: 8a4e75b7ad5232eb45d010f808a3dcfe8b69edec5939a0387dd52246b3a1a211, found: 45bef3c8f45af0174311babea84ed659c7380a7249e2fe1ac5d7749f2918a383 }))
-#
+# Latest master corrupts chain · Issue #4985 · paritytech/parity
+# https://github.com/paritytech/parity/issues/4985
 ENV VER=1.6.2
 ENV DEB=parity_${VER}_amd64.deb
 ENV DEBURL=http://d1h4xl4cr1h0mo.cloudfront.net/v${VER}/x86_64-unknown-linux-gnu/$DEB
