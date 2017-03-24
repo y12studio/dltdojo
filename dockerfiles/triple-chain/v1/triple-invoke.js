@@ -28,6 +28,10 @@ var EventHub = require('fabric-client/lib/EventHub.js')
 
 var config = require('./config.json')
 var helper = require('./helper.js')
+var eth = require('./eth.js')
+var btc = require('./btc.js')
+var stringify = require('json-stable-stringify')
+var Hashes = require('jshashes')
 
 logger.setLevel('DEBUG')
 
@@ -61,11 +65,12 @@ hfc.newDefaultKeyValueStore({
         logger.info('Executing Invoke')
         tx_id = helper.getTxId()
         var nonce = utils.getNonce()
+        var amount = 1
         var args = [
             'move',
             'a',
             'b',
-            '1'
+            '' + amount
         ]
         // send proposal to endorser
         var request = {
@@ -76,6 +81,13 @@ hfc.newDefaultKeyValueStore({
             txId: tx_id,
             nonce: nonce
         }
+        // send btc to foo account
+        btc.sendBtc(amount)
+        var requestJsonStr = stringify(request)
+        var hashHex = new Hashes.SHA256().hex(requestJsonStr)
+        console.log(requestJsonStr, hashHex)
+        // send redfoo to foo account with sha256(request)
+        eth.sendRedFoo('aaf98a65dabd34d69769a377016a38b800cc72d6', amount, hashHex)
         return chain.sendTransactionProposal(request)
     }
 ).then(
@@ -87,6 +99,8 @@ hfc.newDefaultKeyValueStore({
 ).then(
     function(response) {
         if (response.status === 'SUCCESS') {
+            btc.info()
+            eth.info()
             var handle = setTimeout(() => {
                 logger.error('Failed to receive transaction notification within the timeout period')
                 process.exit(1)
