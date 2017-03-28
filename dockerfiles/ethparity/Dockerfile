@@ -1,6 +1,6 @@
 FROM ubuntu:trusty
 
-ENV VER=1.5.2
+ENV VER=1.6.4
 ENV DEB=parity_${VER}_amd64.deb
 ENV DEBURL=http://d1h4xl4cr1h0mo.cloudfront.net/v${VER}/x86_64-unknown-linux-gnu/$DEB
 RUN apt-get update ; apt-get install -y curl openssl jq \
