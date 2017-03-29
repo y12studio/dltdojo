@@ -70,13 +70,13 @@ $ node eth.js info
   ethSyncing: false,
   netPeerCount: 0,
   ethMining: true }
-$ node eth.js deploy
+$ node eth.js deploy pass
 $ node eth.js deployInfo
 ```
 
 #### TripleChain Test
 ```
-$ node triple-invoke.js
+$ node triple-invoke.js pass
 $ node query.js
 ```
 #### Clean up

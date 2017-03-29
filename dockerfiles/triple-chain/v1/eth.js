@@ -14,9 +14,9 @@ function getRpcClient () {
 }
 
 module.exports = {
-  deploy: function () {
+  deploy: function (_password) {
     var addrFrom = eth.accounts[0]
-    var password = 'pass'
+    var password = _password
     var src = fs.readFileSync('redfoo.sol', 'utf8')
     var contractName = ':RedFoo'
     var gas = 300000
@@ -66,10 +66,10 @@ module.exports = {
     })
   },
 
-  sendRedFoo: function (addrTo, amount, hashHex) {
+  sendRedFoo: function (addrTo, amount, hashHex, _password) {
         // 0xaaf98a65dabd34d69769a377016a38b800cc72d6
     var addrFrom = eth.accounts[0]
-    var password = 'pass'
+    var password = _password
     if (!web3.personal.unlockAccount(addrFrom, password)) {
       return
     }

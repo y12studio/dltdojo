@@ -87,7 +87,8 @@ hfc.newDefaultKeyValueStore({
         var hashHex = new Hashes.SHA256().hex(requestJsonStr)
         console.log(requestJsonStr, hashHex)
         // send redfoo to foo account with sha256(request)
-        eth.sendRedFoo('aaf98a65dabd34d69769a377016a38b800cc72d6', amount, hashHex)
+        var ethAccountPassword = process.argv[2]
+        eth.sendRedFoo('aaf98a65dabd34d69769a377016a38b800cc72d6', amount, hashHex, ethAccountPassword)
         return chain.sendTransactionProposal(request)
     }
 ).then(

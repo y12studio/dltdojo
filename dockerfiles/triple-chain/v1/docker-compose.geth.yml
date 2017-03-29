@@ -3,24 +3,18 @@ networks:
    bridge:
 
 services:
-  darkorange:
-    container_name: darkorange
-    image: y12docker/dltdojo-darkorange
-    command: '/start.sh unlock YOURPASSHERE'
+  eth:
+    container_name: eth
+    image: y12docker/dltdojo-ethgo
+    command: '/start.sh dev'
     ports:
      - "8545:8545"
-     - "9080:9080"
-     - "9081:9081"
   btcboot:
     container_name: btcboot
     image: y12docker/dltdojo-bitcoin
     command: '/start.sh'
     ports:
         - "18332:18332"
-  btc1:
-    container_name: btc1
-    image: y12docker/dltdojo-bitcoin
-    command: '/start.sh'
   abe:
     container_name: abe
     image: y12docker/dltdojo-abe
