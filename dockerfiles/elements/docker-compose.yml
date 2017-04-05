@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+  elementboot:
+    image: y12docker/elements:0.13.1
+    build: .
+    command: elementsd
+  element1:
+    extends: elementboot
+  element2:
+    extends: elementboot
+  btcboot:
+    image: y12docker/dltdojo-bitcoin
+    command: '/start.sh'
+    ports:
+        - "18332:18332"
+  btc1:
+    image: y12docker/dltdojo-bitcoin
+    command: '/start.sh'
+  abe:
+    image: y12docker/dltdojo-abe
+    command: '/start.sh'
+    ports:
+        - "12750:12750"

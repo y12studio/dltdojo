@@ -117,6 +117,7 @@ Apache Spot以網路巨量資料的建立與安全分析並分享分析工具為
 ### IoT
 
 * Blockchain: transforming the IoT’s security vulnerability into a strategic advantage  https://internetofbusiness.com/blockchain-iot-security-2/
+* Flowchain https://github.com/flowchain
 
 ### Car Wallet
 * 比特幣車錢包的IBM i3 API試驗案例，日前另一個Project Oaken使用ETH與Tesla當試驗示範平台。

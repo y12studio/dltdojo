@@ -16,6 +16,7 @@ $ npm i
 #### Start all containers
 
 ```
+$ docker-compose build
 $ docker-compose up -d
 $ docker ps --format "{{.Names}}  {{.Ports}}"
 cli
