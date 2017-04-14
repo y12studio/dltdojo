@@ -1,16 +1,210 @@
 {
-    "@context": "http://schema.org/",
+    "@context": {
+        "@vocab": "http://schema.org/"
+    },
+    "@type": "CreativeWork",
+    "url": "https://github.com/y12studio/dltdojo/blob/master/docs/res/dltdojo-white-qa.md",
+    "license": "https://creativecommons.org/licenses/by/4.0/deed.zh_TW",
+    "name": "DLTDOJO White QA",
     "@graph": [{
             "@type": "Question",
-            "isPartOf":"Table 1: How will the DLT be used?",
-            "name": "是否已有類似服務存在?",
-            "text": "提供現有服務可以快速了解與辨識該類型DLT風險"
+            "keywords": "ASIC,Table1",
+            "name": "是否已有類似DLT服務存在?",
+            "text": "提供現有DLT服務可以快速了解與辨識該類型DLT風險。"
         },
         {
             "@type": "Question",
-            "isPartOf":"Table 1: How will the DLT be used?",
-            "name": "誰會參與服務以及參與者擁有的權限為何?",
-            "text": "這DLT服務是參與者許可型或無許可型?如果是許可型，它的參與許可如何運作?如是無許可型，如何評估風險(執行KYC)以及如何有效管理。"
+            "keywords": "ASIC,Table1",
+            "name": "誰會參與DLT服務以及參與者擁有的權限為何?",
+            "text": "服務是參與者許可型或無許可型?如果是許可型，它的參與許可如何運作?如是無許可型，如何評估風險(執行KYC)以及如何有效管理。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table1",
+            "name": "DLT存放資訊為何?",
+            "text": "帳本資訊例如時間紀錄、代幣所有權、身份識別或交易雜湊值。"
+
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table1",
+            "name": "DLT服務是否需要不變性?",
+            "text": "不變性指帳本上交易創建後無法修改變更。"
+
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table1",
+            "name": "是否有智能合約設計?",
+            "text": "有無以及跟其他系統之間的互動。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table2",
+            "name": "服務使用DLT平台?",
+            "text": "比特幣Bitcoin、以太坊Ethereum、Ripple、Hyperledger或Corda等。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table2",
+            "name": "採用哪些標準?",
+            "text": "例如the International Organization for Standardization (ISO)、International Swaps and Derivatives Association (ISDA) 或 FIX Protocol (FPL)。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table2",
+            "name": "DLT平台是否可靠穩定?",
+            "text": "對平台的所有測試是否了解，因為對故障識別及其修復的證據有助於了解平台的風險。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table2",
+            "name": "DLT平台可以提供互通性嗎?",
+            "text": "該服務將與現有系統和其他系統（如支付系統或數字貨幣）一起運作嗎？"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table2",
+            "name": "DLT平台是否安全?",
+            "text": "使用的加密是否強度夠，並可識別，了解和計劃對服務安全性產生的威脅。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table3",
+            "name": "運行的DLT服務涉及哪些資料?",
+            "text": "記錄的資料的來源為何，可靠性如何，以及將這些資料提供給他人是否合適？。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table3",
+            "name": "誰可以存取這些運行服務中的資料?",
+            "text": "服務中使用的資料可設定成不同存取模式，從公開可讀到只有參與者可見等。資料可見程度是保密性，市場濫用和隱私重要的考量因素。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table3",
+            "name": "安全機制為何?",
+            "text": "提交服務的數據與帳上資料如何保護不受到未經授權存取和操作失敗等安全問題影響。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table3",
+            "name": "如何監看資料?",
+            "text": "是否可即時監看帳上資料，以及監看權限與範圍。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table3",
+            "name": "資料異動紀錄是否會被保存?",
+            "text": "資料記錄異動時是否會被紀錄。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table4",
+            "name": "誰運行、擁有或監督服務?",
+            "text": "所有者、運營商或監督者可影響服務運營或治理。如服務以分散方式運作，在運行，運行和監督服務的相關風險如何被適當和有效地管理。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table4",
+            "name": "What are the protocols and standards of the DLT-based service?",
+            "text": "There are different sets of protocols and standards which are relevant. There are those related to the operation of the DLT and then there are those related to the financial service provided by the facility. For example, where the DLT is to be used with a facility relating to derivative contracts, the financial protocol being used could be one based on the ISDA and Financial products Markup Language (FpML) frameworks.。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table4",
+            "name": "是否有共識機制?",
+            "text": "共識機制是參與者之間關於帳本資料的仲裁，不同機制會影響到現實世界的結果，其機制的運作及其產生後果需要被理解。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table4",
+            "name": "參與者的條件?",
+            "text": "如為許可型服務，決定參與者的條件為何，這些條件是否為非歧視性。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table4",
+            "name": "服務的規則或程序在哪裡?",
+            "text": "如果有服務運作的規則或程序，這些規則如何應用（例如通過代碼、智能合同、章程或操作規則），規則是否透明，創建和改變規則是否有一致和可理解的機制。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table4",
+            "name": "DLT服務的運作和規則是否公平?",
+            "text": "取決於服務是否安排非歧視性存取，或是其規則是否有透明度。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table5",
+            "name": "哪些法律制度適用於DLT服務?",
+            "text": "如DLT服務跨境運作，跨管轄區的法律問題可能會出現。可能影響管轄權問題的因素包括參與者、員工、法人實體和基礎設施的位置以及合約創建和管理的位置。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table5",
+            "name": "DLT是否足夠彈性?",
+            "text": "在許多情況下，法律制度不允許僅根據其條款執行合同，例如破產法（交易回扣），DLT可能需要具備充分反映法律制度的彈性，而且有彈性來糾正已確定的違規行為。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table5",
+            "name": "DLT服務是否創建產權?",
+            "text": "如果DLT服務創造出財產權利以及參與者之間的合約權利，法律問題的複雜性就會大幅增加。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table5",
+            "name": "DLT是否符合規定?",
+            "text": "DLT必須能夠遵守適用的法規，包括金融服務和資訊的使用。還應促進DLT參與者和與其連接的系統遵守法規。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table5",
+            "name": "對現有安排的影響?",
+            "text": "使用DLT可能會導致參與者（包括服務參與者或中間人）之間的現有安排發生變化嗎？這將包括現有安排停止或不能以目前的方式執行的情況。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table5",
+            "name": "DLT服務的運作是否合法？",
+            "text": "服務使用DLT會導致權利和義務的創建，變更，履行和終止，DLT的使用將如何與法律保持一致？"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table6",
+            "name": "?",
+            "text": "。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table6",
+            "name": "?",
+            "text": "。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table6",
+            "name": "?",
+            "text": "。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table6",
+            "name": "?",
+            "text": "。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table6",
+            "name": "?",
+            "text": "。"
+        },
+        {
+            "@type": "Question",
+            "keywords": "ASIC,Table6",
+            "name": "?",
+            "text": "。"
         }
     ]
 }

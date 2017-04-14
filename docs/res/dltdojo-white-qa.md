@@ -1,6 +1,6 @@
 ### DLTDOJO White Q&A
 
-dltdojo-white-qa.json
+* https://y12studio.github.io/dltdojo/res/dltdojo-white-qa.json
 
 ### Testing tool
 
