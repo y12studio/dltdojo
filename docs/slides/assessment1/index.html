@@ -38,10 +38,11 @@
     <!-- Android -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#333333">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
 </head>
 
-<body>
+<body ng-app="myApp" ng-controller="myCtrl">
     <main role="main">
         <article id="webslides" class="vertical">
             <!-- Quick Guide
@@ -64,6 +65,108 @@
                 </svg> DLTDOJO
                         </a>
                     </p>
+                </div>
+                <!-- .end .wrap -->
+            </section>
+            <section>
+                <!--.wrap = container 1200px -->
+                <div class="wrap size-50 aligncenter">
+                    <h2><strong>TABLE1</strong></h2>
+                    <p class="text-intro">INTRO</p>
+                    <div class="bg-white shadow">
+                        <ul class="flexblock reasons">
+                            <li ng-repeat="q in table1">
+                                <h2>{{q.name}}</h2>
+                                <p>{{q.text}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- .end .bg-white shadow -->
+                </div>
+                <!-- .end .wrap -->
+            </section>
+            <section>
+                <!--.wrap = container 1200px -->
+                <div class="wrap size-50 aligncenter">
+                    <h2><strong>TABLE2</strong></h2>
+                    <p class="text-intro">INTRO</p>
+                    <div class="bg-white shadow">
+                        <ul class="flexblock reasons">
+                            <li ng-repeat="q in table2">
+                                <h2>{{q.name}}</h2>
+                                <p>{{q.text}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- .end .bg-white shadow -->
+                </div>
+                <!-- .end .wrap -->
+            </section>
+            <section>
+                <!--.wrap = container 1200px -->
+                <div class="wrap size-50 aligncenter">
+                    <h2><strong>TABLE3</strong></h2>
+                    <p class="text-intro">INTRO</p>
+                    <div class="bg-white shadow">
+                        <ul class="flexblock reasons">
+                            <li ng-repeat="q in table3">
+                                <h2>{{q.name}}</h2>
+                                <p>{{q.text}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- .end .bg-white shadow -->
+                </div>
+                <!-- .end .wrap -->
+            </section>
+            <section>
+                <!--.wrap = container 1200px -->
+                <div class="wrap size-50 aligncenter">
+                    <h2><strong>TABLE4</strong></h2>
+                    <p class="text-intro">INTRO</p>
+                    <div class="bg-white shadow">
+                        <ul class="flexblock reasons">
+                            <li ng-repeat="q in table4">
+                                <h2>{{q.name}}</h2>
+                                <p>{{q.text}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- .end .bg-white shadow -->
+                </div>
+                <!-- .end .wrap -->
+            </section>
+            <section>
+                <!--.wrap = container 1200px -->
+                <div class="wrap size-50 aligncenter">
+                    <h2><strong>TABLE5</strong></h2>
+                    <p class="text-intro">INTRO</p>
+                    <div class="bg-white shadow">
+                        <ul class="flexblock reasons">
+                            <li ng-repeat="q in table5">
+                                <h2>{{q.name}}</h2>
+                                <p>{{q.text}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- .end .bg-white shadow -->
+                </div>
+                <!-- .end .wrap -->
+            </section>
+            <section>
+                <!--.wrap = container 1200px -->
+                <div class="wrap size-50 aligncenter">
+                    <h2><strong>TABLE6</strong></h2>
+                    <p class="text-intro">INTRO</p>
+                    <div class="bg-white shadow">
+                        <ul class="flexblock reasons">
+                            <li ng-repeat="q in table6">
+                                <h2>{{q.name}}</h2>
+                                <p>{{q.text}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- .end .bg-white shadow -->
                 </div>
                 <!-- .end .wrap -->
             </section>
@@ -146,75 +249,49 @@
                 </div>
                 <!-- .end .wrap -->
             </section>
-            <section>
-                <!--.wrap = container 1200px -->
-                <div class="wrap">
-                    <div class="grid vertical-align">
-                        <div class="column">
-                            <h3><strong>表一:如何利用DLT?</strong></h3>
-                            <p>1.是否已有類似服務存在?</p>
-                            <p>2.誰是服務的參與者以及這些參與者的權限?</p>
-                        </div>
-                        <!-- .end .column -->
-                        <div class="column">
-                            <h4><svg class="fa-life-ring">
-                               <use xlink:href="#fa-life-ring"></use>
-                           </svg> BTCJam</h4>
-                            <h4><svg class="fa-cubes">
-                               <use xlink:href="#fa-cubes"></use>
-                             </svg> The DAO</h4>
-                            <h4>Everledger</h4>
-                        </div>
-                        <!-- .end .column -->
-                    </div>
-                    <!-- .end .grid -->
-                </div>
-                <!-- .end .wrap -->
-            </section>
-            <section>
-                <!--.wrap = container 1200px -->
-                <div class="wrap">
-                    <div class="grid vertical-align">
-                        <div class="column">
-                            <h3><strong>表二:使用哪種DLT平台?</strong></h3>
-                            <p class="text-intro">What is the DLT platform used?</p>
-                            <p class="text-intro">What information standards apply or are relevant to your service?</p>
-                        </div>
-                        <!-- .end .column -->
-                        <div class="column">
-                            <h4><svg class="fa-life-ring">
-                               <use xlink:href="#fa-life-ring"></use>
-                           </svg> BTCJam</h4>
-                            <h4><svg class="fa-cubes">
-                               <use xlink:href="#fa-cubes"></use>
-                             </svg> The DAO</h4>
-                            <h4>Everledger</h4>
-                        </div>
-                        <!-- .end .column -->
-                    </div>
-                    <!-- .end .grid -->
-                </div>
-                <!-- .end .wrap -->
-            </section>
         </article>
         <!-- end article -->
     </main>
     <!-- end main -->
-
-
-<!--
-     <footer role="contentinfo">
-      <div class="wrap">
-        <p>An <a href="https://github.com/jlantunez/webslides">open source solution</a>, by <a href="https://twitter.com/jlantunez">@jlantunez</a>.</p>
-      </div>
-    </footer>
--->
 
     <!-- Required -->
     <script src="static/js/webslides.js"></script>
 
     <script>
         window.ws = new WebSlides();
+    </script>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope, $http) {
+            $scope.firstName = "John";
+            $scope.questions = [];
+            $http.get("dltdojo-white-qa.json")
+                .then(function(response) {
+                    var questions = response.data["@graph"];
+                    $scope.table1 = _.filter(questions, function(o) {
+                        return o.keywords.includes("Table1");
+                    });
+                    $scope.table2 = _.filter(questions, function(o) {
+                        return o.keywords.includes("Table2");
+                    });
+                    $scope.table3 = _.filter(questions, function(o) {
+                        return o.keywords.includes("Table3");
+                    });
+                    $scope.table4 = _.filter(questions, function(o) {
+                        return o.keywords.includes("Table4");
+                    });
+                    $scope.table5 = _.filter(questions, function(o) {
+                        return o.keywords.includes("Table5");
+                    });
+                    $scope.table6 = _.filter(questions, function(o) {
+                        return o.keywords.includes("Table6");
+                    });
+                    $scope.questions = questions
+
+                    console.log($scope.questions)
+                    console.log($scope.table1)
+                });
+        });
     </script>
 
     <!-- OPTIONAL - svg-icons.js (fontastic.me - Font Awesome as svg icons) -->
