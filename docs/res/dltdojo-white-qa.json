@@ -1,0 +1,16 @@
+{
+    "@context": "http://schema.org/",
+    "@graph": [{
+            "@type": "Question",
+            "isPartOf":"Table 1: How will the DLT be used?",
+            "name": "是否已有類似服務存在?",
+            "text": "提供現有服務可以快速了解與辨識該類型DLT風險"
+        },
+        {
+            "@type": "Question",
+            "isPartOf":"Table 1: How will the DLT be used?",
+            "name": "誰會參與服務以及參與者擁有的權限為何?",
+            "text": "這DLT服務是參與者許可型或無許可型?如果是許可型，它的參與許可如何運作?如是無許可型，如何評估風險(執行KYC)以及如何有效管理。"
+        }
+    ]
+}
