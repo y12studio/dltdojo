@@ -1,3 +1,95 @@
+### 2017-04-15T21:17:14+0800
+
+Customize the ca-cert.pem.
+
+```
+$ docker run -it --rm -v `pwd`:/etc/hyperledger/fabric-ca-server hyperledger/fabric-ca fabric-ca-server init -b admin:adminpw
+2017/04/15 13:51:45 [INFO] Created default configuration file at /etc/hyperledger/fabric-ca-server/fabric-ca-server-config.yaml
+2017/04/15 13:51:45 Initialize BCCSP [SW]
+2017/04/15 13:51:45 [INFO] generate received request
+2017/04/15 13:51:45 [INFO] received CSR
+2017/04/15 13:51:45 [INFO] generating key: ecdsa-256
+2017/04/15 13:51:45 [INFO] encoded CSR
+2017/04/15 13:51:45 [INFO] signed certificate with serial number 425765915674071811134323474142215366772978178578
+2017/04/15 13:51:45 [INFO] The CA key and certificate files were generated
+2017/04/15 13:51:45 [INFO] Key file location: /etc/hyperledger/fabric-ca-server/ca-key.pem
+2017/04/15 13:51:45 [INFO] Certificate file location: /etc/hyperledger/fabric-ca-server/ca-cert.pem
+2017/04/15 13:51:45 [INFO] Initialized sqlite3 data base at /etc/hyperledger/fabric-ca-server/fabric-ca-server.db
+2017/04/15 13:51:45 [INFO] Initialization was successful
+$ ll
+total 60
+drwxrwxr-x  2 lin  lin   4096 Apr 15 21:51 ./
+drwxrwxr-x 50 lin  lin   4096 Apr 15 18:20 ../
+-rw-r--r--  1 root root   782 Apr 15 21:51 ca-cert.pem
+-rw-------  1 root root   227 Apr 15 21:51 ca-key.pem
+-rw-r--r--  1 root root  7323 Apr 15 21:51 fabric-ca-server-config.yaml
+-rw-r--r--  1 root root 20480 Apr 15 21:51 fabric-ca-server.db
+-rw-rw-r--  1 lin  lin    307 Apr 15 18:54 README.md
+-rw-rw-r--  1 lin  lin   8340 Apr 15 21:48 testlog.md
+$ sudo rm ca-cert.pem
+$ sudo rm ca-key.pem
+$ nano fabric-ca-server-config.yaml
+
+csr:
+   cn: dltdojo-ca-server
+   names:
+      - C: TW
+        ST: "Taichung City"
+        L: Taichung
+        O: DLTDOJO
+        OU: "Hyperledger Fabric CA"
+   hosts:
+     - 5402095751fa
+   ca:
+      pathlen:
+      pathlenzero:
+      expiry:
+$ docker run -it --rm -v `pwd`:/etc/hyperledger/fabric-ca-server hyperledger/fabric-ca fabric-ca-server init -b admin:adminpw
+$ ll
+-rw-r--r--  1 root root   867 Apr 15 21:58 ca-cert.pem
+-rw-------  1 root root   227 Apr 15 21:58 ca-key.pem
+-rw-rw-r--  1 lin  lin   7344 Apr 15 21:57 fabric-ca-server-config.yaml
+-rw-r--r--  1 root root 20480 Apr 15 21:58 fabric-ca-server.db
+-rw-rw-r--  1 lin  lin    307 Apr 15 18:54 README.md
+-rw-rw-r--  1 lin  lin   8313 Apr 15 21:58 testlog.md
+$ openssl x509 -in ca-cert.pem -text -noout -serial
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            13:ad:a4:42:65:39:ad:1b:e2:d3:22:58:77:f7:5b:e9:d3:aa:89:f6
+    Signature Algorithm: ecdsa-with-SHA256
+        Issuer: C=TW, ST=Taichung City, L=Taichung, O=DLTDOJO, OU=Hyperledger Fabric CA, CN=dltdojo-ca-server
+        Validity
+            Not Before: Apr 15 13:54:00 2017 GMT
+            Not After : Apr 14 13:54:00 2022 GMT
+        Subject: C=TW, ST=Taichung City, L=Taichung, O=DLTDOJO, OU=Hyperledger Fabric CA, CN=dltdojo-ca-server
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub:
+                    04:a6:28:72:d6:50:47:2f:dc:5e:ff:4d:c3:09:b6:
+                    b6:dc:ed:d7:57:ed:fe:9a:ad:22:4a:8c:54:8f:6b:
+                    15:c3:00:c0:2f:c2:71:5d:f0:8c:e3:50:ea:75:3d:
+                    89:f1:76:c9:9c:98:08:69:6b:37:11:b0:f1:73:82:
+                    c5:29:ee:46:6b
+                ASN1 OID: prime256v1
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Certificate Sign, CRL Sign
+            X509v3 Basic Constraints: critical
+                CA:TRUE
+            X509v3 Subject Key Identifier:
+                69:02:5F:B0:C6:1F:89:BF:39:4D:2F:5B:10:D6:AF:64:09:F3:6E:6E
+    Signature Algorithm: ecdsa-with-SHA256
+         30:45:02:20:10:8f:03:c2:aa:a8:b1:a7:ca:41:00:37:33:1c:
+         5a:73:18:b4:09:39:67:47:70:b9:ff:09:f5:1b:3d:5f:37:34:
+         02:21:00:e8:2d:82:fc:b7:54:b8:7c:4f:9d:ad:2c:aa:a6:46:
+         7b:27:2b:f0:7e:c0:f6:8c:f8:28:04:16:b4:53:96:d8:a2
+serial=13ADA4426539AD1BE2D3225877F75BE9D3AA89F6
+
+```
+
 ### 2017-04-15T18:25:46+0800
 
 ```
