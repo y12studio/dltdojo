@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "darkorange chain tool",
   "main": "darkorange.js",
+  "bin": "darkorange.js",
   "author": "JOYE LIN <y12studio@gmail.com> (https://y12.tw)",
   "license": "Apache-2.0",
   "dependencies": {

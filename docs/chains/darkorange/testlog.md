@@ -3,6 +3,39 @@
 * Is it possible to make the Parity software sync faster? http://ethereum.stackexchange.com/questions/10465/is-it-possible-to-make-the-parity-software-sync-faster
 * synchronization - What is the parity light pruning mode? http://ethereum.stackexchange.com/questions/3332/what-is-the-parity-light-pruning-mode
 
+### pkg
+
+* doggy8088/pkg-sample: This is a minimal sample for pkg https://github.com/doggy8088/pkg-sample
+```
+$ pkg . --out-dir pkg
+> Targets not specified. Assuming:
+  node6-linux-x64, node6-macos-x64, node6-win-x64
+> Warning Cannot resolve ''./bin/soljson-' + versionString + '.js''
+  /home/lin/git/dltdojo/docs/chains/darkorange/node_modules/solc/wrapper.js
+  Use a string literal as argument for 'require', or leave it
+  as is and specify the resolved file name in 'scripts' option.
+> Warning Cannot resolve 'packagePath'
+  /home/lin/git/dltdojo/docs/chains/darkorange/node_modules/lazy-debug-legacy/src/functions.js
+  Use a string literal as argument for 'require', or leave it
+  as is and specify the resolved file name in 'scripts' option.
+$ pkg/darkorange-linux
+--------make-runnable-error---------
+One of the following must be specified as an argument, to run/print the corresponding function/property:
+
+deployDdjtab,deploySol,deploy,deployOracle,updateOracle,updateOracleBtcTwd,getOracleValue,deployFoo,getTxReceipts,transferDdjtab,sendDdjtab,getDdjtabInfo,getInfo,newAccount,sendEther
+
+Example:
+        node pkg/darkorange-linux /snapshot/home/lin/git/dltdojo/docs/chains/darkorange/darkorange.js deployDdjtab xyz → module.exports.deployDdjtab("xyz")
+------------------------------------
+$ tree -h pkg
+pkg
+├── [ 49M]  darkorange-linux
+├── [ 50M]  darkorange-macos
+└── [ 39M]  darkorange-win.exe
+
+0 directories, 3 files
+```
+
 ### browser-solidity
 http://remix.ethereum.org
 ```
