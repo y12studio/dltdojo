@@ -1,0 +1,22 @@
+version: '2'
+services:
+  prova1:
+    image: y12docker/dltdojo-prova
+    command: --connect=prova2:18989
+    volumes:
+      - ./prova.conf:/root/.prova/prova.conf
+  prova2:
+    image: y12docker/dltdojo-prova
+    command: --connect=prova1:18989
+    volumes:
+      - ./prova.conf:/root/.prova/prova.conf
+  prova3:
+    image: y12docker/dltdojo-prova
+    command: --connect=prova1:18989
+    volumes:
+      - ./prova.conf:/root/.prova/prova.conf
+  bitcoind:
+    image: seegno/bitcoind:0.13-alpine
+    entrypoint: bitcoind
+    volumes:
+      - ./bitcoin.conf:/root/.bitcoin/bitcoin.conf
