@@ -1,6 +1,6 @@
 # DLTDOJO
 
-![DLTDOJO](dltdojo.png "DLTDOJO")
+![DLTDOJO](docs/dltdojo.png "DLTDOJO")
 
 A learning framework for Distributed Ledger Technology Dojo (DLTDOJO)
 
