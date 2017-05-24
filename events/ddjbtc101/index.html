@@ -1,0 +1,72 @@
+<html lang="zh-hant-TW">
+
+<head>
+    <title>DDJBTC101 - DLTDOJO</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="https://dltdojo.org/js/ddjbtc/0.13.19/ddjbtc101.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="MyController">
+    <div class="jumbotron text-center">
+        <h2>DDJBTC101 武林小會</h2>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3><span class="label label-default">1</span> 比特幣主鏈金鑰</h3>
+                <h5><span class="label label-default">1.1</span> 私鑰(WIF)</h5>
+                <p>{{keyMain.wif}}</p>
+                <h5><span class="label label-default">1.2</span> 公鑰(Hex)</h5>
+                <p>{{keyMain.pub}}</p>
+                <h5><span class="label label-default">1.3</span> 地址</h5>
+                <p>{{keyMain.address}}</p>
+                <p>
+                    <a href="https://blockchain.info/address/{{keyMain.address}}" target="_target">Blockchain.info瀏覽器</a> | 
+                    <a href="https://www.blocktrail.com/BTC/address/{{keyMain.address}}" target="_target">BLOCKTRAIL瀏覽器</a>
+                    </p>
+                <p><button type="button" class="btn btn-primary" ng-click="helpKeyMain()">幫助</button></p>
+            </div>
+            <div class="col-sm-6">
+                <h3><span class="label label-default">2</span> 比特幣測試鏈金鑰</h3>
+                <h5><span class="label label-default">2.1</span> 私鑰(WIF)</h5>
+                <p>{{keyTest.wif}}</p>
+                <h5><span class="label label-default">2.2</span> 公鑰(Hex)</h5>
+                <p>{{keyTest.pub}}</p>
+                <h5><span class="label label-default">2.3</span> 地址</h5>
+                <p>{{keyTest.address}}</p>
+                <p>
+                    <a target="_target" href="https://test-insight.bitpay.com/address/{{keyTest.address}}">Insight瀏覽器</a> | 
+                    <a target="_target" href="https://www.blocktrail.com/tBTC/address/{{keyTest.address}}">BLOCKTRAIL瀏覽器</a>
+                    </p>
+                <p><button type="button" class="btn btn-primary" ng-click="helpKeyTest()">幫助</button>
+                <button type="button" class="btn"><a target="_blank" href="https://testnet.manu.backend.hamburg/faucet">水龍頭</a></button>
+                
+                </p>
+            </div>
+        </div>
+        <hr/>
+         <div class="row">
+            <div class="col-sm-6">
+                <h3><span class="label label-default">3</span> 簽名發送</h3>
+                <p>TODO</p>
+            </div>
+
+        </div>
+    </div>
+    <div class="jumbotron text-center">
+        <h2>提示區</h2>
+        <pre style="margin:2em; padding-left:3em; text-align:left">{{help|json}}</pre>
+        <h2>熵熱踢道場 Hello {{greetMe}}!</h2>
+        <p style="margin:1em">
+            <a href="https://dltdojo.org"><i class="fa fa-user fa-2x" aria-hidden="true"></i> DLTDOJO</a>
+            <a href="https://github.com/y12studio/dltdojo"><i class="fa fa-github-square fa-2x" aria-hidden="true"></i> Github</a>
+            <a href="https://www.facebook.com/groups/dltdojo/"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i> Fackbook</a>
+        </p>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
