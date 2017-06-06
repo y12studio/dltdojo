@@ -1,0 +1,13 @@
+{
+  "name": "dltdojo-toekn-ddjat",
+  "version": "0.0.1",
+  "description": "DLTDOJO Alice Token",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "ethereumjs-testrpc": "^3.0.2",
+    "truffle": "^3.2.4"
+  },
+  "dependencies": {
+    "truffle-hdwallet-provider": "0.0.3"
+  }
+}
