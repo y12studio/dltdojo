@@ -1,3 +1,13 @@
+### install webpack
+
+```
+testrpc
+truffle compile
+truffle migrate
+npm run build
+npm run dev
+```
+
 ### truffle and zeppelin
 
 * Issue #96 · OpenZeppelin/zeppelin-solidity https://github.com/OpenZeppelin/zeppelin-solidity/issues/96

@@ -1,3 +1,4 @@
+require('babel-register')
 var HDWalletProvider = require('truffle-hdwallet-provider');
 
 const mnemonic = process.env.TEST_MNEMONIC || 'logovote logovote logovote logovote logovote logovote logovote logovote logovote logovote logovote logovote';
