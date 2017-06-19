@@ -1,22 +1,25 @@
 <html>
-  <head>
-    <title>DLTDOJO TOKEN APP</title>
+
+<head>
+  <title>DLTDOJO TOKEN APP</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
-  </head>
-  <body ng-app="app" ng-controller="ctrl">
-    <div class="jumbotron text-center">
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body ng-app="app" ng-controller="ctrl">
+  <div class="jumbotron text-center">
     <h2>DLTDOJO TOKEN</h2>
-    <h3>DDJAT</h3>
-    <h4>{{ddjat.address}}</h4>
-    <p>account {{ddjat.account}}</p>
-    <p>balance {{ddjat.balance}}</p>
-    <hr>
-    <h3>DDJDT</h3>
-    <h4>{{ddjdt.address}}</h4>
-    <p>account {{ddjdt.account}}</p>
-    <p>balance {{ddjdt.balance}}</p>
+    <div ng-repeat="token in tokens">
+      <h2>{{token.symbol}}</h2>
+      <p><button ng-click="clLoad(token)">Load</button></p>
+      <div>
+        <h4>{{token.address}}</h4>
+        <p>account {{token.account}}</p>
+        <p>balance {{token.balance}}</p>
+      </div>
+    </div>
   </div>
-  </body>
+</body>
+
 </html>
