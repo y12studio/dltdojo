@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+
+<head>
+    <title>DLTDOJO - 熵熱踢道場</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="ddjltc.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="MyController">
+    <div class="jumbotron text-center">
+        <h2>DLTDOJO Litecoin Test Page</h2>
+        <h2>Litecoin Mainnet</h2>
+        <h3>private key : {{key.wif}}</h3>
+        <h3>public key : {{key.pub}}</h3>
+        <h3>address : {{key.address}}</h3>
+        <p><a href="https://live.blockcypher.com/ltc/">Litecoin Block Explorer | BlockCypher</a></p>
+        <hr>
+        <h2>Litecoin Testnet</h2>
+        <h3>private key : {{tkey.wif}}</h3>
+        <h3>public key : {{tkey.pub}}</h3>
+        <h3>address : {{tkey.address}}</h3>
+        <p><a href="http://testnet.thrasher.io/" target="_blank">Litecoin Testnet Faucet</a></p>
+    </div>
+</body>
+</html>

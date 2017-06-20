@@ -1,0 +1,17 @@
+{
+  "name": "dltdojo-website",
+  "version": "0.0.1",
+  "description": "DLTDOJO WEBSITE",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "sync": "browser-sync start -s build -f build"
+  },
+  "devDependencies": {
+    "angular": "^1.6.4",
+    "browser-sync": "^2.18.12",
+    "litecore-lib": "^0.13.22",
+    "webpack": "^2.6.1"
+  }
+}
