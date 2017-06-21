@@ -1,4 +1,62 @@
-### Install
+### Install 0.19.1 Windows/amd64
+
+Download the minikube-installer.exe file, and execute the installer.
+
+* https://github.com/kubernetes/minikube/releases/tag/v0.19.1
+* Oracle VM VirtualBox  https://www.virtualbox.org/
+
+Starting local Kubernetes cluster
+
+```
+C:\Users> minikube config set vm-driver virtualbox
+C:\Users> minikube start
+Starting local Kubernetes cluster...
+Starting VM...
+SSH-ing files into VM...
+Setting up certs...
+Starting cluster components...
+Connecting to cluster...
+Setting up kubeconfig...
+Kubectl is now configured to use the cluster.
+
+C:\Users> minikube dashboard
+
+```
+
+Running the command kubectl 
+
+```
+D:\git\dltdojo\dockerfiles\kubernetes> 
+
+> kubectl create -f nginx-deployment.yaml
+deployment "nginx-deployment" created
+
+> kubectl get pods
+NAME                                READY     STATUS    RESTARTS   AGE
+nginx-deployment-3646295028-c73zl   1/1       Running   0          1m
+nginx-deployment-3646295028-hd8lw   1/1       Running   0          1m
+nginx-deployment-3646295028-n8r04   1/1       Running   0          1m
+
+> kubectl expose deployment/nginx-deployment --port=80 --type=LoadBalancer
+
+> minikube service list
+|-------------|----------------------|-----------------------------|
+|  NAMESPACE  |         NAME         |             URL             |
+|-------------|----------------------|-----------------------------|
+| default     | kubernetes           | No node port                |
+| default     | nginx-deployment     | http://192.168.99.100:31495 |
+| kube-system | kube-dns             | No node port                |
+| kube-system | kubernetes-dashboard | http://192.168.99.100:30000 |
+|-------------|----------------------|-----------------------------|
+
+> kubectl delete deployment/nginx-deployment
+deployment "nginx-deployment" deleted
+> minikubu stop
+
+```
+
+
+### Install minikube 0.18.0
 
 * https://rominirani.com/tutorial-getting-started-with-kubernetes-on-your-windows-laptop-with-minikube-3269b54a226
 * Releases · kubernetes/minikube  https://github.com/kubernetes/minikube/releases
