@@ -7,23 +7,23 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src="ddjltc.js"></script>
+    <script src="ddjbtc.js"></script>
 </head>
 <body ng-app="myApp" ng-controller="MyController">
     <div class="jumbotron text-center">
         <img class="img-responsive center-block" src="https://dltdojo.org/images/dltdojox660.png" width="660">
-        <h2>DLTDOJO Litecoin Test Page</h2>
-        <h2>Litecoin Mainnet</h2>
-        <h3>private key : {{key.wif}}</h3>
-        <h3>public key : {{key.pub}}</h3>
+        <h2>DLTDOJO Bitcoin Test Page</h2>
+        <h2>Bitcoin Mainnet</h2>
+        <h3>private key(WIF) : {{key.wif}}</h3>
+        <h3>public key(HEX) : {{key.pub}}</h3>
         <h3>address : {{key.address}}</h3>
-        <p><a href="https://live.blockcypher.com/ltc/address/{{key.address}}" target="_blank">Litecoin Block Explorer | BlockCypher</a></p>
+        <p><a href="https://live.blockcypher.com/btc/address/{{key.address}}">bitcoin Block Explorer | BlockCypher</a></p>
         <hr>
-        <h2>Litecoin Testnet</h2>
-        <h3>private key : {{tkey.wif}}</h3>
-        <h3>public key : {{tkey.pub}}</h3>
+        <h2>Bitcoin Testnet</h2>
+        <h3>private key(WIF) : {{tkey.wif}}</h3>
+        <h3>public key(HEX) : {{tkey.pub}}</h3>
         <h3>address : {{tkey.address}}</h3>
-        <p><a href="https://tbtc.blockr.io/address/info/{{tkey.address}}" target="_blank">Litecoin Block Explorer</a></p>
+        <p><a href="https://live.blockcypher.com/btc-testnet/address/{{tkey.address}}">bitcoin Block Explorer | BlockCypher</a></p>
     </div>
 </body>
 </html>

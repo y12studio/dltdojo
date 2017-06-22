@@ -13,5 +13,8 @@
     "browser-sync": "^2.18.12",
     "litecore-lib": "^0.13.22",
     "webpack": "^2.6.1"
+  },
+  "dependencies": {
+    "bitcore-lib": "^0.14.0"
   }
 }
