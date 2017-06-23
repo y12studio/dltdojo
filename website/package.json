@@ -10,7 +10,11 @@
   },
   "devDependencies": {
     "angular": "^1.6.4",
+    "bitcore-lib-dash": "^0.13.21",
     "browser-sync": "^2.18.12",
+    "coininfo": "^1.0.0",
+    "coinkey": "^2.0.0",
+    "ethereumjs-wallet": "^0.6.0",
     "litecore-lib": "^0.13.22",
     "webpack": "^2.6.1"
   },

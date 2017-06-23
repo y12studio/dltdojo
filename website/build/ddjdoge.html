@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+
+<head>
+    <title>DLTDOJO - 熵熱踢道場</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="ddjdoge.js"></script>
+    <style>
+        h3{
+            line-height: 1.5
+        }
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="MyController">
+    <div class="jumbotron text-center">
+        <img class="img-responsive center-block" src="https://dltdojo.org/images/dltdojox660.png" width="660">
+        <h2>DLTDOJO DogeCoin Test Page</h2>
+        <div style="text-align:left; padding:3em;word-break: break-all">
+        <h3><span class="label label-primary">PrivateKey</span> : {{doge.privateKey}}</h3>
+        <h3><span class="label label-warning">PublicKey</span> : {{doge.publicKey}}</h3>
+        <h3><span class="label label-default">Address</span> : {{doge.address}}</h3>
+        <h2>DogeCoin explorer</h2>
+        <p>
+        <span class="label label-primary">Mainnet</span> <a href="https://live.blockcypher.com/doge/address/{{doge.address}}/">{{doge.address}}</a>
+        </p>
+        </div>
+    </div>
+</body>
+</html>

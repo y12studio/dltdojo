@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+
+<head>
+    <title>DLTDOJO - 熵熱踢道場</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="ddjdash.js"></script>
+    <style>
+        h3 {
+            line-height: 1.5
+        }
+    </style>
+</head>
+
+<body ng-app="myApp" ng-controller="MyController">
+    <div class="jumbotron text-center">
+        <img class="img-responsive center-block" src="https://dltdojo.org/images/dltdojox660.png" width="660">
+        <h2>DLTDOJO Dash Test Page</h2>
+        <div style="text-align:left; padding:3em;word-break: break-all">
+            <h3><span class="label label-primary">PrivateKey</span> : {{dash.privateKey}}</h3>
+            <h3><span class="label label-warning">PublicKey</span> : {{dash.publicKey}}</h3>
+            <h3><span class="label label-default">Address</span> : {{dash.address}}</h3>
+            <h2>Dash explorer</h2>
+            <p>
+                <span class="label label-primary">Mainnet</span> <a href="https://explorer.dash.org/address/{{dash.address}}">{{dash.address}}</a>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
