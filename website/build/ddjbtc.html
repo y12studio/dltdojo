@@ -9,21 +9,40 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="ddjbtc.js"></script>
 </head>
+
 <body ng-app="myApp" ng-controller="MyController">
     <div class="jumbotron text-center">
         <img class="img-responsive center-block" src="https://dltdojo.org/images/dltdojox660.png" width="660">
         <h2>DLTDOJO Bitcoin Test Page</h2>
-        <h2>Bitcoin Mainnet</h2>
-        <h3>private key(WIF) : {{key.wif}}</h3>
-        <h3>public key(HEX) : {{key.pub}}</h3>
-        <h3>address : {{key.address}}</h3>
-        <p><a href="https://live.blockcypher.com/btc/address/{{key.address}}">bitcoin Block Explorer | BlockCypher</a></p>
+    </div>
+    <div class="container" style="margin:2em;">
+        <div class="row">
+            <h2><span class="label label-primary">1</span> 比特幣金鑰與地址</h2>
+            <h2>Bitcoin Mainnet</h2>
+            <h3>private key(WIF) : {{key.wif}}</h3>
+            <h3>public key(HEX) : {{key.pub}}</h3>
+            <h3>address : {{key.address}}</h3>
+            <p><a href="https://live.blockcypher.com/btc/address/{{key.address}}">bitcoin Block Explorer | BlockCypher</a></p>
+            <h2>Bitcoin Testnet</h2>
+            <h3>private key(WIF) : {{tkey.wif}}</h3>
+            <h3>public key(HEX) : {{tkey.pub}}</h3>
+            <h3>address : {{tkey.address}}</h3>
+            <p><a href="https://live.blockcypher.com/btc-testnet/address/{{tkey.address}}">bitcoin Block Explorer | BlockCypher</a></p>
+        </div>
         <hr>
-        <h2>Bitcoin Testnet</h2>
-        <h3>private key(WIF) : {{tkey.wif}}</h3>
-        <h3>public key(HEX) : {{tkey.pub}}</h3>
-        <h3>address : {{tkey.address}}</h3>
-        <p><a href="https://live.blockcypher.com/btc-testnet/address/{{tkey.address}}">bitcoin Block Explorer | BlockCypher</a></p>
+        <div class="row">
+            <h2><span class="label label-primary">2</span> 比特幣 P2PKH</h2>
+            <h2>Standard Transaction to Bitcoin address (pay-to-pubkey-hash)</h2>
+            <pre>signature pubKey OP_DUP OP_HASH160 pubKeyHash OP_EQUALVERIFY OP_CHECKSIG</pre>
+            <h3>address : {{key.address}}</h3>
+            <div>
+                <h3><span style="margin-right:1em;" class="label label-primary" ng-repeat="x in key.p2pkh.split(' ')">{{x}}</span></h3>
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron text-center">
+        <h2>DLTDOJO Bitcoin Test Page</h2>
     </div>
 </body>
+
 </html>

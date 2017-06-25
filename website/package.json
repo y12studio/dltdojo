@@ -5,6 +5,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "build": "webpack",
+    "all": "npm-run-all --parallel watch sync",
     "watch": "webpack --watch",
     "sync": "browser-sync start -s build -f build"
   },
@@ -16,6 +17,8 @@
     "coinkey": "^2.0.0",
     "ethereumjs-wallet": "^0.6.0",
     "litecore-lib": "^0.13.22",
+    "npm-run-all": "^4.0.2",
+    "ripple-keypairs": "^0.10.0",
     "webpack": "^2.6.1"
   },
   "dependencies": {
