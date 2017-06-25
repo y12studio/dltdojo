@@ -1,3 +1,41 @@
+### Kompose
+
+kubernetes-incubator/kompose: Tool to move from `docker-compose` to Kubernetes  https://github.com/kubernetes-incubator/kompose
+
+```
+
+kompose convert -f docker-compose.yaml
+
+kubectl create -f .
+
+minikube service list
+
+minikube dashboard
+
+kompose delete -f .
+
+deployment "frontend" deleted
+service "frontend" deleted
+deployment "redis-master" deleted
+service "redis-master" deleted
+deployment "redis-slave" deleted
+service "redis-slave" deleted
+
+```
+
+### OpneCompose
+
+* https://github.com/redhat-developer/opencompose
+
+```
+curl -L https://github.com/redhat-developer/opencompose/releases/download/v0.2.0/opencompose-windows-amd64.exe -o opencompose.exe
+
+
+.\opencompose.exe convert -f .\hello-nginx-external.yaml
+ERROR: could not unmarshal data for file '.\hello-nginx-external.yaml': failed to unmarshal OpenCompose:
+excess keys in "Container": []string{"name"}
+```
+
 ### Install 0.19.1 Windows/amd64
 
 Download the minikube-installer.exe file, and execute the installer.
