@@ -6,7 +6,7 @@
 $ docker build -t dltdojo/bitcoind:1.4.2 .
 $ docker run -d dltdojo/bitcoind:1.4.2
 39f85a358e0c9f3ab1ba495c7ccc642da373607cff66067c4753792751a7283e
-$ docker exec -it 39f8 -u bitcoin sh
+$ docker exec -u bitcoin -it 39f8 sh
 
 / $ bitcoin-cli getinfo
 {
@@ -104,6 +104,30 @@ mzvubqbwXXWEZVAmZ7EVKrYJu8D1azm8py
 / $ exit
 
 $ docker stop 39f8
+```
+
+### docker toolbox on Windows
+
+Docker Quickstart Terminal
+
+```
+docker is configured to use the default machine with IP 192.168.99.100
+For help getting started, check out the docs at https://docs.docker.com
+ 
+user@W10 MINGW64 ~
+$ docker -v
+Docker version 17.05.0-ce, build 89658be
+
+user@W10 MINGW64 ~
+$ docker-compose -v
+docker-compose version 1.13.0, build 1719ceb8
+
+user@W10 MINGW64 ~
+$ docker-machine ls
+NAME      ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER        ERRORS
+default   *        virtualbox   Running   tcp://192.168.99.100:2376           v17.05.0-ce
+
+$ docker-machine stop
 ```
 
 ### REFERENCES
