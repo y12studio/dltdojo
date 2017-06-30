@@ -12,6 +12,7 @@
   "devDependencies": {
     "angular": "^1.6.4",
     "bitcore-lib-dash": "^0.13.21",
+    "bitcore-mnemonic": "^1.2.5",
     "browser-sync": "^2.18.12",
     "coininfo": "^1.0.0",
     "coinkey": "^2.0.0",
