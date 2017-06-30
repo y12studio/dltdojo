@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FRONTEND</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="MyController">
+<h1>FRONTEND</h1>
+<h3 ng-repeat="account in accounts">NAME:{{account.name}}, BALANCE:{{account.balance}}</h3>
+<hr>
+<script>
+    
+angular.module('myApp', [])
+    .controller('MyController', function ($scope, $http) {
+        $http.get('api.php').then(r=>{
+            $scope.accounts = r.data
+            console.log($scope.accounts)
+        })
+    });
+</script>
+</body>
+</html>

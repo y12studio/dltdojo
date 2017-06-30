@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-hant-TW">
+
+<head>
+    <title>DLTDOJO - 熵熱踢道場</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="ddjbtc.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="MyController">
+    <div class="jumbotron text-center">
+        <img class="img-responsive center-block" src="https://dltdojo.org/images/dltdojox660.png" width="660">
+        <h2>DLTDOJO Bitcoin Test Page</h2>
+    </div>
+    <div class="container" style="margin:2em;">
+        <div class="row">
+            <h2><span class="label label-primary">1</span> 比特幣金鑰與地址</h2>
+            <h2>Bitcoin Mainnet</h2>
+            <h3>private key(WIF) : {{key.wif}}</h3>
+            <h3>public key(HEX) : {{key.pub}}</h3>
+            <h3>address : {{key.address}}</h3>
+            <p><a href="https://live.blockcypher.com/btc/address/{{key.address}}">bitcoin Block Explorer | BlockCypher</a></p>
+            <h2>Bitcoin Testnet</h2>
+            <h3>private key(WIF) : {{tkey.wif}}</h3>
+            <h3>public key(HEX) : {{tkey.pub}}</h3>
+            <h3>address : {{tkey.address}}</h3>
+            <p><a href="https://live.blockcypher.com/btc-testnet/address/{{tkey.address}}">bitcoin Block Explorer | BlockCypher</a></p>
+        </div>
+        <hr>
+        <div class="row">
+            <h2><span class="label label-primary">2</span> 比特幣 P2PKH</h2>
+            <h2>Standard Transaction to Bitcoin address (pay-to-pubkey-hash)</h2>
+            <pre>signature pubKey OP_DUP OP_HASH160 pubKeyHash OP_EQUALVERIFY OP_CHECKSIG</pre>
+            <h3>address : {{key.address}}</h3>
+            <div>
+                <h3><span style="margin-right:1em;" class="label label-primary" ng-repeat="x in key.p2pkh.split(' ')">{{x}}</span></h3>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <h2><span class="label label-primary">3</span> 加密貨幣市場價格</h2>
+            <div style="margin:2em;">
+                <h3><span class="label label-default">USDTWD</span> {{usdtwd}}</h3>
+                <h3><span class="label label-primary">BTCUSD</span> {{btc.usd}}</h3>
+                <h3><span class="label label-primary">BTCTWD</span> {{btc.twd}}</h3>
+                <h3><span class="label label-info">XRPUSD</span> {{xrp.usd}}</h3>
+                <h3><span class="label label-info">XRPTWD</span> {{xrp.twd}}</h3>
+                <h3><span class="label label-default">ETHUSD</span> {{eth.usd}}</h3>
+                <h3><span class="label label-default">ETHTWD</span> {{eth.twd}}</h3>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <h2><span class="label label-primary">4</span> BIP39金屬冷儲數字代碼(隨機12個)</h2>
+            <div style="margin:2em;">
+                <h3><a href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki">bips/bip-0039</a> | <a href="https://github.com/bitcoin/bips/blob/master/bip-0039/bip-0039-wordlists.md">bips/bip-0039-wordlists.md</a></h3>
+                <h3>{{bip39ran.codeEn.join(' ')}}</h3>
+                <h3>{{bip39ran.codeNum.join(' ')}}</h3>
+                <h3>{{bip39ran.codeZh.join(' ')}}</h3>
+                <div class="row">
+                    <div class="col-sm-3" ng-repeat="code in bip39ran.codeEn track by $index">
+                        <h3>
+                            <span class="label label-primary">{{code}}</span>
+                            <span class="label label-default">{{bip39ran.codeNum[$index]}}</span>
+                            <span class="label label-warning">{{bip39ran.codeZh[$index]}}</span>
+                        </h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h3>英文字查數字</h3>
+                        <form ng-submit="findIndexEn()">
+                            <input type="text" ng-model="enWord" size="10">
+                            <input class="btn-primary" type="submit" value="查">
+                        </form>
+                        <h4>結果:{{enWordIndex}}</h4>
+                    </div>
+                    <div class="col-sm-3">
+                        <h3>中文查數字</h3>
+                        <form ng-submit="findIndexZh()">
+                            <input type="text" ng-model="zhWord" size="10">
+                            <input class="btn-primary" type="submit" value="查">
+                        </form>
+                        <h4>結果:{{zhWordIndex}}</h4>
+                    </div>
+                    <div class="col-sm-3">
+                        <h3>數字查英文</h3>
+                        <form ng-submit="findWordEnByNum()">
+                            <input type="text" ng-model="numEn" size="10">
+                            <input class="btn-primary" type="submit" value="查">
+                        </form>
+                        <h4>結果:{{numEnWord}}</h4>
+                    </div>
+                    <div class="col-sm-3">
+                        <h3>數字查中文</h3>
+                        <form ng-submit="findWordZhByNum()">
+                            <input type="text" ng-model="numZh" size="10">
+                            <input class="btn-primary" type="submit" value="查">
+                        </form>
+                        <h4>結果:{{numZhWord}}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="jumbotron text-center">
+        <h2>DLTDOJO Bitcoin Test Page</h2>
+    </div>
+</body>
+
+</html>

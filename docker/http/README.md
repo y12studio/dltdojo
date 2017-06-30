@@ -1,17 +1,22 @@
 ### Use docker-compose up to start all the services
 
 * host ip(example) : 192.168.99.100
-* httpd1 : 192.168.99.100:8081
-* httpd2 : 192.168.99.100:8082
+* httpd : 192.168.99.100:8080
+* backend (index.php, backend.php, api.php, frontend.html) : 192.168.99.100:8081
+* fullstack (main.js, index.html) : 192.168.99.100:8082
+* phpmyadmin (root:root) : 192.168.99.100:8088
 
 ```
 $ docker-compose build
 $ docker-compose up -d
 $ docker-compose ps
-     Name              Command          State          Ports
---------------------------------------------------------------------
-httpd_httpd1_1   nginx -g daemon off;   Up      0.0.0.0:8081->80/tcp
-httpd_httpd2_1   nginx -g daemon off;   Up      0.0.0.0:8082->80/tcp
+      Name                     Command               State           Ports      
+-----------------------------------------------------------------------------------
+http_backend_1      docker-php-entrypoint apac ...   Up      0.0.0.0:8081->80/tcp
+http_db_1           docker-entrypoint.sh mysqld      Up      3306/tcp           
+http_fullstack_1    node main.js                     Up      0.0.0.0:8082->3000/tcp
+http_httpd_1        nginx -g daemon off;             Up      0.0.0.0:8080->80/tcp
+http_phpmyadmin_1   /run.sh phpmyadmin               Up      0.0.0.0:8088->80/tcp
 ```
 
 ### Review the HTTP request and response
@@ -119,6 +124,17 @@ bash-4.3# curl -v http://httpd3/
 <html><body><h1>It works!</h1></body></html>
 * Curl_http_done: called premature == 0
 * Connection #0 to host httpd3 left intact
+```
+
+### SQL 
+
+```
+CREATE DATABASE mydb;
+use mydb;
+CREATE TABLE mytable ( id INT PRIMARY KEY, name VARCHAR(34) , balance INT UNSIGNED );
+INSERT INTO mytable VALUES ( 1, "mpywCp28LcmDHNKxJy9tUuXc1LcXK5gCoT", 1000);
+INSERT INTO mytable VALUES ( 2, "mjisABTPq6DwgUv4rzBtt1gY44hwBX4zZy", 2000);
+SELECT * FROM mytable;
 ```
 
 ### Build the dltdojo/httpd image
