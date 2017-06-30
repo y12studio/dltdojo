@@ -1,0 +1,14 @@
+version: '2'
+services:
+  httpd1:
+    build: ./httpd1
+    ports:
+      - "8081:80"
+  httpd2:
+    build: ./httpd2
+    ports:
+      - "8082:80"
+  httpd3:
+    image: httpd:alpine
+    ports:
+      - "8083:80"
