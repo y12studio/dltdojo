@@ -13,12 +13,14 @@
 </head>
 <body ng-app="myApp" ng-controller="MyController">
 <h1>FRONTEND</h1>
+<h3>round(9.9+6.7) = {{round}}</h3>
 <h3 ng-repeat="account in accounts">NAME:{{account.name}}, BALANCE:{{account.balance}}</h3>
 <hr>
 <script>
     
 angular.module('myApp', [])
     .controller('MyController', function ($scope, $http) {
+        $scope.round =  Math.round(9.9+6.7);
         $http.get('api.php').then(r=>{
             $scope.accounts = r.data
             console.log($scope.accounts)
