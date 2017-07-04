@@ -6,7 +6,7 @@
 * httpd : 192.168.99.100:8080
 * backend (index.php, backend.php, api.php, frontend.html) : 192.168.99.100:8081
 * fullstack (main.js, index.html) : 192.168.99.100:8082
-* trustend: 192.168.99.100:8050
+* trustend: 192.168.99.100:12750
 * phpmyadmin (root:root) : 192.168.99.100:8088
 
 ```

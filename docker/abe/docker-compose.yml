@@ -1,0 +1,8 @@
+version: '2'
+services:
+  abe:
+    image: dltdojo/abe
+    ports:
+      - 12750:12750
+  btc0:
+    image: dltdojo/bitcoind:1.4.2

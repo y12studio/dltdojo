@@ -1,0 +1,9 @@
+version: '2'
+services:
+  bitcore:
+    image: dltdojo/bitcore
+    ports:
+      - 3001:3001
+  btc0:
+    image: dltdojo/bitcoind:1.4.2
+  

@@ -1,0 +1,13 @@
+{
+  "datadir": "/root/.bitcore/data",
+  "network": "regtest",
+  "port": 3001,
+  "services": [
+    "bitcoind",
+    "db",
+    "address",
+    "web",
+    "insight-api",
+    "insight-ui"
+  ]
+}

@@ -7,12 +7,10 @@ RUN apk --update --no-cache add python py-pip bash && \
     cd bitcoin-abe ; python setup.py install && \
     apk --no-cache --purge del .builddeps && \
     rm -rf /tmp/*
-    # https://github.com/seegno/docker-bitcoind/blob/master/0.14/alpine/Dockerfile
-    # apk --no-cache add boost boost-program_options libevent libzmq openssl su-exec
 
 WORKDIR /bitcoin-abe
 ADD abe-sqlite.conf ./
-ADD start.sh /
-RUN chmod a+x /start.sh
+ADD start.sh start105.sh /
+RUN chmod +x /*.sh
 ADD bitcoin.conf /home/bitcoin/.bitcoin/
-ENTRYPOINT ["/start.sh"]
+CMD ["/start.sh"]

@@ -14,8 +14,11 @@ services:
       - "8082:3000"
   trustend:
     image: dltdojo/abe
+    command: /start105.sh
     ports:
-      - "8050:12750"
+      - 12750:12750
+  btc0:
+    image: dltdojo/bitcoind:1.4.2
   db:
     image: mariadb:10.1
     environment:
