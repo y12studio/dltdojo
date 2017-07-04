@@ -1,0 +1,14 @@
+version: '2'
+services:
+  db:
+    image: mongo:3.4
+    ports:
+      - 27017:27017
+
+  bitcore:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - 3001:3001
+      - 3232:3232

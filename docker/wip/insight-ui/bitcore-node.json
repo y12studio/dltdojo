@@ -1,0 +1,29 @@
+
+{
+  "network": "testnet",
+  "port": 3001,
+  "services": [
+    "web",
+    "bitcoind",
+    "insight-api"
+  ],
+  "servicesConfig": {
+    "bitcoind": {
+      "spawn": {
+        "datadir": "/home/node/bitcoind",
+        "exec": "/home/node/bitcore/node_modules/bitcore-node/bin/bitcoind"
+      }
+    },
+    "web": {
+      "jsonRequestLimit": "200kb"
+    },
+    "insight-api": {
+      "disableRateLimiter": true,
+      "rateLimiterOptions": {
+        "whitelist": ["::ffff:127.0.0.1"]
+      },
+      "routePrefix": "insight-api",
+      "enableCache": true
+    }
+  }
+}
