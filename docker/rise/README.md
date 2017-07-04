@@ -6,24 +6,22 @@
 * httpd : 192.168.99.100:8080
 * backend (index.php, backend.php, api.php, frontend.html) : 192.168.99.100:8081
 * fullstack (main.js, index.html) : 192.168.99.100:8082
+* trustend: 192.168.99.100:8050
 * phpmyadmin (root:root) : 192.168.99.100:8088
 
 ```
 $ docker-compose build
 $ docker-compose up -d
 $ docker-compose ps
-      Name                     Command               State           Ports      
------------------------------------------------------------------------------------
-http_backend_1      docker-php-entrypoint apac ...   Up      0.0.0.0:8081->80/tcp
-http_db_1           docker-entrypoint.sh mysqld      Up      3306/tcp           
-http_fullstack_1    node main.js                     Up      0.0.0.0:8082->3000/tcp
-http_httpd_1        nginx -g daemon off;             Up      0.0.0.0:8080->80/tcp
-http_phpmyadmin_1   /run.sh phpmyadmin               Up      0.0.0.0:8088->80/tcp
+      Name                     Command               State                                      Ports
+-----------------------------------------------------------------------------------------------------------------------------------------
+rise_backend_1      docker-php-entrypoint apac ...   Up      0.0.0.0:8081->80/tcp
+rise_db_1           docker-entrypoint.sh mysqld      Up      3306/tcp           
+rise_fullstack_1    node main.js                     Up      0.0.0.0:8082->3000/tcp
+rise_httpd_1        nginx -g daemon off;             Up      0.0.0.0:8080->80/tcp
+rise_phpmyadmin_1   /run.sh phpmyadmin               Up      0.0.0.0:8088->80/tcp
+rise_trustend_1     /start.sh                        Up      0.0.0.0:8050->12750/tcp, 18332/tcp, 18333/tcp, 18444/tcp, 8332/tcp, 8333/tcp
 ```
-
-### Review the HTTP request and response
-
-try using the command "bash" this will open an interactive bash termina
 
 #### Open an interactive bash terminal on httpd1
 

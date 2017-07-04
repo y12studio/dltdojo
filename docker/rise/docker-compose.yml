@@ -12,6 +12,10 @@ services:
     build: ./fullstack
     ports:
       - "8082:3000"
+  trustend:
+    image: dltdojo/abe
+    ports:
+      - "8050:12750"
   db:
     image: mariadb:10.1
     environment:

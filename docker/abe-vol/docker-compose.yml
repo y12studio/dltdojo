@@ -1,0 +1,13 @@
+version: '2'
+services:
+  abe:
+    build: ./abe
+    image: dltdojo/abe-vol
+    volumes:
+      - bitcoin-data:/home/bitcoin/.bitcoin
+  bitcoind:
+    build: ./bitcoind
+    volumes:
+      - bitcoin-data:/home/bitcoin/.bitcoin
+volumes:
+  bitcoind-data:
