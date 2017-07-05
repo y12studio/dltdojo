@@ -1,8 +1,5 @@
-FROM ethereum/client-go:v1.6.6
-# https://hub.docker.com/r/ethereum/client-go/
-RUN apk --update add bash curl jq
-ADD start.sh /start.sh
-RUN chmod +x /start.sh
-# override parent entrypoint
-ENTRYPOINT []
-CMD ["/start.sh"]
+FROM dltdojo/geth:1.6.6
+RUN apk --update add tree
+ADD buildchain.sh .
+ADD start.sh .
+RUN chmod +x *.sh
