@@ -2,16 +2,34 @@ version: '2'
 services:
   node0:
     image: dltdojo/clique:1.6.6
+    environment:
+      NET_NAME: "cqnet1"
+      NODE_DIR: "node0"
+      SIGNER: "YES"
     volumes:
       - dltdojo:/dltdojo
     command: "./start.sh"
   node1:
     image: dltdojo/clique:1.6.6
+    environment:
+      NET_NAME: "cqnet1"
+      NODE_DIR: "node1"
     volumes:
       - dltdojo:/dltdojo
     command: "./start.sh"
   node2:
     image: dltdojo/clique:1.6.6
+    environment:
+      NET_NAME: "cqnet1"
+      NODE_DIR: "node2"
+    volumes:
+      - dltdojo:/dltdojo
+    command: "./start.sh"
+  node3:
+    image: dltdojo/clique:1.6.6
+    environment:
+      NET_NAME: "cqnet1"
+      NODE_DIR: "node3"
     volumes:
       - dltdojo:/dltdojo
     command: "./start.sh"

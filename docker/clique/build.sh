@@ -1,25 +1,22 @@
 #!/bin/bash
-# docker run -it -v dltdojo:/dltdojo foo ./build.sh
-rm -rf /dltdojo/clique/*
-mkdir -p /dltdojo/clique
-cd /dltdojo/clique
-mkdir node0 node1 node2
-echo $RAMDOM | sha256sum | base64 | head -c 16 > node0/passfile
-echo $RANDOM | sha256sum | base64 | head -c 16 > node1/passfile
-echo $RANDOM | sha256sum | base64 | head -c 16 > node2/passfile
-geth account new --password node0/passfile &>/dev/null
-mv /root/.ethereum/keystore/* node0/
-geth account new --password node1/passfile &>/dev/null
-mv /root/.ethereum/keystore/* node1/
-geth account new --password node2/passfile &>/dev/null
-mv /root/.ethereum/keystore/* node2/
-tree /dltdojo
-echo "=== node0 address/password ==="
-cat node0/UTC* | jq -r '.address'
-echo "=== node1 address/password ==="
-cat node1/UTC* | jq -r '.address'
-echo "=== node2 address/password ==="
-cat node2/UTC* | jq -r '.address'
+# docker run -it -v dltdojo:/dltdojo foo ./build.sh NET_NAME NUM_NODE
+[ $# == 2 ] || exit
+NET_NAME=$1
+NUM_NODE=$2
+rm -rf /dltdojo/$NET_NAME/*
+mkdir -p /dltdojo/$NET_NAME
+cd /dltdojo/$NET_NAME
+for ((i=0; i<NUM_NODE; i++))
+do
+   NODEDIR=node$i
+   mkdir $NODEDIR
+   echo $RAMDOM | sha256sum | base64 | head -c 16 > $NODEDIR/passfile
+   geth account new --password $NODEDIR/passfile &>/dev/null
+   mv /root/.ethereum/keystore/* $NODEDIR/
+   echo "=== $NODEDIR address/password ==="
+   cat $NODEDIR/UTC* | jq -r '.address'
+done
 puppeth
-echo "=== poa-clique.json ==="
-cat poa-clique.json | jq -r '.config'
+tree /dltdojo/$NET_NAME
+echo "=== $NET_NAME.json ==="
+cat $NET_NAME.json | jq -r '.config'
