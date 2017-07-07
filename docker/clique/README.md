@@ -2,19 +2,19 @@
 
 * docker version: 17.06
 * docker-compose: 1.8.0
-* clique network name: foonet1
-* Signer: node0
 
-### Quick Start
+## Quick Start (Name:foonet1)
+
+* Network name: foonet1
+* Signer: node0
 
 ```
 $ docker pull dltdojo/clique:1.6.6
 $ docker run -it -v dltdojo:/dltdojo dltdojo/clique:1.6.6 ./build.sh foonet1 4
-$ curl -o docker-compose.yml https://raw.githubusercontent.com/y12studio/dltdojo/master/docker/clique/docker-compose.yml -o docker-compose.yml
+$ curl -o docker-compose.yml https://raw.githubusercontent.com/y12studio/dltdojo/master/docker/clique/docker-compose.yml
 $ sed -i.bak -e 's/cqnet1/foonet1/' docker-compose.yml
 $ docker-compose up -d
 ```
-
 
 ### Build a dltdojo volume for foonet1
 
