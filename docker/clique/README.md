@@ -1,7 +1,5 @@
 ## Build a Ethereum Clique Private Testnet in 5 Min
 
-一分鐘建構以太坊Clique四節點測試網路
-
 * docker version: 17.06
 * docker-compose: 1.8.0
 * clique network name: foonet1
@@ -130,6 +128,7 @@ What would you like to do? (default = stats)
 ```
 
 ### Let docker-compose up
+
 ```
 $ curl -o docker-compose.yml https://raw.githubusercontent.com/y12studio/dltdojo/master/docker/clique/docker-compose.yml -o docker-compose.yml
 $ sed -i.bak -e 's/cqnet1/foonet1/' docker-compose.yml
