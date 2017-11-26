@@ -34,6 +34,7 @@
     "ipfs-mini": "^1.0.2",
     "jayson": "^2.0.2",
     "keythereum": "0.3.2",
+    "lite-server": "^2.3.0",
     "lodash": "^4.17.4",
     "request-promise": "^4.1.1",
     "serve-static": "^1.11.2",
