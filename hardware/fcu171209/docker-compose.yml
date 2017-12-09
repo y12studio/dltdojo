@@ -1,0 +1,6 @@
+version: '2'
+services:
+  nodered:
+    build: nred
+    ports:
+      - "9880:1880"
